@@ -6,3 +6,11 @@ div {
 .a .c {
     border: 2px solid black;
 }
+
+table, td, th {
+    border: 1px solid black;
+}
+
+.a > .b {
+    color: blue;
+}

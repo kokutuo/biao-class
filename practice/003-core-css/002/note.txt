@@ -1,0 +1,2 @@
+    inline元素的上下margin和padding失效，
+而inline-block正常显示
