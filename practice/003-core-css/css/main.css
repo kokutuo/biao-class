@@ -1,7 +1,8 @@
-.first {
-    background: tomato;
+div {
+    padding: 10px;
+    background: rgba(255, 0, 0, 0.2);
 }
 
-.second {
-    background: skyblue;
+.a .c {
+    border: 2px solid black;
 }
