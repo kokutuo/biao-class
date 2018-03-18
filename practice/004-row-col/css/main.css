@@ -1,8 +1,8 @@
 a {
 	text-decoration: none;
 	color: black;
-}
 
+}
 a:hover {
 	color: #795548;
 }
@@ -50,6 +50,10 @@ a:hover {
 
 .col-3 {
 	width: 30%;	
+}
+
+.col-3-3 {
+	width: 33.33%
 }
 
 .col-4 {
