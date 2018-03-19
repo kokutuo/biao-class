@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+}
+
+.row {
+    font-size: 0;
+}
+
+.col {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 15px;
+}
+
+/* =======全局样式结束======= */
+
+.left,
+.right {
+    width: 50%;
+}
+
+.col:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.col:nth-child(even) {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.nav {
+    background: #333;
+}
+
+.nav .left {
+    text-align: left;
+}
+
+.nav .right {
+    text-align: right;
+}
+
+.nav .right>a,
+.nav .left>a {
+    display: inline-block;
+    padding: 10px 5px;
+    text-decoration: none;
+    color: #b0b0b0;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+    ;
+}
+
+.nav a:hover {
+    color: white;
+}
