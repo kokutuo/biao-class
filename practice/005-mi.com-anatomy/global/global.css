@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.row {
+    font-size: 0;
+}
+
+.col {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 15px;
+}
