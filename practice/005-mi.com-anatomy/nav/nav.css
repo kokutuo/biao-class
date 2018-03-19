@@ -15,13 +15,13 @@
     background: #333;
 }
 
-.nav .left {
+/* .nav .left {
     text-align: left;
 }
 
 .nav .right {
     text-align: right;
-}
+} */
 
 .nav .right > a,
 .nav .left > a {

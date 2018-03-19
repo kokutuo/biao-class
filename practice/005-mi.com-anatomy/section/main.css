@@ -1,0 +1,21 @@
+.section-cat .head .left,
+.section-cat .head .right {
+    width: 50%;
+}
+
+.head {
+    padding: 10px;
+}
+
+.head .title {
+    font-size: 125%;
+    color: #333;
+}
+
+.card-group .leader {
+    width: 20%;
+}
+
+.card-group .others {
+    width: 80%;
+}
