@@ -12,10 +12,47 @@
     color: #333;
 }
 
+.section-cat .card-group {
+    text-align: left;
+}
+
 .card-group .leader {
     width: 20%;
 }
 
 .card-group .others {
     width: 80%;
+}
+
+.card-group .others .row {
+    margin-bottom: 1%;
+}
+
+.card-group .card {
+    width: 24%;
+    margin-left: 1%;
+    padding: 20px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background: rgba(0, 0, 0, 0.02);
+    text-align: center;
+}
+
+.card-group .card .text {
+    margin: 15px 10px;
+}
+
+.card-group .card .text .title {
+    color: #000;
+    padding: 1px 3px;
+}
+
+.card-group .card .text .desc {
+    color: #555;
+    font-size: 85%;
+    padding: 1px 3px;
+    margin-bottom: 3px;
+}
+
+.card-group .card .text .price {
+    color: #ff6700;
 }
