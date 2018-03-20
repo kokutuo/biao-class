@@ -1,19 +1,22 @@
-.section-cat .head .left,
-.section-cat .head .right {
+.section-cat {
+    background: #fff;
+}
+.head {
+    padding: 10px 5px;
+}
+
+.head .left,
+.head .right {
     width: 50%;
 }
 
-.head {
-    padding: 10px;
-}
-
 .head .title {
-    font-size: 125%;
-    color: #333;
+    font-size: 120%;
+    color: #555;
 }
 
-.section-cat .card-group {
-    text-align: left;
+.options a:hover {
+    color: #ff9a7f;
 }
 
 .card-group .leader {
@@ -22,37 +25,37 @@
 
 .card-group .others {
     width: 80%;
+    text-align: left    
 }
 
-.card-group .others .row {
-    margin-bottom: 1%;
-}
-
-.card-group .card {
+.card {
     width: 24%;
     margin-left: 1%;
-    padding: 20px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.02);
-    background: rgba(0, 0, 0, 0.02);
+    box-shadow: 1px 0 4px rgba(0, 0, 0, 0.2)
+}
+
+.card .text {
     text-align: center;
+    padding: 3px;
 }
 
-.card-group .card .text {
-    margin: 15px 10px;
+.card .thumb {
+    padding: 8px;
 }
 
-.card-group .card .text .title {
-    color: #000;
-    padding: 1px 3px;
+.card .title {
+    font-size: 90%;
+    color: #222;
+    padding: 3px 8px;
 }
 
-.card-group .card .text .desc {
-    color: #555;
-    font-size: 85%;
-    padding: 1px 3px;
-    margin-bottom: 3px;
+.card .desc {
+    font-size: 80%;
+    padding: 0 7px;
+    margin-bottom: 8px;
+    color: #777;
 }
 
-.card-group .card .text .price {
+.card .price {
     color: #ff6700;
 }
