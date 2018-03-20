@@ -1,5 +1,5 @@
 .section-cat {
-    background: #fff;
+    background: #f5f5f5;
 }
 .head {
     padding: 10px 5px;
@@ -28,9 +28,14 @@
     text-align: left    
 }
 
+.others .row {
+    margin-bottom: 1%;
+}
+
 .card {
     width: 24%;
     margin-left: 1%;
+    background: #fff;
     box-shadow: 1px 0 4px rgba(0, 0, 0, 0.2)
 }
 
@@ -58,4 +63,5 @@
 
 .card .price {
     color: #ff6700;
+    margin-bottom: 10px;
 }
