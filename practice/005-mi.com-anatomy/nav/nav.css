@@ -1,37 +1,23 @@
+.nav {
+    background: #333;
+}
+
+.col {
+    display: inline-block;
+}
+
 .nav .left,
 .nav .right {
     width: 50%;
 }
 
-.col:nth-child(odd) {
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.col:nth-child(even) {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.nav {
-    background: #333;
-}
-
-/* .nav .left {
-    text-align: left;
-}
-
-.nav .right {
-    text-align: right;
-} */
-
-.nav .right > a,
-.nav .left > a {
-    display: inline-block;
-    padding: 10px 5px;
-    text-decoration: none;
+.nav a {
     color: #b0b0b0;
-    font-size: 82%;
+    font-size: 70%;
+    padding: 10px 5px;
+    display: inline-block;
 }
 
 .nav a:hover {
-    color: white;
+    color: #fff;
 }
