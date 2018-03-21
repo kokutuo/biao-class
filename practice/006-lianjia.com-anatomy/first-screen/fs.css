@@ -97,5 +97,7 @@ body {
 
 .search-area .search-box button {
     height: 55px;
+    width: 120px;
+    padding: 5px;
     background: #00ae66;
 }
