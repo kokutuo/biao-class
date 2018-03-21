@@ -8,10 +8,14 @@
     height: 610px;
 }
 
+body {
+    color: #fff;
+}
+
 /* 导航栏设置 */
 
 .nav {
-    padding: 10px;
+    padding-top: 30px;
 }
 
 .nav .left {
@@ -55,3 +59,43 @@
 }
 
 /* 首屏设置 */
+.search-section {
+    margin-top: 120px;
+}
+
+.search-section .title,
+.search-section .sub-title,
+.search-section .search-cat,
+.search-section .search-box {
+    display: block;
+    text-align: center;
+}
+
+.search-section .title {
+    font-size: 60px;
+    padding: 5px;
+}
+
+.search-section .sub-title {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.search-area .search-cat * {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 20px;
+    margin-bottom: 12px;
+}
+
+.search-area .search-box input {
+    width: 600px;
+    height: 55px;
+    padding: 5px;
+}
+
+.search-area .search-box button {
+    height: 55px;
+    background: #00ae66;
+}
