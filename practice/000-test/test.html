@@ -1,39 +1,40 @@
 <style>
-    #box {
-        height: 100px;
-        width: 100px;
-        background: rgba(255, 0, 0, 0.3);
+    body{
+        background: rgba(0, 0, 0, 0.3);
     }
 
-    #box {
-        position: fixed;
-        top: 0;
-        right: 0;
+    .row {
+        font-size: 0;
+        display: block;
     }
 
-    #parent {
-        position: relative;
-        width: 200px;
-        height: 900px;
+    .search-area {
+        text-align: center;
     }
+
+    .search-area input,
+    .search-area button {
+        height: 55px;
+        border: 0;
+        padding: 5px;
+    }
+
+    .search-area input {
+        width: 600px;
+        vertical-align: top;
+    }
+
+    .search-area button{
+        width: 120px;
+        background: #00ae66;
+        color: #fff;
+
+    }
+
+
 </style>
 
-<div id="parent">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores sint in maiores deleniti repellendus blanditiis laudantium qui, veritatis animi dolorum, sit, neque eveniet. Culpa, officia! Odio aut maiores dolore temporibus.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero tempore saepe sapiente illum sequi, modi dolorem odit veniam totam a id magnam! Id illum labore corrupti at nihil perferendis fuga!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. <div id="box"></div> Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut necessitatibus, beatae deleniti optio delectus explicabo magnam neque provident autem aspernatur facilis cupiditate. Molestias dolores error recusandae veniam. Aliquam, dignissimos reiciendis!
+<div class="row search-area">
+    <input type="search">
+    <button type="submit">开始找房</button>
 </div>
