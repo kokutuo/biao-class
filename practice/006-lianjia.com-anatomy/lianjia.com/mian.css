@@ -185,3 +185,54 @@
     text-align: left;
     color: #000;
 }
+
+.download-area .title .sub {
+    font-size: 45px;
+    font-weight: lighter;
+    padding: 67px 10px 0 10px;
+}
+
+.download-area .title .main {
+    font-size: 66px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.download-area .desc {
+    max-width: 430px;
+    font-size: 13px;
+    font-weight: lighter;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.download .left,
+.download .right {
+    width: 20%;
+}
+
+.download .iphone {
+    display: block;
+    height: 81px;
+    width: 200px;
+    background-image: url(../img/sprite.png);
+    background-position: -52px -280px;
+    margin-bottom: 10px;
+    }
+
+.download .android {
+    display: block;
+    height: 81px;
+    width: 200px;
+    background-image: url(../img/sprite.png);
+    background-position: -52px -400px;
+    }
+
+.download .qr-code {
+    display: block;
+    height: 172px;
+    width: 200px;
+    background-image: url(../img/sprite.png);
+    background-position: -929px -294px;
+}
