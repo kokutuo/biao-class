@@ -4,9 +4,11 @@
     background-image: url(../img/first-screen.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    margin-bottom: 30px;
 }
 
 /* ========= nav样式 ========== */
+
 .nav {
     padding-top: 15px;
 }
@@ -15,7 +17,7 @@
     width: 30%;
 }
 
-.nav .right  {
+.nav .right {
     width: 70%;
 }
 
@@ -23,7 +25,8 @@
     display: inline-block;
 }
 
-.logo, .location {
+.logo,
+.location {
     vertical-align: middle;
 }
 
@@ -35,7 +38,8 @@
     background-position: -36px -31px;
 }
 
-.location, .user {
+.location,
+.user {
     font-size: 75%;
 }
 
@@ -57,29 +61,30 @@
     margin-bottom: 5px;
 }
 
-.link-group > a {
+.link-group>a {
     font-weight: bold;
     padding: 5px 0 5px 8px;
 }
 
 /* ========= center样式 ========== */
+
 .center {
     margin-top: 95px;
     text-align: center;
 }
 
-.title {
+.center .title {
     color: #fff;
     margin-bottom: 30px;
 }
 
-.title .main {
+.center .title .main {
     font-size: 65px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.title .sub {
+.center .title .sub {
     font-size: 20px;
 }
 
@@ -89,11 +94,16 @@
     text-align: left;
 }
 
-.search-cat > * {
+.search-cat>* {
     display: inline-block;
     font-size: 14px;
     padding: 5px 17px 5px 0;
-    color: rgba(255, 255, 255, 0.5)
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+.search-cat>*.active {
+    color: #fff;
 }
 
 .search-box input,
@@ -114,3 +124,64 @@
     background: #00ae66;
 }
 
+.other {
+    position: relative;
+    top: 150px;
+    right: 320px;
+}
+
+.other>* {
+    display: inline-block;
+    font-size: 10px;
+    color: #eee;
+    padding: 10px;
+}
+
+/* ====== center样式结束 ==== */
+
+/* ========= main-content样式 ========= */
+
+.main-content {
+    background: #fff;
+}
+
+/* service样式 */
+
+.service {
+    max-width: 1080px;
+    margin: 0 auto 50px auto;
+}
+
+.service-cat {
+    width: 25%;
+    text-align: center;
+    color: #000;
+}
+
+.service-cat * {
+    padding: 3px 7px;
+}
+
+.service-cat .title {
+    font-size: 20px;
+    color: #333;
+}
+
+.service-cat .desc {
+    color: #aaa;
+    font-size: 10px;
+}
+
+/* download-area样式 */
+
+.download-area {
+    height: 520px;
+    width: 100%;
+    background-image: url(../img/download.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+    text-align: left;
+    color: #000;
+}
