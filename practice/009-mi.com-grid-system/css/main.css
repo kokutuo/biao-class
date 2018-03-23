@@ -31,7 +31,8 @@
 /* first-screen head 样式 */
 
 .head {
-    padding: 10px 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .head * {
@@ -85,10 +86,49 @@
     left: 10px;
 }
 
-.rec-list > * {
+.rec-list>* {
     padding: 3px 5px;
     background: rgba(0, 0, 0, .6);
 }
 
-/* first-screen 样式 */
+/* first-screen main-promot样式 */
+
+.main-promot {
+    margin-bottom: 10px;
+    background-image: url(../img/slider001.jpg);
+    background-size: cover;
+}
+
+.cat-list {
+    font-size: 1.1rem;
+    padding: 20px 10px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.cat-list a {
+    display: block;
+    padding: 10px 5px;
+    color: #fff;
+}
+
+/* first-screen sub-promot样式 */
+
+.sub-promot > * {
+    padding-left: 10px;
+    text-align: center;
+}
+
+.quick-channel {
+    background: #5f5750;
+}
+
+.quick-channel * {
+    padding: 3px;
+    color: #fff;
+}
+
+.icon {
+    display: block;
+    font-size: 1.5rem;
+}
 
