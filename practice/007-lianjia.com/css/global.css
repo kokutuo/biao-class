@@ -28,6 +28,10 @@ a {
     color: #eee;
 }
 
+img {
+    width: 100%;
+}
+
 .col.left {
     text-align: left;
 }

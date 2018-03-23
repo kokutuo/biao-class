@@ -270,3 +270,26 @@
 .sec-house .head .more {
     font-size: 0.9rem;
 }
+
+.sec-house .card-group .col {
+    width: 25%
+}
+
+.sec-house .card {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1)
+}
+
+.sec-house .thumb {
+    position: relative;
+}
+
+.sec-house .price {
+    display: inline-block;
+    color: #fff;
+    font-size: 1.25rem;
+    padding: 5px;
+    position: absolute;
+    left: 0;
+    bottom: 23px;
+    background: rgba(0, 0, 0, 0.7);
+}
