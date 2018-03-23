@@ -181,7 +181,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    margin: 0 auto 50px auto;
+    margin: 0 auto 35px auto;
     text-align: left;
     color: #000;
 }
@@ -238,3 +238,35 @@
 }
 
 /* sec-house样式 */
+
+.sec-house .head {
+    margin-bottom: 20px;
+}
+
+.sec-house .left,
+.sec-house .right {
+    width: 50%;
+}
+
+.sec-house .head .main-title>* {
+    display: inline-block;
+    font-size: 2rem;
+    padding: 5px;
+}
+
+.sec-house .head .main-title>:nth-child(1) {
+    font-weight: bold;
+}
+
+.sec-house .head .main-title>:nth-child(2) {
+    font-weight: lighter;
+}
+
+.sec-house .head .sub-title {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.sec-house .head .more {
+    font-size: 0.9rem;
+}
