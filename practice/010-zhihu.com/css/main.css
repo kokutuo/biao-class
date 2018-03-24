@@ -15,8 +15,7 @@ body {
 .main .editor-tool,
 .main .content-card,
 .main .other-cat,
-.main .mine,
-.main .footer {
+.main .mine {
     background: #fff;
     margin-bottom: 15px;
 }
@@ -187,3 +186,13 @@ body {
 }
 
 /* .main footer样式 */
+
+.main .footer>* {
+
+}
+
+.main .footer a {
+    display: inline-block;
+    color: #8590a6;
+    padding: 5px 3px;
+}
