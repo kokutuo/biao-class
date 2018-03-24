@@ -16,6 +16,8 @@ body {
 .nav {
     background: #fff;
     padding: 3px 0;
+    margin-bottom: 15px;
+    /* position: fixed; */
 }
 
 .nav a,
@@ -50,7 +52,7 @@ body {
     padding: 10px;
     background: transparent;
     border: 1px solid #ccc;
-    line-height: 1.1    ;
+    line-height: 1.1;
 }
 
 .search-area [type="search"] {
@@ -67,7 +69,7 @@ body {
     background: #0084ff;
     border: 0;
     border-radius: 0.3rem;
-} 
+}
 
 .search-area [type="search"],
 .search-area [type="submit"] {
@@ -87,4 +89,25 @@ body {
     background-size: cover;
     margin-left: 13px;
 }
+
+/* main editor-tool样式 */
+
+.main .editor-tool {
+    background: #fff;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.main .editor-tool * {
+    display: inline-block;
+    color: #1a1a1a;
+    vertical-align: middle;
+}
+
+.main .editor-tool .tool {
+    font-size: 1.3rem;
+    padding: 5px 15px;
+}
+
+
 
