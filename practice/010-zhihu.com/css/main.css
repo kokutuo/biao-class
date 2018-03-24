@@ -15,12 +15,11 @@ body {
 
 .nav {
     background: #fff;
-    width: 100%;
-    padding: 3px 401px;
+    padding: 3px;
     margin-bottom: 15px;
     position: fixed;
-    top: 0;
     left: 0;
+    right: 0;
 }
 
 .nav a,
@@ -95,6 +94,16 @@ body {
 
 /* main editor-tool样式 */
 
+.main {
+    position: relative;
+    top: 83px;
+}
+
+.main .editor-tool,
+.main .content-card {
+    margin-right: 15px;
+}
+
 .main .editor-tool {
     background: #fff;
     padding: 10px 15px;
@@ -136,4 +145,5 @@ body {
     margin-left: 10px;
 }
 
+/* main aside 样式 */
 
