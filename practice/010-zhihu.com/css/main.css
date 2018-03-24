@@ -82,7 +82,7 @@ body {
     vertical-align: middle;
 }
 
-#avatar {
+.nav .avatar {
     height: 35px;
     width: 35px;
     background-image: url(../img/zhihu002.jpg);
@@ -109,5 +109,25 @@ body {
     padding: 5px 15px;
 }
 
+/* main content样式 */
 
+.main .content-card {
+    background: #fff;
+    padding: 15px;
+}
+
+.main .content-card>* {
+    display: block;
+    padding: 3px 5px;
+    margin-bottom: 5px;
+}
+
+.main .content-card .text {
+    line-height: 1.5;
+}
+
+.main .comment-tool>* {
+    padding: 0 3px;
+    margin-left: 10px;
+}
 
