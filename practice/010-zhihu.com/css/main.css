@@ -24,6 +24,7 @@ body {
 
 .nav {
     padding: 3px;
+    z-index: 1;
     position: fixed;
     left: 0;
     right: 0;
@@ -149,6 +150,11 @@ body {
 }
 
 /* main other-cat样式 */
+
+.aside {
+    position: fixed;
+    width: 360px
+}
 
 .main .other-cat {
     padding: 10px;
