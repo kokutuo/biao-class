@@ -11,12 +11,20 @@ body {
     background: #f6f6f6;
 }
 
+.nav,
+.main .editor-tool,
+.main .content-card,
+.main .other-cat,
+.main .mine,
+.main .footer {
+    background: #fff;
+    margin-bottom: 15px;
+}
+
 /* nav 样式 */
 
 .nav {
-    background: #fff;
     padding: 3px;
-    margin-bottom: 15px;
     position: fixed;
     left: 0;
     right: 0;
@@ -105,9 +113,7 @@ body {
 }
 
 .main .editor-tool {
-    background: #fff;
     padding: 10px 15px;
-    margin-bottom: 15px;
 }
 
 .main .editor-tool * {
@@ -124,9 +130,7 @@ body {
 /* main content样式 */
 
 .main .content-card {
-    background: #fff;
     padding: 15px;
-    margin-bottom: 15px;
 }
 
 .main .content-card>* {
@@ -145,5 +149,41 @@ body {
     margin-left: 10px;
 }
 
-/* main aside 样式 */
+/* main other-cat样式 */
 
+.main .other-cat {
+    padding: 10px;
+}
+
+.main .aside .card {
+    padding: 10px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.main .aside .row {
+    margin-bottom: 5px;
+}
+
+/* main mine样式 */
+
+.main .mine {
+    padding: 20px 0;
+    font-size: 1.2rem;
+}
+
+.main .mine a {
+    display: block;
+    padding: 10px 20px;
+}
+
+.main .mine a:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.main .mine a>* {
+    padding: 5px 10px;
+    color: #8590a6;
+}
+
+/* .main footer样式 */
