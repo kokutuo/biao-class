@@ -15,9 +15,12 @@ body {
 
 .nav {
     background: #fff;
-    padding: 3px 0;
+    width: 100%;
+    padding: 3px 300px;
     margin-bottom: 15px;
-    /* position: fixed; */
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .nav a,
@@ -114,6 +117,7 @@ body {
 .main .content-card {
     background: #fff;
     padding: 15px;
+    margin-bottom: 15px;
 }
 
 .main .content-card>* {
@@ -127,7 +131,9 @@ body {
 }
 
 .main .comment-tool>* {
+    color: #1a1a1a;
     padding: 0 3px;
     margin-left: 10px;
 }
+
 
