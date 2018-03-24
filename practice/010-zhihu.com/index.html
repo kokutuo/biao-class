@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,35 @@
     <link rel="stylesheet" href="css/main.css">
     <title>知乎</title>
 </head>
+
 <body>
     <div class="row nav global">
-        <div class="col-8 left"></div>
-        <div class="col-4 right"></div>
+        <div class="container">
+            <div class="col-8 left">
+                <div class="logo-area">
+                    <a href="#" id="logo">知乎</a>
+                    <a href="#">首页</a>
+                    <a href="#">发现</a>
+                    <a href="#">话题</a>
+                </div>
+                <div class="search-area">
+                    <form>
+                        <div class="search">
+                            <input type="search" placeholder="搜索你感兴趣的内容...">
+                            <span class="fontawesome-search"></span>
+                        </div>
+                        <button type="submit">提问</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-4 right">
+                <div class="user">
+                    <a href="#" class="bell fontawesome-bell-alt"></a>
+                    <a href="#" class="comments fontawesome-comments"></a>
+                    <a href="#" id="avatar"></a>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row main">
         <div class="col-8 body">
@@ -28,4 +54,5 @@
         </div>
     </div>
 </body>
+
 </html>

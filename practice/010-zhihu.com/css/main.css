@@ -1,0 +1,90 @@
+/* 引入font-awesome */
+
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+[class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+/* ==================== */
+
+body {
+    background: #f6f6f6;
+}
+
+/* nav 样式 */
+
+.nav {
+    background: #fff;
+    padding: 3px 0;
+}
+
+.nav a,
+.logo-area,
+.search-area,
+.search {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nav a {
+    color: #8590a6;
+    font-size: 1.4rem;
+}
+
+.logo-area a {
+    padding: 10px 15px;
+}
+
+#logo {
+    color: #0084ff;
+    font-size: 2.5rem;
+}
+
+.search-area {
+    font-size: 0;
+    padding: 10px;
+}
+
+.search {
+    font-size: 1rem;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #ccc;
+    line-height: 1.1    ;
+}
+
+.search-area [type="search"] {
+    border: 0;
+    width: 200px;
+}
+
+.search-area [type="submit"] {
+    display: inline-block;
+    font-size: 1.4rem;
+    padding: 10px;
+    margin-left: 8px;
+    color: #fff;
+    background: #0084ff;
+    border: 0;
+    border-radius: 0.3rem;
+} 
+
+.search-area [type="search"],
+.search-area [type="submit"] {
+    vertical-align: middle;
+}
+
+.nav .user * {
+    font-size: 2rem;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+#avatar {
+    height: 35px;
+    width: 35px;
+    background-image: url(../img/zhihu002.jpg);
+    background-size: cover;
+    margin-left: 13px;
+}
+
