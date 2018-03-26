@@ -238,12 +238,12 @@ body {
     text-align: center;
 }
 
-.main .aside .card a:hover {
+.main .aside .card .icon {
+    padding: 5px 0;
     color: yellow;
 }
 
-.main .aside .card .icon {
-    padding: 5px 0;
+.main .aside .card .cat:hover {
     color: yellow;
 }
 

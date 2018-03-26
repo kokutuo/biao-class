@@ -1,0 +1,124 @@
+/* nav 样式 */
+
+.nav.global {
+	background: #ddd;
+	padding: 0 10px;
+}
+
+.nav.global a {
+	font-size: 1rem;
+	padding: 4px 2px;
+	color: #555;
+}
+
+/* first-screen header 样式 */
+
+/* .header .logo {
+	height: 105px;
+	width: 194px;
+	background-image: url(../img/tmall000.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+} */
+
+.header .head {
+	background: red;
+	padding: 8px 20px;
+	font-size: 1.2rem;
+	color: #fff;
+}
+
+.header .search-area {
+	font-size: 0;
+	text-align: center;
+}
+
+.header .search {
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.header .search * {
+	vertical-align: top;
+}
+
+/*.header .search-area>* {
+	vertical-align: middle
+}
+*/
+
+.header .search-area [type="search"] {
+	height: 40px;
+	width: 500px;
+	padding: 5px;
+	font-size: 1.1rem;
+	line-height: 1.1;
+	border: 2px solid red;
+	border-right: 0;
+}
+
+.header .search-area [type="submit"] {
+	height: 40px;
+	width: 120px;
+	border: 2px solid red;
+	background: red;
+	color: #fff;
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+.header .hot-cat a {
+	padding-right: 15px;
+	font-size: 1.1rem;
+	color: #aaa;
+	position: relative;
+	right: 66px;
+}
+
+.header .link-group {
+	margin-top: 16px;
+	text-align: left;
+}
+
+.header .link-group * {
+	/* padding: 0 5px; */
+}
+
+.header .link-group img {
+	height: 30px;
+	width: 100px;
+}
+
+.header .link-group a {
+	font-size: 1.2rem;
+	padding: 0 3px;
+	vertical-align: middle;
+	color: #555;
+}
+
+.header .link-group a:hover {
+	color: red;
+}
+
+/* first-screen main-promote 样式 */
+
+.first-screen .main-promote {
+	width: 100%;
+	height: 458px;
+	background-image: url(../img/tmall001.jpg_.webp);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.first-screen .product-cat {
+	padding: 5px;
+	background: rgba(0, 0, 0, .2);
+}
+
+.first-screen .product-cat * {
+	padding: 3px 8px 5px 3px;
+	color: #fff;
+	font-size: 1.1rem;
+}
+
+/* first-screen brand-ad 样式 */
