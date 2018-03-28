@@ -1,9 +1,10 @@
 .nav.global {
     background: #333;
-    color: #eee;
+    margin-bottom: 20px;
 }
 
 .nav.global a {
-    color: inherit;
-    padding: 5px 10px;
+    color: #b0b0b0;
+    padding: 7px 5px;
+    font-size: 0.9rem;
 }
