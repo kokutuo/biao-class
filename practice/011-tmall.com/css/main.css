@@ -80,9 +80,9 @@
 	text-align: left;
 }
 
-.header .link-group * {
-	/* padding: 0 5px; */
-}
+/* .header .link-group * {
+	padding: 0 5px;
+} */
 
 .header .link-group img {
 	height: 30px;
