@@ -1,0 +1,80 @@
+.footer * {
+    vertical-align: middle;
+}
+
+.after-sale {
+    padding: 30px 19px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.after-sale * {
+    border-right: 1px solid #e0e0e0;
+}
+
+.after-sale a {
+    padding: 3px 35px;
+    font-size: 1.2rem;
+    color: inherit;
+}
+
+.other {
+    padding: 25px 0;
+    margin-bottom: 20px;
+}
+
+.other a {
+    width: 100%;
+    color: #757575;
+    font-size: 0.8rem;
+}
+
+.other .main-link-group {
+    font-size: 0;
+    border-right: 1px solid #e0e0e0;
+}
+
+.other .main-link-group a {
+    padding: 6px 0;
+}
+
+.other .link-title {
+    padding: 15px 0;
+    font-size: 1rem;
+}
+
+.service {
+    text-align: center;
+    padding: 0 16px;
+}
+
+.service .phone {
+    color: #ff6700;
+    font-size: 1.3rem;
+    padding: 5px;
+}
+
+.service .work-time {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.online button {
+    color: #ff6700;
+    padding: 10px 25px;
+    border: 1px solid #ff6700;
+    background: transparent;
+}
+
+.meta-msg {
+    background: #fafafa;
+    padding: 30px 0;
+}
+
+.meta-msg .left {
+    font-size: 0;
+}
+
+.meta-msg .left .msg {
+    font-size: 0.7rem;
+    color: #757575;
+}
