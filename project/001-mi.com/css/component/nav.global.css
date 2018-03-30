@@ -1,10 +1,29 @@
 .nav.global {
     background: #333;
-    margin-bottom: 20px;
 }
 
 .nav.global a {
     color: #b0b0b0;
     padding: 7px 5px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    position: relative;
+}
+
+.nav.global a:after {
+    content: "";
+    display: inline-block;
+    height: 11px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 8px;
+    right: -3px;
+}
+
+.nav.global a:last-child::after {
+    display: none;
+}
+
+.nav.global a:hover {
+    color: #fff;
 }
