@@ -7,14 +7,20 @@
     border-bottom: 1px solid #e0e0e0;
 }
 
-.after-sale * {
-    border-right: 1px solid #e0e0e0;
-}
-
 .after-sale a {
     padding: 3px 35px;
     font-size: 1.2rem;
     color: inherit;
+    border-right: 1px solid #e0e0e0;
+}
+
+.after-sale a:last-child {
+    border-right: 0;
+}
+
+.after-sale span {
+    font-size: 1.3rem;
+    padding-right: 5px;
 }
 
 .other {
@@ -77,4 +83,14 @@
 .meta-msg .left .msg {
     font-size: 0.7rem;
     color: #757575;
+}
+
+.slogan {
+    height: 19px;
+    width: 267px;
+    background-image: url(../../img/slogan2016.png);
+    background-position: center 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 30px auto 0;
 }
