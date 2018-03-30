@@ -21,10 +21,19 @@
     padding: 5px;
 }
 
+.nav.page .link-group a:hover {
+    color: #ff6700;
+}
+
+
 .nav.page .search-area {
     font-size: 0;
     text-align: right;
     position: relative;
+}
+
+.nav.page .search-area [type="search"] {
+    width: 200px;
 }
 
 .nav.page .search-area [type="search"],
@@ -37,6 +46,7 @@
 
 .nav.page .search-area [type="submit"] {
     width: 50px;
+    font-size: 1.2rem;
     background: transparent;
     border-left: 0;
 }
@@ -61,6 +71,9 @@
 }
 
 .nav.page .search-area [type="submit"]:hover,
-.nav.page .hot-cat sapn:hover {
+.nav.page .hot-cat span:hover {
     background: #ff6700;
+    color: #fff;
 }
+
+
