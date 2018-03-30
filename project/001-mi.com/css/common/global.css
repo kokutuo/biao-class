@@ -1,6 +1,6 @@
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
-
 /* fontawesome */
+
 [class*="fontawesome-"]:before {
     font-family: 'FontAwesome', sans-serif;
 }
@@ -14,7 +14,6 @@ html {
     font-size: 15px;
     font-family: sans-serif;
     color: #333;
-    overflow: hidden;
 }
 
 img {

@@ -34,6 +34,7 @@
 
 .nav.page .search-area [type="search"] {
     width: 200px;
+    padding: 10px;
 }
 
 .nav.page .search-area [type="search"],
