@@ -68,6 +68,10 @@
     text-align: left;
 }
 
+.main a:hover {
+    color: #ff6700;
+}
+
 .guide-content {
     padding: 40px 48px;
 }
