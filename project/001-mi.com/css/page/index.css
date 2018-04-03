@@ -1,5 +1,37 @@
 .col-lg-1-5 {
     width: 20%;
+    padding-left: 10px;
+}
+
+.card {
+    text-align: center;
+}
+
+.card .thumb {
+    padding: 20px;
+}
+
+.card .title {
+    font-size: 1rem;
+    padding: 5px 3px;
+    color: #333;
+}
+
+.card .desc {
+    font-size: 0.9rem;
+    padding: 3px;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+.card .price {
+    font-size: 1rem;
+    color: #ff6700;
+}
+
+.card .price .del {
+    color: #b0b0b0;
+    text-decoration: line-through;
 }
 
 .main-prom {
@@ -28,6 +60,10 @@
     background: #ff6700;
 }
 
+.sub-prom {
+    margin-bottom: 20px;
+}
+
 .sub-prom .quick-channel {
     height: 140px;
     background: #5f5750;
@@ -47,3 +83,15 @@
 .sub-prom .card {
     padding-left: 10px;
 }
+
+.quick-buy .head {
+    margin-bottom: 15px;
+}
+
+.quick-buy .head .title {
+    font-size: 1.4rem;
+    color: #333;
+}
+
+
+
