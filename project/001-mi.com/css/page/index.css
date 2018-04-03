@@ -1,6 +1,5 @@
 .col-lg-1-5 {
     width: 20%;
-    padding-left: 10px;
 }
 
 .card {
@@ -84,6 +83,10 @@
     padding-left: 10px;
 }
 
+.quick-buy {
+    margin-bottom: 20px;
+}
+
 .quick-buy .head {
     margin-bottom: 15px;
 }
@@ -93,5 +96,40 @@
     color: #333;
 }
 
+.quick-buy .flash .card {
+    padding: 30px 20px;
+    background: #f1eded;
+    border-top: 1px solid #e53935;
+}
 
+.quick-buy .flash .time-title {
+    font-size: 1.5rem;
+    color: #e53935;
+    padding: 20px 15px;
+}
 
+.quick-buy .flash img {
+    height: 56px;
+    width: auto;
+    margin: 20px auto;
+}
+
+.quick-buy .flash .end {
+    color: #b0b0b0;
+    padding: 20px 0;
+}
+
+.quick-buy .flash .countdown {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.quick-buy .flash .countdown .box {
+    font-size: 1.3rem;
+    padding: 10px;
+    background: #605751;
+}
+
+.ad {
+    margin-bottom: 20px;
+}
