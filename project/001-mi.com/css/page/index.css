@@ -28,6 +28,22 @@
     background: #ff6700;
 }
 
-.sub-prom {
-    
+.sub-prom .quick-channel {
+    height: 140px;
+    background: #5f5750;
+    text-align: center;
+    color: #ffffffb3;
+}
+
+.sub-prom .quick-channel .icon {
+    font-size: 1.4rem;
+    padding-top: 18px;
+}
+
+.sub-prom .quick-channel .row:first-child {
+    margin-bottom: 8px;
+}
+
+.sub-prom .card {
+    padding-left: 10px;
 }
