@@ -140,6 +140,14 @@ h2 {
     color: #a7a7a7;
 }
 
+.body .item {
+    padding-bottom: 10px;
+}
+
+.body .self-assessment {
+    padding-bottom: 20px;
+}
+
 .body .item .time,
 .body .item .where,
 .body .item .position,
@@ -157,7 +165,10 @@ h2 {
 }
 
 [class*="fontawesome-"] {
+    display: inline-block;
     padding-right: 10px;
     position: relative;
     right: 7px;
+    border-radius: 50%;
+    background: transparent;
 }
