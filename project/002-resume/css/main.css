@@ -174,9 +174,9 @@ h2 {
 
 [class*="fontawesome-"] {
     display: inline-block;
-    padding-right: 10px;
+    padding: 7px;
     position: relative;
-    right: 7px;
+    right: 17px;
     border-radius: 50%;
-    background: transparent;
+    background: #fff;
 }
