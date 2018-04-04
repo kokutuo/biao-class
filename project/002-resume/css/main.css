@@ -17,6 +17,8 @@ html {
 .container {
     max-width: 740px;
     margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .row {
@@ -114,7 +116,7 @@ h2 {
     display: none;
 }
 
-.head .photo img{
+.head .photo img {
     max-height: 150px;
     border: 2px solid #fff;
     display: block;
