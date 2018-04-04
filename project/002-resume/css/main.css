@@ -47,6 +47,13 @@ html {
 h1,
 h2 {
     color: #6b4b24;
+    margin: 0;
+}
+
+h2 {
+    padding-top: 19px;
+    padding-bottom: 19px;
+    font-size: 20px;
 }
 
 .head {
@@ -59,7 +66,6 @@ h2 {
 
 .head h1 {
     color: #fff;
-    margin: 0;
     padding-top: 4px;
     padding-bottom: 10px;
 }
@@ -88,4 +94,23 @@ h2 {
 
 .head .info span:last-child:after {
     display: none;
+}
+
+.body {
+    padding: 20px 50px;
+    border-top: 1px dashed #a7a7a7;
+}
+
+.body>* {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.body .item .time,
+.body .item .where,
+.body .item .position {
+    color: #333;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
