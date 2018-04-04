@@ -1,3 +1,10 @@
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+/* fontawesome */
+
+[class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,7 +21,7 @@ html {
 
 .row {
     display: block;
-    /* font-size: 0; */
+    font-size: 0;
 }
 
 .col-3,
@@ -47,7 +54,17 @@ html {
 h1,
 h2 {
     color: #6b4b24;
+}
+
+h1,
+h2,
+ul {
     margin: 0;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
 }
 
 h2 {
@@ -102,15 +119,37 @@ h2 {
 }
 
 .body>* {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-
 
 .body .item .time,
 .body .item .where,
 .body .item .position {
     color: #333;
-    padding-top: 10px;
-    padding-bottom: 10px;
+}
+
+.body .item .job,
+.body .item .job-duty,
+.body .item .introduce,
+.body .item .site,
+.body .self-assessment .text {
+    font-size: 1rem;
+    color: #a7a7a7;
+}
+
+.body .item .time,
+.body .item .where,
+.body .item .position,
+.body .item .job,
+.body .item .job-duty,
+.body .item .introduce,
+.body .item .site,
+.body .self-assessment .text {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+[class*="fontawesome-"] {
+    padding-right: 10px;
 }
