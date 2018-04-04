@@ -68,7 +68,7 @@ a {
 }
 
 h2 {
-    padding-top: 19px;
+    /* padding-top: 19px; */
     padding-bottom: 19px;
     font-size: 20px;
 }
@@ -119,8 +119,9 @@ h2 {
 }
 
 .body>* {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /* padding-top: 10px; */
+    padding-bottom: 45px;
+    border-left: 1px solid #6b4b24;
 }
 
 .body .item .time,
@@ -129,7 +130,7 @@ h2 {
     color: #333;
 }
 
-.body .item .job,
+.body .job,
 .body .item .job-duty,
 .body .item .introduce,
 .body .item .site,
@@ -141,7 +142,7 @@ h2 {
 .body .item .time,
 .body .item .where,
 .body .item .position,
-.body .item .job,
+.body .job,
 .body .item .job-duty,
 .body .item .introduce,
 .body .item .site,
@@ -150,6 +151,12 @@ h2 {
     padding-bottom: 5px;
 }
 
+.body .content {
+    padding-left: 30px;
+}
+
 [class*="fontawesome-"] {
     padding-right: 10px;
+    position: relative;
+    right: 7px;
 }
