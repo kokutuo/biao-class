@@ -114,6 +114,12 @@ h2 {
     display: none;
 }
 
+.head .photo img{
+    max-height: 150px;
+    border: 2px solid #fff;
+    display: block;
+}
+
 .body {
     padding: 20px 50px;
     border-top: 1px dashed #a7a7a7;
