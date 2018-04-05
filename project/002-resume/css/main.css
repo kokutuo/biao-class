@@ -72,7 +72,7 @@ a {
 
 h2 {
     /* padding-top: 19px; */
-    padding-bottom: 19px;
+    padding-bottom: 8px;
     font-size: 20px;
 }
 
@@ -129,7 +129,7 @@ h2 {
 
 .body>* {
     /* padding-top: 10px; */
-    padding-bottom: 45px;
+    padding-bottom: 30px;
     border-left: 1px solid #6b4b24;
 }
 
