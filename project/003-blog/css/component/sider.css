@@ -1,0 +1,28 @@
+.sider {
+    background: #fff;
+    padding: 15px 10px;
+}
+
+.sider .search-area {
+    padding: 10px;
+    line-height: 1.1;
+}
+
+.sider .search-area * {
+    vertical-align: top;
+}
+
+.sider .search-area input {
+    width: 80%;
+    padding: 3px;
+    font-size: 1.2rem;
+}
+
+.sider .search-area button {
+    width: 20%;
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 3px;
+    background: #da4453;
+    border: 0;
+}
