@@ -1,28 +1,50 @@
 .sider {
     background: #fff;
-    padding: 15px 10px;
+    padding: 15px 20px;
+}
+
+.sider>* {
+    margin-bottom: 15px;
 }
 
 .sider .search-area {
     padding: 10px;
-    line-height: 1.1;
+    padding-left: 0;
 }
 
-.sider .search-area * {
-    vertical-align: top;
+.sider .search-area input,
+.sider .search-area button {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 1.3rem;
+    line-height: 1.1;
+    padding: 5px;
+    height: 35px;
 }
 
 .sider .search-area input {
     width: 80%;
-    padding: 3px;
-    font-size: 1.2rem;
+    padding: 8px 10px;
 }
 
 .sider .search-area button {
     width: 20%;
-    font-size: 1.2rem;
+    border-left: 0;
+    color: #333;
+    cursor: pointer;
+    background: #dadada;
+}
+
+.sider .search-area button:hover {
+    background: #363636;
     color: #fff;
-    padding: 3px;
-    background: #da4453;
-    border: 0;
+}
+
+.sider .title {
+    color: #636467;
+    font-weight: bold;
+    padding: 10px 0 15px 0;
+}
+
+.sider .item {
+    padding: 8px 20px;
 }
