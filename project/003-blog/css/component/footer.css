@@ -1,0 +1,10 @@
+.footer {
+    margin-top: 15px;
+    background: #363636;
+}
+
+.footer img {
+    max-width: 500px;
+    padding: 10px;
+    margin: 0 auto;
+}

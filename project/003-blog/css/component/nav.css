@@ -1,0 +1,24 @@
+.nav {
+    background: #363636;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.nav * {
+    vertical-align: middle;
+}
+
+.nav img {
+    max-width: 400px;
+}
+
+.nav a {
+    padding: 10px 7px;
+    color: #dadada;
+        vertical-align: middle;
+}
+
+.nav a:hover {
+    color: #da4453;
+}
+
