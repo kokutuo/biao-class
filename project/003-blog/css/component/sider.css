@@ -2,6 +2,9 @@
     background: #fff;
     padding: 15px 20px;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    max-width: 430px;
+    position: fixed;
+    top: 100px;
 }
 
 .sider>* {
@@ -25,6 +28,7 @@
 .sider .search-area input {
     width: 80%;
     padding: 8px 10px;
+    outline: none;
 }
 
 .sider .search-area button {
@@ -48,4 +52,12 @@
 
 .sider .item {
     padding: 8px 20px;
+}
+
+.sider .item a {
+    color: #aaa;
+}
+
+.sider .item a:hover {
+    color: #363636;
 }

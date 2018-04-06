@@ -1,6 +1,8 @@
 .footer {
     margin-top: 15px;
     background: #363636;
+    position: relative;
+    top: 100px;
 }
 
 .footer img {

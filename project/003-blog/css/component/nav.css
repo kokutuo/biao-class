@@ -2,6 +2,10 @@
     background: #363636;
     padding: 10px;
     margin-bottom: 15px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .nav * {
@@ -19,6 +23,6 @@
 }
 
 .nav a:hover {
-    color: #da4453;
+    color: #fff;
 }
 
