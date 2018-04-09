@@ -1,0 +1,30 @@
+.about {
+    position: relative;
+    top: 100px;
+    font-size: 1rem;
+    padding-right: 15px;
+}
+
+.box {
+    padding: 30px;
+    background: #fff;
+}
+
+.about .head {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.about .info>* {
+    margin-bottom: 10px;
+}
+
+.footer {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: initial;
+}
