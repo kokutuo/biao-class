@@ -4,13 +4,35 @@
 	top: 100px;
 }
 
-/*.article .title {
-	font-size: 1.5rem;
+.article .box {
+	padding: 30px;
+	background: #fff;
 }
-*/
+
+.article .title,
+.article .info {
+	text-align: center;
+}
+
+.article .info {
+	color: #6b6b6b;
+	margin-bottom: 20px;
+}
+
+.article .info>* {
+	padding: 5px;
+}
+
 .article .text {
 	line-height: 1.5;
+	color: #555;
 	font-size: 1.2rem;
+}
+
+.article .text img {
+	width: 80%;
+	margin: 0 auto;
+	padding: 20px;
 }
 
 .article .text>* {
