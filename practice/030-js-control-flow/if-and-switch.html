@@ -1,0 +1,59 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<input type="text" id="name" placeholder="姓名">
+<input type="number" id="age" placeholder="年龄">
+<input type="text" id="phone" placeholder="电话号码">
+<script>
+    var nameElement = document.querySelector('#name');
+    var ageElement = document.querySelector('#age');
+    var phoneElement = document.querySelector('#phone');
+
+    nameElement.addEventListener('change', function () {
+        var name = nameElement.value;
+        name = name.trim();
+
+        switch (name) {
+            case '秀则':
+                console.log('今天的风儿好喧嚣啊！');
+                break;
+            case '文学少女':
+                console.log('这风儿欲有略略鸣泣');
+                break;
+            case '忠邦':
+                console.log('隔壁超市薯片半价了，快去买');
+                break;
+            default:
+                console.log('万物皆虚，万事皆允');
+                break;
+        }
+    });
+
+    ageElement.addEventListener('change', function () {
+        var age = ageElement.value;
+        age = parseInt(age);
+
+        if (!age & age != 0) {
+            console.log('年龄不能为空');
+        } else if (age < 1) {
+            console.log('mia mia mia~');
+        } else if (age < 18) {
+            console.log('少儿不宜');
+        } else if (age < 30) {
+            console.log('骚年，来一发么~');
+        } else {
+            console.log('困了，累了，喝肾宝~');
+        }
+    });
+
+    phoneElement.addEventListener('change', function () {
+        var phone = phoneElement.value;
+        phone = phone.trim();        
+
+        if (!phone) {
+            console.log('号码不能为空');
+        } else if (!phone.startsWith('1') || phone.length != 11 || !parseInt(phone)) {
+            console.log('号码格式有误，请重新输入');
+        } else {
+            console.log('yo');
+        }
+    })
+</script>
