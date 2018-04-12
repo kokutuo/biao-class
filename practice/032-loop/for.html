@@ -150,5 +150,171 @@
 
     // print(arr);
 
+    /*     6.遍历下方数组
+
+            [
+                {
+                    name: '王花花',
+                    salary: 100,
+                },
+                {
+                    name: '李拴蛋',
+                    salary: 200,
+                },
+                {
+                    name: '牛备备',
+                    salary: 300,
+                }
+            ]
+            找出工资大于100的人，将找到的人放到一个数组里。
+     */
+    // var person = [{
+    //         name: '王花花',
+    //         salary: 100,
+    //     },
+    //     {
+    //         name: '李拴蛋',
+    //         salary: 200,
+    //     },
+    //     {
+    //         name: '牛备备',
+    //         salary: 300,
+    //     }
+    // ];
+
+    // function salaOver100(arr) {
+    //     var name = [];
+
+    //     for (let i = 0; i < arr.length; i++) {
+    //         const x = arr[i];
+
+    //         if (x.salary > 100) {
+    //             name.push(x.name);
+    //         }
+    //     }
+    //     console.log(name);
+    // }
+
+    // salaOver100(person);
+
+    /*     7.遍历下方数组
+
+            [
+                {
+                    name: '王花花',
+                },
+                {
+                    name: '王拴蛋',
+                },
+                {
+                    name: '牛备备',
+                }
+            ]
+            找出所有姓王的人，将找到的人放到一个数组里。
+     */
+    // var person = [{
+    //         name: '王花花',
+    //     },
+    //     {
+    //         name: '王拴蛋',
+    //     },
+    //     {
+    //         name: '牛备备',
+    //     }
+    // ];
+
+    // function firstName(arr) {
+    //     var name = [];
+
+    //     for (let i = 0; i < arr.length; i++) {
+    //         const x = arr[i].name;
+
+    //         if (x.startsWith('王')) {
+    //             name.push(x);
+    //         }
+    //     }
+
+    //     console.log(name);
+    // }
+
+    // firstName(person);
+
+    /*     8.遍历下方数组
+            [{
+                name: '王花花',
+                playing: ['CS', '红警'],
+            }, {
+                name: '李拴蛋',
+                playing: ['守望屁股', '吃鸡', 'CS'],
+            }, {
+                name: '牛备备',
+                playing: ['红警', '吃鸡'],
+            }]
+        完成一个搜索函数
+
+        search('CS'); // ["王花花", "李拴蛋"]
+        search('吃鸡'); // ["李拴蛋", "牛备备"]
+        search('红警'); // ["王花花", "牛备备"]
+        search('守望屁股'); // ["李拴蛋"]
+     */
+    // var person = [{
+    //         name: '王花花',
+    //         playing: ['CS', '红警'],
+    //     },
+    //     {
+    //         name: '李拴蛋',
+    //         playing: ['守望屁股', '吃鸡', 'CS'],
+    //     },
+    //     {
+    //         name: '牛备备',
+    //         playing: ['红警', '吃鸡'],
+    //     }
+    // ]
+
+    // function search(arr, game) {
+    //     var name = [];
+
+    //     first: for (let i = 0; i < arr.length; i++) {
+    //         const x = arr[i];
+
+    //         second: for (let j = 0; j < x.playing.length; j++) {
+    //             const y = x.playing[j];
+
+    //             if (y == game) {
+    //                 name.push(x.name);
+    //                 break second;
+    //             }
+    //         }
+    //     }
+
+    //     console.log(name);
+
+    // }
+
+    // search(person, 'CS');
+    // search(person, '红警');
+    // search(person, '吃鸡');
+    // search(person, '守望屁股');
+
+    /*     9.遍历下方数组
+            [{
+                name: '王花花',
+                playing: ['CS', '红警'],
+            }, {
+                name: '李拴蛋',
+                playing: ['守望屁股', '吃鸡', 'CS'],
+            }, {
+                name: '牛备备',
+                playing: ['红警', '吃鸡'],
+            }, {
+                name: '木哈哈',
+                playing: ['红警', 'CS', '吃鸡'],
+            }, ]
+        完成一个搜索函数
+
+        search(['CS', '红警']); // ["王花花", "木哈哈"]
+        search(['吃鸡']); // ["李拴蛋", "牛备备", "木哈哈"]
+        search(['守望屁股', '吃鸡', 'CS']); // ["李拴蛋"]
+     */
 
 </script>
