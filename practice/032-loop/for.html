@@ -309,7 +309,7 @@
             }, {
                 name: '木哈哈',
                 playing: ['红警', 'CS', '吃鸡'],
-            }, ]
+            }]
         完成一个搜索函数
 
         search(['CS', '红警']); // ["王花花", "木哈哈"]
@@ -317,4 +317,50 @@
         search(['守望屁股', '吃鸡', 'CS']); // ["李拴蛋"]
      */
 
+    var person = [{
+            name: '王花花',
+            playing: ['CS', '红警'],
+        },
+        {
+            name: '李拴蛋',
+            playing: ['守望屁股', '吃鸡', 'CS'],
+        },
+        {
+            name: '牛备备',
+            playing: ['红警', '吃鸡'],
+        },
+        {
+            name: '木哈哈',
+            playing: ['红警', 'CS', '吃鸡'],
+        }
+    ];
+
+    /* 判断一个数组中是否包含另一个数组 */
+    function isContains(a, b) {
+        var aStr = a.toString();
+        for (let i = 0; i < b.length; i++) {
+            if (aStr.indexOf(b[i]) == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function search(arr, gameArr) {
+        var name = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            const z = arr[i];
+
+            if (isContains(z.playing, gameArr)) {
+                name.push(z.name);
+            }
+
+        }
+        console.log(name);
+    }
+
+    search(person, ['CS', '红警']);
+    search(person, ['吃鸡']);
 </script>
