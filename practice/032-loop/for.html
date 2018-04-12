@@ -337,9 +337,8 @@
 
     /* 判断一个数组中是否包含另一个数组 */
     function isContains(a, b) {
-        var aStr = a.toString();
         for (let i = 0; i < b.length; i++) {
-            if (aStr.indexOf(b[i]) == -1) {
+            if (a.indexOf(b[i]) == -1) {
                 return false;
             }
         }
