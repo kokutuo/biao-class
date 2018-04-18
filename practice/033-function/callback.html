@@ -1,0 +1,71 @@
+<script>
+    function makeMeal(attach0, attach1) {
+        console.log('买菜');
+        if (attach0) {
+            attach0();
+        }
+        console.log('洗菜');
+        console.log('切菜');
+        console.log('炒菜');
+        if (attach1) {
+            attach1();
+        }
+    }
+
+    function buyPen() {
+        console.log('带纸笔');
+    }
+
+    function goBed() {
+        console.log('上床睡觉');
+    }
+
+    makeMeal(buyPen, goBed);
+
+    console.log('==================================');
+
+    function sleep(befor) {
+        if (befor) {
+            befor();
+        }
+        console.log('睡觉');
+    }
+
+    function brushTee() {
+        console.log("刷牙");
+    }
+
+    sleep(brushTee);
+
+    console.log('======================================');
+
+    function shopping(money, success, fail) {
+        if (money > 0) {
+            console.log('下单成功');
+            if (success) {
+                success();
+            }
+        } else {
+            console.log('下单失败');
+            if (fail) {
+                fail();
+            }
+        }
+    }
+
+    function onGameOrderSuccess() {
+        console.log('rua~');
+    }
+
+    function onTshirtOrderSuccess() {
+        console.log('已发货，请注意查收');
+    }
+
+    function onOrderFail() {
+        console.log('不充钱你怎么变强？');
+    }
+
+    shopping(0, onGameOrderSuccess, onOrderFail);
+    shopping(300, onGameOrderSuccess, onOrderFail);
+    shopping(300, onTshirtOrderSuccess, onOrderFail);
+</script>

@@ -3,3 +3,13 @@
     background-image: url(../../img/topbg.png);
     background-repeat: repeat-x;
 }
+
+.top {
+    padding-top: 100px;
+    font-size: 1.3rem;
+}
+
+.title {
+    font-size: 26px;
+
+}

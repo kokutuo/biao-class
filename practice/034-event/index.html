@@ -1,0 +1,19 @@
+<button>yo</button>
+
+<script>
+    ;
+    (function () {
+        'use strict';
+
+        var btn = document.querySelector('button');
+
+        var sayYo = function () {
+            console.log('yo');
+            
+        }
+
+        btn.addEventListener('click', sayYo);
+
+        btn.removeEventListener('click', sayYo);
+    })();
+</script>
