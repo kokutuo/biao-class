@@ -1,12 +1,31 @@
 <style>
     body {
         /*margin: 0;*/
+        font-family: sans-serif;
+        color: #444;
         font-size: 20px;
+        line-height: 1.5;
+    }
+
+    h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 2rem;
     }
 
     button {
-        font-size: 20px;
-        padding: 10px;
+        font-size: 12px;
+        padding: 5px 20px;
+        border: 1px solid rgba(0, 0, 0, .2);
+        outline: 0;
+        color: #555;
+    }
+
+    button,
+    .modal {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
     }
 
     .mask,
@@ -28,17 +47,19 @@
         bottom: 100px;
         left: 100px;
         right: 100px;
+        overflow: auto;
         padding: 20px;
         background: #fff;
-        border: 2px solid #ccc;
+        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
     }
 
     .modal .toolbar {
         float: right;
     }
 
-    .modal.show,
-    .mask.show {
+    .show {
         display: block;
     }
 </style>
@@ -47,49 +68,6 @@
     <nav>
         <button class="login">登录</button>
     </nav>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem
-    fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum
-    dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga
-    illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor
-    sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum
-    itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit
-    amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque
-    iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur
-    adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque
-    nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing
-    elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati
-    officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia
-    possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium
-    consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus
-    saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur,
-    corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur
-    unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis
-    cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde
-    ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum
-    ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas
-    voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet
-    exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates!
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem
-    fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum
-    dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga
-    illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor
-    sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum
-    itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit
-    amet, consectetur adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque
-    iusto neque nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur
-    adipisicing elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque
-    nulla obcaecati officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing
-    elit. Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati
-    officia possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    Accusantium consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia
-    possimus saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium
-    consequatur, corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus
-    saepe tenetur unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur,
-    corporis cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur
-    unde ut voluptas voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur, corporis
-    cum ducimus eveniet exercitationem fuga illum itaque iusto neque nulla obcaecati officia possimus saepe tenetur unde
-    ut voluptas voluptates!
 
     <div class="mask">
         <div class="modal">
@@ -99,11 +77,16 @@
             <h3>登录</h3>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fugiat laboriosam possimus quam, repudiandae similique vel!
             Consequatur, dignissimos, dolor magni neque nulla odit porro praesentium, recusandae reprehenderit similique
-            tempore unde.
+            tempore unde. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad asperiores commodi cupiditate,
+            dolor eligendi id nisi placeat quod recusandae rem reprehenderit sapiente sit, tempora ullam ut vitae voluptas
+            voluptates? similique tempore unde. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad asperiores
+            commodi cupiditate, dolor eligendi id nisi placeat quod recusandae rem reprehenderit sapiente sit, tempora ullam
+            ut vitae voluptas voluptates? similique tempore unde. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Ab ad asperiores commodi cupiditate, dolor eligendi id nisi placeat quod recusandae rem reprehenderit sapiente
+            sit, tempora ullam ut vitae voluptas voluptates?
         </div>
     </div>
 </div>
-
 <script>
     var login = document.querySelector('.login'),
         mask = document.querySelector('.mask'),
@@ -112,18 +95,25 @@
 
     function show() {
         mask.classList.add('show');
-        modal.classList.add('show');
     }
 
     function hide() {
         mask.classList.remove('show');
     }
 
-    login.addEventListener('click',show);
+    login.addEventListener('click', show);
 
     mask.addEventListener('click', function (e) {
-        if (e.target === close || e.target === mask) {
+        var el = e.target;
+
+        if (el == close || el == mask) {
             hide();
         }
-    })
+    });
+    
+    document.addEventListener('keyup', function (e) {
+        if (e.code === 'Escape') {
+            hide();
+        }
+    });
 </script>
