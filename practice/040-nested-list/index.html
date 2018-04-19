@@ -1,0 +1,92 @@
+<style>
+    [hidden] {
+        display: none !important;
+    }
+
+    body {
+        font-size: 30px;
+    }
+
+    li {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    ul {
+        display: block;
+    }
+
+    /*li:hover {*/
+
+    /*font-weight: bold;*/
+
+    /*}*/
+
+    /*ul {*/
+
+    /*font-weight: normal;*/
+
+    /*}*/
+</style>
+
+<ul>
+    <li>Item1
+        <ul>
+            <li>Item1-1
+                <ul>
+                    <li>Item1-1-1</li>
+                    <li>Item1-1-2</li>
+                    <li>Item1-1-3</li>
+                </ul>
+            </li>
+            <li>Item1-2
+                <ul>
+                    <li>Item1-2-1</li>
+                    <li>Item1-2-2</li>
+                    <li>Item1-2-3</li>
+                </ul>
+            </li>
+            <li>Item1-3
+                <ul>
+                    <li>Item1-3-1</li>
+                    <li>Item1-3-2</li>
+                    <li>Item1-3-3</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>Item2
+        <ul>
+            <li>Item2-1</li>
+            <li>Item2-2</li>
+            <li>Item2-3</li>
+        </ul>
+    </li>
+    <li>Item3
+        <ul>
+            <li>Item3-1</li>
+            <li>Item3-2</li>
+            <li>Item3-3</li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    var liList = document.querySelectorAll('li');
+    console.log(liList);
+
+    for (let i = 0; i < liList.length; i++) {
+        const li = liList[i];
+
+        li.addEventListener('click', function (e) {
+            var list = this.querySelector('ul');
+            console.log(this);
+
+            if (!list || e.target != this) {
+                return;
+            } else {
+                list.hidden = !list.hidden;
+            }
+        })
+    }
+</script>
