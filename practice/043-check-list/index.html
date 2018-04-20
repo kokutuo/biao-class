@@ -112,7 +112,7 @@
     });
 </script> -->
 
-<script>
+<!-- <script>
     var list = document.querySelectorAll('[type=checkbox]');
     var start
         , start_index // 起点的索引
@@ -149,4 +149,33 @@
             }
         });
     });
+</script> -->
+
+<script>
+    var list = document.querySelectorAll('[type=checkbox]');
+    var start,
+        start_index,
+        end_index;
+
+    function toggle_between() {
+        list.forEach(function (item, i) {
+            if (i >= start_index && i <= end_index) {
+                item.checked = start.checked;
+            } else if (i <= start_index && i >= end_index) {
+                item.checked = start.checked;
+            }
+        })
+    }
+
+    list.forEach(function (item, i) {
+        item.addEventListener('click', function (e) {
+            if (e.shiftKey) {
+                end_index = i;
+                toggle_between();
+            } else {
+                start = item;
+                start_index = i;
+            }
+        })
+    })
 </script>

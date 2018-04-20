@@ -64,15 +64,15 @@ siderClose.addEventListener('click', function () {
 /* 列表 */
 for (let i = 0; i < liList.length; i++) {
     const li = liList[i];
-
+    
     li.addEventListener('click', function (e) {
-        var list = li.querySelector('ul');
+       var list = this.querySelector('ul'); 
 
-        if (!list || this != e.target) {
-            return;
-        } else {
-            list.hidden = !list.hidden;
-        }
+       if (!list || this != e.target) {
+           return;
+       } else {
+           list.hidden = !list.hidden;
+       }
     });
 }
 
