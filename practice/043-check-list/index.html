@@ -159,13 +159,13 @@
 
     function toggle_between() {
         list.forEach(function (item, i) {
-            if (i >= start_index && i <= end_index) {
+            if (i >= start_index & i <= end_index) {
                 item.checked = start.checked;
-            } else if (i <= start_index && i >= end_index) {
-                item.checked = start.checked;
+            } else if (i <= start_index & i >= end_index) {
+                item.checked = start.checked
             }
-        })
-    }
+        });
+    };
 
     list.forEach(function (item, i) {
         item.addEventListener('click', function (e) {
@@ -173,9 +173,9 @@
                 end_index = i;
                 toggle_between();
             } else {
-                start = item;
+                start = this;
                 start_index = i;
             }
-        })
-    })
+        });
+    });
 </script>
