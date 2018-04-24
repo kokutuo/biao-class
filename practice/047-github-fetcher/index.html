@@ -43,7 +43,8 @@
 
 <script>
     var form = document.getElementById('search-form'),
-        input = document.getElementById('search-input');
+        input = document.getElementById('search-input'),
+        info = document.getElementById('info');
 
     init();
 
@@ -73,6 +74,7 @@
             if (fn) {
                 fn(data);
             }
+            info.innerText = '用户：' + data.login;
         });
     }
 </script>
