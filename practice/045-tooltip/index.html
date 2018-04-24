@@ -83,6 +83,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis
     function positionTip() {
         var position = tipTrigger.getBoundingClientRect();
         // tip.style.left = position.left;
+        console.log('position: ', position);
+
 
         if (position.top < tip.offsetHeight) {
             tip.style.top = position.top + tip.offsetHeight + 2;

@@ -1,0 +1,44 @@
+<!-- 计时器 -->
+<script>
+    var timer0 = setTimeout(() => {
+        console.log('yo');
+    }, 2000);
+
+    /* 清除计时器 */
+    clearTimeout(timer0);
+
+    /* 每隔多久执行一次 */
+    var count = 0;
+    var timer1 = setInterval(() => {
+        console.log('yoooooooooo');
+        count++;
+
+        if (count > 2) {
+            clearInterval(timer1);
+        }
+    }, 1000);
+</script>
+
+
+<!-- 异步请求 -->
+<script>
+    /* fetch接口 */
+    fetch('http://api.github.com/users/kokutuo')
+        .then(function (res) {
+            res
+                .json()
+                .then(function (d) {
+                    console.log(d);
+                });
+        });
+
+    /* XMLHttpRequest接口 */
+    var http = new XMLHttpRequest();
+    http.open('get', 'http://api.github.com/users/kokutuo');
+    http.send();
+
+    http.addEventListener('load', function () {
+        var obj = JSON(this.responseText);
+        console.log(obj);
+    });
+</script>
