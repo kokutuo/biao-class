@@ -38,7 +38,7 @@
     http.send();
 
     http.addEventListener('load', function () {
-        var obj = JSON(this.responseText);
+        var obj = JSON.parse(this.responseText);
         console.log(obj);
     });
 </script>

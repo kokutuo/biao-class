@@ -1,5 +1,5 @@
 <form id="search-form">
-    <input id="search-input" type="search" placeholder="随便输个github用户试试">
+    <input id="search-input" type="search" placeholder="随便输个github用户试试" autocomplete="off" value="kokutuo">
     <button type="submit">搜索</button>
 </form>
 <div id="info"></div>
@@ -21,9 +21,10 @@
     }
 
     function search(name) {
-        send('http://api.github.com/users/' + name, function (d) {
-            console.log(d);
-        })
+        send('http://api.github.com/users/' + name, function (data) {
+            console.log(data);
+            render(data);
+        });
     }
 
     function send(url, fn, method) {
@@ -37,7 +38,13 @@
             if (fn) {
                 fn(data);
             }
-            info.innerText = '用户：' + data.login;
         });
+    }
+
+    function render(data) {
+        info.innerHTML = `
+        <div>用户名：${data.login}</div>
+        <div>签名：${data.bio || '无'}</div>
+        `;
     }
 </script>
