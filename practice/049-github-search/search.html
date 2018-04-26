@@ -79,7 +79,6 @@
         font-size: 18px;
         background: #f26101;
         color: #46483c;
-        padding: 10px 20px;
         cursor: pointer;
     }
 
@@ -133,6 +132,7 @@
         userList = document.getElementById('user-list'),
         amount = document.getElementById('amount'),
         more = document.getElementById('more'),
+        html = '',
         keyword,
         page = 1,
         res;
@@ -171,8 +171,6 @@
     }
 
     function render(obj) {
-        var html = '';
-
         obj.items.forEach(item => {
             html = html +
                 `
