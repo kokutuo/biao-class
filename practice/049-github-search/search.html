@@ -1,11 +1,64 @@
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     body {
-        background: #eee;
+        margin: 0;
         font-family: sans-serif;
+        color: #f26101;
+    }
+
+    .container {
+        min-height: 100vh;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px 30px;
+        text-align: center;
+        background: #ebe3cb;
+    }
+
+    h1 {
+        margin: 0;
+        padding: 20px 10px;
+    }
+
+    #search-form {
+        height: 60px;
+        font-size: 0;
+        margin-bottom: 20px;
+    }
+
+    #search-form [type=search],
+    #search-form [type=submit] {
+        height: 60px;
+        outline: 0;
+        border: 2px solid #46483c;
+        vertical-align: top;
+    }
+
+    #search-form [type=search] {
+        width: 80%;
+        font-size: 20px;
+        border-right: 0;
+        padding: 5px 10px;
+    }
+
+    #search-form [type=submit] {
+        width: 20%;
+        font-size: 25px;
+        border-left: 0;
+        background: #f26101;
+        color: #46483c;
+        cursor: pointer;
+    }
+
+    #search-form [type=submit]:hover {
+        color: #fff;
     }
 
     img {
-        width: 60px;
+        max-width: 60px;
         height: 60px;
     }
 
@@ -14,7 +67,28 @@
         color: #777;
     }
 
+    #amount {
+        font-size: 20px;
+        text-align: left;
+        color: #46483c;
+    }
+
+    #more {
+        width: 30%;
+        margin: 0 auto;
+        font-size: 18px;
+        background: #f26101;
+        color: #46483c;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    #more:hover {
+        color: #fff;
+    }
+
     .user {
+        text-align: left;
         background: white;
         border: 1px solid rgba(0, 0, 0, .1);
         margin: 10px;
@@ -40,13 +114,18 @@
     }
 </style>
 
-<form id="search-form">
-    <input type="search" id="search-input">
-    <button type="submit">搜索</button>
-</form>
-<div id="amount"></div>
-<div id="user-list"></div>
-<div id="more"></div>
+<body>
+    <div class="container">
+        <h1>GayHub用户列表</h1>
+        <form id="search-form">
+            <input type="search" id="search-input" placeholder="请输入GayHub用户名" autocomplete="off">
+            <button type="submit">搜索</button>
+        </form>
+        <div id="amount"></div>
+        <div id="user-list"></div>
+        <div id="more"></div>
+    </div>
+</body>
 
 <script>
     var form = document.getElementById('search-form'),
@@ -57,15 +136,15 @@
         keyword,
         page = 1,
         res;
-    
+
     init();
 
-    function init() {        
+    function init() {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
             keyword = input.value;
-            
+
             if (!keyword) {
                 alert('搜索内容不能为空');
                 return;
@@ -96,7 +175,7 @@
 
         obj.items.forEach(item => {
             html = html +
-            `
+                `
             <div class="user">
                 <img src=${item.avatar_url} class="avatar">
                 <div class="info">
