@@ -6,7 +6,6 @@ var form = document.getElementById('search-form'),
 init();
 
 function init() {
-
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 

@@ -1,0 +1,114 @@
+<style>
+    body {
+        background: #eee;
+        font-family: sans-serif;
+    }
+
+    img {
+        width: 60px;
+        height: 60px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #777;
+    }
+
+    .user {
+        background: white;
+        border: 1px solid rgba(0, 0, 0, .1);
+        margin: 10px;
+    }
+
+    .user>* {
+        display: inline-block;
+        vertical-align: top;
+        padding: 5px;
+        color: #555;
+        font-size: 80%;
+    }
+
+    .username {
+        font-size: 15px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .avatar {
+        border-right: 1px solid rgba(0, 0, 0, .1);
+        padding: 0;
+    }
+</style>
+
+<form id="search-form">
+    <input type="search" id="search-input">
+    <button type="submit">搜索</button>
+</form>
+<div id="amount"></div>
+<div id="user-list"></div>
+<div id="more"></div>
+
+<script>
+    var form = document.getElementById('search-form'),
+        input = document.getElementById('search-input'),
+        userList = document.getElementById('user-list'),
+        amount = document.getElementById('amount'),
+        more = document.getElementById('more'),
+        keyword,
+        page = 1,
+        res;
+    
+    init();
+
+    function init() {        
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            keyword = input.value;
+            
+            if (!keyword) {
+                alert('搜索内容不能为空');
+                return;
+            }
+
+            search(keyword, page);
+        });
+
+        more.addEventListener('click', function () {
+            page++;
+            search(keyword, page);
+        });
+    }
+
+    function search(keyword, page) {
+        var http = new XMLHttpRequest();
+        http.open('get', 'https://api.github.com/search/users?q=' + keyword + '&page=' + page);
+        http.send();
+
+        http.addEventListener('load', function () {
+            res = JSON.parse(this.responseText);
+            render(res);
+        });
+    }
+
+    function render(obj) {
+        var html = '';
+
+        obj.items.forEach(item => {
+            html = html +
+            `
+            <div class="user">
+                <img src=${item.avatar_url} class="avatar">
+                <div class="info">
+                    <div class="username">${item.login}</div>
+                    <div><a href=${item.url}>${item.url}</a></div>
+                </div>
+            </div>
+            `;
+        });
+
+        userList.innerHTML = html;
+        amount.innerHTML = `共有${obj.total_count}条搜索结果`;
+        more.innerHTML = `加载更多`;
+    }
+</script>

@@ -1,0 +1,34 @@
+<div id="user-list"></div>
+
+<script>
+    var user = [
+        {
+            name: '尼古拉斯·赵四',
+            age: 24
+        },
+        {
+            name: '小李子',
+            age: 33
+        },
+        {
+            name: '李拴蛋',
+            age:18
+        }
+    ];
+
+    var userList = document.getElementById('user-list');
+
+    init();
+
+    function init() {
+        render(user);
+    }
+
+    function render(arr) {
+        var html = '';
+        arr.forEach(item => {
+            html = html + `<div>用户：${item.name} 年龄：${item.age}</div>`;
+        });
+        userList.innerHTML = html;
+    }
+</script>
