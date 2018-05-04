@@ -3,19 +3,73 @@
 var search = require('./search');
 
 /* 选中页面中要用到的要素 */
-var form = document.getElementById('search-form'),
-    input = document.getElementById('search-input'),
-    amount = document.getElementById('amount'),
-    pagination_cotainer = document.getElementById('pagination-container'),
-    pagination = pagination_cotainer.querySelector('#pagination'),
-    user_list = document.getElementById('user-list');
+var form,
+    input,
+    amount,
+    pagination_container,
+    pagination,
+    user_list;
 
-console.log(search.amount);
+function set_form() {
+    return form = document.getElementById('search-form');
+}
+
+function get_form() {
+    return form;
+}
+
+function set_input() {
+    return input = document.getElementById('search-input');
+}
+
+function get_input() {
+    return input;
+}
+
+function set_amount() {
+    return amount = document.getElementById('amount');
+}
+
+function get_amount() {
+    return amount;
+}
+
+function set_pagination_container() {
+    return pagination_container = document.getElementById('pagination-container');
+}
+
+function get_pagination_container() {
+    return pagination_container;
+}
+
+function set_pagination() {
+    return pagination = document.getElementById('pagination');
+}
+
+function get_pagination() {
+    return pagination;
+}
+
+function set_user_list() {
+    return user_list = document.getElementById('user-list');
+}
+
+function get_user_list() {
+    return user_list;
+}
+
+set_form();
+set_amount();
+set_input();
+set_pagination();
+set_pagination_container();
+set_user_list();
 
 /*渲染用户列表
  * @param Array data 用于渲染的数据
  * */
 function render_usr_list(data) {
+
     var html = '';
 
     data.forEach(function (user) {
@@ -33,13 +87,17 @@ function render_usr_list(data) {
     });
 
     user_list.innerHTML = html;
-    amount.innerHTML = `找到${search.amount}条搜索结果`;
+}
+
+function render_amount(data) {
+    amount.innerHTML = `找到${data.total_count}条搜索结果`;
 }
 
 module.exports = {
-    form: form,
-    input: input,
-    pagination: pagination,
-    pagination_cotainer: pagination_cotainer,
-    render_usr_list: render_usr_list
+    get_form: get_form,
+    get_input: get_input,
+    get_pagination: get_pagination,
+    get_pagination_container: get_pagination_container,
+    render_usr_list: render_usr_list,
+    render_amount: render_amount
 };

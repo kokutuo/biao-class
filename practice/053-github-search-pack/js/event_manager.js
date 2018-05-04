@@ -8,15 +8,16 @@ var el = require('./element'),
 
 /* 监听表单提交事件 */
 function detect_submit() {
-    el.form.addEventListener('submit', function (e) {
+    el.get_form().addEventListener('submit', function (e) {
         e.preventDefault();
 
         /* 获取搜索关键词 */
-        keyword = el.input.value;
+        keyword = el.get_input().value;
 
         /* 开始搜索 */
         search.user(keyword, function (data) {
             el.render_usr_list(data.items);
+            el.render_amount(data);
         });
     });
 }

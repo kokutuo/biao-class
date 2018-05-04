@@ -8,7 +8,7 @@
  * @param Object config 配置项
  * */
 
-var amount; // 搜索到的数据总数
+var send = require('./send');
 
 function user(keyword, on_success, config) {
     /* 默认配置 */
@@ -20,18 +20,9 @@ function user(keyword, on_success, config) {
     /* 合并用户配置 */
     config = Object.assign({}, def, config);
 
-    var http = new XMLHttpRequest();
-    http.open('get', 'https://api.github.com/search/users?q=' + keyword + '&page=' + config.current_page + '&per_page=' + config.limit);
-    http.send();
-
-    http.addEventListener('load', function () {
-        var res = JSON.parse(this.responseText);
-        amount = res.total_count;        
-        on_success(res);
-    });
+    send.send('https://api.github.com/search/users?q=' + keyword + '&page=' + config.current_page + '&per_page=' + config.limit, on_success);
 }
 
 module.exports = {
     user: user,
-    amount: amount
 };
