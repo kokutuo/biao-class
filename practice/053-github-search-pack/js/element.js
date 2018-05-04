@@ -3,7 +3,6 @@
 /* 选中页面中要用到的要素 */
 var form = document.getElementById('search-form'),
     input = document.getElementById('search-input'),
-    next = document.getElementById('next'),
     user_list = document.getElementById('user-list');
 
 /*渲染用户列表
@@ -32,6 +31,5 @@ function render_usr_list(data) {
 module.exports = {
     form: form,
     input: input,
-    next: next,
     render_usr_list: render_usr_list
 };

@@ -22,29 +22,13 @@ function detect_submit() {
     });
 }
 
-function detect_next_page() {
-    el.next.addEventListener('click', function () {
-        /* 准备配置 */
-        var config = {
-            page: ++page,
-            per_page: limit
-        };
-
-        search.user(keyword, function (data) {
-            el.render_usr_list(data);
-        }, config);
-    });
-}
-
 
 /* 批量添加所有事件 */
 function add_events() {
     detect_submit();
-    detect_next_page();
 }
 
 module.exports = {
     detect_submit: detect_submit,
-    detect_next_page: detect_next_page,
     add_events: add_events
 };
