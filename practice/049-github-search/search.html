@@ -139,83 +139,94 @@
         <div id="amount"></div>
         <div id="user-list"></div>
         <button id="more" hidden>加载更多</button>
+        <div id="placeholder" hidden>没有更多信息了···</div>
     </div>
     <button id="top">top</button>
 </body>
 
 <script>
-    var form = document.getElementById('search-form'),
-        input = document.getElementById('search-input'),
-        userList = document.getElementById('user-list'),
-        amount = document.getElementById('amount'),
-        more = document.getElementById('more'),
-        top = document.getElementById('top'),
-        html = '',
-        keyword,
-        page = 1,
-        res;
+    ;
+    (function () {
+        'use strict';
 
-    init();
+        var form = document.getElementById('search-form'),
+            input = document.getElementById('search-input'),
+            userList = document.getElementById('user-list'),
+            amount = document.getElementById('amount'),
+            more = document.getElementById('more'),
+            top = document.getElementById('top'),
+            placeholder = document.getElementById('placeholder'),
+            html = '',
+            keyword,
+            page = 1,
+            limit = 10,
+            total,
+            noMore,
+            res;
 
-    function init() {
-        detectSubmit();
-        detectMore();
-        detectTop();
-    }
+        init();
 
-    function search(keyword, page) {
-        /* 加载时禁用按钮 */
-        more.disabled = true;
-        more.innerHTML = '加载中···';
+        function init() {
+            detectSubmit();
+            detectMore();
+            detectTop();
+        }
 
-        var http = new XMLHttpRequest();
-        http.open('get', 'https://api.github.com/search/users?q=' + keyword + '&page=' + page);
-        http.send();
+        function search() {
+            /* 加载时禁用按钮 */
+            more.disabled = true;
+            more.innerHTML = '加载中···';
 
-        http.addEventListener('load', function () {
-            res = JSON.parse(this.responseText);
-            render(res);
-            /* 加载后恢复按钮 */
-            more.disabled = false;
-            more.innerHTML = '加载更多';
-        });
-    }
+            var http = new XMLHttpRequest();
+            http.open('get', 'https://api.github.com/search/users?q=' + keyword + '&page=' + page + '&per_page=' +
+                limit);
+            http.send();
 
-    function detectSubmit() {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
+            http.addEventListener('load', function () {
+                res = JSON.parse(this.responseText);
+                total = res.total_count;
+                render(res);
+                /* 加载后恢复按钮 */
+                more.disabled = false;
+                more.innerHTML = '加载更多';
+            });
+        }
 
-            html = '';
-            page = 1;
-            keyword = input.value;
+        function detectSubmit() {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-            if (!keyword) {
-                alert('搜索内容不能为空');
-                return;
-            }
+                html = '';
+                page = 1;
+                keyword = input.value;
 
-            search(keyword, page);
-        });
-    }
+                if (!keyword) {
+                    alert('搜索内容不能为空');
+                    return;
+                }
 
-    function detectMore() {
-        more.addEventListener('click', function () {
-            page++;
-            search(keyword, page);
-        });
+                search();
+            });
+        }
 
-    }
+        function detectMore() {
+            more.addEventListener('click', function () {
+                page++;
+                search();
+            });
 
-    function detectTop() {
-        top.addEventListener('click', function () {
-            window.scrollTo(0, 0);
-        });
-    }
+        }
 
-    function render(obj) {
-        obj.items.forEach(item => {
-            html = html +
-                `
+        function detectTop() {
+            top.addEventListener('click', function () {
+                window.scrollTo(0, 0);
+            });
+        }
+
+        function render(obj) {
+            obj.items.forEach(item => {
+                html = html +
+                    `
             <div class="user">
                 <img src=${item.avatar_url} class="avatar">
                 <div class="info">
@@ -224,10 +235,20 @@
                 </div>
             </div>
             `;
-        });
+            });
 
-        userList.innerHTML = html;
-        amount.innerHTML = `共有${obj.total_count}条搜索结果`;
-        more.hidden = false;
-    }
+            userList.innerHTML = html;
+            amount.innerHTML = `共有${obj.total_count}条搜索结果`;
+            more.hidden = false;
+            noMore = page * limit >= total;
+            if (noMore) {
+                placeholder.hidden = false;
+                more.hidden = true;
+            } else {
+                placeholder.hidden = true;
+                more.hidden = false;
+            }
+        }
+
+    })();
 </script>

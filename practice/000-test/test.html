@@ -1,132 +1,192 @@
 <style>
-    body {
-        margin: 0;
-        padding: 20px;
-        font-family: sans-serif;
-    }
+	* {
+		box-sizing: border-box;
+	}
 
-    input,
-    button {
-        padding: 10px;
-        border: 1px solid #ccc;
-    }
+	body {
+		margin: 0;
+		font-family: sans-serif;
+		color: #f26101;
+	}
 
-    img {
-        max-width: 100px;
-    }
+	.container {
+		min-height: 100vh;
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px 30px;
+		text-align: center;
+		background: #ebe3cb;
+	}
 
-    .placeholder {
-        opacity: .5;
-        font-size: 80%;
-    }
+	h1 {
+		margin: 0;
+		padding: 20px 10px;
+	}
 
-    .title {
-        font-weight: bold;
-    }
+	#search-form {
+		height: 60px;
+		font-size: 0;
+		margin-bottom: 20px;
+	}
+
+	#search-form [type=search],
+	#search-form [type=submit] {
+		height: 60px;
+		outline: 0;
+		border: 2px solid #46483c;
+		vertical-align: top;
+	}
+
+	#search-form [type=search] {
+		width: 80%;
+		font-size: 20px;
+		border-right: 0;
+		padding: 5px 10px;
+	}
+
+	#search-form [type=submit] {
+		width: 20%;
+		font-size: 25px;
+		border-left: 0;
+		background: #f26101;
+		color: #46483c;
+		cursor: pointer;
+	}
+
+	#search-form [type=submit]:hover {
+		color: #fff;
+	}
+
+	img {
+		max-width: 60px;
+		height: 60px;
+	}
+
+	a {
+		text-decoration: none;
+		color: #777;
+	}
+
+	#amount {
+		font-size: 20px;
+		text-align: left;
+		color: #46483c;
+	}
+
+	.user {
+		text-align: left;
+		background: white;
+		border: 1px solid rgba(0, 0, 0, .1);
+		margin: 10px;
+	}
+
+	.user>* {
+		display: inline-block;
+		vertical-align: top;
+		padding: 5px;
+		color: #555;
+		font-size: 80%;
+	}
+
+	.username {
+		font-size: 15px;
+		font-weight: bold;
+		color: #333;
+	}
+
+	.avatar {
+		border-right: 1px solid rgba(0, 0, 0, .1);
+		padding: 0;
+	}
+
+	#placeholder {
+		padding: 15px 0;
+		color: #46483c;
+	}
+
+	#pagination-container {
+		text-align: center;
+	}
+
+	#pagination-container>* {
+		display: inline-block;
+	}
+
+	.page {
+		padding: 5px 10px;
+		border: 1px solid #46483c;
+		background: #fff;
+	}
+
+	.page.active {
+		background: #f26101;
+	}
+
+	#pagination .page {
+		border-left: 0;
+	}
+
+	#pagination .page:first-child {
+		border-left: 1px solid #46483c;
+	}
+
+	#top {
+		padding: 10px;
+		color: #fff;
+		background: rgba(0, 0, 0, .6);
+		border: 0;
+		position: fixed;
+		right: 10px;
+		bottom: 0;
+		outline: 0;
+		cursor: pointer;
+	}
+
+	
+
 </style>
-<h1>Github用户详情</h1>
 
-<form id="search-form">
-    <input type="search" id="search-input" placeholder="请输入用户名" autocomplete="off">
-    <button type="submit">Yo</button>
-</form>
-
-<div id="user-info"></div>
-
-<script>
-    var user // 用户数据
-        , el_form = document.getElementById('search-form') // 搜索表单
-        , el_input = document.getElementById('search-input') // 搜索表单中的input
-        , el_user_info = document.getElementById('user-info') // 用于显示用户数据的div
-        , timer // 计时器
-        ;
-    init();
-    /*入口函数*/
-    function init() {
-        /*绑定事件，一旦用户有输入，就开始查找*/
-        el_input.addEventListener('keyup', function (e) {
-            /*获取输入的用户名*/
-            var username = el_input.value;
-            /*有任何新的输入，清除上一次的倒计时*/
-            clearTimeout(timer);
-            /*如果用户名为空就直接返回*/
-            if (!username)
-                return;
-            /*重新计时*/
-            timer = setTimeout(function () {
-                /*一旦时间超过500毫秒才开始发送请求*/
-                find_user(username);
-            }, 500);
-        });
-    }
-    /*跟send一样，用于发送异步请求，只不过，他的功能仅限于查找用户*/
-    function find_user(username) {
-        send(
-            'https://api.github.com/users/' + username,
-            function (data) { // 当成功时执行
-                user = data;
-                render();
-            },
-            function () { // 当失败时执行
-                user = null;
-                render();
-            }
-        );
-    }
-    /*通用函数，专门发送请求
-    * @param url String 请求地址
-    * @param onload Function 当成功时执行的回调函数
-    * @param onfail Function 当失败时执行的回调函数
-    * @param method String 请求方法 (get|post|patch|delete|option)
-    * */
-    function send(url, onload, onfail, method) {
-        /*如果没传方法，默认为get*/
-        method = method || 'get';
-        /*准备发射*/
-        var http = new XMLHttpRequest();
-        http.open(method, url);
-        /*发射*/
-        http.send();
-        /*当请求返回时*/
-        http.addEventListener('load', function () {
-            /*解析返回结果（JSON格式的字符串）*/
-            var data = JSON.parse(http.responseText);
-            /*如果请求成功
-            * 2xx：成功
-            * 3xx：跳转
-            * 4xx：出错（客户端的锅）
-            * 5xx：出错（服务器的锅）
-            * */
-            if (http.status == 200) {
-                /*执行请求成功的回调函数*/
-                if (onload)
-                    onload(data);
-            } else {
-                /*执行请求失败的回调函数*/
-                if (onfail)
-                    onfail(data);
-            }
-        })
-    }
-    function render() {
-        console.log(user);
-        if (!user) {
-            el_user_info.innerHTML = '<div class="placeholder">暂无用户</div>';
-            return;
-        }
-        el_user_info.innerHTML = `
-    <div class="field">
-     <span class="title">用户名</span>
-     <span class="value">${user.login}</span>
-    </div>
-    <div class="field">
-     <span class="title">介绍</span>
-     <span class="value">${user.bio}</span>
-    </div>
-    <div class="field">
-     <span class="title">头像</span>
-     <span class="value"><img src="${user.avatar_url}"></span>
-    </div>
-    `;
-    }
-</script>
+<body>
+	<div class="container">
+		<h1>GayHub用户列表</h1>
+		<form id="search-form">
+			<input type="search" id="search-input" placeholder="请输入GayHub用户名" autocomplete="off">
+			<button type="submit">搜索</button>
+			<div id="history-list">
+				<div class="history">
+					<div class="text">whh</div>
+					<div class="tool">
+						<span class="delete">删除</span>
+					</div>
+				</div>
+				<div class="history">
+					<div class="text">whh</div>
+					<div class="tool">
+						<span class="delete">删除</span>
+					</div>
+				</div>
+				<div class="history">
+					<div class="text">whh</div>
+					<div class="tool">
+						<span class="delete">删除</span>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div id="amount"></div>
+		<div id="user-list"></div>
+		<div id="placeholder" hidden>没有更多信息了···</div>
+		<div id="pagination-container" hidden>
+			<div>
+				<button id="pagination-start" class="page">首页</button>
+			</div>
+			<div id="pagination"></div>
+			<div>
+				<button id="pagination-end" class="page">尾页</button>
+				</button>
+			</div>
+		</div>
+		<button id="top">top</button>
+		<script src="./main.js"></script>
+	</div>
+</body>

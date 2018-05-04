@@ -1,0 +1,8 @@
+<script>
+    var data = ['bill', 'bilibili', 'acfun'];
+    var json = JSON.stringify(data);
+    localStorage.setItem('history_list', json);
+
+    var a_data = localStorage.getItem('history_list');
+    console.log(JSON.parse(a_data));
+</script>

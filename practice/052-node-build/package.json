@@ -1,0 +1,12 @@
+{
+  "name": "052-node-build",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.6.0"
+  },
+  "dependencies": {
+    "webpack-cli": "^2.1.2"
+  }
+}
