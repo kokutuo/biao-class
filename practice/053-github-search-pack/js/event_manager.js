@@ -2,8 +2,8 @@
 
 var el = require('./element'),
     search = require('./search'),
-    page = 1,
-    limit = 10,
+    current_page = 1,
+    limit = 5,
     keyword;
 
 /* 监听表单提交事件 */
@@ -16,12 +16,10 @@ function detect_submit() {
 
         /* 开始搜索 */
         search.user(keyword, function (data) {
-            el.render_usr_list(data);
+            el.render_usr_list(data.items);
         });
-
     });
 }
-
 
 /* 批量添加所有事件 */
 function add_events() {

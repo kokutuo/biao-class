@@ -8,10 +8,12 @@
  * @param Object config 配置项
  * */
 
+var amount; // 搜索到的数据总数
+
 function user(keyword, on_success, config) {
     /* 默认配置 */
     var def = {
-        page: 1,
+        current_page: 1,
         limit: 10
     };
 
@@ -19,16 +21,17 @@ function user(keyword, on_success, config) {
     config = Object.assign({}, def, config);
 
     var http = new XMLHttpRequest();
-    http.open('get', 'https://api.github.com/search/users?q=' + keyword + '&page=' + config.page + '&per_page=' + config.limit);
+    http.open('get', 'https://api.github.com/search/users?q=' + keyword + '&page=' + config.current_page + '&per_page=' + config.limit);
     http.send();
 
     http.addEventListener('load', function () {
         var res = JSON.parse(this.responseText);
-        var item = res.items;
-        on_success(item);
+        amount = res.total_count;        
+        on_success(res);
     });
 }
 
 module.exports = {
-    user: user
+    user: user,
+    amount: amount
 };
