@@ -14,7 +14,7 @@ function set_form() {
     return form = document.getElementById('search-form');
 }
 
-function get_form() {
+function get_form() { 
     return form;
 }
 
