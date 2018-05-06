@@ -14,7 +14,7 @@ function user(keyword, on_success, config) {
     /* 默认配置 */
     var def = {
         current_page: 1,
-        limit: 10
+        limit: 10,
     };
 
     /* 合并用户配置 */

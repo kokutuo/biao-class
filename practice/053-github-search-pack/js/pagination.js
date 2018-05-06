@@ -4,7 +4,7 @@ var el = require('./element'),
     event_manager = require('./event_manager'),
     current_page = 1,
     amount_page,
-    limit = 5,
+    limit = 10,
     max_btn_page = 5;
 
 function set_current_page(val) {
@@ -45,7 +45,6 @@ function render_pagination() {
     get_amount_page();
 
     console.log(amount_page);
-    
 
     var start,
         middle = Math.ceil(max_btn_page / 2),
@@ -95,7 +94,8 @@ function click_btn(page) {
             el.render_usr_list(data.items);
             render_pagination();
         }, {
-            current_page: current_page
+            current_page: current_page,
+            limit: limit
         });
     };
 }

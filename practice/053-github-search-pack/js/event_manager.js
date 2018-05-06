@@ -6,12 +6,8 @@ var el = require('./element'),
     keyword;
 
 
-function set_keyword(val) {
-    return keyword = val;
-}
-
 function get_keyword() {
-    return keyword;
+    return keyword = el.get_input().value;
 }
 
 /* 监听表单提交事件 */
@@ -20,7 +16,7 @@ function detect_submit() {
         e.preventDefault();
 
         /* 获取搜索关键词 */
-        keyword = el.get_input().value;
+        get_keyword();
 
         if (!keyword) {
             alert('药，药，切克闹~');
@@ -42,7 +38,6 @@ function add_events() {
 }
 
 module.exports = {
-    set_keyword: set_keyword,
     get_keyword: get_keyword,
     detect_submit: detect_submit,
     add_events: add_events
