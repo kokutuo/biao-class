@@ -8,6 +8,8 @@ var form,
     amount,
     pagination_container,
     pagination,
+    pagination_start,
+    pagination_end,
     user_list;
 
 function set_form() {
@@ -48,6 +50,15 @@ function set_pagination() {
 
 function get_pagination() {
     return pagination;
+}
+
+function get_pagination_start() {
+    return pagination_start = document.getElementById('pagination-start');
+}
+
+function get_pagination_end() {
+    return pagination_end = document.getElementById('pagination-end');
+    
 }
 
 function set_user_list() {
@@ -97,6 +108,8 @@ module.exports = {
     get_form: get_form,
     get_input: get_input,
     get_pagination: get_pagination,
+    get_pagination_start: get_pagination_start,
+    get_pagination_end: get_pagination_end,
     get_pagination_container: get_pagination_container,
     render_usr_list: render_usr_list,
     render_amount: render_amount

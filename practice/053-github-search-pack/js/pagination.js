@@ -5,6 +5,7 @@ var el = require('./element'),
     current_page = 1,
     amount_page,
     limit = 10,
+    MAX_LIMIT = 999,
     max_btn_page = 5;
 
 function set_current_page(val) {
@@ -25,7 +26,7 @@ function get_limit() {
 
 function get_amount_page() {
     console.log(send.get_amount(), get_limit());
-    
+
     return amount_page = Math.ceil(send.get_amount() / get_limit());
 }
 
@@ -100,6 +101,39 @@ function click_btn(page) {
     };
 }
 
+function detect_click_pagination() {
+    get_amount_page();
+
+    el.get_pagination_start().addEventListener('click', function () {
+        goto_page(1);
+    });
+    el.get_pagination_end().addEventListener('click', function () {
+        goto_page(amount_page);
+    });
+}
+
+
+function goto_page(page) {
+    get_limit();
+    get_current_page();
+
+    var max_user_limit_reached = page * limit > MAX_LIMIT;
+
+    if (max_user_limit_reached) {
+        current_page = Math.floor(MAX_LIMIT / limit);
+    } else {
+        current_page = page;
+    }
+
+    search.user(el.get_input().value, function (data) {
+        el.render_usr_list(data.items);
+        render_pagination();
+    }, {
+        current_page: current_page,
+        limit: limit
+    });
+}
+
 function show_pagination() {
     el.get_pagination_container().hidden = false;
 }
@@ -109,5 +143,6 @@ function clear_pagination() {
 }
 
 module.exports = {
-    render_pagination: render_pagination
+    render_pagination: render_pagination,
+    detect_click_pagination: detect_click_pagination
 };

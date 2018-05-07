@@ -35,6 +35,7 @@ function detect_submit() {
 /* 批量添加所有事件 */
 function add_events() {
     detect_submit();
+    pagination.detect_click_pagination();
 }
 
 module.exports = {
