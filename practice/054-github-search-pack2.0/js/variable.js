@@ -13,7 +13,10 @@ var form = document.getElementById('search-form'),
     top = document.getElementById('top');
 
 var keyword,
-    amount;
+    current_page = 1,
+    limit = 20,
+    amount,
+    MAX_LIMIT = 999;
 
 function set_keyword(val) {
     return keyword = val;
@@ -21,6 +24,22 @@ function set_keyword(val) {
 
 function get_keyword() {
     return keyword;
+}
+
+function set_current_page(val) {
+    return current_page = val;
+}
+
+function get_current_page() {
+    return current_page;
+}
+
+function set_limit(val) {
+    return limit = val;
+}
+
+function get_limit() {
+    return limit;
 }
 
 function set_amount(val) {
@@ -45,6 +64,11 @@ module.exports = {
     top: top,
     set_keyword: set_keyword,
     get_keyword: get_keyword,
+    set_current_page: set_current_page,
+    get_current_page: get_current_page,
+    set_limit: set_limit,
+    get_limit: get_limit,
     set_amount: set_amount,
-    get_amount: get_amount
+    get_amount: get_amount,
+    MAX_LIMIT: MAX_LIMIT
 };

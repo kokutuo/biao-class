@@ -1,6 +1,8 @@
 var variable = require('./variable'),
     search = require('./search'),
-    renderU = require('./user_list');
+    tool = require('./tool'),
+    pagination = require('./pagination'),
+    list = require('./user_list');
 
 function detect_submit() {
     variable.form.addEventListener('submit', function (e) {
@@ -9,14 +11,17 @@ function detect_submit() {
         variable.set_keyword(variable.input.value);        
 
         search.user(variable.get_keyword(), function (data) {
-            renderU.render_user_list(data.items);
-            renderU.render_sum_total(variable.get_amount());
+            list.render_user_list(data.items);
+            list.render_sum_total(variable.get_amount());
+            pagination.render_pagination(variable.get_amount());
         });
     });
 }
 
 function add_event() {
     detect_submit();
+    tool.click_top();
+    // pagination.detect_click_pagination();
 }
 
 module.exports = {

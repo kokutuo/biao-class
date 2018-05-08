@@ -1,9 +1,10 @@
-var send = require('./send');
+var variable = require('./variable'),
+    send = require('./send');
 
 function user(kwd, on_suceess, config) {
     var def = {
-        current_page: 1,
-        limit: 10
+        current_page: variable.get_current_page(),
+        limit: variable.get_limit()
     };
 
     config = Object.assign({}, def, config);
