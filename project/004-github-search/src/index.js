@@ -1,4 +1,5 @@
 var event = require('./event');
+
 init();
 
 function init() {

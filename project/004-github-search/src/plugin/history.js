@@ -7,13 +7,14 @@ var list = [],
     on_delete;
 
 function init(config) {
-    el = document.querySelector('config.el');
+    el = document.querySelector(config.el);
     on_click = config.on_click;
     on_delete = config.on_delete;
 
     if (!el || !config.el) {
-        throw 'Invalid root elment';
+        throw 'Invalid root element';
     }
+
     sync_to_ladle(); // 取得最新的数据
     render();
 }
@@ -22,29 +23,29 @@ function render() {
     el.innerHTML = '';
 
     list.forEach(function (keyword) {
-        var el_histoty = document.createElement('div');
-        el_histoty.innerHTML = `
+        var el_history = document.createElement('div');
+        el_history.innerHTML = `
         <div class="text">${keyword}</div>
         <div class="tool">
           <span class="delete">删除</span>
         </div>
        `;
-       el_histoty.classList.add('history');
-       el.appendChild(el_histoty);
+        el_history.classList.add('history');
+        el.appendChild(el_history);
 
-        el_histoty.addEventListener('click', function (e) {
+        el_history.addEventListener('click', function (e) {
             if (on_click) {
                 on_click(keyword, e);
             }
         });
 
-        el_histoty.querySelector('.delete').addEventListener('click', function (e) {
+        el_history.querySelector('.delete').addEventListener('click', function (e) {
             e.stopPropagation();
-           if (on_delete) {
-               on_delete(keyword, e);
-           }
+            if (on_delete) {
+                on_delete(keyword, e);
+            }
 
-           remove(keyword);
+            remove(keyword);
         });
     });
 }
@@ -85,4 +86,22 @@ function clear() {
     list = [];
     sync_to_store();
     render();
+}
+
+/* 显示记录列表 */
+function show() {
+    el.hidden = false;
+}
+
+function hidden() {
+    el.hidden = true;
+}
+
+module.exports = {
+    add: add,
+    remove: remove,
+    clear: clear,
+    show: show,
+    hidden: hidden,
+    init: init
 }
