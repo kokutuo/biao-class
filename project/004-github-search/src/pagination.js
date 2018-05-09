@@ -1,23 +1,21 @@
 var variable = require('./variable'),
     list = require('./user_list'),
+    send = require('./send'),
     search = require('./search');
 
-function render_pagination(amount, config) {
+function render_pagination(max_btn_page) {
+    max_btn_page = max_btn_page || 5;
+
     show_pagination();
     clear_pagination();
+    
+    var amount_page = get_amount_page();
 
-    var def = {
-        limit: variable.get_current_page(),
-        max_btn_page: 5,
-    };
 
-    config = Object.assign({}, def, config);
-
-    var amount_page = Math.ceil(amount / config.limit),
-        current_page = variable.get_current_page();
+    var current_page = variable.get_current_page();
 
     var start,
-        middle = Math.ceil(config.max_btn_page / 2),
+        middle = Math.ceil(max_btn_page / 2),
         end;
 
     var reaching_left = current_page <= middle,
@@ -25,9 +23,9 @@ function render_pagination(amount, config) {
 
     if (reaching_left) {
         start = 1;
-        end = config.max_btn_page;
+        end = max_btn_page;
     } else if (reaching_right) {
-        start = amount_page - config.max_btn_page + 1;
+        start = amount_page - max_btn_page + 1;
         end = amount_page;
     } else {
         start = current_page - middle + 1;
@@ -41,7 +39,7 @@ function render_pagination(amount, config) {
     if (end > amount_page) {
         end = amount_page;
     }
-
+    
     for (var i = start; i <= end; i++) {
         var num = i;
         var btn = document.createElement('button');
@@ -62,7 +60,7 @@ function click_btn(page) {
         var current_page = variable.set_current_page(page);
         search.user(variable.get_keyword(), function (data) {
             list.render_user_list(data.items);
-            render_pagination(variable.get_amount());
+            render_pagination();
         }, {
             current_page: current_page
         });
@@ -71,8 +69,9 @@ function click_btn(page) {
 
 function detect_click_pagination() {
     // @1
-    var amount_page = Math.ceil(variable.get_amount() / variable.get_limit());
-    console.log(variable.get_amount(), variable.get_limit(), amount_page);
+    var amount_page = get_amount_page();
+
+    
 
     variable.pagination_start.addEventListener('click', function () {
         goto_page(1);
@@ -94,7 +93,7 @@ function goto_page(page) {
 
     search.user(variable.get_keyword(), function (data) {
         list.render_user_list(data.items);
-        render_pagination(variable.get_amount());
+        render_pagination();
     }, {
         current_page: variable.get_current_page()
     });
@@ -106,6 +105,11 @@ function show_pagination() {
 
 function clear_pagination() {
     variable.pagination.innerHTML = '';
+}
+
+function get_amount_page() {
+    var amount_page = Math.ceil(send.get_amount() / variable.get_limit());
+    return amount_page;
 }
 
 module.exports = {

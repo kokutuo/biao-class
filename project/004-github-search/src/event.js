@@ -1,4 +1,5 @@
 var variable = require('./variable'),
+    send = require('./send'),
     search = require('./search'),
     tool = require('./tool'),
     pagination = require('./pagination'),
@@ -15,8 +16,8 @@ function detect_submit() {
 
         search.user(variable.get_keyword(), function (data) {
             list.render_user_list(data.items);
-            list.render_sum_total(variable.get_amount());
-            pagination.render_pagination(variable.get_amount());
+            list.render_sum_total(send.get_amount());
+            pagination.render_pagination();
         });
     });
 }
@@ -31,8 +32,6 @@ function hidden_history_list() {
     document.addEventListener('click', function (e) {
        var el = e.target; 
        var tmp = el.closest('#history-list');
-
-       console.log(el, tmp, variable.input);
        
        if (!tmp && el != variable.input) {
            history.hidden();

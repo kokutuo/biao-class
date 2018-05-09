@@ -7,7 +7,7 @@ function user(kwd, on_suceess, config) {
         limit: variable.get_limit()
     };
 
-    config = Object.assign({}, def, config);
+    config = Object.assign({}, def, config);    
 
     send.send('https://api.github.com/search/users?q=' + kwd + '&page=' + config.current_page +
         '&per_page=' + config.limit, on_suceess);

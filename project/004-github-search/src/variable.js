@@ -14,8 +14,7 @@ var form = document.getElementById('search-form'),
 
 var keyword,
     current_page = 1,
-    limit = 20,
-    amount,
+    limit = 8,
     MAX_LIMIT = 999;
 
 function set_keyword(val) {
@@ -42,14 +41,6 @@ function get_limit() {
     return limit;
 }
 
-function set_amount(val) {
-    return amount = val;
-}
-
-function get_amount() {
-    return amount;
-}
-
 module.exports = {
     form: form,
     input: input,
@@ -68,7 +59,5 @@ module.exports = {
     get_current_page: get_current_page,
     set_limit: set_limit,
     get_limit: get_limit,
-    set_amount: set_amount,
-    get_amount: get_amount,
     MAX_LIMIT: MAX_LIMIT
 };
