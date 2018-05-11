@@ -63,6 +63,8 @@ function init_render() {
     /* 在页码组件的上一级绑定事件，来监听页码组件的冒泡 */
     el.addEventListener('click', function (e) {
         var target = e.target; // 冒泡事件的起点
+        console.log(target ,config.current);
+        
         var is_btn_page = target.classList.contains('pagination-item'), // 点击的是页码按钮吗？
             is_first = target.classList.contains('pagination-first'), // 点击的是"首页"按钮吗？
             is_last = target.classList.contains('pagination-last'), // 点击的是"尾页"按钮吗？
@@ -71,6 +73,8 @@ function init_render() {
 
         if (is_btn_page) { // 如果是数字按钮
             var page = parseInt(target.dataset.page);
+            console.log(page);
+            
             change_page(page);
         } else if (is_first) {
             change_page(1);
@@ -101,6 +105,7 @@ function render() {
         var num = i;
         var btn = document.createElement('button');
         btn.innerText = num;
+        btn.dataset.page = num;
         btn.classList.add('pagination-item');
         if (num == config.current) {
             btn.classList.add('active');
