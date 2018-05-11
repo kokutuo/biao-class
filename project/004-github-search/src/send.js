@@ -1,7 +1,3 @@
-var variable = require('./variable');
-
-var amount; //总数据数
-
 function send(url, on_success, method) {
     method = method || 'get';
 
@@ -12,17 +8,11 @@ function send(url, on_success, method) {
 
     http.addEventListener('load', function () {
         var res = JSON.parse(this.responseText);
-        amount = res.total_count;
-
         on_success(res);
     });
 }
 
-function get_amount() {
-    return amount;
-}
 
 module.exports = {
     send: send,
-    get_amount: get_amount
 };

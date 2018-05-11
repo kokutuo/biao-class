@@ -138,29 +138,6 @@
             bottom: 0;
         }
 
-        #pagination-container {
-            text-align: center;
-        }
-
-        #pagination-container>* {
-            display: inline-block;
-        }
-
-        .pager {
-            padding: 5px 10px;
-            border: 1px solid rgba(0, 0, 0, .1);
-            border-left-width: 0;
-        }
-
-        .pager:first-child {
-            border-left-width: 1px;
-        }
-
-        .pager.active {
-            background: rgba(0, 0, 0, .2);
-            color: #000;
-        }
-
         form input,
         #history-list {
             width: 80%;
@@ -230,21 +207,12 @@
         <div id="sum-total"></div>
         <div id="user-list"></div>
         <div class="tac" id="placeholer" hidden>谋了 - . -</div>
-        <div id="pagination-container" hidden>
-            <div>
-                <button id="pagination-start" class="pager">首页</button>
-            </div>
-            <div id="pagination"></div>
-            <div>
-                <button id="pagination-end" class="pager">末页</button>
-            </div>
+        <div id="pagination"></div>
+        <div class="toolbar">
+            <button id="top">Top</button>
         </div>
-    </div>
-    <div class="toolbar">
-        <button id="top">Top</button>
-    </div>
 
-    <script src="./dist/build.js"></script>
+        <script src="./dist/build.js"></script>
 </body>
 
 </html>

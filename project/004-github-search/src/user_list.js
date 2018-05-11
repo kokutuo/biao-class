@@ -2,7 +2,7 @@ var variable = require('./variable');
 
 function render_user_list(data) {
     var html = '';
-
+    
     data.forEach(function (user) {
         html = html + `
         <div class="user">

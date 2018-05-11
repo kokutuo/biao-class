@@ -1,5 +1,5 @@
-var store = require('../util/store'),
-    helper = require('../util/helper');
+var store = require('../../util/store'),
+    helper = require('../../util/helper');
 
 var list = [],
     el,
@@ -23,6 +23,7 @@ function render() {
     el.innerHTML = '';
 
     list.forEach(function (keyword) {
+        /* 生成模板 */
         var el_history = document.createElement('div');
         el_history.innerHTML = `
         <div class="text">${keyword}</div>
@@ -33,18 +34,18 @@ function render() {
         el_history.classList.add('history');
         el.appendChild(el_history);
 
+        /* 为每一个记录添加点击事件 */
         el_history.addEventListener('click', function (e) {
             if (on_click) {
                 on_click(keyword, e);
             }
         });
 
+        /* 为删除按钮添加点击事件 */
         el_history.querySelector('.delete').addEventListener('click', function (e) {
-            e.stopPropagation();
             if (on_delete) {
                 on_delete(keyword, e);
             }
-
             remove(keyword);
         });
     });
@@ -93,6 +94,7 @@ function show() {
     el.hidden = false;
 }
 
+/* 隐藏记录列表 */
 function hidden() {
     el.hidden = true;
 }
