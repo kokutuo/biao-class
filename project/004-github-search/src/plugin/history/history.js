@@ -43,6 +43,7 @@ function render() {
 
         /* 为删除按钮添加点击事件 */
         el_history.querySelector('.delete').addEventListener('click', function (e) {
+            e.stopPropagation();
             if (on_delete) {
                 on_delete(keyword, e);
             }

@@ -1,6 +1,7 @@
 var config,
     page_amount, //通过计算获取总页数
     el, // 插件插入的根元素
+    on_change_page,
     def_config = { // 默认配置项
         amount: null,
         limit: null,
@@ -39,11 +40,12 @@ function init(user_config) {
     init_render();
 
     /* 渲染组件 */
-    render();
+    render_list();
 }
 
 /* 渲染插件的基本HTML结构 */
 function init_render() {
+    el.classList.add('pagination');
     el.innerHTML = `
       <fieldset class="pagination-fieldset">
         <div class="pagination-pre">
@@ -63,35 +65,32 @@ function init_render() {
     /* 在页码组件的上一级绑定事件，来监听页码组件的冒泡 */
     el.addEventListener('click', function (e) {
         var target = e.target; // 冒泡事件的起点
-        console.log(target ,config.current);
         
         var is_btn_page = target.classList.contains('pagination-item'), // 点击的是页码按钮吗？
             is_first = target.classList.contains('pagination-first'), // 点击的是"首页"按钮吗？
             is_last = target.classList.contains('pagination-last'), // 点击的是"尾页"按钮吗？
-            is_pre = target.classList.contains('pagination-pre'), // 点击的是"上一页"按钮吗？
+            is_prev = target.classList.contains('pagination-prev'), // 点击的是"上一页"按钮吗？
             is_next = target.classList.contains('pagination-next'); // 点击的是"下一页"按钮吗？
 
         if (is_btn_page) { // 如果是数字按钮
-            var page = parseInt(target.dataset.page);
-            console.log(page);
-            
+            var page = parseInt(target.dataset.page);            
             change_page(page);
         } else if (is_first) {
             change_page(1);
         } else if (is_last) {
             change_page(page_amount);
-        } else if (is_pre) {
+        } else if (is_prev) {
             change_page(config.current - 1);
         } else if (is_next) {
             change_page(config.current + 1);
         }
 
-        render();
+        render_list();
     });
 }
 
 /* 渲染页码组件 */
-function render() {
+function render_list() {
     /* 每次渲染先清空 */
     el_pagination_list.innerHTML = '';
 

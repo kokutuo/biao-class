@@ -12,7 +12,7 @@ function detect_submit() {
 
         /* 获取搜索关键词 */
         var keyword = variable.set_keyword(variable.input.value);
-        
+
         /* 将关键词加入历史记录 */
         history.add(keyword);
 
@@ -27,7 +27,7 @@ function detect_submit() {
 
 /* 当输入框focus的时候显示历史记录 */
 function show_history_list() {
-    variable.input.addEventListener('focus', function () {
+    variable.input.addEventListener('click', function () {
         history.show();
     });
 }
@@ -35,12 +35,12 @@ function show_history_list() {
 /* 当搜索框和历史记录之外的地方被点击时，隐藏历史记录 */
 function hidden_history_list() {
     document.addEventListener('click', function (e) {
-       var el = e.target; 
-       var tmp = el.closest('#history-list');
-       
-       if (!tmp && el != variable.input) {
-           history.hidden();
-       }
+        var el = e.target;
+        var tmp = el.closest('#history-list');
+
+        if (!tmp && el != variable.input) {
+            history.hidden();
+        }
     });
 }
 
@@ -49,6 +49,16 @@ function init_history() {
     history.init({
         el: '#history-list',
         on_click: function (keyword, e) {
+            /* 如果按住alt键点击，则进行搜索 */
+            if (e.altKey) {
+                search.user(keyword, function (data) {
+                    list.render_user_list(data.items);
+                    list.render_sum_total(data.total_count);
+                    init_pagination(data.total_count);
+                });
+            }
+
+            /* 直接点击，则只讲关键词上屏 */
             variable.input.value = keyword;
         }
     });
@@ -58,8 +68,8 @@ function init_history() {
 function init_pagination(data) {
     pagination.init({
         el: '#pagination',
-       amount:  data,
-       limit: variable.get_limit()
+        amount: data,
+        limit: variable.get_limit()
     });
 }
 
