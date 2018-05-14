@@ -87,14 +87,15 @@ function init_history() {
 function on_history_click(kwd, e) {
     variable.set_keyword(kwd);
 
+    variable.input.value = kwd;
     /* 如果按住alt键点击，则进行搜索 */
     if (e.altKey) {
         variable.input.value = kwd;
-        search.search(on_search_succeed);
+        return;
     }
-
+    
     /* 直接点击，则只讲关键词上屏 */
-    variable.input.value = kwd;
+    search.search(on_search_succeed);
 }
 
 /* 当删除按钮被点击时执行 */
