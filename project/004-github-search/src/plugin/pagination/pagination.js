@@ -1,23 +1,23 @@
 var config,
     page_amount, //通过计算获取总页数
     el, // 插件插入的根元素
-    on_change_page,
+    on_page_change,
     def_config = { // 默认配置项
         amount: null,
         limit: null,
         range: 5,
         current: 1
     },
+    el_pagination_fieldset, // <fieldset> 元素，用于快速禁用所有按钮和其他输入元素
     el_pagination_list; // 页码插入的元素
-
 
 /* 入口函数
  *@param object user_config 配置项 
  *{
  *    -------- 属性 ---------
  *    el: 选择器 / 必填项
- *    amount: 总数据量 / 必填项
- *    limit: 每页显示数 / 必填项
+ *    amount: 总数据量 / 使用set_amount_and_limit()设置
+ *    limit: 每页显示数 / 使用set_amount_and_limit()设置
  *    range: 显示页码数 / 默认为5
  *    current_page: 当前页面 / 默认为1
  *    -------- 方法 ---------
@@ -28,16 +28,24 @@ function init(user_config) {
     /* 选中插入的元素 */
     el = document.querySelector(user_config.el);
 
+    if (!el) {
+        throw 'Invalid root element.';
+    }
+
     /* 合并配置项 */
     config = Object.assign({}, def_config, user_config);
+
+    /* 对组件进行初始化渲染 */
+    init_render();
+
+    if (!config.amount || !config.limit) {
+        return;
+    }
 
     /* 计算总页数 */
     calc_page_amount();
 
-    change_page(config.current);
-
-    /* 对组件进行初始化渲染 */
-    init_render();
+    change_page(config.current, true);
 
     /* 渲染组件 */
     render_list();
@@ -61,11 +69,12 @@ function init_render() {
     `;
 
     el_pagination_list = el.querySelector('.pagination-list');
+    el_pagination_fieldset = el.querySelector('.pagination-fieldset');
 
     /* 在页码组件的上一级绑定事件，来监听页码组件的冒泡 */
     el.addEventListener('click', function (e) {
         var target = e.target; // 冒泡事件的起点
-        
+
         var is_btn_page = target.classList.contains('pagination-item'), // 点击的是页码按钮吗？
             is_first = target.classList.contains('pagination-first'), // 点击的是"首页"按钮吗？
             is_last = target.classList.contains('pagination-last'), // 点击的是"尾页"按钮吗？
@@ -73,7 +82,7 @@ function init_render() {
             is_next = target.classList.contains('pagination-next'); // 点击的是"下一页"按钮吗？
 
         if (is_btn_page) { // 如果是数字按钮
-            var page = parseInt(target.dataset.page);            
+            var page = parseInt(target.dataset.page);
             change_page(page);
         } else if (is_first) {
             change_page(1);
@@ -113,6 +122,24 @@ function render_list() {
     }
 }
 
+/* 禁用组件 */
+function disable() {
+    el_pagination_fieldset.disabled = true;
+}
+
+/* 启用组件 */
+function enable() {
+    el_pagination_fieldset.disabled = false;
+}
+
+function show() {    
+    el.hidden = false;
+}
+
+function hide() {
+    el.hidden = true;
+}
+
 /* 判断页码的开始和结束范围 */
 function decide_page_scope() {
     var start,
@@ -148,23 +175,30 @@ function decide_page_scope() {
     };
 }
 
-/* 验证并更改当前页数 
- * 更改后通知用户（将更改后的页数传给回调函数）
+/*验证且更改当前页面（比如说从1改为2）
+ * 更改后通知在乎的人（触发回调函数）
  * @param Number page 当前页
- */
-function change_page(page) {
-    if (config.current < 1) {
-        config.current = 1;
-    } else if (config.current > page_amount) {
-        config.current = page_amount;
-    } else {
-        config.current = page;
-    }
+ * */
+function change_page(page, force) {
 
-    /* 通知使用者 */
-    if (config.on_change_page) {
-        config.on_change_page = page;
-    }
+    var old = config.current;
+
+    config.current = page;
+
+    /*如果大于最大页面，就强制等于最后一页*/
+    if (page > page_amount)
+        config.current = page_amount;
+
+    /*如果小于最小页面，就强制等于第一页*/
+    if (page < 1)
+        config.current = 1;
+
+    if (!force && old == config.current)
+        return;
+
+    /*通知使用者*/
+    if (config.on_page_change)
+        config.on_page_change(config.current);
 }
 
 /* 计算总页数 */
@@ -172,7 +206,20 @@ function calc_page_amount() {
     page_amount = Math.ceil(config.amount / config.limit);
 }
 
+function set_amount_and_limit(amount, limit) {
+    config.amount = amount;
+    config.limit = limit;
+    calc_page_amount();
+
+    render_list();
+}
+
 module.exports = {
     init: init,
-    change_page: change_page
+    change_page: change_page,
+    show: show,
+    hide: hide,
+    disable: disable,
+    enable: enable,
+    set_amount_and_limit: set_amount_and_limit
 };

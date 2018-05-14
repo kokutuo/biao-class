@@ -1,9 +1,12 @@
 var variable = require('./variable');
 
-function render_user_list(data) {
+function render(data) {
     var html = '';
-    
-    data.forEach(function (user) {
+
+    /* 每次渲染先隐藏附加信息 */
+    variable.placeholer.hidden = true;
+
+    data.items.forEach(function (user) {
         html = html + `
         <div class="user">
             <a class="avatar" target="_blank" href="${user.html_url}">
@@ -18,15 +21,34 @@ function render_user_list(data) {
     });
 
     variable.user_list.innerHTML = html;
+
+    /* 渲染总数信息 */
+    show_total();
+    variable.sum_total.innerHTML = `为您找到${data.total_count}条搜索结果`;
+
+    /* 如果是最后一页就显示附加信息 */
+    var no_more = variable.get_current_page() * variable.get_amount() > data.total_count;
+
+    if (no_more) {
+        variable.placeholer.hidden = false;
+    }
 }
 
-function render_sum_total(data) {
+/* 显示总数 */
+function show_total() {
     variable.sum_total.hidden = false;
+}
 
-    variable.sum_total.innerHTML = `为您找到${data}条搜索结果`;
+/* 隐藏总数 */
+function hide_total() {
+    variable.sum_total.hidden = true;
+}
+
+function reset_user_list() {
+    variable.user_list.innerHTML = '';
 }
 
 module.exports = {
-    render_user_list: render_user_list,
-    render_sum_total: render_sum_total
+    reset_user_list: reset_user_list,
+    render: render,
 };

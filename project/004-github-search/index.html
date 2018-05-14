@@ -16,15 +16,14 @@
 
         body {
             background: #eee;
-            font-family: sans-serif;
-            color: #333;
             margin: 0;
+            font-family: sans-serif;
+            color: #f26101;
         }
 
         h1 {
-            font-size: 25px;
-            font-weight: lighter;
-            color: #aaa;
+            margin: 0;
+            padding: 20px 10px;
         }
 
         img {
@@ -37,30 +36,6 @@
             color: #777;
         }
 
-        form {
-            position: relative;
-            font-size: 0;
-        }
-
-        button,
-        input {
-            font-size: 15px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            outline: 0;
-            color: #555;
-        }
-
-        button:focus,
-        button:hover,
-        input:focus {
-            border-color: rgba(0, 0, 200, .4);
-        }
-
-        form button {
-            width: 20%;
-            border-left: 0;
-        }
 
         [hidden] {
             display: none !important;
@@ -73,11 +48,12 @@
 
         .container {
             position: relative;
-            max-width: 600px;
+            min-height: 100vh;
+            max-width: 800px;
             margin: 0 auto;
-
-            padding-left: 10px;
-            padding-right: 10px;
+            padding: 20px 30px;
+            text-align: center;
+            background: #ebe3cb;
         }
 
         .container>* {
@@ -143,11 +119,6 @@
             text-align: center;
         }
 
-        form input,
-        #history-list {
-            width: 80%;
-        }
-
         #history-list {
             z-index: 1;
             position: absolute;
@@ -198,6 +169,50 @@
         .history .tool>* {
             cursor: pointer;
         }
+
+        #loading {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 80%;
+            background: rgba(0, 0, 0, .5);
+            color: #fff;
+            padding: 5px 10px;
+        }
+
+        #search-form {
+            height: 60px;
+            font-size: 0;
+            margin-bottom: 20px;
+        }
+
+        #search-form [type=search],
+        #search-form [type=submit] {
+            height: 60px;
+            outline: 0;
+            border: 2px solid #46483c;
+            vertical-align: top;
+        }
+
+        #search-form [type=search] {
+            width: 80%;
+            font-size: 20px;
+            border-right: 0;
+            padding: 5px 10px;
+        }
+
+        #search-form [type=submit] {
+            width: 20%;
+            font-size: 25px;
+            border-left: 0;
+            background: #f26101;
+            color: #46483c;
+            cursor: pointer;
+        }
+
+        #search-form [type=submit]:hover {
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -212,12 +227,13 @@
         <div id="sum-total"></div>
         <div id="user-list"></div>
         <div class="tac" id="placeholer" hidden>谋了 - . -</div>
-        <div id="pagination"></div>
+        <div id="pagination" hidden></div>
         <div class="toolbar">
             <button id="top">Top</button>
         </div>
-
-        <script src="./dist/build.js"></script>
+        <div id="loading" hidden>加载中...</div>
+    </div>
+    <script src="./dist/build.js"></script>
 </body>
 
 </html>

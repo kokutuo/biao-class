@@ -47,7 +47,6 @@ function render() {
             if (on_delete) {
                 on_delete(keyword, e);
             }
-            remove(keyword);
         });
     });
 }
