@@ -27,7 +27,7 @@ function render(data) {
     variable.sum_total.innerHTML = `为您找到${data.total_count}条搜索结果`;
 
     /* 如果是最后一页就显示附加信息 */
-    var no_more = variable.get_current_page() * variable.get_amount() > data.total_count;
+    var no_more = variable.get_current_page() * variable.get_limit() > data.total_count;
 
     if (no_more) {
         variable.placeholer.hidden = false;

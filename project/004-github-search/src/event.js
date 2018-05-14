@@ -44,6 +44,8 @@ function on_search_succeed(data) {
     /* 拿到搜索数据 */
     variable.set_amount(data.total_count);
     pagination.set_amount_and_limit(variable.get_amount(), variable.get_limit());
+
+    /* 显示组件 */
     pagination.show();
 
     /* 清空上次搜索的结果 */
