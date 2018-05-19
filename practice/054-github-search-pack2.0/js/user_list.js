@@ -1,9 +1,21 @@
 var variable = require('./variable');
 
-function render_user_list(data) {
+var output = {
+    render: render,
+    resetUserList: resetUserList
+};
+
+/* 渲染用户列表 */
+function render() {
     var html = '';
 
-    data.forEach(function (user) {
+    /* 获取用户列表数组 */
+    var list = variable.getList();
+    
+    variable.showUserList();
+
+    /* 循环渲染列表html结构 */
+    list.forEach(function (user) {
         html = html + `
         <div class="user">
             <a class="avatar" target="_blank" href="${user.html_url}">
@@ -17,16 +29,13 @@ function render_user_list(data) {
        `;
     });
 
-    variable.user_list.innerHTML = html;
+    /* 将渲染好的HTML插入正确的位置 */
+    variable.userList.innerHTML = html;
 }
 
-function render_sum_total(data) {
-    variable.sum_total.hidden = false;
-
-    variable.sum_total.innerHTML = `为您找到${data}条搜索结果`
+/* 清空列表内容 */
+function  resetUserList() {
+    variable.userList.innerHTML = '';
 }
 
-module.exports = {
-    render_user_list: render_user_list,
-    render_sum_total: render_sum_total
-};
+module.exports = output;

@@ -56,6 +56,6 @@ function search_user(on_succeed, on_faild, before, after) {
 }
 
 module.exports = {
-    search:search,
+    search: search,
     set_keyword: set_keyword
 };

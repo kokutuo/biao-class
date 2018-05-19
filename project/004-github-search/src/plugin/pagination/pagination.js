@@ -132,7 +132,7 @@ function enable() {
     el_pagination_fieldset.disabled = false;
 }
 
-function show() {    
+function show() {
     el.hidden = false;
 }
 

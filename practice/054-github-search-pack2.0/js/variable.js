@@ -1,74 +1,89 @@
-/* 定义所有的变量，选中页面中的元素 */
-
 var form = document.getElementById('search-form'),
     input = document.getElementById('search-input'),
-    history_list = document.getElementById('history-list'),
-    sum_total = document.getElementById('sum-total'),
-    user_list = document.getElementById('user-list'),
+    total = document.getElementById('total'),
+    userList = document.getElementById('user-list'),
     placeholer = document.getElementById('placeholer'),
-    pagination_container = document.getElementById('pagination-container'),
-    pagination = pagination_container.querySelector('#pagination'),
-    pagination_start = pagination_container.querySelector('#pagination-start'),
-    pagination_end = pagination_container.querySelector('#pagination-end'),
-    top = document.getElementById('top');
+    top = document.getElementById('top'),
+    loading = document.getElementById('loading');
 
-var keyword,
-    current_page = 1,
-    limit = 20,
-    amount,
-    MAX_LIMIT = 999;
 
-function set_keyword(val) {
-    return keyword = val;
+var list = [], // 用于存储返回数据中的用户列表
+    current = 1, // 当前页，默认为1
+    limit = 10, // 每页显示用户条数，默认为10
+    keyword;
+
+function setList(val) {
+    list = val;
+    return list;
 }
 
-function get_keyword() {
+function getList() {
+    return list;
+}
+
+function setKeyword(val) {
+    keyword = val;
     return keyword;
 }
 
-function set_current_page(val) {
-    return current_page = val;
+function getKeyword() {
+    return keyword;
 }
 
-function get_current_page() {
-    return current_page;
+function setCurrent(val) {
+    current = val;
+    return current;
 }
 
-function set_limit(val) {
-    return limit = val;
+function getCurrent() {
+    return current;
 }
 
-function get_limit() {
+function setLimit(val) {
+    limit = val;
     return limit;
 }
 
-function set_amount(val) {
-    return amount = val;
+function getLimit() {
+    return limit;
 }
 
-function get_amount() {
-    return amount;
+function showUserList() {
+    userList.hidden = false;
+}
+
+function hideUserList() {
+    userList.hidden = true;
+}
+
+function showLoading() {
+    console.log(loading);
+    loading.hidden = false;
+}
+
+function hideLoading() {
+    loading.hidden = true;
 }
 
 module.exports = {
     form: form,
     input: input,
-    history_list: history_list,
-    sum_total: sum_total,
-    user_list: user_list,
+    total: total,
+    userList: userList,
     placeholer: placeholer,
-    pagination_container: pagination_container,
-    pagination: pagination,
-    pagination_start: pagination_start,
-    pagination_end: pagination_end,
     top: top,
-    set_keyword: set_keyword,
-    get_keyword: get_keyword,
-    set_current_page: set_current_page,
-    get_current_page: get_current_page,
-    set_limit: set_limit,
-    get_limit: get_limit,
-    set_amount: set_amount,
-    get_amount: get_amount,
-    MAX_LIMIT: MAX_LIMIT
-};
+    loading: loading,
+    showLoading: showLoading,
+    hideLoading: hideLoading,
+    showUserList: showUserList,
+    hideUserList: hideUserList,
+    setList: setList,
+    getList: getList,
+    setKeyword: setKeyword,
+    getKeyword: getKeyword,
+    setCurrent: setCurrent,
+    getCurrent: getCurrent,
+    setLimit: setLimit,
+    getLimit: getLimit
+
+}

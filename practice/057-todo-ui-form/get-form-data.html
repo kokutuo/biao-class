@@ -1,0 +1,55 @@
+<form id="todo-list">
+    <input type="text" name="title" value="yo">
+    <br>
+    <label>
+        <input type="checkbox" name="completed">completed
+    </label>
+    <br>
+    <textarea name="desc">where amazing happen</textarea>
+    <br>
+    <button type="submit">add task</button>
+</form>
+
+<script>
+    ;
+    (function () {
+        'use strict';
+
+        var row = {};
+
+        function getFormData(selector) {
+            var data = {};
+            var form = document.querySelector(selector);
+            var list = form.querySelectorAll('[name]');
+
+            list.forEach(function (input) {
+                switch (input.nodeName) {
+                    
+                    case 'INPUT':
+                        switch (input.type) {
+                            case 'text':
+                            case 'number':
+                            case 'password':
+                            case 'search':
+                                data[input.name] = input.value;
+                                break;
+                            case 'checkbox':
+                            case 'radio':
+                                data[input.name] = input.checked;
+                                break;
+                        }
+                        break;
+                    case 'TEXTAREA':
+                        data[input.name] = input.value;
+                        break;
+                }
+            });
+
+            return data;
+        }
+
+        row = getFormData('#todo-list');
+
+        console.log(row);
+    })();
+</script>

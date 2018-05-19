@@ -1,29 +1,38 @@
 var variable = require('./variable'),
-    search = require('./search'),
-    tool = require('./tool'),
-    pagination = require('./pagination'),
-    list = require('./user_list');
+    list = require('./user_list'),
+    history = require('./plugin/history/history');
+    search = require('./search');
 
-function detect_submit() {
+var output = {
+    addEvent: addEvent
+};
+
+/* 添加所有事件 */
+function addEvent() {
+    detectSubmit();
+}
+
+/* 绑定提交事件 */
+function detectSubmit() {
     variable.form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        variable.set_keyword(variable.input.value);        
+        var keyword = variable.setKeyword(variable.input.value);
 
-        search.user(variable.get_keyword(), function (data) {
-            list.render_user_list(data.items);
-            list.render_sum_total(variable.get_amount());
-            pagination.render_pagination(variable.get_amount());
-        });
+        search.search(onSearchSucceed);
     });
 }
 
-function add_event() {
-    detect_submit();
-    tool.click_top();
-    // pagination.detect_click_pagination();
+/* 搜索成功时执行 */
+function onSearchSucceed(data) {
+    /* 用户数组设置 */
+    list.resetUserList();
+    variable.setList(data.items);
+
+    /* 渲染用户列表 */
+    list.render();
 }
 
-module.exports = {
-    add_event: add_event
-};
+
+
+module.exports = output;

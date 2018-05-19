@@ -34,13 +34,13 @@ function detect_submit() {
         /* 先将用户列表置空 */
         list.reset_user_list();
 
-        /* 搜索并渲染用户列表 */        
+        /* 搜索并渲染用户列表 */
         search.search(on_search_succeed);
     });
 }
 
 /* 搜索成功时执行 */
-function on_search_succeed(data) {    
+function on_search_succeed(data) {
     /* 拿到搜索数据 */
     variable.set_amount(data.total_count);
     pagination.set_amount_and_limit(variable.get_amount(), variable.get_limit());
@@ -93,7 +93,7 @@ function on_history_click(kwd, e) {
         variable.input.value = kwd;
         return;
     }
-    
+
     /* 直接点击，则只讲关键词上屏 */
     search.search(on_search_succeed);
 }
