@@ -23,6 +23,9 @@ Api.prototype.read = read;
 
 /* 增 */
 function add(row) {
+    if (row.title == '') {
+        return;
+    }
     this.maxId++;
     row.id = this.maxId;
     this.list.push(row);
@@ -43,6 +46,7 @@ function modify(id, newRow) {
     if (index < 0) {
         return;
     }
+    /* 删除更新数据的id, 防止 */
     delete newRow.id;
     var oldRow = this.list[index];
     this.list[index] = Object.assign({}, oldRow, newRow);

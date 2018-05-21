@@ -80,7 +80,6 @@ function detectAdd() {
 function render() {
     /* 通过api拿到数据 */
     var todoList = this._api.read();
-    console.log(todoList);
     
     /* 先清空 */
     this.list.innerHTML = '';
