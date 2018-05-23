@@ -1,78 +1,38 @@
-window.Api = Api;
+window.TaskApi = TaskApi;
 
-function Api(maxId, list) {
-    this.maxId = maxId || 1;
-    // this.list = list || [];
-    this.list = [{ // 0
-            id: 100,
-            title: '买菜',
-            completed: true,
-        },
-        {
-            id: 101,
-            title: '洗菜',
-            completed: false
-        }
-    ];
+function TaskApi(list, maxId) {
+    maxId = maxId || 1;
+    list = list || [];
+    /* 继承显性属性（也就是原型prototype） */
+    BaseApi.call(this, list, maxId);
 }
 
-Api.prototype.add = add;
-Api.prototype.remove = remove;
-Api.prototype.modify = modify;
-Api.prototype.read = read;
+/* 继承隐性属性 */
+TaskApi.prototype = Object.create(BaseApi.prototype);
+TaskApi.prototype.constructor = TaskApi;
 
-/* 增 */
+TaskApi.prototype.add = add;
+TaskApi.prototype.remove = remove;
+TaskApi.prototype.modify = modify;
+TaskApi.prototype.read = read;
+
 function add(row) {
-    if (row.title == '') {
+    if (!row.title) {
         return;
     }
-    this.maxId++;
-    row.id = this.maxId;
-    this.list.push(row);
+    return this.$add(row);
 }
 
-/* 删 */
 function remove(id) {
-    var index = findIndexById(this.list, id);
-    if (index < 0) {
-        return;
-    }
-    this.list.splice(index, 1);
+    return this.$remove(id);
 }
 
-/* 改 */
 function modify(id, newRow) {
-    var index = findIndexById(this.list, id);
-    if (index < 0) {
-        return;
-    }
-    /* 删除更新数据的id, 防止 */
-    delete newRow.id;
-    var oldRow = this.list[index];
-    this.list[index] = Object.assign({}, oldRow, newRow);
+    return this.$modify(id, newRow);
 }
 
-/* 查 */
-function read(id) {
-    if (id) {
-        return findByid(this.list, id);
-    }
-
-    return this.list;
-}
-
-/* 通过ID找到索引 */
-function findIndexById(arr, id) {
-    return arr.findIndex(function (item) {
-        return item.id == id;
-    });
-}
-
-/* 通过id找到数组项 */
-function findByid(arr, id) {
-    return arr.find(function (item) {
-        return item.id == id;
-    });
+function read(id) {    
+    return this.$read(id);
 }
 
 /* ========================================================================= */

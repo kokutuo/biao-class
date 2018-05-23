@@ -1,21 +1,41 @@
-window.Ui = Ui;
+window.TaskUi = TaskUi;
 
-function Ui(formSelector, listSelector, inputSelector) {
+test_list = [{ // 0
+        id: 100,
+        title: '买菜',
+        completed: false,
+        group_id: 1,
+    },
+    { // 1
+        id: 101,
+        title: '洗菜',
+        completed: false,
+        group_id: 1,
+    },
+    {
+        id: 102,
+        title: '背单词',
+        completed: false,
+        group_id: 2,
+    },
+];
+
+function TaskUi(formSelector, listSelector, inputSelector) {
     this.form = document.querySelector(formSelector);
     this.list = document.querySelector(listSelector);
     this.input = document.querySelector(inputSelector);
     /* 私有属性，不应该直接调用 */
-    this._api = new TaskApi();
+    this._api = new TaskApi(test_list);
 }
 
-Ui.prototype.getFormData = getFormData;
-Ui.prototype.setFormData = setFormData;
-Ui.prototype.render = render;
-Ui.prototype.init = init;
-Ui.prototype.detectAdd = detectAdd;
-Ui.prototype.detectClickList = detectClickList;
-Ui.prototype.remove = remove;
-Ui.prototype.clearForm = clearForm;
+TaskUi.prototype.getFormData = helper.getFormData;
+TaskUi.prototype.setFormData = helper.setFormData;
+TaskUi.prototype.clearForm = helper.clearForm;
+TaskUi.prototype.render = render;
+TaskUi.prototype.init = init;
+TaskUi.prototype.detectAdd = detectAdd;
+TaskUi.prototype.detectClickList = detectClickList;
+TaskUi.prototype.remove = remove;
 
 function init() {
     this.render();
@@ -34,8 +54,6 @@ function detectClickList() {
             isModify = target.classList.contains('modify');
 
         if (isRemove) {
-            console.log(1);
-            
             me.remove(id);
         }
 
@@ -51,11 +69,6 @@ function remove(id) {
     this.render();
 }
 
-function clearForm() {
-    var id = this.form.querySelector('[name=id]');
-    id.value = '';
-}
-
 /* 监听添加事件（表单提交事件） */
 function detectAdd() {
     var me = this;
@@ -64,7 +77,7 @@ function detectAdd() {
         /* 获取输入框的值 */
         var row = me.getFormData(me.form);
         if (row.id) {
-            me._api.modify(row.id, row);            
+            me._api.modify(row.id, row);
         } else {
             /* 更新数据 */
             me._api.add(row);
@@ -74,7 +87,7 @@ function detectAdd() {
         /* 清空输入框的值 */
         me.input.value = '';
         /* 清空id */
-        me.clearForm();
+        me.clearForm(me.form);
     });
 }
 
@@ -82,7 +95,7 @@ function detectAdd() {
 function render() {
     /* 通过api拿到数据 */
     var todoList = this._api.read();
-    
+
     /* 先清空 */
     this.list.innerHTML = '';
     var me = this;
@@ -107,65 +120,6 @@ function render() {
 
         me.list.appendChild(el);
     });
-}
-
-function setFormData(form, data) {
-    /* 遍历数据对象 */
-    for (var key in data) {
-        /* 缓存当前属性的值 */
-        var value = data[key];
-        /* 找到当前属性在表单中对应的input */
-        var input = form.querySelector(`[name=${key}]`);
-
-        if (!input) {
-            continue;
-        }
-
-        /* 获取当前属性的数据类型 */
-        var dataType = typeof value;
-
-        /* 通过数据类型动态的赋值 */
-        switch (dataType) {
-            case 'string':
-            case 'number':
-                input.value = value;
-                break;
-            case 'boolean':
-                input.checked = value;
-                break;
-        }
-    }
-}
-
-function getFormData(form) {
-    var data = {};
-    var list = form.querySelectorAll('[name]');
-
-    list.forEach(function (input) {
-        switch (input.nodeName) {
-
-            case 'INPUT':
-                switch (input.type) {
-                    case 'text':
-                    case 'number':
-                    case 'password':
-                    case 'search':
-                    case 'hidden':
-                        data[input.name] = input.value;
-                        break;
-                    case 'checkbox':
-                    case 'radio':
-                        data[input.name] = input.checked;
-                        break;
-                }
-                break;
-            case 'TEXTAREA':
-                data[input.name] = input.value;
-                break;
-        }
-    });
-
-    return data;
 }
 
 /* ============================================================================== */
