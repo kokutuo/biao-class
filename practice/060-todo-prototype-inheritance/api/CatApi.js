@@ -13,9 +13,13 @@ function CatApi(list, maxId) {
         {
             id: 2,
             title: '学习'
+        },
+        {
+            id: 3,
+            title: '生活'
         }
     ];
-    maxId = maxId || 1;
+    maxId = maxId || 2;
     /* 继承显性属性 */
     BaseApi.call(this, list, maxId);
 }
@@ -34,12 +38,13 @@ function add(row) {
         return;
     }
 
-    var maxLength = this.config.title.length;
-    if (row.title.length > length) {
-        throw 'title sholud not greater than ${maxLength}';
-    }
-    
-    return this.$add(row);
+    /* 获取设置好的最大输入字符长度 */
+    // var maxLength = this.config.title.maxLength;
+    // if (row.title.length > length) {
+    //     throw 'title should not greater than ${maxLength}';
+    // }
+
+    this.$add(row);
 }
 
 function remove(id) {
