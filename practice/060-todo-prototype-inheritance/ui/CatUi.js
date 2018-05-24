@@ -8,11 +8,11 @@ function CatUi(config) {
         onItemClick: null
     };
 
-    this.config = Object.assign({}, defConfig, config);
+    var c =this.config = Object.assign({}, defConfig, config);
     
-    this.list = document.querySelector('#cat-list');
-    this.form = document.querySelector('#cat-form');
-    this.addCat = document.querySelector('#add-cat');
+    this.list = document.querySelector(c.catListSelector);
+    this.form = document.querySelector(c.catFormSelector);
+    this.addCat = document.querySelector(c.addCatSelector);
     this._api = new CatApi();
     this.updatingCatItem = null;
 }
@@ -33,6 +33,7 @@ CatUi.prototype.getFormData = helper.getFormData;
 CatUi.prototype.getFormData = helper.getFormData;
 CatUi.prototype.setFormData = helper.setFormData;
 CatUi.prototype.clearForm = helper.clearForm;
+CatUi.prototype.setActiveCatItem = setActiveCatItem;
 
 function init() {
     this.detectAddClick();
@@ -104,11 +105,23 @@ function detectListClick() {
             if (!id) {
                 return;
             }
+            me.setActiveCatItem(id);
             if (me.config.onItemClick) {
                 me.config.onItemClick(id);
             }
-            catItem.classList.add('active');
         }
+    });
+}
+
+/* 高亮被点击的项 */
+function setActiveCatItem(id) {
+    var catList = this.list.querySelectorAll('.cat-item');
+    catList.forEach(function (cat) {
+       if (cat.dataset.id == id) {
+           cat.classList.add('active');
+       } else {
+           cat.classList.remove('active');
+       }
     });
 }
 

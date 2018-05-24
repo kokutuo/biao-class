@@ -1,7 +1,7 @@
 window.CatApi = CatApi;
 
 function CatApi(list, maxId) {
-    config = {
+    this.config = {
         title: {
             maxLength: 10
         }
@@ -39,15 +39,18 @@ function add(row) {
     }
 
     /* 获取设置好的最大输入字符长度 */
-    // var maxLength = this.config.title.maxLength;
-    // if (row.title.length > length) {
-    //     throw 'title should not greater than ${maxLength}';
-    // }
+    var maxLength = this.config.title.maxLength;
+    if (row.title.length > maxLength) {
+        throw 'title should not greater than ${maxLength}';
+    }
 
     this.$add(row);
 }
 
 function remove(id) {
+    if (id == 1) {
+        return;
+    }
     return this.$remove(id);
 }
 

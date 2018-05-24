@@ -22,6 +22,9 @@ function add(row) {
         return;
     }
     
+    if (!row.cat_id) {
+        row.cat_id = 1;
+    }
     return this.$add(row);
 }
 
