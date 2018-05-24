@@ -4,37 +4,37 @@ test_list = [{
         id: 100,
         title: '搓炉石',
         completed: false,
-        group_id: 1
+        cat_id: 1
     },
     {
         id: 101,
         title: '崩崩崩',
         completed: false,
-        group_id: 1
+        cat_id: 1
     },
     {
         id: 102,
         title: '买菜',
         completed: false,
-        group_id: 2,
+        cat_id: 2,
     },
     {
         id: 103,
         title: '洗菜',
         completed: false,
-        group_id: 2,
+        cat_id: 2,
     },
     {
         id: 104,
         title: '背单词',
         completed: false,
-        group_id: 3,
+        cat_id: 3,
     },
     {
         id: 105,
         title: '写作文',
         completed: false,
-        group_id: 3
+        cat_id: 3
     }
 ];
 
@@ -111,12 +111,18 @@ function detectAdd() {
 }
 
 /* 渲染任务列表 */
-function render() {
+function render(cat_id) {
     /* 通过api拿到数据 */
-    var todoList = this._api.read();
-
+    var todoList = cat_id ?
+        this._api.filterById(cat_id) :
+        this._api.read();
+    
     /* 先清空 */
-    this.list.innerHTML = '';
+    if (todoList.length) {
+        this.list.innerHTML = '';
+    } else {
+        this.list.innerHTML = `<div class='empty-holder'>暂无内容</div>`
+    }
     var me = this;
     /* 遍历数据，插入列表 */
     todoList.forEach(function (item) {

@@ -81,7 +81,7 @@ function init_render() {
             is_prev = target.classList.contains('pagination-prev'), // 点击的是"上一页"按钮吗？
             is_next = target.classList.contains('pagination-next'); // 点击的是"下一页"按钮吗？
 
-        if (is_btn_page) { // 如果是数字按钮
+        if (is_btn_page) {
             var page = parseInt(target.dataset.page);
             change_page(page);
         } else if (is_first) {

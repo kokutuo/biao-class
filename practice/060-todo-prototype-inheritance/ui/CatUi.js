@@ -1,6 +1,15 @@
 window.CatUi = CatUi;
 
-function CatUi() {
+function CatUi(config) {
+    var defConfig = {
+        catListSelector: '#cat-list',
+        catFormSelector: '#cat-form',
+        addCatSelector: '#add-cat',
+        onItemClick: null
+    };
+
+    this.config = Object.assign({}, defConfig, config);
+    
     this.list = document.querySelector('#cat-list');
     this.form = document.querySelector('#cat-form');
     this.addCat = document.querySelector('#add-cat');
@@ -48,7 +57,7 @@ function render() {
 
         el.innerHTML = `
         <div class="input">
-        <input type="text" value="${row.title}" disabled>
+        <input class='content' type="text" value="${row.title}" disabled>
         </div>
         <div class="tool-set">
         ${row.id == 1 ?
@@ -74,7 +83,7 @@ function detectListClick() {
 
         /* 如果有类为 .cat-item 的父级 则获取其ID */
         if (catItem) {
-            id = catItem.dataset.id;
+            id = parseInt(catItem.dataset.id);
         }
         if (isDelete) {
             /* 点击删除，调用 remove 方法，再渲染 */
@@ -91,6 +100,14 @@ function detectListClick() {
             catItem.hidden = true; // 隐藏它，给 form 留坑
             catItem.insertAdjacentElement('afterend', me.form); // 将 form 表单插入它应该在的位置
             me.updatingCatItem = catItem; // 缓存更新项
+        } else {
+            if (!id) {
+                return;
+            }
+            if (me.config.onItemClick) {
+                me.config.onItemClick(id);
+            }
+            catItem.classList.add('active');
         }
     });
 }
