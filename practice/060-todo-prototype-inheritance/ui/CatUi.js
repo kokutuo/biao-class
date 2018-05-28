@@ -5,11 +5,12 @@ function CatUi(config) {
         catListSelector: '#cat-list',
         catFormSelector: '#cat-form',
         addCatSelector: '#add-cat',
-        onItemClick: null
+        onItemClick: null,
+        onDeleteClick: null
     };
 
-    var c =this.config = Object.assign({}, defConfig, config);
-    
+    var c = this.config = Object.assign({}, defConfig, config);
+
     this.list = document.querySelector(c.catListSelector);
     this.form = document.querySelector(c.catFormSelector);
     this.addCat = document.querySelector(c.addCatSelector);
@@ -17,23 +18,24 @@ function CatUi(config) {
     this.updatingCatItem = null;
 }
 
-CatUi.prototype.init = init;
-CatUi.prototype.render = render;
-CatUi.prototype.detectAddClick = detectAddClick;
-CatUi.prototype.detectFormSubmit = detectFormSubmit;
-CatUi.prototype.detectFormClick = detectFormClick;
-CatUi.prototype.detectListClick = detectListClick;
-CatUi.prototype.resetFormLocation = resetFormLocation;
-CatUi.prototype.showForm = showForm;
-CatUi.prototype.hideForm = hideForm;
-CatUi.prototype.showAdd = showAdd;
-CatUi.prototype.hideAdd = hideAdd;
-CatUi.prototype.showUpdatingCatItem = showUpdatingCatItem;
-CatUi.prototype.getFormData = helper.getFormData;
-CatUi.prototype.getFormData = helper.getFormData;
-CatUi.prototype.setFormData = helper.setFormData;
-CatUi.prototype.clearForm = helper.clearForm;
-CatUi.prototype.setActiveCatItem = setActiveCatItem;
+CatUi.prototype = {
+    init: init,
+    render: render,
+    detectAddClick: detectAddClick,
+    detectFormSubmit: detectFormSubmit,
+    detectFormClick: detectFormClick,
+    detectListClick: detectListClick,
+    resetFormLocation: resetFormLocation,
+    showForm: showForm,
+    hideForm: hideForm,
+    showAdd: showAdd,
+    hideAdd: hideAdd,
+    showUpdatingCatItem: showUpdatingCatItem,
+    getFormData: helper.getFormData,
+    setFormData: helper.setFormData,
+    clearForm: helper.clearForm,
+    setActiveCatItem: setActiveCatItem
+};
 
 function init() {
     this.detectAddClick();
@@ -89,6 +91,10 @@ function detectListClick() {
         if (isDelete) {
             /* 点击删除，调用 remove 方法，再渲染 */
             me._api.remove(id);
+            if (me.config.onDeleteClick) {
+                me.config.onDeleteClick(id);
+            }
+
             me.showAdd();
             me.render();
         } else if (isUpdate) {
@@ -117,11 +123,11 @@ function detectListClick() {
 function setActiveCatItem(id) {
     var catList = this.list.querySelectorAll('.cat-item');
     catList.forEach(function (cat) {
-       if (cat.dataset.id == id) {
-           cat.classList.add('active');
-       } else {
-           cat.classList.remove('active');
-       }
+        if (cat.dataset.id == id) {
+            cat.classList.add('active');
+        } else {
+            cat.classList.remove('active');
+        }
     });
 }
 

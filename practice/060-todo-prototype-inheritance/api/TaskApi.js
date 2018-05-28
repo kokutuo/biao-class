@@ -16,6 +16,7 @@ TaskApi.prototype.remove = remove;
 TaskApi.prototype.modify = modify;
 TaskApi.prototype.read = read;
 TaskApi.prototype.filterById = filterById;
+TaskApi.prototype.catDelete = catDelete;
 
 function add(row) {
     if (!row.title) {
@@ -46,5 +47,11 @@ function filterById(cat_id) {
     
     return list.filter(function (row) {        
        return row.cat_id == cat_id; 
+    });
+}
+
+function catDelete(cat_id) {
+     this.lsit =  this.list.filter(function (row) {
+        return row.cat_id != cat_id;
     });
 }

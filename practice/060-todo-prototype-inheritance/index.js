@@ -1,7 +1,12 @@
-var taskUi = new TaskUi('#todo-form', '#todo-list', '#todo-input');
+var taskUi = new TaskUi();
 var catUi = new CatUi({
-  onItemClick: function (id) {    
-    taskUi.render(id);    
+  onItemClick: function (id) {
+    taskUi.render(id);
+  },
+  onDeleteClick: function (id) {
+    taskUi._api.catDelete(id);
+    
+    taskUi.render();
   }
 });
 

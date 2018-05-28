@@ -38,22 +38,32 @@ test_list = [{
     }
 ];
 
-function TaskUi(formSelector, listSelector, inputSelector) {
-    this.form = document.querySelector(formSelector);
-    this.list = document.querySelector(listSelector);
-    this.input = document.querySelector(inputSelector);
+function TaskUi(config) {
+    var defConfig = {
+        formSelector: '#todo-form',
+        listSelector: '#todo-list',
+        inputSelector: '#todo-input',
+    };
+
+    var c = this.config = Object.assign({}, defConfig, config);
+
+    this.form = document.querySelector(c.formSelector);
+    this.list = document.querySelector(c.listSelector);
+    this.input = document.querySelector(c.inputSelector);
     /* 私有属性，不应该直接调用 */
     this._api = new TaskApi(test_list);
 }
 
-TaskUi.prototype.getFormData = helper.getFormData;
-TaskUi.prototype.setFormData = helper.setFormData;
-TaskUi.prototype.clearForm = helper.clearForm;
-TaskUi.prototype.render = render;
-TaskUi.prototype.init = init;
-TaskUi.prototype.detectAdd = detectAdd;
-TaskUi.prototype.detectClickList = detectClickList;
-TaskUi.prototype.remove = remove;
+TaskUi.prototype = {
+    init: init,
+    render: render,
+    detectAdd: detectAdd,
+    remove: remove,
+    detectClickList: detectClickList,
+    getFormData: helper.getFormData,
+    setFormData: helper.setFormData,
+    clearForm: helper.clearForm
+};
 
 function init() {
     this.render();
@@ -102,7 +112,7 @@ function detectAdd() {
             me._api.add(row);
         }
         /* 更新界面 */
-        me.render();
+        me.render(row.cat_id);
         /* 清空输入框的值 */
         me.input.value = '';
         /* 清空id */
@@ -116,7 +126,7 @@ function render(cat_id) {
     var todoList = cat_id ?
         this._api.filterById(cat_id) :
         this._api.read();
-    
+
     /* 先清空 */
     if (todoList.length) {
         this.list.innerHTML = '';
