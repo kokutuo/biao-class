@@ -2,19 +2,26 @@ window.BaseApi = BaseApi;
 
 function BaseApi(list, maxId) {
     this.list = list;
-    this.maxId = maxId || 1;
+    this.maxId = maxId || list.length;
+    this.loadList(list);
+    this.onSync = null;
 }
 
 BaseApi.prototype.$add = $add;
 BaseApi.prototype.$modify = $modify;
 BaseApi.prototype.$read = $read;
 BaseApi.prototype.$remove = $remove;
+BaseApi.prototype.syncTo = syncTo;
+BaseApi.prototype.syncFrom = syncFrom;
+BaseApi.prototype.loadList = loadList;
 
 /* 增 */
 function $add(row) {
     this.maxId++;
     row.id = this.maxId;
     this.list.push(row);
+    this.syncTo();
+    store.set(this._modelName + '-maxId', this.maxId);
 }
 
 /* 删 */
@@ -24,6 +31,7 @@ function $remove(id) {
         return;
     }
     this.list.splice(index, 1);
+    this.syncTo();
 }
 
 /* 改 */
@@ -36,6 +44,7 @@ function $modify(id, newRow) {
     delete newRow.id;
     var oldRow = this.list[index];
     this.list[index] = Object.assign({}, oldRow, newRow);
+    this.syncTo();
 }
 
 /* 查 */
@@ -59,4 +68,31 @@ function findById(arr, id) {
     return arr.find(function (item) {
         return item.id == id;
     });
+}
+
+function syncTo() {
+    this.list = this.list || [];
+    store.set(this._modelName + '-list', this.list);
+    if (this.onSync) {
+        this.onSync(this.list);
+    }
+}
+
+function syncFrom() {
+    var result = store.get(this._modelName + '-list');
+    if (!result) {
+        result = this.list = [];
+        this.syncTo();
+    }
+    return result;
+}
+
+function loadList(list) {
+    var old = this.syncFrom();
+    if (!old || !old.length) {
+        this.list = list || [];
+        this.syncTo();
+    } else {
+        this.list = old;
+    }
 }

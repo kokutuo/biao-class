@@ -3,6 +3,7 @@ window.BaseApi = BaseApi;
 function BaseApi(list, maxId) {
     this.list = list || [];
     this.maxId = maxId || 102;
+    this.reverseDirection = false;
 }
 
 
@@ -15,7 +16,12 @@ BaseApi.prototype.$read = read;
 function add(row) {
     this.maxId++; // id自增，防止重复
     row.id = this.maxId;
-    this.list.unshift(row);
+
+    if (this.reverseDirection) {
+        this.list.push(row);
+    } else {
+        this.list.unshift(row);
+    }
 }
 
 /* 删 */
@@ -29,7 +35,7 @@ function remove(id) {
 
 /* 改 */
 function update(id, newRow) {
-    var i = findIndexById(this.list, id);    
+    var i = findIndexById(this.list, id);
     if (i < 0) {
         return;
     }

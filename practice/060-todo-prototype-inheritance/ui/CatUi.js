@@ -1,12 +1,26 @@
 window.CatUi = CatUi;
 
+// var defCat = [{
+//         id: 1,
+//         title: '默认'
+//     },
+//     {
+//         id: 2,
+//         title: '生活'
+//     },
+//     {
+//         id: 3,
+//         title: '学习'
+//     }
+// ];
+
 function CatUi(config) {
     var defConfig = {
         catListSelector: '#cat-list',
         catFormSelector: '#cat-form',
         addCatSelector: '#add-cat',
         onItemClick: null,
-        onDeleteClick: null
+        onItemDelete: null
     };
 
     var c = this.config = Object.assign({}, defConfig, config);
@@ -15,27 +29,28 @@ function CatUi(config) {
     this.form = document.querySelector(c.catFormSelector);
     this.addCat = document.querySelector(c.addCatSelector);
     this._api = new CatApi();
-    this.updatingCatItem = null;
+    this.updatingCatItem = null; // 正在更新的那一条分组
+    this._api.onSync = c.onSync; 
 }
 
-CatUi.prototype = {
-    init: init,
-    render: render,
-    detectAddClick: detectAddClick,
-    detectFormSubmit: detectFormSubmit,
-    detectFormClick: detectFormClick,
-    detectListClick: detectListClick,
-    resetFormLocation: resetFormLocation,
-    showForm: showForm,
-    hideForm: hideForm,
-    showAdd: showAdd,
-    hideAdd: hideAdd,
-    showUpdatingCatItem: showUpdatingCatItem,
-    getFormData: helper.getFormData,
-    setFormData: helper.setFormData,
-    clearForm: helper.clearForm,
-    setActiveCatItem: setActiveCatItem
-};
+
+CatUi.prototype.init = init;
+CatUi.prototype.render = render;
+CatUi.prototype.detectAddClick = detectAddClick;
+CatUi.prototype.detectFormSubmit = detectFormSubmit;
+CatUi.prototype.detectFormClick = detectFormClick;
+CatUi.prototype.detectListClick = detectListClick;
+CatUi.prototype.resetFormLocation = resetFormLocation;
+CatUi.prototype.showForm = showForm;
+CatUi.prototype.hideForm = hideForm;
+CatUi.prototype.showAdd = showAdd;
+CatUi.prototype.hideAdd = hideAdd;
+CatUi.prototype.showUpdatingCatItem = showUpdatingCatItem;
+CatUi.prototype.getFormData = helper.getFormData;
+CatUi.prototype.setFormData = helper.setFormData;
+CatUi.prototype.clearForm = helper.clearForm;
+CatUi.prototype.setActiveCatItem = setActiveCatItem;
+
 
 function init() {
     this.detectAddClick();
@@ -50,10 +65,13 @@ function render() {
     /* 每次渲染前 清空 */
     this.list.innerHTML = '';
     /* 获取数据列表 用于渲染 */
-    var cat_list = this._api.read();
+    var catList = this._api.read();
     var me = this;
+
+    catList = catList || [];
+
     /* 循环数据，生成 HTML 结构 */
-    cat_list.forEach(function (row) {
+    catList.forEach(function (row) {
         var el = document.createElement('div'); /* 创造容器 */
         el.classList.add('cat-item', 'row'); /* 给容器加类，以便选择、添加样式 */
         el.dataset.id = row.id; /* 设置ID */
@@ -90,9 +108,12 @@ function detectListClick() {
         }
         if (isDelete) {
             /* 点击删除，调用 remove 方法，再渲染 */
+            if (!confirm('确定要删除此分组和其对应的任务吗？')) {
+                return;
+            }
             me._api.remove(id);
-            if (me.config.onDeleteClick) {
-                me.config.onDeleteClick(id);
+            if (me.config.onItemDelete) {
+                me.config.onItemDelete(id);
             }
 
             me.showAdd();
@@ -152,7 +173,7 @@ function detectFormSubmit() {
         if (!row.id) {
             /* 如果没有id, 说明是在添加一条数据 */
             me._api.add(row);
-            me.hideForm();
+            // me.hideForm();
         } else {
             /* 否则, 就是更新一条数据 */
             me._api.modify(row.id, row);

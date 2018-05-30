@@ -1,25 +1,29 @@
 window.TaskUi = TaskUi;
 
-var testList = [{
+var testList0 = [{
+        id: 103,
+        title: 'hello world',
+        completed: false,
+        cat_id: 1
+    },
+    {
         id: 100,
         title: '买菜',
         completed: false,
+        cat_id: 2
 
     },
     {
         id: 101,
         title: '洗菜',
-        completed: false
+        completed: false,
+        cat_id: 2
     },
     {
         id: 102,
         title: '码字',
-        completed: false
-    },
-    {
-        id: 103,
-        title: 'hello world',
-        completed: false
+        completed: false,
+        cat_id: 3
     }
 ];
 
@@ -36,7 +40,7 @@ function TaskUi(config) {
     this.list = document.querySelector(c.listSelector);
     this.input = document.querySelector(c.inputSelector);
 
-    this._api = new TaskApi(testList);
+    this._api = new TaskApi(testList0);
 }
 
 TaskUi.prototype.init = init;

@@ -1,25 +1,25 @@
 window.CatApi = CatApi;
 
 function CatApi(list, maxId) {
+    this._modelName = 'cat';
     this.config = {
         title: {
             maxLength: 10
         }
     };
     list = list || [{
-            id: 1,
-            title: '默认'
-        },
-        {
-            id: 2,
-            title: '学习'
-        },
-        {
-            id: 3,
-            title: '生活'
-        }
-    ];
-    maxId = maxId || 2;
+        id: 1,
+        title: '默认'
+    },
+    {
+        id: 2,
+        title: '个人'
+    },
+    {
+        id:3,
+        title: '工作'
+    }
+];
     /* 继承显性属性 */
     BaseApi.call(this, list, maxId);
 }
@@ -37,7 +37,7 @@ function add(row) {
     if (!row.title) {
         return;
     }
-
+    
     /* 获取设置好的最大输入字符长度 */
     var maxLength = this.config.title.maxLength;
     if (row.title.length > maxLength) {

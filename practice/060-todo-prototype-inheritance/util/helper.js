@@ -65,6 +65,7 @@ function getFormData(form) {
                 }
                 break;
             case 'TEXTAREA':
+            case 'SELECT':
                 data[input.name] = input.value;
                 break;
         }
