@@ -154,7 +154,7 @@ function detectAdd() {
         me.clearForm(me.form);
         var cb = me.config.onAddSucceed;
         if (cb) {
-            cb();
+            cb(row);
         }
     });
 }

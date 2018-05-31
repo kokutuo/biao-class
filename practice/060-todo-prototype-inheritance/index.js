@@ -4,7 +4,10 @@ var taskUi = new TaskUi({
     onInit: renderCatOption,
     onInputFocus: showCatSelect,
     onInputBlur: function () {},
-    onAddSucceed: hideCatSelect
+    onAddSucceed: function (row) {
+        hideCatSelect();
+        catUi.setActiveCatItem(row.cat_id);
+    }
 });
 
 var catUi = new CatUi({

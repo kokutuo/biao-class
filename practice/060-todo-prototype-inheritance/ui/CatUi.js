@@ -77,8 +77,9 @@ function render() {
         el.dataset.id = row.id; /* 设置ID */
 
         el.innerHTML = `
-        <div class="input">
-        <input class='content' type="text" value="${row.title}" disabled>
+        <div class="title">
+            <span class='icon fontawesome-circle'></span>
+            <span class='text'>${row.title}</span>
         </div>
         <div class="tool-set">
         ${row.id == 1 ?

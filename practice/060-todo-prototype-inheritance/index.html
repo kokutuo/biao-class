@@ -1,230 +1,251 @@
-<style>
-    * {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    body {
-        margin: 0;
-        font-family: sans-serif;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TodoList</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <!-- <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
 
-    form {
-        margin: 0;
-    }
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
 
-    form>* {
-        margin-bottom: 5px;
-    }
+        form {
+            margin: 0;
+        }
 
-    hr {
-        display: block;
-        height: 3px;
-        width: 100%;
-        border: 0;
-        background: rgba(0, 0, 0, .2);
-    }
+        form>* {
+            margin-bottom: 5px;
+        }
 
-    input,
-    button,
-    select {
-        display: inline-block;
-        padding: 5px 10px;
-        border: 1px solid rgba(0, 0, 0, .1);
-    }
+        hr {
+            display: block;
+            height: 3px;
+            width: 100%;
+            border: 0;
+            background: rgba(0, 0, 0, .2);
+        }
 
-    select {
-        height: 40px;
-        width: 100%;
-        font-size: 15px;
-        border-radius: 0;
-    }
+        input,
+        button,
+        select {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
 
-    [hidden] {
-        display: none !important;
-    }
+        select {
+            height: 40px;
+            width: 100%;
+            font-size: 15px;
+            border-radius: 0;
+        }
 
-    .block {
-        display: block;
-        width: 100%;
-    }
+        [hidden] {
+            display: none !important;
+        }
 
-    .cat-item input[disabled] {
-        background: transparent;
-        border: 0;
-        font-size: 1rem;
-        padding: 0;
-    }
+        .block {
+            display: block;
+            width: 100%;
+        }
 
-    .container {
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        background: rgba(0, 0, 0, .1);
-        padding: 10px;
-    }
+        .cat-item input[disabled] {
+            background: transparent;
+            border: 0;
+            font-size: 1rem;
+            padding: 0;
+        }
 
-    .row {
-        font-size: 0;
-    }
+        .container {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(0, 0, 0, .1);
+            padding: 10px;
+        }
 
-    .col {
-        display: inline-block;
-        vertical-align: top;
-        font-size: 1rem;
-    }
+        .row {
+            font-size: 0;
+        }
 
-    #todo-form input,
-    #todo-form button {
-        display: inline-block;
-        padding: 10px;
-        border: 1px solid rgba(0, 0, 0, .1);
-    }
+        .col {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 1rem;
+        }
 
-    #todo-form input {
-        width: 80%;
-    }
+        #todo-form input,
+        #todo-form button {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
 
-    #todo-form button {
-        width: 20%;
-        border-left: 0;
-    }
+        #todo-form input {
+            width: 80%;
+        }
 
-    #todo-list .checkbox {
-        width: 10%;
-    }
+        #todo-form button {
+            width: 20%;
+            border-left: 0;
+        }
 
-    #todo-list .detail {
-        width: 60%;
-    }
+        #todo-list .checkbox {
+            width: 10%;
+        }
 
-    #todo-list .tool-set {
-        width: 30%;
-    }
+        #todo-list .detail {
+            width: 60%;
+        }
 
-    .sidebar {
-        width: 30%;
-    }
+        #todo-list .tool-set {
+            width: 30%;
+        }
 
-    .main {
-        width: 70%;
-        padding-left: 10px;
-    }
+        .sidebar {
+            width: 30%;
+        }
 
-    .tool-set {
-        text-align: right;
-    }
+        .main {
+            width: 70%;
+            padding-left: 10px;
+        }
 
-    .todo-item .tool-set * {
-        padding: 4px;
-        border: 1px solid rgba(0, 0, 0, .1);
-    }
+        .tool-set {
+            text-align: right;
+        }
 
-    .todo-item {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+        .todo-item .tool-set * {
+            padding: 4px;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
 
-    .todo-item>* {
-        vertical-align: middle;
-    }
+        .todo-item {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
 
-    .cat-item {
-        position: relative;
-        padding: 5px;
-        cursor: default;
-    }
+        .todo-item>* {
+            vertical-align: middle;
+        }
 
-    .cat-item .tool-set {
-        font-size: .7rem;
-        position: absolute;
-        right: 5px;
-        top: 7px;
-        display: none;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
+        .cat-item {
+            position: relative;
+            padding: 5px;
+            cursor: default;
+        }
 
-    .cat-item .tool-set>* {
-        display: inline-block;
-        padding: 0 2px;
-    }
+        .cat-item .tool-set {
+            font-size: .7rem;
+            position: absolute;
+            right: 5px;
+            top: 7px;
+            display: none;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
 
-    .cat-item .title {
-        font-size: .9rem;
-    }
+        .cat-item .tool-set>* {
+            display: inline-block;
+            padding: 0 2px;
+        }
 
-    .cat-item:hover {
-        background: rgba(10, 209, 220, 0.7);
-    }
+        .cat-item .title {
+            font-size: .9rem;
+        }
 
-    .cat-item.active {
-        background: rgba(10, 209, 220, 0.7);
-        color: #fff;
-    }
+        .cat-item:hover {
+            background: rgba(10, 209, 220, 0.7);
+        }
 
-    .cat-item:hover .tool-set {
-        display: inline-block;
-    }
+        .cat-item.active {
+            background: rgba(10, 209, 220, 0.7);
+            color: #fff;
+        }
 
-    .empty-holder {
-        font-size: .9rem;
-        opacity: .5;
-        text-align: center;
-        padding: 10px;
-    }
-</style>
-<div class="container">
-    <h1>Biao Todo</h1>
-    <div class="row">
-        <div class="col sidebar">
-            <div class="sidebar-title">分组</div>
-            <hr>
-            <div id="cat-list" class="cat-list">
-                <!--<div class="cat-item">-->
-                <!--<input type="text" value="默认" disabled>-->
-                <!--</div>-->
-            </div>
+        .cat-item:hover .tool-set {
+            display: inline-block;
+        }
 
-            <form id="cat-form" hidden>
-                <input type="hidden" name="id">
-                <input type="text" value="yo" class="block" name="title" autocomplete="off">
-                <button type="submit">完成</button>
-                <button type="button" data-action="cancel">取消</button>
-            </form>
+        .empty-holder {
+            font-size: .9rem;
+            opacity: .5;
+            text-align: center;
+            padding: 10px;
+        }
+    </style> -->
+    <link rel="stylesheet" href="./css/main.css">
+</head>
 
-            <div>
-                <button id="add-cat" class="block">+</button>
-            </div>
+<body>
+    <div class="container">
+        <div class="row head">
+            <h1>Todo List</h1>
         </div>
-        <div class="col main">
-            <form id="todo-form" class="row">
-                <input type="hidden" name="id">
-                <input id="todo-input" type="text" name="title" class="col" autocomplete="off">
-                <button class="col">添加</button>
-                <select id="cat-select" name="cat_id" hidden></select>
-            </form>
-            <div id="todo-list">
-                <div class="incomplete"></div>
-                <hr>
-                <div class="completed"></div>
+        <div class="row">
+            <div class="col sidebar">
+                <div class="sidebar-title">
+                    <span class="icon fontawesome-align-justify"></span>
+                    <span>项目</span>
+                </div>
+                <div id="cat-list" class="cat-list"></div>
+
+                <form id="cat-form" hidden>
+                    <input type="hidden" name="id">
+                    <input type="text" class="block" placeholder="项目名称" name="title" autocomplete="off">
+                    <button type="submit">添加项目</button>
+                    <button type="button" data-action="cancel">取消</button>
+                </form>
+
+                <div id="add-cat" class="add-cat">
+                    <span class="icon fontawesome-edit"></span>
+                    <span class="text">添加项目</span>
+                </div>
+            </div>
+            <div class="col main">
+                <form id="todo-form" class="row">
+                    <input type="hidden" name="id">
+                    <input id="todo-input" type="text" name="title" class="col" placeholder="例如：每天早上喝牛奶" autocomplete="off">
+                    <button class="col">添加</button>
+                    <select id="cat-select" name="cat_id" hidden></select>
+                </form>
+                <div id="todo-list" class="row">
+                    <h2>未完成的任务</h2>
+                    <div class="incomplete">
+                    </div>
+                    <hr>
+                    <h2>已完成的任务</h2>
+                    <div class="completed">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="./util/helper.js"></script>
-<script src="./util/store.js"></script>
+    <script src="./util/helper.js"></script>
+    <script src="./util/store.js"></script>
 
-<script src="./api/BaseApi.js"></script>
-<script src="./api/TaskApi.js"></script>
-<script src="./api/CatApi.js"></script>
+    <script src="./api/BaseApi.js"></script>
+    <script src="./api/TaskApi.js"></script>
+    <script src="./api/CatApi.js"></script>
 
-<script src="./ui/TaskUi.js"></script>
-<script src="./ui/CatUi.js"></script>
+    <script src="./ui/TaskUi.js"></script>
+    <script src="./ui/CatUi.js"></script>
 
-<script src="index.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
