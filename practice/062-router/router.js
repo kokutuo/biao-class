@@ -61,9 +61,11 @@ class Route {
     constructor(config) {
         // 初始化this.current, 确保以后this.current.xxx不报错
         this.current = {};
-        
+
         // 将传进来的设置拷一份，绑到当前对象上
         this.state = Object.assign({}, config);
+
+        this.initPage();
 
         // 监听浏览器地址变化
         this.detectHashChange();
@@ -86,6 +88,14 @@ class Route {
         })
     }
 
+    initPage() {
+        let routeName = this.parseHash(location.hash);
+        if (!routeName) {
+            routeName = this.state.default;
+        }
+        this.go(routeName);
+    }
+
     /**
      * 
      * @param {string} routeName 路由名this.state.routes.xxx
@@ -98,10 +108,10 @@ class Route {
 
         // 保存当前路由
         this.current = route;
-        
+
         // 删除之前的页面
         this.removePreviousTpl();
-        
+
         // 渲染对应的页面
         this.renderCurrent();
     }
@@ -140,8 +150,15 @@ class Route {
      * @return {string} 路由名, 对应着this.state.routes.xxx
      */
     parseHash(hash) {
-        // ...
-        return 'home';
+        hash = trim(hash, '#/');
+        let re = new RegExp('^#?\/?' + hash + '\/?$');
+
+        for (let key in this.state.route) {
+            let item = this.state.route[key];
+            if (re.test(item.path)) {
+                return key;
+            }
+        }
     }
 
     /**
@@ -149,10 +166,15 @@ class Route {
      * @param {object} route 
      */
     render(route) {
+        let element = document.querySelector(route.el), tpl;
+        if (tpl = route.$template) {
+            element.innerHTML = tpl;
+            return;
+        }
         // 业务路由对象中配置了模板地址，所以可以通过地址获取真是的模板代码(html代码)
         this.getTemplate(route.template_url, function (tpl) {
             // 取到模板后，将其插到模板床中
-            document.querySelector(route.el).innerHTML = tpl;
+            route.$template = element.innerHTML = tpl;
         })
     }
 
@@ -162,12 +184,49 @@ class Route {
      * @param  onSucceed 
      */
     getTemplate(url, onSucceed) {
-        // ...
-        onSucceed(http.responseText);
+        const http = new XMLHttpRequest();
+        http.open('get', url);
+        http.send();
+
+        http.addEventListener('load', () => {
+            onSucceed(http.responseText);
+        })
     }
 }
 
-let o = {};
+function trim(str, cap_list) {
+    let arr = cap_list.split('');
+
+    arr.forEach(function (cap) {
+        if (str.startsWith(cap)) {
+            str = str.substring(1);
+            str = trim(str, cap);
+        }
+
+        if (str.endsWith(cap)) {
+            str = str.substring(0, str.length - 1);
+            str = trim(str, cap);
+        }
+    });
+
+    return str;
+}
+
+let o = {
+    default: 'home',
+    route: {
+        home: {
+            path: '#/home',
+            template_url: './template/home.html',
+            el: '#home',
+        },
+        about: {
+            path: '#/about',
+            template_url: './template/about.html',
+            el: '#about',
+        },
+    }
+};
 
 new Route(o);
 
