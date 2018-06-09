@@ -1,0 +1,9 @@
+@media (max-width: 701px) {
+	.article {
+		top: 75px;
+	}
+
+	.sider {
+		display: none;
+	}
+}

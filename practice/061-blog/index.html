@@ -5,22 +5,287 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>kokutuo</title>
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="./src/asset/lib/normalize.css">
+    <link rel="stylesheet" href="./src/asset/css/common/global.css">
+
+    <!-- 组件样式 -->
+    <link rel="stylesheet" href="./src/asset/css/component/nav.css">
+    <link rel="stylesheet" href="./src/asset/css/component/sider.css">
+    <link rel="stylesheet" href="./src/asset/css/component/sider-sm.css">
+    <link rel="stylesheet" href="./src/asset/css/component/footer.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" href="./src/asset/css/page/index.css">
+    <link rel="stylesheet" href="./src/asset/css/page/index-sm.css">
+
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+    </style>
+
+    <title>尹家琪的博客</title>
 </head>
 
 <body>
-    <div class="nav">
-        <a href="#/home">首页</a>
-        <a href="#/about">关于我</a>
-    </div>
-    <div id="root">
-        <div id="home" class="page" hidden>
-            <h1>HOMe</h1>
+    <!-- 导航栏 开始 -->
+    <div class="row nav">
+        <div class="container">
+            <div class="col-lg-6 left">
+                <a href="index.html" class="logo">
+                    <img src="./src/asset/img/logo.png">
+                </a>
+            </div>
+            <div class="col-lg-6 right">
+                <div class="other-page">
+                    <a href="#/home">首页</a>
+                    <a href="#/article-list">我的文章</a>
+                    <a href="#/about">关于我</a>
+                    <a href="#/contact">谋</a>
+                    <a href="http://baidu.com" target="_blank">百度</a>
+                </div>
+            </div>
         </div>
+    </div>
+    <!-- 导航栏 结束 -->
+
+    <div id="root">
+        <!-- 页面内容 开始 -->
+        <div id="home" class="page row content" hidden>
+            <div class="container">
+                <div class="col-lg-8 col-sm-12 article-list">
+                    <div class="row section">
+                        <a href="./page/article.html">
+                            <div class="col-lg-4 col-sm-12 pic">
+                                <img src="./src/asset/img/art01.jpg">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 desc">
+                                <div class="title">
+                                    三体：智子
+                                </div>
+                                <div class="info">
+                                    <div class="time">
+                                        <span class="fontawesome-calendar"></span>2018-04-06
+                                    </div>
+                                    <div class="comment">
+                                        <span class="fontawesome-comment-alt"></span>130条评论
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. In magni reprehenderit obcaecati nemo. Neque nisi hic quidem iste
+                                    odio aliquid aperiam autem, asperiores quod recusandae veritatis. Pariatur suscipit dignissimos
+                                    cum!
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row section">
+                        <a href="./page/article.html">
+                            <div class="col-lg-4 col-sm-12 pic">
+                                <img src="./src/asset/img/art02.jpg">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 desc">
+                                <div class="title">
+                                    三体：智子
+                                </div>
+                                <div class="info">
+                                    <div class="time">
+                                        <span class="fontawesome-calendar"></span>2018-04-06
+                                    </div>
+                                    <div class="comment">
+                                        <span class="fontawesome-comment-alt"></span>130条评论
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. In magni reprehenderit obcaecati nemo. Neque nisi hic quidem iste
+                                    odio aliquid aperiam autem, asperi
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row section">
+                        <a href="./page/article.html">
+                            <div class="col-lg-4 col-sm-12 pic">
+                                <img src="./src/asset/img/art03.jpg">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 desc">
+                                <div class="title">
+                                    三体：智子
+                                </div>
+                                <div class="info">
+                                    <div class="time">
+                                        <span class="fontawesome-calendar"></span>2018-04-06
+                                    </div>
+                                    <div class="comment">
+                                        <span class="fontawesome-comment-alt"></span>130条评论
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. In magni reprehenderit obcaecati nemo. Neque nisi hic quidem iste
+                                    odio aliquid aperiam autem, asperiores quod recusandae veritatis. Pariatur suscipit dignissimos
+                                    cum!
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row section">
+                        <a href="./page/article.html">
+                            <div class="col-lg-4 col-sm-12 pic">
+                                <img src="./src/asset/img/art04.jpg">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 desc">
+                                <div class="title">
+                                    三体：智子
+                                </div>
+                                <div class="info">
+                                    <div class="time">
+                                        <span class="fontawesome-calendar"></span>2018-04-06
+                                    </div>
+                                    <div class="comment">
+                                        <span class="fontawesome-comment-alt"></span>130条评论
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. In magni reprehenderit obcaecati nemo. Neque nisi hic quidem iste
+                                    odio aliquid aperiam autem, asperiores quod recusandae veritatis. Pariatur suscipit dignissimos
+                                    cum!
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row section">
+                        <a href="./page/article.html">
+                            <div class="col-lg-4 col-sm-12 pic">
+                                <img src="./src/asset/img/art05.jpg">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 desc">
+                                <div class="title">
+                                    三体：智子
+                                </div>
+                                <div class="info">
+                                    <div class="time">
+                                        <span class="fontawesome-calendar"></span>2018-04-06
+                                    </div>
+                                    <div class="comment">
+                                        <span class="fontawesome-comment-alt"></span>130条评论
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. In magni reprehenderit obcaecati nemo. Neque nisi hic quidem iste
+                                    odio aliquid aperiam autem, asperiores quod recusandae veritatis. Pariatur suscipit dignissimos
+                                    cum!
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 侧栏 开始 -->
+                <div class="col-lg-4 col-sm-12 sider">
+                    <div class="row search-area">
+                        <input type="text">
+                        <button>
+                            <span class="fontawesome-search"></span>
+                        </button>
+                    </div>
+                    <div class="recently">
+                        <div class="title">近期文章</div>
+                        <div>
+                            <div class="item">
+                                <span class="fontawesome-book"></span>
+                                <a href="#">三体：智子</a>
+                            </div>
+                            <div class="item">
+                                <span class="fontawesome-book"></span>
+                                <a href="#">解忧杂货铺</a>
+                            </div>
+                            <div class="item">
+                                <span class="fontawesome-book"></span>
+                                <a href="#">活着</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="directory">
+                        <div class="title">分类目录</div>
+                        <div>
+                            <div class="item">
+                                <span class="fontawesome-folder-open-alt"></span>
+                                <a href="#">项目作品</a>
+                            </div>
+                            <div class="item">
+                                <span class="fontawesome-folder-open-alt"></span>
+                                <a href="#">技术笔记</a>
+                            </div>
+                            <div class="item">
+                                <span class="fontawesome-folder-open-alt"></span>
+                                <a href="#">个人随笔</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 侧栏 结束 -->
+            </div>
+        </div>
+        <!-- 页面内容 结束 -->
         <div id="about" class="page" hidden>
             <h1>ABOUT</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda cumque dicta eveniet expedita ipsa libero
+                maiores nulla odio quis voluptatibus! Architecto dolor dolorum ipsam natus quas saepe, tempora vel velit!</p>
+        </div>
+        <div id="contact" class="page" hidden>
+            <h1>CONTECT</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda cumque dicta eveniet expedita ipsa libero
+                maiores nulla odio quis voluptatibus! Architecto dolor dolorum ipsam natus quas saepe, tempora vel velit!</p>
+        </div>
+        <div id="tag" hidden>Tag</div>
+        <div id="article-list" class="page" hidden>
+            <h1>文章列表</h1>
+            <div>
+                <a href="#/article/whh/1">
+                    <strong>标题1</strong>
+                </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis hic illum ipsum, minima temporibus
+                    voluptas! Accusamus cupiditate debitis, deleniti doloribus est labore possimus provident quibusdam quisquam,
+                    quo quos, tempore!</p>
+            </div>
+            <div>
+                <a href="#/article/whh/2">
+                    <strong>标题2</strong>
+                </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis hic illum ipsum, minima temporibus
+                    voluptas! Accusamus cupiditate debitis, deleniti doloribus est labore possimus provident quibusdam quisquam,
+                    quo quos, tempore!</p>
+            </div>
+            <div>
+                <a href="#/article/whh/3">
+                    <strong>标题3</strong>
+                </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis hic illum ipsum, minima temporibus
+                    voluptas! Accusamus cupiditate debitis, deleniti doloribus est labore possimus provident quibusdam quisquam,
+                    quo quos, tempore!</p>
+            </div>
+        </div>
+        <div id="article" class="page" hidden>
+            <h1>标题</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto corporis dolor enim expedita
+                id iusto magnam minus nemo obcaecati odit quaerat quas rem tempora ullam vitae voluptas voluptate, voluptatibus!</p>
+        </div>
+        <div id="not-found" class="page" hidden>
+            <h1>404</h1>
+            <p>找不到鸟</p>
         </div>
     </div>
+
+    <!-- 页脚 开始 -->
+    <div class="footer">
+        <div class="container">
+            <div class="slogan">
+                <img src="./src/asset/img/footer.png">
+            </div>
+        </div>
+    </div>
+    <!-- 页脚 结束 -->
+
     <script src="./dist/bundle.js"></script>
 </body>
 
