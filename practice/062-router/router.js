@@ -18,6 +18,7 @@
            └─────────────────────┘      └─────────────────────┘
 
 */
+
 // let instance;
 
 /**
@@ -33,7 +34,6 @@ class Route {
              home: {    // 其中一条规则（定义了首页地址和相应的模板）
                  path: '#/home',    // 地址栏地址
                  template_url: './template/home.html',  // 模板地址
-                 el: '#home',
                  hook: {    // 局部钩子，仅会在当前路由执行
                      before: function () {},
                      after: function () {},
@@ -65,6 +65,10 @@ class Route {
         // 将传进来的设置拷一份，绑到当前对象上
         this.state = Object.assign({}, config);
 
+        this.root = document.getElementById('root');
+
+        // 如果用户直接访问了某个路由，默认情况下页面不会渲染，
+        // 因为没有触发hashchange事件，所以就不会调用go()，更不会渲染
         this.initPage();
 
         // 监听浏览器地址变化
@@ -102,6 +106,17 @@ class Route {
      */
     go(routeName) {
         let route = this.state.route[routeName];
+        
+        if (!route) {
+            return;
+        }
+
+        // HOOK: "before"
+        // 如果当前路由有前置钩子，那么在切换本路由前就应该叫一下这个钩子，
+        // 如果钩子返回false就停止执行（也就是不切换页面）
+        if ((route.hook && route.hook.before && route.hook.before()) === false) {
+            return;
+        }
 
         // 保存上一条历史路由
         this.previous = this.current;
@@ -113,26 +128,25 @@ class Route {
         this.removePreviousTpl();
 
         // 渲染对应的页面
-        this.renderCurrent();
+        this.renderCurrent(() => {
+            // 如果当前路由有后置钩子，那么在切换本路由后就应该叫一下这个钩子
+            route.hook && route.hook.after && route.hook.after();
+        });
     }
 
     /**
      * 清空前一页
      */
     removePreviousTpl() {
-        // 拿到前一页的模板床
-        let element = document.querySelector(this.previous.el);
-        if (!element) {
-            return;
-        }
-        element.innerHTML = '';
+        // 清空模板床
+        this.root.innerHTML = '';
     }
 
     /**
      * 渲染当前页
      */
-    renderCurrent() {
-        this.render(this.current);
+    renderCurrent(onRenderFinish) {
+        this.render(this.current, onRenderFinish);
     }
 
     /**
@@ -165,17 +179,29 @@ class Route {
      * 通过路由对象渲染页面
      * @param {object} route 
      */
-    render(route) {
-        let element = document.querySelector(route.el), tpl;
-        if (tpl = route.$template) {
-            element.innerHTML = tpl;
+    render(route, onRenderFinish) {
+        // 如果已经缓存过则直接使用
+        if (route.$template) {
+            this.compile(route, onRenderFinish);
             return;
         }
         // 业务路由对象中配置了模板地址，所以可以通过地址获取真是的模板代码(html代码)
-        this.getTemplate(route.template_url, function (tpl) {
+        this.getTemplate(route.template_url, tpl => {
             // 取到模板后，将其插到模板床中
-            route.$template = element.innerHTML = tpl;
+            route.$template = tpl;
+            this.compile(route, onRenderFinish);
         })
+    }
+
+    /**
+     * 通过路由对象的 $template 和 data 生成最后的视图
+     * @param  route 路由对象
+     */
+    compile(route, onCompileFinish) {
+        this.root.innerHTML = parse(route.$template, route.data);
+        if (onCompileFinish) {
+            onCompileFinish();
+        }
     }
 
     /**
@@ -211,30 +237,3 @@ function trim(str, cap_list) {
 
     return str;
 }
-
-let o = {
-    default: 'home',
-    route: {
-        home: {
-            path: '#/home',
-            template_url: './template/home.html',
-            el: '#home',
-        },
-        about: {
-            path: '#/about',
-            template_url: './template/about.html',
-            el: '#about',
-        },
-    }
-};
-
-new Route(o);
-
-// function init(config) {
-//     if (!instance) {
-//         instance = new Route(config);
-//     }
-//     return instance;
-// }
-
-// export default init;

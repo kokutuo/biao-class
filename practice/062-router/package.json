@@ -1,18 +1,12 @@
 {
-  "name": "y",
+  "name": "062-router",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack-dev-server --mode=development -w",
-    "built": "npx webpack -p",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4",
-    "webpack-dev-server": "^3.1.4"
+    "http-server": "^0.11.1"
   }
 }
