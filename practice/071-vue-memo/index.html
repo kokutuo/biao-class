@@ -3,7 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="col sidebar">
-                <div class="sidebar-item" v-for='memo in memoList' @click='current = memo'>{{memo.title}}</div>
+                <div class="sidebar-item" v-for="memo in memoList" @click='current = memo' v-if="memo.title">
+                    {{memo.title}}
+                    <button class="delete" @click='remove'>删除</button>
+                </div>
                 <button @click='add'>+</button>
             </div>
             <div class="col main">
@@ -11,7 +14,9 @@
                     <input type="text" placeholder="标题" v-model="current.title">
                     <textarea placeholder="内容" v-model="current.content"></textarea>
                 </div>
-                <div v-else>请选择一条备忘或<button @click='add'>创建一条</button></div>
+                <div v-else>请选择一条备忘或
+                    <button @click='add'>创建一条</button>
+                </div>
                 <button @click='current = null' v-if="current">关闭</button>
             </div>
         </div>

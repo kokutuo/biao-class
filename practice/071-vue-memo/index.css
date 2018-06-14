@@ -68,6 +68,7 @@ button,
 }
 
 .sidebar-item {
+    position: relative;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -86,4 +87,19 @@ button,
     opacity: .7;
     text-align: center;
     padding: 20px;
+}
+
+.delete {
+    display: none;
+    position: absolute;
+    padding: 5px;
+    background: transparent;
+    margin: 0;
+    text-align: right;
+    right: 18px;
+    top: 8px;
+}
+
+.sidebar-item:hover .delete {
+    display: inline-block;
 }
