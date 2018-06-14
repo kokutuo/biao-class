@@ -86,14 +86,15 @@ class Route {
             this.current.hash = location.hash;
 
             // 获取当前 hash 对应的路由
-            let routeName = this.parseCurrentHash();
+            let routeName = this.parseCurrentHashPath();
+            let routeParam = this.parseCurrentHashQuery();            
 
-            this.go(routeName);
+            this.go(routeName, routeParam);
         })
     }
 
     initPage() {
-        let routeName = this.parseHash(location.hash);
+        let routeName = this.parseHashPath(location.hash);
         if (!routeName) {
             routeName = this.state.default;
         }
@@ -101,10 +102,11 @@ class Route {
     }
 
     /**
-     * 
+     * 切换路由
      * @param {string} routeName 路由名this.state.routes.xxx
+     * @param {object} param 路由传参
      */
-    go(routeName) {
+    go(routeName, param) {
         let route = this.state.route[routeName];
         
         if (!route) {
@@ -123,6 +125,7 @@ class Route {
 
         // 保存当前路由
         this.current = route;
+        this.current.param = param;
 
         // 删除之前的页面
         this.removePreviousTpl();
@@ -154,8 +157,12 @@ class Route {
      * 解析当前路由的快捷方式
      * @return 当前地址对应的路由名 this.state.routes.xxx
      */
-    parseCurrentHash() {
-        return this.parseHash(this.current.hash);
+    parseCurrentHashPath() {
+        return this.parseHashPath(this.current.hash);
+    }
+
+    parseCurrentHashQuery() {
+        return this.parseHashQuery(this.current.hash);
     }
 
     /**
@@ -163,7 +170,8 @@ class Route {
      * @param {string} hash 
      * @return {string} 路由名, 对应着this.state.routes.xxx
      */
-    parseHash(hash) {
+    parseHashPath(hash) {
+        hash = hash.split('?')[0];
         hash = trim(hash, '#/');
         let re = new RegExp('^#?\/?' + hash + '\/?$');
 
@@ -173,6 +181,20 @@ class Route {
                 return key;
             }
         }
+    }
+
+    parseHashQuery(hash) {
+        hash = hash.split('?')[1];
+        let arr = hash.split('&');
+        let param = {};
+        arr.forEach(item => {
+            let pairArr = item.split('=');
+            let key = pairArr[0];
+            let value = pairArr[1];
+
+            param[key] = value;
+        })
+        return param;
     }
 
     /**

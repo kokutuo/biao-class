@@ -32,7 +32,7 @@ let o = {
                     list.forEach(row => {
                         let elItem = document.createElement('div');
                         elItem.innerHTML = `
-                        <a href='#/article?id=${row.id}'>${row.title}</a>
+                        <a href='#/article?id=${row.id}&a=1&b=2'>${row.title}</a>
                         `;
 
                         elList.appendChild(elItem);
@@ -48,6 +48,24 @@ let o = {
                 age: 20,
             }
         },
+        create: {
+            path: '/create',
+            template_url: './template/create.html',
+            hook: {
+                after: () => {
+                    let form = document.getElementById('create-article');
+                    form.addEventListener('submit', e => {
+                        e.preventDefault();
+                        let row = {};
+
+                        row.title = form.querySelector('[name=title]').value;
+                        row.content = form.querySelector('[name=content]').value;
+                        appData.article.list.push(row);
+                        form.reset();
+                    });
+                },
+            },
+        }
     },
     hook: {
         before: () => {},
