@@ -1,10 +1,11 @@
 {
-  "name": "071-vue-memo",
+  "name": "073-vue-blog",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1"
   }
 }

@@ -87,7 +87,7 @@ class Route {
 
             // 获取当前 hash 对应的路由
             let routeName = this.parseCurrentHashPath();
-            let routeParam = this.parseCurrentHashQuery();            
+            let routeParam = this.parseCurrentHashQuery();
 
             this.go(routeName, routeParam);
         })
@@ -95,10 +95,11 @@ class Route {
 
     initPage() {
         let routeName = this.parseHashPath(location.hash);
+        let routeParam = this.parseHashQuery(location.hash);
         if (!routeName) {
             routeName = this.state.default;
         }
-        this.go(routeName);
+        this.go(routeName, routeParam);
     }
 
     /**
@@ -108,7 +109,7 @@ class Route {
      */
     go(routeName, param) {
         let route = this.state.route[routeName];
-        
+
         if (!route) {
             return;
         }
@@ -125,13 +126,17 @@ class Route {
 
         // 保存当前路由
         this.current = route;
-        this.current.param = param;
+        this.current.$param = param;
 
         // 删除之前的页面
         this.removePreviousTpl();
 
+        // HOOK: "beforeRender"
+        route.hook && route.hook.beforeRender && route.hook.beforeRender(route);
+
         // 渲染对应的页面
         this.renderCurrent(() => {
+            // HOOK: "after"
             // 如果当前路由有后置钩子，那么在切换本路由后就应该叫一下这个钩子
             route.hook && route.hook.after && route.hook.after();
         });
@@ -183,10 +188,27 @@ class Route {
         }
     }
 
+    /**
+     * 解析地址栏query传参
+     * @param  hash #/article?id=1&a=1&b=2
+     * @returns {object} e.g. {id: 1, a: 1, b: 2}
+     */
     parseHashQuery(hash) {
-        hash = hash.split('?')[1];
-        let arr = hash.split('&');
         let param = {};
+        let split = hash.split('?');
+        // 因为没问号 所以没法分割成两部分 所以直接返回空对象
+        if (split.length < 2) {
+            return param;
+        }
+
+        hash = hash.split('?')[1];
+
+        if (!hash) {
+            return param;
+        }
+
+        let arr = hash.split('&');
+
         arr.forEach(item => {
             let pairArr = item.split('=');
             let key = pairArr[0];

@@ -5,23 +5,56 @@
             <div class="col sidebar">
                 <div class="sidebar-item" v-for="memo in memoList" @click='current = memo' v-if="memo.title">
                     {{memo.title}}
-                    <button class="delete" @click='remove'>删除</button>
+                    <div class="tool-set">
+                        <button class="delete" @click='remove(memo.id,$event)'>删除</button>
+                    </div>
                 </div>
-                <button @click='add'>+</button>
+                <button @click='initCurrent'>+</button>
             </div>
             <div class="col main">
                 <div class="editor" v-if="current">
                     <input type="text" placeholder="标题" v-model="current.title">
                     <textarea placeholder="内容" v-model="current.content"></textarea>
+                    <button @click="add" class="primary">保存</button>
+                    <button @click='current = null' v-if="current">关闭</button>
                 </div>
                 <div v-else>请选择一条备忘或
-                    <button @click='add'>创建一条</button>
+                    <button class="holder" @click='initCurrent'>创建一条</button>
                 </div>
-                <button @click='current = null' v-if="current">关闭</button>
             </div>
         </div>
     </div>
 </div>
 
+<script src="./node_modules/axios/dist/axios.js"></script>
 <script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./http.js"></script>
 <script src="./index.js"></script>
+
+<script>
+    let param = {
+        timestamp: (new Date).getTime(),
+        app_key: '18d9afd756f37eb9a962df5f52a4353937be8a55dbd3aa2902386009f259a5c2',
+
+        name: 'memo',
+        structure: [{
+                name: 'title',
+                type: 'string',
+                nullable: true,
+            },
+            {
+                name: 'content',
+                type: 'text',
+                nullable: false,
+            },
+            {
+                name: 'created_at',
+                type: 'dateTime',
+                nullable: true,
+            },
+        ],
+    };
+
+    param.signature = http.sign(param.app_key, param.timestamp);
+    http.post('MODEL/READ', param);
+</script>

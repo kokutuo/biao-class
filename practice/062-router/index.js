@@ -32,7 +32,7 @@ let o = {
                     list.forEach(row => {
                         let elItem = document.createElement('div');
                         elItem.innerHTML = `
-                        <a href='#/article?id=${row.id}&a=1&b=2'>${row.title}</a>
+                        <a href='#/article?id=${row.id}'>${row.title}</a>
                         `;
 
                         elList.appendChild(elItem);
@@ -65,6 +65,16 @@ let o = {
                     });
                 },
             },
+        },
+        article: {
+            path: '/article',
+            template_url: './template/article.html',
+            hook: {
+                beforeRender: (route) => {                    
+                    route.data.param = route.$param;
+                },
+            },
+            data: {},
         }
     },
     hook: {
@@ -74,3 +84,13 @@ let o = {
 };
 
 let route = new Route(o);
+
+// counter();
+
+// function counter() {
+//     let count = 0
+//     setInterval(function () {
+//         console.log(count);
+//         count++;
+//     }, 1000);
+// }
