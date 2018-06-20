@@ -1,3 +1,81 @@
+const myMixin = {
+	data: function () {
+		return {
+			error: [],
+			current: [],
+			list: [],
+			showForm: false,
+		};
+	},
+	methods: {
+		create: function () {
+			if (!this.validate()) {
+				return;
+			}
+
+			let isUpdate = !!this.current.id;
+			let action = isUpdate ? 'update' : 'create';
+			http
+				.post(`${this.model}/${action}`, this.current)
+				.then(res => {
+					if (res.data.success) {
+						this.current = {};
+						if (!isUpdate) {
+							this.list.push(res.data.data);
+						}
+					}
+				});
+		},
+
+		remove: function (id) {
+			if (!confirm('确定要删除该项吗？')) {
+				return;
+			}
+			http
+				.post(`${this.model}/delete`, {
+					id
+				})
+				.then(res => {
+					if (res.data.success) {
+						util.removeElById(this.list, id);
+					}
+				});
+		},
+
+		validate: function (row) {
+			row = row || this.current;
+
+			this.error = [];
+
+			this.validateProps.forEach(prop => {
+				let r = this['validate_' + prop]();
+
+				if (r === true) {
+					return;
+				}
+
+				this.error.push(r);
+			});
+
+			return !this.error.length;
+		},
+
+		read: function () {
+			http
+				.post(`${this.model}/read`)
+				.then(res => {
+					if (res.data.success) {
+						this.list = res.data.data;
+					}
+				});
+		},
+	},
+
+	mounted: function () {
+		this.read();
+	}
+}
+
 const Home = Vue.component('home', {
 	template: `
 	<div>
@@ -89,66 +167,11 @@ const AdminDish = Vue.component('admin-dish', {
 	`,
 	data: function () {
 		return {
+			model: 'dish',
 			validateProps: ['cover_url', 'description', 'name', 'price'],
-			error: [],
-			current: {},
-			list: [],
-			showForm: false,
 		};
 	},
 	methods: {
-		create: function () {
-			if (!this.validate()) {
-				return;
-			}
-
-			let isUpdate = !!this.current.id;
-			let action = isUpdate ? 'update' : 'create';
-			http
-				.post(`dish/${action}`, this.current)
-				.then(res => {
-					if (res.data.success) {
-						this.current = {};
-						if (!isUpdate) {
-							this.list.push(res.data.data);
-						}
-					}
-				});
-		},
-
-		remove: function (id) {
-			if (!confirm('确定要删除该项吗？')) {
-				return;
-			}
-			http
-				.post('dish/delete', {
-					id
-				})
-				.then(res => {
-					if (res.data.success) {
-						util.removeElById(this.list, id);
-					}
-				});
-		},
-
-		validate: function (row) {
-			row = row || this.current;
-
-			this.error = [];
-
-			this.validateProps.forEach(prop => {
-				let r = this['validate_' + prop]();
-
-				if (r === true) {
-					return;
-				}
-
-				this.error.push(r);
-			});
-
-			return !this.error.length;
-		},
-
 		validate_name: function (val) {
 			val = val || this.current.name;
 
@@ -206,19 +229,11 @@ const AdminDish = Vue.component('admin-dish', {
 			return true;
 		}
 	},
-
-	mounted: function () {
-		http
-			.post('dish/read')
-			.then(res => {
-				if (res.data.success) {
-					this.list = res.data.data;
-				}
-			})
-	}
+	mixins: [myMixin]
 });
 
 const AdminTable = Vue.component('admin-table', {
+	mixins: [myMixin],
 	template: `
 	<div>
 		<h2>桌号管理</h2>
@@ -271,66 +286,11 @@ const AdminTable = Vue.component('admin-table', {
 	`,
 	data: function () {
 		return {
+			model: 'table',
 			validateProps: ['name', 'capacity'],
-			error: [],
-			current: {},
-			list: [],
-			showForm: false
 		}
 	},
 	methods: {
-		create: function () {
-			if (!this.validate()) {
-				return;
-			}
-
-			let isUpdate = !!this.current.id;
-			let action = isUpdate ? 'update' : 'create';
-			http
-				.post(`table/${action}`, this.current)
-				.then(res => {
-					if (res.data.success) {
-						this.current = {};
-						if (!isUpdate) {
-							this.list.push(res.data.data);
-						}
-					}
-				});
-		},
-
-		remove: function (id) {
-			if (!confirm('确定要删除该项吗？')) {
-				return;
-			}
-			http
-				.post('table/delete', {
-					id
-				})
-				.then(res => {
-					if (res.data.success) {
-						util.removeElById(this.list, id);
-					}
-				});
-		},
-
-		validate: function (row) {
-			row = row || this.current;
-
-			this.error = [];
-
-			this.validateProps.forEach(prop => {
-				let r = this['validate_' + prop]();
-
-				if (r === true) {
-					return;
-				}
-
-				this.error.push(r);
-			});
-
-			return !this.error.length;
-		},
-
 		validate_name: function (val) {
 			val = val || this.current.name;
 			const MAX_LENGTH = 255;
@@ -360,15 +320,6 @@ const AdminTable = Vue.component('admin-table', {
 			return true;
 		}
 	},
-	mounted: function () {
-		http
-			.post('table/read')
-			.then(res => {
-				if (res.data.success) {
-					this.list = res.data.data;
-				}
-			})
-	}
 });
 
 new Vue({
