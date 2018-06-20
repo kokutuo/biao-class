@@ -1,7 +1,7 @@
 window.util = {
     removeElById: function (arr, id) {
         let i = this.findIndexById(arr, id);
-        if (!i) {
+        if (i < 0) {
             return;
         }
         arr.splice(i, 1);

@@ -23,53 +23,48 @@ const Admin = Vue.component('admin', {
 	`,
 });
 
-// 			{
-// 				name: 'name',
-// 				type: 'string',
-// 				nullable: false
-// 			},
-// 			{
-// 				name: 'price',
-// 				type: 'float',
-// 				nullable: false
-// 			},
-// 			{
-// 				name: 'description',
-// 				type: 'text',
-// 				nullable: true
-// 			},
-// 			{
-// 				name: 'cover_url',
-// 				type: 'string',
-// 				nullable: true
-// 			}
-
 const AdminDish = Vue.component('admin-dish', {
 	template: `
 	<div>
 		<h2>菜品管理</h2>
-		<form @submit.prevent='create'>
+
+		<div class='tool-set'>
+			<button @click='showForm = !showForm'>
+				<span v-if='showForm'>取消</span>创建菜品
+			</button>
+		</div>
+
+		<form @submit.prevent='create' v-if='showForm'>
+			<div v-if='error.length' class='error'>
+				<div v-for='e in error'>{{e}}</div>
+			</div>
+			{{current.id}}
 			<div class='input-wrap'>
 				<label>菜名</label>
 				<input type="text" v-model='current.name' autofocus>
 			</div>
 			<div class='input-wrap'>
-				<label>价格</label>
+				<label>价格（元）</label>
 				<input type="text" v-model='current.price'>
 			</div>
 			<div class='input-wrap'>
 				<label>简介</label>
 				<textarea v-model='current.description'></textarea>
 			</div>
+			<div class='input-wrap'>
+				<label>封面</label>
+				<input type='url' v-model='current.cover_url'>
+			</div>
 			<button type='submit'>提交</button>
 		</form>
 
-		<table class="list">
+		<table class="list" v-if='list.length'>
 			<thead>
 				<tr>
 					<th>菜名</th>
 					<th>价格（元）</th>
 					<th>简介</th>
+					<th>封面</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -77,9 +72,13 @@ const AdminDish = Vue.component('admin-dish', {
 				<tr v-for="(row) in list">
 					<td>{{row.name}}</td>
 					<td>{{row.price}}</td>
-					<td>{{row.description}}</td>
+					<td>{{row.description || '-'}}</td>
 					<td>
-						<button @click='current = row'>更新</button>
+						<img v-if='row.cover_url' :src="row.cover_url" :alt="row.name">
+						<span v-else class='empty-holder'>暂无封面</span>
+					</td>
+					<td>
+						<button @click='current = row; showForm = true'>更新</button>
 						<button @click='remove(row.id)'>删除</button>
 					</td>
 				</tr>
@@ -90,12 +89,19 @@ const AdminDish = Vue.component('admin-dish', {
 	`,
 	data: function () {
 		return {
+			validateProps: ['cover_url', 'description', 'name', 'price'],
+			error: [],
 			current: {},
-			list: []
+			list: [],
+			showForm: false,
 		};
 	},
 	methods: {
 		create: function () {
+			if (!this.validate()) {
+				return;
+			}
+
 			let isUpdate = !!this.current.id;
 			let action = isUpdate ? 'update' : 'create';
 			http
@@ -124,6 +130,81 @@ const AdminDish = Vue.component('admin-dish', {
 					}
 				});
 		},
+
+		validate: function (row) {
+			row = row || this.current;
+
+			this.error = [];
+
+			this.validateProps.forEach(prop => {
+				let r = this['validate_' + prop]();
+
+				if (r === true) {
+					return;
+				}
+
+				this.error.push(r);
+			});
+
+			return !this.error.length;
+		},
+
+		validate_name: function (val) {
+			val = val || this.current.name;
+
+			const MAX_LENGTH = 255;
+
+			if (!val) {
+				return '菜名为必填项';
+			}
+
+			if (val.length > MAX_LENGTH) {
+				return `此项最大长度为${MAX_LENGTH}`;
+			}
+
+			return true;
+		},
+
+		validate_price: function (val) {
+			val = val || this.current.price;
+
+			if (val === '' || val < 0 || val > 1000000) {
+				return '不合法的价格';
+			}
+
+			return true;
+		},
+
+		validate_description: function (val) {
+			val = val || this.current.description;
+
+			if (!val) {
+				return true;
+			}
+
+			const MAX_LENGTH = 10000;
+			if (val.length > MAX_LENGTH) {
+				return `此项最大长度为${MAX_LENGTH}`;
+			}
+
+			return true;
+		},
+
+		validate_cover_url: function (val) {
+			val = val || this.current.cover_url;
+
+			let re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+
+			if (!val) {
+				return true;
+			}
+
+			if (!re.test(val)) {
+				return '不合法的地址';
+			}
+
+			return true;
+		}
 	},
 
 	mounted: function () {
@@ -141,7 +222,19 @@ const AdminTable = Vue.component('admin-table', {
 	template: `
 	<div>
 		<h2>桌号管理</h2>
-		<form @submit.prevent='create'>
+
+		<div class='tool-set'>
+			<button @click='showForm = !showForm'>
+				<span v-if='showForm'>取消</span>创建桌号
+			</button>
+		</div>
+
+		<form @submit.prevent='create' v-if='showForm'>
+		
+			<div v-if='error.length' class='error'>
+				<div v-for='e in error'>{{e}}</div>
+			</div>
+
 			<div class='input-wrap'>
 				<label>桌号</label>
 				<input type="text" v-model='current.name' autofocus>
@@ -155,7 +248,7 @@ const AdminTable = Vue.component('admin-table', {
 			</div>
 		</form>
 
-		<table class="list">
+		<table class="list" v-if='list.length'>
 			<thead>
 				<tr>
 					<th>桌号</th>
@@ -168,7 +261,7 @@ const AdminTable = Vue.component('admin-table', {
 					<td>{{row.name}}</td>
 					<td>{{row.capacity}}</td>
 					<td>
-						<button @click='current = row'>更新</button>
+						<button @click='current = row; showForm = true'>更新</button>
 						<button @click='remove(row.id)'>删除</button>
 					</td>
 				</tr>
@@ -178,12 +271,19 @@ const AdminTable = Vue.component('admin-table', {
 	`,
 	data: function () {
 		return {
+			validateProps: ['name', 'capacity'],
+			error: [],
 			current: {},
-			list: []
+			list: [],
+			showForm: false
 		}
 	},
 	methods: {
 		create: function () {
+			if (!this.validate()) {
+				return;
+			}
+
 			let isUpdate = !!this.current.id;
 			let action = isUpdate ? 'update' : 'create';
 			http
@@ -212,6 +312,53 @@ const AdminTable = Vue.component('admin-table', {
 					}
 				});
 		},
+
+		validate: function (row) {
+			row = row || this.current;
+
+			this.error = [];
+
+			this.validateProps.forEach(prop => {
+				let r = this['validate_' + prop]();
+
+				if (r === true) {
+					return;
+				}
+
+				this.error.push(r);
+			});
+
+			return !this.error.length;
+		},
+
+		validate_name: function (val) {
+			val = val || this.current.name;
+			const MAX_LENGTH = 255;
+
+			if (!val) {
+				return '桌号为必填项';
+			}
+
+			if (val.length > MAX_LENGTH) {
+				return `此项最大长度为${MAX_LENGTH}`
+			}
+
+			return true;
+		},
+
+		validate_capacity: function (val) {
+			val = val || this.current.capacity;
+
+			if (!val) {
+				return '座位数为必填项';
+			}
+
+			if (val < 1 || val > 1000000) {
+				return '不合法的座位数';
+			}
+
+			return true;
+		}
 	},
 	mounted: function () {
 		http
