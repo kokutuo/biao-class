@@ -7,10 +7,7 @@ window.http = {
         data.signature = this.sign(data.app_key, data.timestamp);
 
         return axios
-            .post('http://mock.biaoyansu.com/api/' + url, data)
-            .then(function (res) {
-                return res;
-            });
+            .post('http://mock.biaoyansu.com/api/' + url, data);
     },
 
     sign: function (app_key, timestamp) {

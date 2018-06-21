@@ -1,97 +1,233 @@
 const myMixin = {
-	data: function () {
-		return {
-			error: [],
-			current: [],
-			list: [],
-			showForm: false,
-		};
-	},
-	methods: {
-		create: function () {
-			if (!this.validate()) {
-				return;
-			}
+    data: function () {
+        return {
+            error: [],
+            current: {},
+            list: [],
+            showForm: false,
+        };
+    },
+    methods: {
+        create: function () {
+            if (!this.validate()) {
+                return;
+            }
 
-			let isUpdate = !!this.current.id;
-			let action = isUpdate ? 'update' : 'create';
-			http
-				.post(`${this.model}/${action}`, this.current)
-				.then(res => {
-					if (res.data.success) {
-						this.current = {};
-						if (!isUpdate) {
-							this.list.push(res.data.data);
-						}
-					}
-				});
-		},
+            let isUpdate = !!this.current.id;
+            let action = isUpdate ? 'update' : 'create';
+            console.log(this.current);
 
-		remove: function (id) {
-			if (!confirm('确定要删除该项吗？')) {
-				return;
-			}
-			http
-				.post(`${this.model}/delete`, {
-					id
-				})
-				.then(res => {
-					if (res.data.success) {
-						util.removeElById(this.list, id);
-					}
-				});
-		},
+            http
+                .post(`${this.model}/${action}`, this.current)
+                .then(res => {
+                    if (res.data.success) {
+                        this.current = {};
+                        if (!isUpdate) {
+                            this.list.push(res.data.data);
+                        }
+                    }
+                });
+        },
 
-		validate: function (row) {
-			row = row || this.current;
+        remove: function (id) {
+            if (!confirm('确定要删除该项吗？')) {
+                return;
+            }
+            http
+                .post(`${this.model}/delete`, {
+                    id
+                })
+                .then(res => {
+                    if (res.data.success) {
+                        util.removeElById(this.list, id);
+                    }
+                });
+        },
 
-			this.error = [];
+        validate: function (row) {
+            row = row || this.current;
 
-			this.validateProps.forEach(prop => {
-				let r = this['validate_' + prop]();
+            this.error = [];
 
-				if (r === true) {
-					return;
-				}
+            this.validateProps.forEach(prop => {
+                let r = this['validate_' + prop]();
 
-				this.error.push(r);
-			});
+                if (r === true) {
+                    return;
+                }
 
-			return !this.error.length;
-		},
+                this.error.push(r);
+            });
 
-		read: function () {
-			http
-				.post(`${this.model}/read`)
-				.then(res => {
-					if (res.data.success) {
-						this.list = res.data.data;
-					}
-				});
-		},
-	},
+            return !this.error.length;
+        },
 
-	mounted: function () {
-		this.read();
-	}
-}
+        read: function () {
+            http
+                .post(`${this.model}/read?limit=5`)
+                .then(res => {
+                    if (res.data.success) {
+                        this.list = res.data.data;
+                    }
+                });
+        },
+    },
+
+    mounted: function () {
+        this.read();
+    }
+};
 
 const Home = Vue.component('home', {
-	template: `
+    template: `
 	<div>
-		<h1>欢迎来到刘背背饭馆</h1>
-		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi quaerat quas numquam? Consequatur, error reiciendis vitae sed quasi porro officia, omnis velit facere dignissimos facilis similique tenetur? Voluptatibus, pariatur iusto.</p>
+        <h1>欢迎来到刘背背西点餐厅</h1>
+        <div class='dish-list'>
+            <div class='row dish' v-for='dish in dishList'>
+                <div class='col-lg-4 thumbnail'>
+                    <img :src="dish.cover_url || defaultCoverUrl" :alt="dish.name">
+                </div>
+                <div class='col-lg-5 detail'>
+                    <div class="name">{{dish.name}}</div>
+                    <div class='description'>{{dish.description}}</div>
+                </div>
+                <div class='col-lg-3 tool-set'>
+                    <button>-</button>
+                    <input type="number" v-model='dish.$count'>
+                    <button>+</button>
+                </div>
+            </div>
+        </div>
+        <button @click='submitOrder'>提交订单</button>
 	</div>
-	`,
+    `,
+    data: function () {
+        return {
+            dishList: [],
+            defaultCoverUrl: 'http://biaoyansu.com/img/biaoyansu_logo.svg',
+            order: {},
+            // order: {
+            //     table_id: 'xxx',
+            //     dish_info: [
+            //         {dishId: 1, count: 2},
+            //         {dishId: 2, count: 1},
+            //     ],
+            //     memo: '少放辣'
+            // }
+        };
+    },
+    methods: {
+        readDish: function () {
+            http
+                .post('dish/read')
+                .then(res => {
+                    this.dishList = res.data.data;
+                });
+        },
+
+        submitOrder: function () {
+            this.prepareOrderInfo();
+
+            this.order.status = 'created';
+            console.log(this.order);
+            
+            this
+                .mainOrderId()
+                .then(id => {
+                    console.log(id);
+
+                    if (id) {
+                        this.order.parent_id = id;
+                    }
+
+                    let param = Object.assign({}, this.order);
+                    param.dish_info = JSON.stringify(param.dish_info);
+
+                    http.post('order/create', param);
+                });
+
+            // http
+            //     .post('order/first', {
+            //         where: {
+            //             and: {
+            //                 table_id: this.order.table_id,
+            //                 status: 'created'
+            //             }
+            //         }
+            //     })
+            //     .then(res => {
+            //         if (res.data.data) {
+            //             console.log(res);
+
+            //             this.order.parentId = res.data.data.id;
+            //         }
+            //     });
+            this.resetOrder();
+        },
+
+        mainOrderId: function () {
+            return http.post('order/first', {
+                where: {
+                    and: {
+                        table_id: this.order.table_id,
+                        status: 'created',
+                        parent_id: null
+                    },
+                },
+            }).then(res => {
+                if (!res.data.data) {
+                    return false;
+                }
+                return res.data.data.id;
+            });
+        },
+
+        resetOrder: function name() {
+            this.order = {};
+            this.dishList.forEach(dish => {
+                dish.$count = 0;
+            });
+        },
+
+        prepareOrderInfo: function () {
+            let info = [];
+            this.dishList.filter(dish => {
+                let count = dish.$count
+                if (!count) {
+                    return;
+                }
+
+                info.push({
+                    dishId: dish.id,
+                    count: parseInt(count),
+                });
+            });
+
+            this.order.dish_info = info;
+        }
+    },
+    mounted() {
+        this.readDish();
+        this.order.table_id = this.$route.query.table_id;
+    },
+    // watch: {
+    //     dishList: {
+    //         deep: true,
+    //         handler() {
+    //             console.log(this.dishList);
+    //         },
+    //     },
+    // }
 });
 
 const Admin = Vue.component('admin', {
-	template: `
+    template: `
 	<div>
 		<div class="admin row">
 			<div class="col-lg-3 nav">
 				<router-link to="/admin/table">桌号管理</router-link>
 				<router-link to="/admin/dish">菜品管理</router-link>
+				<router-link to="/admin/order">订单管理</router-link>
 			</div>
 			<div class="col-lg-9 main">
 				<router-view></router-view>
@@ -102,7 +238,7 @@ const Admin = Vue.component('admin', {
 });
 
 const AdminDish = Vue.component('admin-dish', {
-	template: `
+    template: `
 	<div>
 		<h2>菜品管理</h2>
 
@@ -165,76 +301,75 @@ const AdminDish = Vue.component('admin-dish', {
 
 	</div>
 	`,
-	data: function () {
-		return {
-			model: 'dish',
-			validateProps: ['cover_url', 'description', 'name', 'price'],
-		};
-	},
-	methods: {
-		validate_name: function (val) {
-			val = val || this.current.name;
+    data: function () {
+        return {
+            model: 'dish',
+            validateProps: ['cover_url', 'description', 'name', 'price'],
+        };
+    },
+    methods: {
+        validate_name: function (val) {
+            val = val || this.current.name;
 
-			const MAX_LENGTH = 255;
+            const MAX_LENGTH = 255;
 
-			if (!val) {
-				return '菜名为必填项';
-			}
+            if (!val) {
+                return '菜名为必填项';
+            }
 
-			if (val.length > MAX_LENGTH) {
-				return `此项最大长度为${MAX_LENGTH}`;
-			}
+            if (val.length > MAX_LENGTH) {
+                return `此项最大长度为${MAX_LENGTH}`;
+            }
 
-			return true;
-		},
+            return true;
+        },
 
-		validate_price: function (val) {
-			val = val || this.current.price;
+        validate_price: function (val) {
+            val = val || this.current.price;
 
-			if (val === '' || val < 0 || val > 1000000) {
-				return '不合法的价格';
-			}
+            if (val === '' || val < 0 || val > 1000000) {
+                return '不合法的价格';
+            }
 
-			return true;
-		},
+            return true;
+        },
 
-		validate_description: function (val) {
-			val = val || this.current.description;
+        validate_description: function (val) {
+            val = val || this.current.description;
 
-			if (!val) {
-				return true;
-			}
+            if (!val) {
+                return true;
+            }
 
-			const MAX_LENGTH = 10000;
-			if (val.length > MAX_LENGTH) {
-				return `此项最大长度为${MAX_LENGTH}`;
-			}
+            const MAX_LENGTH = 10000;
+            if (val.length > MAX_LENGTH) {
+                return `此项最大长度为${MAX_LENGTH}`;
+            }
 
-			return true;
-		},
+            return true;
+        },
 
-		validate_cover_url: function (val) {
-			val = val || this.current.cover_url;
+        validate_cover_url: function (val) {
+            val = val || this.current.cover_url;
 
-			let re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+            let re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
-			if (!val) {
-				return true;
-			}
+            if (!val) {
+                return true;
+            }
 
-			if (!re.test(val)) {
-				return '不合法的地址';
-			}
+            if (!re.test(val)) {
+                return '不合法的地址';
+            }
 
-			return true;
-		}
-	},
-	mixins: [myMixin]
+            return true;
+        }
+    },
+    mixins: [myMixin]
 });
 
 const AdminTable = Vue.component('admin-table', {
-	mixins: [myMixin],
-	template: `
+    template: `
 	<div>
 		<h2>桌号管理</h2>
 
@@ -284,68 +419,86 @@ const AdminTable = Vue.component('admin-table', {
     	</table>
 	</div>
 	`,
-	data: function () {
-		return {
-			model: 'table',
-			validateProps: ['name', 'capacity'],
-		}
-	},
-	methods: {
-		validate_name: function (val) {
-			val = val || this.current.name;
-			const MAX_LENGTH = 255;
+    data: function () {
+        return {
+            model: 'table',
+            validateProps: ['name', 'capacity'],
+        }
+    },
+    methods: {
+        validate_name: function (val) {
+            val = val || this.current.name;
+            const MAX_LENGTH = 255;
 
-			if (!val) {
-				return '桌号为必填项';
-			}
+            if (!val) {
+                return '桌号为必填项';
+            }
 
-			if (val.length > MAX_LENGTH) {
-				return `此项最大长度为${MAX_LENGTH}`
-			}
+            if (val.length > MAX_LENGTH) {
+                return `此项最大长度为${MAX_LENGTH}`
+            }
 
-			return true;
-		},
+            return true;
+        },
 
-		validate_capacity: function (val) {
-			val = val || this.current.capacity;
+        validate_capacity: function (val) {
+            val = val || this.current.capacity;
 
-			if (!val) {
-				return '座位数为必填项';
-			}
+            if (!val) {
+                return '座位数为必填项';
+            }
 
-			if (val < 1 || val > 1000000) {
-				return '不合法的座位数';
-			}
+            if (val < 1 || val > 1000000) {
+                return '不合法的座位数';
+            }
 
-			return true;
-		}
-	},
+            return true;
+        }
+    },
+    mixins: [myMixin],
 });
 
-new Vue({
-	el: '#root',
-	router: new VueRouter({
-		routes: [{
-				path: '/',
-				component: Home
-			},
-			{
-				path: '/admin/',
-				component: Admin,
-				children: [{
-						path: 'dish',
-						component: AdminDish
-					},
-					{
-						path: 'table',
-						component: AdminTable
-					}
-				]
-			},
+const pagination = Vue.component('pagination', {
+    data: function () {
+        return {
+            currentPage: '',
+            limit: 10,
+            range: 5,
+        }
+    },
 
-		]
-	}),
+    methods: {
+        changePage: function () {
+            http
+                .post(`model/read?page=${this.currentPage}`)
+        }
+    }
 })
+
+new Vue({
+    el: '#root',
+    router: new VueRouter({
+        routes: [{
+                path: '/',
+                component: Home
+            },
+            {
+                path: '/admin/',
+                component: Admin,
+                children: [{
+                        path: 'dish',
+                        component: AdminDish
+                    },
+                    {
+                        path: 'table',
+                        component: AdminTable
+                    }
+                ]
+            },
+
+        ]
+    }),
+});
 
 
 // http
@@ -408,3 +561,14 @@ new Vue({
 // 			}
 // 		]
 // 	});
+
+// http.post('MODEL/CREATE_PROPERTY', {
+//   model     : 'order',
+//   property  : 'status',
+//   structure : {
+//     type     : 'string',
+//     nullable : true,
+//   },
+// });
+
+// http.post('MODEL/READ');
