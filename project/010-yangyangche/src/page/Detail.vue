@@ -1,0 +1,372 @@
+<template>
+  <div>
+    <Nav/>
+    <div class="header">
+      <div class="container">
+        <h1 class="col-lg-6 left">
+            别克-英朗 2015款 15N 手动进取型
+            <span class="tag">超值</span>
+            <span class="tag">0过户</span>
+        </h1>
+        <div class="col-lg-6 right">
+            <form class="search-bar">
+                <input type="search" placeholder="请输入搜索关键词，如：别克1.6L···" autocomplete="off" autofocus>
+                <button type="submit">搜索</button>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="row vehicel-intro">
+        <div class="container">
+            <div class="col-lg-6">
+                <div class="slider">
+                    <img src="..\assets\detail\slider01.jpg" alt="一辆车">
+                </div>
+                <div class="thumb-list">
+                    <div class="col-lg-3">
+                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-panel">
+                <div class="title">
+                    别克-英朗 2015款 15N 手动进取型
+                </div>
+                <div class="well">
+                    <div class="row">
+                    <div class="col-lg-3 prop">报价:</div>
+                    <div class="col-lg-9">
+                        <span class="price currency">5.60万</span>
+                        <span class="price currency">含税9.5万</span>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-lg-3 prop">服务费:</div>
+                    <div class="col-lg-9">
+                        <span class="price currency">3000</span>
+                        <span class="help"></span>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-lg-3 prop">服务项:</div>
+                    <div class="col-lg-9">
+                        <span class="server">整车质保</span>
+                        <span class="server">14天可退</span>
+                        <span class="server">249项车况检测</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="short-props">
+                    <div class="dib">
+                        <div class="value">2017年12月</div>
+                        <div class="prop">上牌时间</div>
+                    </div>
+                    <div class="dib">
+                        <div class="value">2.04万公里</div>
+                        <div class="prop">公里数</div>
+                    </div>
+                    <div class="dib">
+                        <div class="value">国五</div>
+                        <div class="prop">外迁查询</div>
+                    </div>
+                    <div class="dib">
+                        <div class="value">1.5L</div>
+                        <div class="prop">排量</div>
+                    </div>
+                    <div class="dib">
+                        <div class="value">陕A</div>
+                        <div class="prop">上牌城市</div>
+                    </div>
+                </div>
+                <div class="action">
+                    <a class="btn btn-primary">预约看车</a>
+                    <span class="tel">400-080-5027</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row vehicel-detail">
+        <div class="container">
+            <h2>车辆详情</h2>
+            <div class="row">
+                <div class="col-lg-6 dashed">
+                    <div class="sub-title">卖家-马先生说车</div>
+                    <div class="detail">这辆车是我平时上下班代步用的车，2016年12月上的牌，到现在2.04万多公里正是车的好时候！这台车是我平时的代步车，平时出门或者过年回老家都会用它，使用强度不算很大。外观好看，特别是日间行车灯，油耗目前位置比较满意，开别克就有一种很稳的感觉，一点都不飘，好像是20万左右的车子一样。这台车一直是自己家用，没给外人用过，车况没毛病。我这车没买多长时间，算是准新车，光购置税就能省不少钱。我的车外观漆面良好，内饰也经常收拾，车况没毛病。</div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="sub-title">车辆手续信息</div>
+                    <div class="col-lg-6 detail">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>年检到期时间</td>
+                                    <td>2018-12</td>
+                                </tr>
+                                <tr>
+                                    <td>商业险到期时间</td>
+                                    <td>2018-12</td>
+                                </tr>
+                                <tr>
+                                    <td>有无购车发票</td>
+                                    <td>否</td>
+                                </tr>
+                                <tr>
+                                    <td>是否4S店保养</td>
+                                    <td>否</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>交强险到期时间</td>
+                                    <td>2018-12</td>
+                                </tr>
+                                <tr>
+                                    <td>过户次数</td>
+                                    <td>0次</td>
+                                </tr>
+                                <tr>
+                                    <td>车辆购置税完税证明</td>
+                                    <td>无</td>
+                                </tr>
+                                <tr>
+                                    <td>有无改装</td>
+                                    <td>无</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="preview">
+                <div class="title">车辆外观</div>
+                <div class="desc">车况优秀，性能部件正常使用，经检测，外观及车身结构无重大撞击。</div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</template>
+
+
+<script>
+import Nav from "../components/Nav";
+
+export default {
+  components: {
+    Nav
+  }
+};
+</script>
+
+<style scope>
+body {
+  background: #fff;
+}
+
+.header {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.header h1,
+.order-panel .title {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  font-weight: 400;
+}
+
+.tag {
+  vertical-align: middle;
+  color: #fff;
+  background: #666;
+  padding: 3px 5px;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.search-bar input {
+  width: 35%;
+  outline: 0;
+}
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 12px;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 12px;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 12px;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 12px;
+}
+
+.search-bar [type="submit"] {
+  border-left: 0;
+  cursor: pointer;
+}
+
+.search-bar [type="submit"]:hover {
+  background: #fd5400;
+  color: #fff;
+}
+
+.vehicel-intro {
+  margin-bottom: 30px;
+}
+
+.slider {
+  margin-bottom: 10px;
+}
+
+.thumb-list {
+  padding: 0 18px;
+}
+
+.order-panel {
+  padding-left: 55px;
+}
+
+.order-panel .title {
+  margin-bottom: 15px;
+}
+
+.well,
+.short-props,
+.action {
+  padding: 10px 20px;
+  padding-bottom: 0;
+  margin-bottom: 10px;
+}
+
+.well {
+  background: #f5f5f5;
+}
+
+.well > * {
+  padding-bottom: 10px;
+}
+
+.well .prop {
+  font-size: 15px;
+}
+
+.well .price {
+  font-size: 18px;
+  color: #fd5400;
+  padding-right: 15px;
+}
+
+.well .server {
+  display: block;
+  padding-bottom: 3px;
+}
+
+.short-props > * {
+  padding-left: 5px;
+  padding-right: 15px;
+  border-right: 1px solid #ccc;
+}
+
+.short-props .dib:last-child {
+  border-right: 0;
+}
+
+.short-props .value {
+  font-weight: 600;
+  font-size: 16px;
+  padding-bottom: 3px;
+}
+
+.short-props .prop {
+  font-weight: lighter;
+  font-size: 10px;
+}
+
+.action .btn {
+  padding: 8px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 30px;
+}
+
+.action .tel {
+  font-size: 20px;
+}
+
+.vehicel-detail .container {
+  background: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.vehicel-detail h2 {
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 30px 15px 30px;
+  border-bottom: 1px dashed #ddd;
+}
+
+.vehicel-detail .row >* {
+    padding: 20px 30px;
+    padding-bottom: 50px;
+}
+
+.vehicel-detail .sub-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.vehicel-detail .detail {
+    padding: 0 15px;
+    line-height: 20px;
+}
+
+.dashed {
+  margin-top: 10px;
+  border-right: 1px dashed #ddd;
+}
+</style>
