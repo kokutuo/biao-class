@@ -104,6 +104,8 @@ form input {
 
 .prop-item {
     padding: 8px 0;
+    border: 1px solid transparent;
+    border-radius: 5px;
 }
 
 .prop-item:nth-child(even) {

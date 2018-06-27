@@ -164,12 +164,8 @@ input {
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, .1);
   color: #444;
-}
-
-.btn,
-.btn-fat,
-.btn-primary {
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .btn {
