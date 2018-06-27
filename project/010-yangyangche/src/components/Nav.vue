@@ -1,5 +1,8 @@
 <template>
-  <div class="main-nav">
+  <div class="main-nav" :style="{
+    marginBottom: this.pushDown ? '20px' : '0',
+    backgroundColor: this.black ? 'black' : 'white',
+  }">
     <div class="row container">
       <div class="col left">
         <a class="logo"></a>
@@ -20,6 +23,14 @@
 <script>
   export default {
     name: "Nav",
+    props: {
+      pushDown: {
+        default: false,
+      },
+      black: {
+        default: false,
+      },
+    },
   }
 </script>
 

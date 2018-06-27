@@ -166,7 +166,15 @@ input {
   color: #444;
 }
 
-.btn {}
+.btn,
+.btn-fat,
+.btn-primary {
+  cursor: pointer;
+}
+
+.btn {
+    background: #fff;
+}
 
 .btn-primary {
   background: #fd521d;

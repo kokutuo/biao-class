@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-lg-5">
+      <div class="col-lg-5" style="margin-left: 0;">
         <div class="bg-pic"></div>
       </div>
       <div class="col-lg-7">
@@ -73,29 +73,7 @@ h1 {
   font-size: 18px;
 }
 
-input::-webkit-input-placeholder {
-  /* WebKit browsers */
-  font-size: 15px;
-  color: #ccc;
-}
 
-input:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  font-size: 15px;
-  color: #ccc;
-}
-
-input::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  font-size: 15px;
-  color: #ccc;
-}
-
-input:-ms-input-placeholder {
-  /* Internet Explorer 10+ */
-  font-size: 15px;
-  color: #ccc;
-}
 
 .main-form button,
 .main-form input {
