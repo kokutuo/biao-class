@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Me/>
+    <!-- <Home/> -->
+    <!-- <Detail/> -->
+    <!-- <Login/> -->
+    <!-- <Signup/> -->
+    <!-- <Me/> -->
+    <User/>
   </div>
 </template>
 
@@ -8,12 +13,13 @@
 import Home from "./page/Home";
 import Detail from "./page/Detail";
 import Login from "./page/Login";
-import Signup from './page/Signup';
-import Me from './page/settings/Me';
+import Signup from "./page/Signup";
+import Me from "./page/settings/Me";
+import User from "./page/admin/User";
 
 export default {
   name: "Root",
-  components: { Home, Detail, Login, Signup, Me },
+  components: { Home, Detail, Login, Signup, Me, User },
 };
 </script>
 

@@ -9,10 +9,7 @@
             <span class="tag">0过户</span>
         </h1>
         <div class="col-lg-6 right">
-            <form class="search-bar">
-                <input type="search" placeholder="请输入搜索关键词，如：别克1.6L···" autocomplete="off" autofocus>
-                <button type="submit">搜索</button>
-            </form>
+            <SearchBar/>
         </div>
       </div>
     </div>
@@ -182,15 +179,17 @@
 
 <script>
 import Nav from "../components/Nav";
+import SearchBar from "../components/SearchBar";
 
 export default {
   components: {
-    Nav
-  }
+    Nav,
+    SearchBar,
+  },
 };
 </script>
 
-<style scope>
+<style scoped>
 body {
   background: #fff;
 }
@@ -217,10 +216,6 @@ body {
   margin-left: 8px;
 }
 
-.search-bar input {
-  width: 35%;
-  outline: 0;
-}
 
 input::-webkit-input-placeholder {
   /* WebKit browsers */
@@ -240,16 +235,6 @@ input::-moz-placeholder {
 input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   font-size: 12px;
-}
-
-.search-bar [type="submit"] {
-  border-left: 0;
-  cursor: pointer;
-}
-
-.search-bar [type="submit"]:hover {
-  background: #fd5400;
-  color: #fff;
 }
 
 .vehicel-intro {

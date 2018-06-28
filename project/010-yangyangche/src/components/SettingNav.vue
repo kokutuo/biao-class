@@ -8,33 +8,11 @@
 </template>
 
 <script>
-
+import '../css/sidenav.css';
+export default {
+    
+}
 </script>
 
 <style scoped>
-  .side-nav {
-    /* max-width: 200px; */
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 4px;
-  }
-
-  .title {
-    font-weight: 900;
-    background: #f3f5f8;
-  }
-
-  .title,
-  .nav-item {
-    display: block;
-    padding: 7px 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-  }
-
-  .nav-item:hover {
-    background: #f3f5f8;
-  }
-
-  .nav-item.active {
-    border-left: 2px solid red;
-  }
 </style>

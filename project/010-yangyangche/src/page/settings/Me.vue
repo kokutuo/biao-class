@@ -6,7 +6,7 @@
                 <SettingNav/>
             </div>
             <div class="col-lg-9 content">
-                <div class="row">
+                <div class="header row">
                     <div class="col-lg-8 left">
                         <div class="title">基本信息</div>
                     </div>
@@ -27,7 +27,7 @@
                         <label for="company">公司</label>
                         <input type="text" id="company"> 
                     </div>
-                    <button class="btn-primary" type="submit">提交</button>
+                    <button class="btn-primary" type="submit" style="margin-right: 10px">提交</button>
                     <button class="btn" @click="editor_model=false" type="button">取消修改</button>
                 </form>
                 <div v-else>
@@ -72,12 +72,19 @@ export default {
   padding-right: 50px;
 }
 
+.header * {
+    vertical-align: middle;
+}
+
+.header {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
 .title {
     font-size: 20px;
     font-weight: 600;
     line-height: 2;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
 form {
@@ -102,9 +109,12 @@ form input {
     font-size: 16px;
 }
 
+form input:focus {
+    background: transparent;
+}
+
 .prop-item {
     padding: 8px 0;
-    border: 1px solid transparent;
     border-radius: 5px;
 }
 

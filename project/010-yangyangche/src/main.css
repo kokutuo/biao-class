@@ -11,10 +11,6 @@ html {
   line-height: 1.5;
 }
 
-body {
-  background: #f0f0f0;
-}
-
 img {
   display: block;
   width: 100%;
@@ -164,8 +160,12 @@ input {
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, .1);
   color: #444;
-  cursor: pointer;
   border-radius: 5px;
+}
+
+button,
+.btn {
+  cursor: pointer;
 }
 
 .btn {
