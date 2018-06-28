@@ -3,12 +3,6 @@
     <Nav/>
     <div class="slider">
       <img src="../assets/home/slider1.webp">
-      <!--<div class="short-cuts">-->
-      <!--<a href="#">Item</a>-->
-      <!--<a href="#">Item</a>-->
-      <!--<a href="#">Item</a>-->
-      <!--<a href="#">Item</a>-->
-      <!--</div>-->
     </div>
     <div class="query-area">
       <div class="container">
@@ -252,6 +246,8 @@
 <script>
   import Nav from '../components/Nav';
 
+  import '../css/vehicle-list.css'
+
   export default {
     components : { Nav },
   };
@@ -308,49 +304,4 @@
   .vehicle-nav .item:first-child {
     border-left-width: 1px;
   }
-
-  .vehicle-list .col-lg-3 {
-    padding: 10px;
-  }
-
-  .vehicle-list .card {
-    background: #fff;
-  }
-
-  .vehicle-list .card .detail {
-    padding: 10px;
-  }
-
-  .vehicle-list .detail > * {
-    margin-bottom: 5px;
-  }
-
-  .vehicle-list .card .title {
-    font-size: .8rem;
-  }
-
-  .vehicle-list .card .desc,
-  .vehicle-list .card .others {
-    font-size: .6rem;
-    color: #888;
-  }
-
-  .vehicle-list .card .price {
-    color: #fd521d;
-    font-size: 1.3rem;
-  }
-
-  .vehicle-list .card {
-    position: relative;
-  }
-
-  .vehicle-list .card .buy {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    font-size: .8rem;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-
 </style>

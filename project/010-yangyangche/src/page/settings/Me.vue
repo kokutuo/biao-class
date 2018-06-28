@@ -59,10 +59,10 @@ export default {
     SettingNav
   },
   data() {
-      return {
-          editor_model: false,
-      };
-  },
+    return {
+      editor_model: false
+    };
+  }
 };
 </script>
 
@@ -73,57 +73,57 @@ export default {
 }
 
 .header * {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .header {
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .title {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 2;
-    padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 2;
+  padding-bottom: 10px;
 }
 
 form {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .input-control {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 form label {
-    display: block;
-    padding: 5px;
-    font-size: 11px;
-    font-weight: 600;
+  display: block;
+  padding: 5px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 form input {
-    width: 440px;
-    background: #f3f5f8;
-    border-radius: 5px;
-    font-size: 16px;
+  width: 440px;
+  background: #f3f5f8;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 form input:focus {
-    background: transparent;
+  background: transparent;
 }
 
 .prop-item {
-    padding: 8px 0;
-    border-radius: 5px;
+  padding: 8px 0;
+  border-radius: 5px;
 }
 
 .prop-item:nth-child(even) {
-    background: #f3f5f8;
+  background: #f3f5f8;
 }
 
 .prop-item .key,
 .prop-item .val {
-    font-size: 18px;
+  font-size: 18px;
 }
 </style>

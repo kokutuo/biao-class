@@ -1,9 +1,19 @@
 <template>
-    <form class="search-bar">
+    <form class="search-bar" :style="{width: width}">
         <input type="search" placeholder="请输入搜索关键词，如：别克1.6L···" autocomplete="off" autofocus>
         <button type="submit">搜索</button>
     </form>
 </template>
+
+<script>
+    export default {
+        props: {
+            width: {
+                default: '100%',
+            },
+        },
+    };
+</script>
 
 <style scoped>
     .search-bar input {
