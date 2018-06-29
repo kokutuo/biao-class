@@ -6,7 +6,7 @@
     <!-- <Signup/> -->
     <!-- <Me/> -->
     <!-- <User/> -->
-    <SearchResult/>
+    <!-- <SearchResult/> -->
   </div>
 </template>
 
@@ -17,11 +17,19 @@ import Login from "./page/Login";
 import Signup from "./page/Signup";
 import Me from "./page/settings/Me";
 import User from "./page/admin/User";
-import SearchResult from './page/SearchResult';
+import SearchResult from "./page/SearchResult";
 
 export default {
   name: "Root",
-  components: { Home, Detail, Login, Signup, Me, User, SearchResult },
+  components: {
+    Home,
+    Detail,
+    Login,
+    Signup,
+    Me,
+    User,
+    SearchResult
+  }
 };
 </script>
 
