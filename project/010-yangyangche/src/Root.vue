@@ -26,6 +26,8 @@ import Me from "./page/settings/Me";
 import User from "./page/admin/User";
 import Vehicle from "./page/admin/Vehicle";
 import Brand from "./page/admin/Brand";
+import Model from "./page/admin/Model";
+import Design from "./page/admin/Design";
 
 export default {
   name: "Root",
@@ -41,6 +43,8 @@ export default {
     User,
     Vehicle,
     Brand,
+    Model,
+    Design,
   }
 };
 </script>
