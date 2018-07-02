@@ -8,7 +8,7 @@
             <div class="col-lg-9 content">
                 <div class="header row">
                     <div class="col-lg-8 left">
-                        <div class="title">用户管理</div>
+                        <div class="title">品牌管理</div>
                     </div>
                     <div class="col-lg-4 right">
                         <button @click="edit_pattern=true" class="btn-primary">添加</button>
@@ -23,20 +23,8 @@
                 </div>
                 <form v-if="edit_pattern" @submit.prevent="cou($event)">
                     <div class="input-control">
-                        <label>用户名</label>
-                        <input type="text" v-model="current.username">
-                    </div>
-                    <div class="input-control">
-                        <label>真实姓名</label>
-                        <input type="text" v-model="current.real_name">
-                    </div>
-                    <div class="input-control">
-                        <label>邮箱</label>
-                        <input type="e-mail" v-model="current.e_mail">
-                    </div>
-                    <div class="input-control">
-                        <label>密码</label>
-                        <input type="text" v-model="current.password">
+                        <label>品牌</label>
+                        <input type="text" v-model="current.name">
                     </div>
                     <div class="input-control">
                         <button class="btn-primary" type="submit">提交</button>
@@ -46,18 +34,12 @@
                 <div v-else class="table">
                     <table>
                         <thead>
-                        <th>用户名</th>
-                        <th>真实姓名</th>
-                        <th>邮箱</th>
-                        <th>密码</th>
+                        <th>品牌</th>
                         <th>操作</th>
                         </thead>
                         <tbody>
                         <tr v-for="row in list" :key="row.id">
-                        <td>{{row.username}}</td>
-                        <td>{{row.real_name}}</td>
-                        <td>{{row.e_mail || '-'}}</td>
-                        <td>{{row.password}}</td>
+                        <td>{{row.name}}</td>
                         <td>
                             <button class="btn-primary" @click="set_current(row)">编辑</button>
                             <button class="btn" @click="remove(row.id)">删除</button>
@@ -78,17 +60,16 @@ import "../../css/admin.css";
 import AdminPage from "../../mixin/AdminPage";
 
 export default {
-  data() {
-    return {
-      searchable: ["username", "real_name"]
-    };
-  },
-
+    data() {
+        return {
+            searchable: ['name']
+        }
+    },
   created() {
-    this.model = "user";
+    this.model = "brand";
   },
 
-  mixins: [AdminPage]
+  mixins: [AdminPage],
 };
 </script>
 

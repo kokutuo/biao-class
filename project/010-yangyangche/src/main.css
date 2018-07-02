@@ -22,6 +22,10 @@ a {
     opacity: .6;
 }
 
+table {
+    border-collapse: collapse;
+}
+
 .dib {
     display: inline-block;
 }
@@ -158,6 +162,11 @@ a {
     text-align: right;
 }
 
+button.active {
+    background: #fd521d;
+    color: #fff;
+}
+
 button,
 .btn,
 input {
@@ -170,6 +179,7 @@ input {
 button,
 .btn {
     cursor: pointer;
+    outline: 0;
 }
 
 .btn {
@@ -179,6 +189,12 @@ button,
 .btn-primary {
     background: #fd521d;
     color: #fff;
+    margin-right: 13px;
+}
+
+.btn-small {
+    padding: 3px 5px;
+    font-size: .8rem;
 }
 
 .btn-fat {
@@ -196,4 +212,8 @@ button,
 
 .currency:before {
     content: '￥';
+}
+
+.input-control {
+    margin-bottom: 15px;
 }

@@ -1,4 +1,4 @@
-import axios from 'axios';
+window.api = api;
 
 const APP_KEY = 'b766bc75ea6969373616aa2ff698e3572792d7ed6e7d4ae2dd3c95cc0f3f7578';
 const BASE_API = 'http://mock.biaoyansu.com/api/';
@@ -7,7 +7,7 @@ function sign(app_key, timestamp) {
     return btoa(app_key + timestamp);
 }
 
-export default function api(url, params) {
+function api(url, params) {
     let timestamp = (new Date).getTime();
     let signature = sign(APP_KEY, timestamp);
 
