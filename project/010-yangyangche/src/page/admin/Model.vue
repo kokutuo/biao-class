@@ -52,8 +52,10 @@
                         <tbody>
                         <tr v-for="row in list" :key="row.id">
                         <td>{{row.name}}</td>
-                        <td>{{row.brand_id}}</td>
-                        <td>{{row.design_id || '-'}}</td>
+                        <!-- <td>{{row.brand_id}}</td> -->
+                        <!-- <td>{{row.design_id || '-'}}</td> -->
+                        <td>{{row.$brand ? row.$brand.name : '-'}}</td>
+                        <td>{{row.$design ? row.$design.name:'-'}}</td>
                         <td>
                             <button class="btn-primary" @click="set_current(row)">编辑</button>
                             <button class="btn" @click="remove(row.id)">删除</button>
@@ -81,40 +83,44 @@ export default {
       model: "model",
       brand_list: [],
       design_list: [],
-      searchable: [ "name"],
+      searchable: ["name"],
+      with: [
+        { model: "brand", type: "has_one" },
+        { model: "design", type: "has_one" }
+      ]
     };
   },
 
   components: { Dropdown },
 
   methods: {
-      read_brand() {
-          api('brand/read').then(r => {
-              this.brand_list = r.data.data;
-          });
-      },
+    read_brand() {
+      api("brand/read").then(r => {
+        this.brand_list = r.data.data;
+      });
+    },
 
-      read_design() {
-          api('design/read').then(r => {
-              this.design_list = r.data.data;
-          });
-      },
+    read_design() {
+      api("design/read").then(r => {
+        this.design_list = r.data.data;
+      });
+    },
 
-      set_brand_id(row) {
-          this.$set(this.current, 'brand_id', row.id);
-      },
+    set_brand_id(row) {
+      this.$set(this.current, "brand_id", row.id);
+    },
 
-      set_design_id(row) {
-          this.$set(this.current, 'design_id', row.id);
-      },
+    set_design_id(row) {
+      this.$set(this.current, "design_id", row.id);
+    }
   },
 
   mixins: [AdminPage],
 
   mounted() {
-      this.read_brand();
-      this.read_design();
-  },
+    this.read_brand();
+    this.read_design();
+  }
 };
 </script>
 

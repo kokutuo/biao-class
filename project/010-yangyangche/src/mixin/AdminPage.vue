@@ -15,24 +15,24 @@ export default {
   data() {
     return {
       // 重要的模型状态和配置
-      model: "",    // 当前模型，不同管理页面对应着不同模型，如：'user', 'vehicle'
+      model: "", // 当前模型，不同管理页面对应着不同模型，如：'user', 'vehicle'
 
       // 搜索相关
-      keyword: "",      // 搜索关键词
-      searchable: [],   // 可搜索的所有属性
+      keyword: "", // 搜索关键词
+      searchable: [], // 可搜索的所有属性
 
       // 界面相关
-      edit_pattern: false,  // 是否在编辑模式
+      edit_pattern: false, // 是否在编辑模式
 
       // 数据相关
-      current: {},  // 正在编辑的数据
-      list: [],     // 表格中当前页的数据
+      current: {}, // 正在编辑的数据
+      list: [], // 表格中当前页的数据
 
       // 翻页相关
-      total: 0,         // 总共有多少条数据
-      last_page: 0,     // 最后一页，一开始不知道所以是零
-      current_page: 1,  // 当前页码
-      limit: 5,         // 每页显示几条
+      total: 0, // 总共有多少条数据
+      last_page: 0, // 最后一页，一开始不知道所以是零
+      current_page: 1, // 当前页码
+      limit: 5 // 每页显示几条
     };
   },
 
@@ -48,7 +48,7 @@ export default {
     /**
      * 创建或更新数据
      * create or update
-     * 
+     *
      * 具体创建还是更新决定于是否有id
      */
     cou() {
@@ -83,7 +83,11 @@ export default {
         return;
       }
 
-      api(`${this.model}/read?page=${page}&limit=${this.limit}`).then(r => {
+      api(`${this.model}/read`, {
+        page: this.page,
+        limit: this.limit,
+        with: this.with
+      }).then(r => {
         this.list = r.data.data;
         this.current_page = r.data.current_page;
         this.last_page = r.data.last_page;

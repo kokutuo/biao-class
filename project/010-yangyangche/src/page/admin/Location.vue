@@ -8,7 +8,7 @@
             <div class="col-lg-9 content">
                 <div class="header row">
                     <div class="col-lg-8 left">
-                        <div class="title">用户管理</div>
+                        <div class="title">地址管理</div>
                     </div>
                     <div class="col-lg-4 right">
                         <button @click="edit_pattern=true" class="btn-primary">添加</button>
@@ -23,20 +23,16 @@
                 </div>
                 <form v-if="edit_pattern" @submit.prevent="cou($event)">
                     <div class="input-control">
-                        <label>用户名</label>
-                        <input type="text" v-model="current.username">
+                        <label>地名</label>
+                        <input type="text" v-model="current.name">
                     </div>
                     <div class="input-control">
-                        <label>真实姓名</label>
-                        <input type="text" v-model="current.real_name">
+                        <label>行政级别</label>
+                        <input type="text" v-model="current.type">
                     </div>
                     <div class="input-control">
-                        <label>邮箱</label>
-                        <input type="e-mail" v-model="current.e_mail">
-                    </div>
-                    <div class="input-control">
-                        <label>密码</label>
-                        <input type="text" v-model="current.password">
+                        <label>上级id</label>
+                        <input type="number" v-model="current.parent_id">
                     </div>
                     <div class="input-control">
                         <button class="btn-primary" type="submit">提交</button>
