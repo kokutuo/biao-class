@@ -4,6 +4,10 @@ let vm = new Vue({
         msg: 'Hello',
         firstName: 'li',
         lastName: 'shuandan',
+        classObject: {
+            active: true,
+            'text-danger': true
+        }
     },
     methods: {
         reverseMessage: function () {

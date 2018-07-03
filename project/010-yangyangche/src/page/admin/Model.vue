@@ -55,7 +55,7 @@
                         <!-- <td>{{row.brand_id}}</td> -->
                         <!-- <td>{{row.design_id || '-'}}</td> -->
                         <td>{{row.$brand ? row.$brand.name : '-'}}</td>
-                        <td>{{row.$design ? row.$design.name:'-'}}</td>
+                        <td>{{row.$design ? row.$design.name :'-'}}</td>
                         <td>
                             <button class="btn-primary" @click="set_current(row)">编辑</button>
                             <button class="btn" @click="remove(row.id)">删除</button>

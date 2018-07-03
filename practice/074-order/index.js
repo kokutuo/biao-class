@@ -15,7 +15,6 @@ const myMixin = {
 
             let isUpdate = !!this.current.id;
             let action = isUpdate ? 'update' : 'create';
-            console.log(this.current);
 
             http
                 .post(`${this.model}/${action}`, this.current)
@@ -83,7 +82,7 @@ const Home = Vue.component('home', {
 	<div>
         <h1>欢迎来到刘背背西点餐厅</h1>
         <div class='dish-list'>
-            <div class='row dish' v-for='dish in dishList'>
+            <div class='row dish' v-for='dish in dishList' :key='dish.id'>
                 <div class='col-lg-4 thumbnail'>
                     <img :src="dish.cover_url || defaultCoverUrl" :alt="dish.name">
                 </div>
@@ -112,7 +111,8 @@ const Home = Vue.component('home', {
             //         {dishId: 1, count: 2},
             //         {dishId: 2, count: 1},
             //     ],
-            //     memo: '少放辣'
+            //     memo: '少放辣',
+            //     parent_id: xxx
             // }
         };
     },
@@ -122,6 +122,7 @@ const Home = Vue.component('home', {
                 .post('dish/read')
                 .then(res => {
                     this.dishList = res.data.data;
+                    this.resetOrder();
                 });
         },
 
@@ -129,40 +130,16 @@ const Home = Vue.component('home', {
             this.prepareOrderInfo();
 
             this.order.status = 'created';
-            console.log(this.order);
-            
+
             this
                 .mainOrderId()
                 .then(id => {
-                    console.log(id);
-
                     if (id) {
                         this.order.parent_id = id;
                     }
 
-                    let param = Object.assign({}, this.order);
-                    param.dish_info = JSON.stringify(param.dish_info);
-
-                    http.post('order/create', param);
+                    http.post('order/create', this.order);
                 });
-
-            // http
-            //     .post('order/first', {
-            //         where: {
-            //             and: {
-            //                 table_id: this.order.table_id,
-            //                 status: 'created'
-            //             }
-            //         }
-            //     })
-            //     .then(res => {
-            //         if (res.data.data) {
-            //             console.log(res);
-
-            //             this.order.parentId = res.data.data.id;
-            //         }
-            //     });
-            this.resetOrder();
         },
 
         mainOrderId: function () {
@@ -182,8 +159,10 @@ const Home = Vue.component('home', {
             });
         },
 
-        resetOrder: function name() {
-            this.order = {};
+        resetOrder: function () {
+            this.order = {
+                table_id: this.order.table_id
+            };
             this.dishList.forEach(dish => {
                 dish.$count = 0;
             });
@@ -191,8 +170,10 @@ const Home = Vue.component('home', {
 
         prepareOrderInfo: function () {
             let info = [];
+
             this.dishList.filter(dish => {
-                let count = dish.$count
+                let count = dish.$count;
+
                 if (!count) {
                     return;
                 }
@@ -204,15 +185,14 @@ const Home = Vue.component('home', {
             });
 
             this.order.dish_info = info;
+
         }
     },
     mounted() {
         this.readDish();
         this.order.table_id = this.$route.query.table_id;
     },
-    // watch: {
-    //     dishList: {
-    //         deep: true,
+    // watch: { //     dishList: { //         deep: true,
     //         handler() {
     //             console.log(this.dishList);
     //         },
@@ -500,7 +480,6 @@ new Vue({
     }),
 });
 
-
 // http
 //     .post('MODEL/CREATE', {
 //         name: 'order',
@@ -562,11 +541,11 @@ new Vue({
 // 		]
 // 	});
 
-// http.post('MODEL/CREATE_PROPERTY', {
+// http.post('MODEL/UPDATE_PROPERTY', {
 //   model     : 'order',
-//   property  : 'status',
+//   property  : 'dish',
 //   structure : {
-//     type     : 'string',
+//     type     : 'text',
 //     nullable : true,
 //   },
 // });

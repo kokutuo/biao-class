@@ -129,7 +129,7 @@ export default {
 
   mounted() {
     if (!this.model) {
-      throw new Error("请在data中配置当前也model");
+      throw new Error("请在data中配置当前model");
     }
 
     // 拿到管理页列表初始数据, 相当于点击第一页
