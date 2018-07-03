@@ -23,12 +23,18 @@
                 </div>
                 <form v-if="edit_pattern" @submit.prevent="cou($event)">
                     <div class="input-control">
-                        <label>所属品牌id</label>
-                        <input type="number" v-model="current.brand_id">
-                    </div>
-                    <div class="input-control">
                         <label>车辆型号</label>
                         <input type="text" v-model="current.name">
+                    </div>
+                    <div class="input-control">
+                        <label>所属品牌id</label>
+                        <!-- <input type="number" v-model="current.brand_id"> -->
+                        <Dropdown :list='brand_list' :onSelect='set_brand_id'/>
+                    </div>
+                    <div class="input-control">
+                        <label>车辆类型</label>
+                        <!-- <input type="number" v-model="current.brand_id"> -->
+                        <Dropdown :list='design_list' :onSelect='set_design_id'/>
                     </div>
                     <div class="input-control">
                         <button class="btn-primary" type="submit">提交</button>
@@ -38,14 +44,16 @@
                 <div v-else class="table">
                     <table>
                         <thead>
-                        <th>所属品牌</th>
                         <th>车辆型号</th>
+                        <th>所属品牌</th>
+                        <th>车辆类型</th>
                         <th>操作</th>
                         </thead>
                         <tbody>
                         <tr v-for="row in list" :key="row.id">
-                        <td>{{row.brand_id}}</td>
                         <td>{{row.name}}</td>
+                        <td>{{row.brand_id}}</td>
+                        <td>{{row.design_id || '-'}}</td>
                         <td>
                             <button class="btn-primary" @click="set_current(row)">编辑</button>
                             <button class="btn" @click="remove(row.id)">删除</button>
@@ -63,20 +71,50 @@
 <script>
 import "../../css/admin.css";
 
+import api from "../../lib/api.js";
 import AdminPage from "../../mixin/AdminPage";
+import Dropdown from "../../components/Dropdown";
 
 export default {
   data() {
     return {
-      searchable: ["brand_id", "name"]
+      model: "model",
+      brand_list: [],
+      design_list: [],
+      searchable: [ "name"],
     };
   },
 
-  created() {
-    this.model = "model";
+  components: { Dropdown },
+
+  methods: {
+      read_brand() {
+          api('brand/read').then(r => {
+              this.brand_list = r.data.data;
+          });
+      },
+
+      read_design() {
+          api('design/read').then(r => {
+              this.design_list = r.data.data;
+          });
+      },
+
+      set_brand_id(row) {
+          this.$set(this.current, 'brand_id', row.id);
+      },
+
+      set_design_id(row) {
+          this.$set(this.current, 'design_id', row.id);
+      },
   },
 
-  mixins: [AdminPage]
+  mixins: [AdminPage],
+
+  mounted() {
+      this.read_brand();
+      this.read_design();
+  },
 };
 </script>
 

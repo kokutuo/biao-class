@@ -28,6 +28,7 @@ import Vehicle from "./page/admin/Vehicle";
 import Brand from "./page/admin/Brand";
 import Model from "./page/admin/Model";
 import Design from "./page/admin/Design";
+import Location from "./page/admin/Location";
 
 export default {
   name: "Root",
@@ -45,6 +46,7 @@ export default {
     Brand,
     Model,
     Design,
+    Location,
   }
 };
 </script>

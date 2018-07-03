@@ -114,16 +114,14 @@ import "../../css/admin.css";
 import AdminPage from "../../mixin/AdminPage";
 
 export default {
-    data() {
-        return {
-            searchable: ['title', 'description']
-        }
-    },
-  created() {
-    this.model = "vehicle";
+  data() {
+    return {
+      model: "vehicle",
+      searchable: ["title", "description"]
+    };
   },
 
-  mixins: [AdminPage],
+  mixins: [AdminPage]
 };
 </script>
 

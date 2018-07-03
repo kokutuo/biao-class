@@ -62,12 +62,9 @@ import AdminPage from "../../mixin/AdminPage";
 export default {
   data() {
     return {
+      model: "design",
       searchable: ["name"]
     };
-  },
-
-  created() {
-    this.model = "design";
   },
 
   mixins: [AdminPage]

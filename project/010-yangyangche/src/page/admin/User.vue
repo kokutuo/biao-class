@@ -80,12 +80,9 @@ import AdminPage from "../../mixin/AdminPage";
 export default {
   data() {
     return {
+      model: "user",
       searchable: ["username", "real_name"]
     };
-  },
-
-  created() {
-    this.model = "user";
   },
 
   mixins: [AdminPage]

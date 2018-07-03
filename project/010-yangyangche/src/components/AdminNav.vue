@@ -6,6 +6,7 @@
             <router-link to="/admin/brand" class="nav-item">品牌管理</router-link>
             <router-link to="/admin/model" class="nav-item">型号管理</router-link>
             <router-link to="/admin/design" class="nav-item">车类管理</router-link>
+            <router-link to="/admin/location" class="nav-item">地址管理</router-link>
         </div>
 </template>
 

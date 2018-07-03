@@ -14,6 +14,7 @@ import Vehicle from './page/admin/Vehicle.vue';
 import Brand from './page/admin/Brand.vue';
 import Model from './page/admin/Model.vue';
 import Design from './page/admin/Design.vue';
+import Location from './page/admin/Location.vue';
 
 Vue.use(Router);
 
@@ -33,6 +34,7 @@ const router = new Router({
                 {path: 'brand', component: Brand},
                 {path: 'model', component: Model},
                 {path: 'design', component: Design},
+                {path: 'location', component: Location},
             ]
         },
     ]
