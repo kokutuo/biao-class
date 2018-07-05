@@ -1,6 +1,6 @@
 <template>
     <div @mouseleave='show_menu=false' class="dropdown">
-        <div @mouseenter='show_menu=true' class="selected">{{selected[displayKey] || cat || '请选择'}}</div>
+        <div @click='show_menu=true' class="selected">{{selected[displayKey] || cat || '请选择'}}</div>
         <div v-if="show_menu" class="menu">
             <div @click="select(row)" v-for="(row, index) in list" :key="index" class="list">{{row[displayKey]}}</div>
         </div>
@@ -60,5 +60,9 @@ export default {
   width: 80px;
   position: absolute;
   right: -3px;
+}
+
+.list:hover {
+    background: rgba(0, 0, 0, .1);
 }
 </style>

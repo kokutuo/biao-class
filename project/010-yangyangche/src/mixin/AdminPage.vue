@@ -84,7 +84,7 @@ export default {
       }
 
       api(`${this.model}/read`, {
-        page: this.page,
+        page: page,
         limit: this.limit,
         with: this.with
       }).then(r => {

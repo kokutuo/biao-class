@@ -149,7 +149,7 @@
                         </tbody>
                     </table>
                 </div>
-                <Pagination v-if="!edit_pattern" :limit='limit' :totalCount='total' :on-page-change='on_page_change'/>
+                <Pagination v-if="!edit_pattern" :limit='limit' :totalCount='total' :onPageChange='this.on_page_change'/>
             </div>
         </div>
     </div>
@@ -180,8 +180,6 @@ export default {
   methods: {
     read_user() {
       api("user/read").then(r => {
-        console.log(r.data.data);
-
         this.user_list = r.data.data;
       });
     },
@@ -223,5 +221,3 @@ export default {
   width: 30px;
 }
 </style>
-
-
