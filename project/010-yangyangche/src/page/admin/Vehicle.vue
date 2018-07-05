@@ -76,7 +76,7 @@
                     <div class="input-control">
                         <label>车况</label>
                         <input 
-                            v-validator="'required|positive|max:9'"
+                            v-validator="'positive|max:9'"
                             error-el='#condeition-error'
                             type="number" 
                             v-model="current.condition">

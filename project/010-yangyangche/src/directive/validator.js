@@ -269,6 +269,7 @@ function track_input(form, input) {
 function go(el_form, el_input, el_error, rule) {
     let val = el_input.value;
     let invalid = false;
+    let lang = el_form.$state.lang;
 
     // 由于错误信息可能不止一条（不是用户名还没满足最小长度）
     // 所以每一条错误信息都要一个独立的元素包含：
@@ -276,6 +277,18 @@ function go(el_form, el_input, el_error, rule) {
     // <div class="error">错误2...</div>
     let inner_msg = '';
     el_error.innerHTML = "";
+
+    if (!val && !rule.required)
+        return;
+
+    if (rule.required) {
+        try {
+            valid.required(val, lang);
+        } catch (e) {
+            set_invalid(true, e);
+            return;
+        }
+    }
 
     // 循环并验证每一条规则
     for (let type in rule) {
