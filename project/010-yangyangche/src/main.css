@@ -217,3 +217,14 @@ button,
 .input-control {
     margin-bottom: 15px;
 }
+
+.error-list {
+    margin-top: 3px;
+}
+
+.error {
+    color: #fd521d;
+    padding-top: 8px;
+    font-size: 14px;
+    line-height: 18px;
+}

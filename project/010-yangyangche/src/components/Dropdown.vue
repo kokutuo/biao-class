@@ -27,7 +27,9 @@ export default {
     select: function(row) {
       this.selected = row;
 
+          console.log(row);
       if (this.onSelect) {
+          
         this.onSelect(row);
       }
     }

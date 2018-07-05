@@ -24,7 +24,14 @@
                 <form v-if="edit_pattern" @submit.prevent="cou($event)">
                     <div class="input-control">
                         <label>标题</label>
-                        <input type="text" v-model="current.title">
+                        <input 
+                            v-validator="'required|max_length:40'"        
+                            error-el="#title-error"
+                            type="text" 
+                            v-model="current.title">
+                            <!-- <div class="error-list">
+                                <div id="title-errror"></div>
+                            </div> -->
                     </div>
                     <div class="input-control">
                         <label>价格</label>
@@ -57,6 +64,26 @@
                     <div class="input-control">
                         <label>描述</label>
                         <textarea v-model="current.description"></textarea>
+                    </div>
+                    <div class="input-control">
+                        <label>发布人
+                            <Dropdown :list='user_list' displayKey='username'/>
+                        </label>
+                    </div>
+                    <div class="input-control">
+                        <label>品牌
+                            <Dropdown :list='brand_list'/>
+                        </label>
+                    </div>
+                    <div class="input-control">
+                        <label>型号
+                            <Dropdown :list='model_list'/>
+                        </label>
+                    </div>
+                    <div class="input-control">
+                        <label>车辆类型
+                            <Dropdown :list='design_list'/>
+                        </label>
                     </div>
                     <div class="input-control check">
                         <div>
@@ -111,14 +138,55 @@
 <script>
 import "../../css/admin.css";
 
+import api from "../../lib/api.js";
 import AdminPage from "../../mixin/AdminPage";
+import validator from "../../directive/validator.js";
+import Dropdown from "../../components/Dropdown";
 
 export default {
+  directives: { validator },
+  components: { Dropdown },
   data() {
     return {
       model: "vehicle",
-      searchable: ["title", "description"]
+      searchable: ["title", "description"],
+      user_list: [],
+      brand_list: [],
+      model_list: [],
+      design_list: []
     };
+  },
+
+  methods: {
+    read_user() {
+      api("user/read").then(r => {
+          console.log(r.data.data);
+          
+        this.user_list = r.data.data;
+      });
+    },
+    read_brand() {
+      api("brand/read").then(r => {
+        this.brand_list = r.data.data;
+      });
+    },
+    read_model() {
+      api("model/read").then(r => {
+        this.model_list = r.data.data;
+      });
+    },
+    read_design() {
+      api("design/read").then(r => {
+        this.design_list = r.data.data;
+      });
+    }
+  },
+
+  mounted() {
+    this.read_user();
+    this.read_brand();
+    this.read_model();
+    this.read_design();
   },
 
   mixins: [AdminPage]
