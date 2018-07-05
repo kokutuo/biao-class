@@ -24,7 +24,10 @@
                 <form v-if="edit_pattern" @submit.prevent="cou($event)">
                     <div class="input-control">
                         <label>车辆型号</label>
-                        <input type="text" v-model="current.name">
+                        <input 
+                            v-validator="'required|max_length:32'"
+                            type="text" 
+                            v-model="current.name">
                     </div>
                     <div class="input-control">
                         <label>所属品牌id</label>

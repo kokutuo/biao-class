@@ -24,7 +24,10 @@
                 <form v-if="edit_pattern" @submit.prevent="cou($event)">
                     <div class="input-control">
                         <label>用户名</label>
-                        <input type="text" v-model="current.username">
+                        <input 
+                            v-validator="rule"
+                            type="text" 
+                            v-model="current.username">
                     </div>
                     <div class="input-control">
                         <label>真实姓名</label>
@@ -36,7 +39,10 @@
                     </div>
                     <div class="input-control">
                         <label>密码</label>
-                        <input type="text" v-model="current.password">
+                        <input 
+                            v-validator="'required|min_length:6|max_length:16'"
+                            type="text" 
+                            v-model="current.password">
                     </div>
                     <div class="input-control">
                         <button class="btn-primary" type="submit">提交</button>
@@ -83,6 +89,24 @@ export default {
       model: "user",
       searchable: ["username", "real_name"]
     };
+  },
+
+  computed: {
+      rule() {
+          let def = {
+              required: true,
+              username: true,
+              min_length: 3,
+              max_length: 18,
+              not_exist: ['user', 'username'],
+          };
+
+          if (this.is_update) {
+              def.not_exist.push(this.current.username);
+          }
+
+          return def;
+      }
   },
 
   mixins: [AdminPage]

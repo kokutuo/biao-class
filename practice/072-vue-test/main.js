@@ -7,7 +7,20 @@ let vm = new Vue({
         classObject: {
             active: true,
             'text-danger': true
-        }
+        },
+        list: [{
+                name: 'a',
+                id: 1
+            },
+            {
+                name: 'b',
+                id: 2
+            },
+            {
+                name: 'c',
+                id: 3
+            },
+        ]
     },
     methods: {
         reverseMessage: function () {
@@ -36,4 +49,11 @@ let vm = new Vue({
     //         this.fullName = this.firstName + ' ' + val;
     //     }
     // }
-})
+});
+
+vm.list.splice(0, 1, {
+    name: 'z',
+    id: 4
+});
+
+vm.list.splice(2);

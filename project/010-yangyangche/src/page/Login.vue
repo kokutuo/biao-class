@@ -39,11 +39,11 @@
 import "../css/auth.css";
 
 import Nav from "../components/Nav";
-import validator from "../directive/validator.js";
+// import validator from "../directive/validator.js";
 
 export default {
   components: { Nav },
-  directives: { validator }
+//   directives: { validator }
 };
 </script>
 

@@ -1,11 +1,15 @@
 <script>
 import api from "../lib/api";
 
+import validator from "../directive/validator.js";
+
 import Nav from "../components/Nav";
 import AdminNav from "../components/AdminNav";
 import Pagination from "../components/Pagination";
 
 export default {
+  directives: { validator },
+
   components: {
     Nav,
     AdminNav,
@@ -117,6 +121,7 @@ export default {
      * 离开编辑模式并清空表单数据
      */
     cancle() {
+
       this.edit_pattern = false;
       this.current = {};
     },
@@ -124,6 +129,10 @@ export default {
     set_current(row) {
       this.current = row;
       this.edit_pattern = true;
+    },
+
+    is_update() {
+        return !!this.current.id;
     }
   },
 

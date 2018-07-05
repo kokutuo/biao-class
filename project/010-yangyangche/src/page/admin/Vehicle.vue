@@ -87,22 +87,22 @@
                     </div>
                     <div class="input-control">
                         <label>发布人
-                            <Dropdown :list='user_list' displayKey='username'/>
+                            <Dropdown :default='current.user_id' :list='user_list' displayKey='username' :onSelect='set_user_id'/>
                         </label>
                     </div>
                     <div class="input-control">
                         <label>品牌
-                            <Dropdown :list='brand_list'/>
+                            <Dropdown :default='current.brand_id' :list='brand_list' :onSelect='set_brand_id'/>
                         </label>
                     </div>
                     <div class="input-control">
                         <label>型号
-                            <Dropdown :list='model_list'/>
+                            <Dropdown :default='current.model_id' :list='model_list' :onSelect='set_model_id'/>
                         </label>
                     </div>
                     <div class="input-control">
                         <label>车辆类型
-                            <Dropdown :list='design_list'/>
+                            <Dropdown :default='current.design_id' :list='design_list' :onSelect='set_design_id'/>
                         </label>
                     </div>
                     <div class="input-control check">
@@ -158,13 +158,13 @@
 <script>
 import "../../css/admin.css";
 
-import api from "../../lib/api.js";
+// import api from "../../lib/api.js";
 import AdminPage from "../../mixin/AdminPage";
-import validator from "../../directive/validator.js";
+// import validator from "../../directive/validator.js";
 import Dropdown from "../../components/Dropdown";
 
 export default {
-  directives: { validator },
+  //   directives: { validator },
   components: { Dropdown },
   data() {
     return {
@@ -197,6 +197,18 @@ export default {
       api("design/read").then(r => {
         this.design_list = r.data.data;
       });
+    },
+    set_user_id(row) {
+      this.$set(this.current, "user_id", row.id);
+    },
+    set_brand_id(row) {
+      this.$set(this.current, "brand_id", row.id);
+    },
+    set_model_id(row) {
+      this.$set(this.current, "model_id", row.id);
+    },
+    set_design_id(row) {
+      this.$set(this.current, "design_id", row.id);
     }
   },
 

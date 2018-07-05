@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import validator from "../directive/validator.js";
+// import validator from "../directive/validator.js";
 export default {};
 </script>
 

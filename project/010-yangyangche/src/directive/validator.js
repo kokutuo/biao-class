@@ -122,9 +122,9 @@ const valid = {
         return r;
     },
 
-    not_exist(val, lang, model, property) {
+    not_exist(val, lang, model, property, except) {
         return new Promise((s, j) => {
-            if (!val)
+            if (!val || val == except)
                 s();
 
             return api(`${model}/first`, {
@@ -276,7 +276,7 @@ function go(el_form, el_input, el_error, rule) {
     // <div class="error">错误1...</div>
     // <div class="error">错误2...</div>
     let inner_msg = '';
-    el_error.innerHTML = "";
+    set_invalid(false);
 
     if (!val && !rule.required)
         return;
