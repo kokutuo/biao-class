@@ -35,19 +35,35 @@
                     </div>
                     <div class="input-control">
                         <label>价格</label>
-                        <input type="number" v-model="current.price">
+                        <input 
+                            v-validator="'positive|numeric'"
+                            error-el='#price-error'
+                            type="number"
+                            v-model="current.price">
                     </div>
                     <div class="input-control">
                         <label>卖车原因</label>
-                        <input type="text" v-model="current.publish_reason">
+                        <input 
+                            v-validator="'max_length:140'"
+                            error-el='#publish_reason-error'
+                            type="text"
+                            v-model="current.publish_reason">
                     </div>
                     <div class="input-control">
                         <label>当前里程</label>
-                        <input type="number" v-model="current.consumed_distance">
+                        <input 
+                            v-validator="'positive|numeric'"
+                            error-el='#consumed_distance-error'
+                            type="number" 
+                            v-model="current.consumed_distance">
                     </div>
                     <div class="input-control">
                         <label>过户次数</label>
-                        <input type="number" v-model="current.exchange_times">
+                        <input 
+                            v-validator="'positive|numeric'"
+                            error-el='#exchange_times'
+                            type="number" 
+                            v-model="current.exchange_times">
                     </div>
                     <div class="input-control">
                         <label>第一次上牌时间</label>
@@ -59,7 +75,11 @@
                     </div>
                     <div class="input-control">
                         <label>车况</label>
-                        <input type="number" v-model="current.condition">
+                        <input 
+                            v-validator="'required|positive|max:9'"
+                            error-el='#condeition-error'
+                            type="number" 
+                            v-model="current.condition">
                     </div>
                     <div class="input-control">
                         <label>描述</label>
@@ -160,8 +180,8 @@ export default {
   methods: {
     read_user() {
       api("user/read").then(r => {
-          console.log(r.data.data);
-          
+        console.log(r.data.data);
+
         this.user_list = r.data.data;
       });
     },

@@ -2,7 +2,7 @@
     <div @mouseleave='show_menu=false' class="dropdown">
         <div @mouseenter='show_menu=true' class="selected">{{selected[displayKey] || cat || '请选择'}}</div>
         <div v-if="show_menu" class="menu">
-            <div @click="select(row)" v-for="(row, index) in list" :key="index" class="list">{{row.name}}</div>
+            <div @click="select(row)" v-for="(row, index) in list" :key="index" class="list">{{row[displayKey]}}</div>
         </div>
     </div>
 </template>
