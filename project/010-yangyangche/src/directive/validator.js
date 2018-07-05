@@ -134,8 +134,8 @@ const valid = {
                         }
                     }
                 })
-                .then(r => {
-                    return r.data ? j('用户名已存在') : s(true);
+                .then(r => {                    
+                    return r.data.data ? j('用户名已存在') : s(true);
                 });
         });
     },
@@ -281,9 +281,10 @@ function go(el_form, el_input, el_error, rule) {
     for (let type in rule) {
         // type是每一类验证规则如'required'或'username'
         let arg = rule[type]; // 获取传参，如'min_length:4'中的'4'
+        
         let validator = valid[type].bind(valid); // 获取验证函数
         try {
-            let args = [val, el_form.$state.lang].concat(arg);
+            let args = [val, el_form.$state.lang].concat(arg);            
 
             if (!invalid) {
                 let result = validator(...args);

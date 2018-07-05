@@ -1,6 +1,6 @@
 <template>
     <div @mouseleave='show_menu=false' class="dropdown">
-        <div @click='show_menu=true' class="selected">{{selected[displayKey] || cat || '请选择'}}</div>
+        <div @click='show_menu=true' class="selected">{{selected[displayKey] || '请选择'}}</div>
         <div v-if="show_menu" class="menu">
             <div @click="select(row)" v-for="(row, index) in list" :key="index" class="list">{{row[displayKey]}}</div>
         </div>
@@ -10,9 +10,12 @@
 <script>
 export default {
   props: {
-    list: null,
-    onSelect: null,
-    cat: null,
+    list: {},
+    default: {},
+    onSelect: {},
+    primaryKey: {
+        default: 'id',
+    },
     displayKey: {
       default: "name"
     }
@@ -26,14 +29,35 @@ export default {
   methods: {
     select: function(row) {
       this.selected = row;
+      this.show_menu = false;
 
-          console.log(row);
       if (this.onSelect) {
-          
         this.onSelect(row);
       }
+    },
+
+    set_default() {
+        let key = this.default;
+
+        if (key) {
+            let def = this.list.find(row => {
+                return row[this.primaryKey] == key;
+            });
+            this.select(def);
+        }
     }
-  }
+  },
+  mounted() {
+      this.set_default();
+  },
+  watch: {
+      default: {
+          deep: true,
+          handle() {
+              this.set_default();
+          }
+      }
+  },
 };
 </script>
 

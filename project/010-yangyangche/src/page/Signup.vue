@@ -15,7 +15,7 @@
                 <div class="input-control">
                   <input 
                         id="username"
-                        v-validator="'required|username|min_length:3|max_length:5'" 
+                        v-validator="'required|username|not_exist:user,username|min_length:3|max_length:18'" 
                         error-el="#username-error" 
                         type="text" 
                         placeholder="用户名">
@@ -24,13 +24,22 @@
                   </div>
                 </div>
                 <div class="input-control">
-                  <input id="password" type="password" placeholder="密码">
+                  <input 
+                        id="password" 
+                        v-validator="'required|min_length:6|max_length:16'"
+                        error-el="#password-error"
+                        type="password" 
+                        placeholder="密码">
                     <div class="error-list">
                       <div id="password-error"></div>
                   </div>
                 </div>
                 <div class="input-control">
-                  <input id="repeat" type="password" placeholder="再次输入密码">
+                  <input 
+                        id="repeat" 
+                        v-validator="'required|min_length:6|max_length:16'"
+                        type="password" 
+                        placeholder="再次输入密码">
                 </div>
                 <div class="input-control">
                   <button class="btn-primary" type="submit">立即注册</button>

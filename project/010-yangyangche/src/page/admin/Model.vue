@@ -29,12 +29,12 @@
                     <div class="input-control">
                         <label>所属品牌id</label>
                         <!-- <input type="number" v-model="current.brand_id"> -->
-                        <Dropdown :list='brand_list' :onSelect='set_brand_id'/>
+                        <Dropdown :default='current.brand_id' :list='brand_list' :onSelect='set_brand_id'/>
                     </div>
                     <div class="input-control">
                         <label>车辆类型</label>
                         <!-- <input type="number" v-model="current.brand_id"> -->
-                        <Dropdown :list='design_list' :onSelect='set_design_id'/>
+                        <Dropdown :default='current.design_id' :list='design_list' :onSelect='set_design_id'/>
                     </div>
                     <div class="input-control">
                         <button class="btn-primary" type="submit">提交</button>

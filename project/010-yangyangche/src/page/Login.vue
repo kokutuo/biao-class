@@ -6,10 +6,22 @@
         <form class="main-form">
           <h1>登录</h1>
           <div class="input-control">
-            <input id="username" v-validator="'required|min_length:3|max_length:5'" type="text" placeholder="用户名" autocomplete="off" autofocus>
+            <input 
+                id="username" 
+                v-validator="'required|min_length:3|max_length:18'"
+                error-el="username-error"
+                type="text"
+                placeholder="用户名"
+                autocomplete="off"
+                autofocus>
           </div>
           <div class="input-control">
-            <input id="password" type="password" placeholder="密码">
+            <input 
+                id="password" 
+                v-validator="'required|min_length:6|max_length:16'"
+                error-el="#password-error"
+                type="password" 
+                placeholder="密码">
           </div>
           <div class="input-control">
             <button class="btn-primary" type="submit">登录</button>
@@ -31,7 +43,7 @@ import validator from "../directive/validator.js";
 
 export default {
   components: { Nav },
-  directives: { validator },
+  directives: { validator }
 };
 </script>
 
