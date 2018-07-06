@@ -1,20 +1,28 @@
 <template>
     <div @mouseleave='show_menu=false' class="dropdown">
-        <div @click='show_menu=true' class="selected">{{selected[displayKey] || '请选择'}}</div>
-        <div v-if="show_menu" class="menu">
-            <div @click="select(row)" v-for="(row, index) in list" :key="index" class="list">{{row[displayKey]}}</div>
+        <input v-if="api" @keyup="show_menu=true" v-model="keyword" type="search">
+        <div v-if="list.length"  @click='show_menu=true' class="selected">{{selected[displayKey] || '请选择'}}</div>
+        <div v-if="show_menu && list.length" class="menu">
+            <div @click="select(row)" v-for="(row, index) in result" :key="index" class="list">{{row[displayKey]}}</div>
         </div>
     </div>
 </template>
 
 <script>
+import api from '../lib/api';
+
 export default {
   props: {
-    list: {},
+    api: {},
+    list: {
+      default() {
+        return [];
+      }
+    },
     default: {},
     onSelect: {},
     primaryKey: {
-        default: 'id',
+      default: "id"
     },
     displayKey: {
       default: "name"
@@ -22,14 +30,18 @@ export default {
   },
   data: function() {
     return {
+      result: [],
+      keyword: "",
       selected: {},
-      show_menu: false
+      show_menu: false,
+      timer: null,
     };
   },
   methods: {
-    select: function(row) {
+    select(row) {
       this.selected = row;
       this.show_menu = false;
+      this.keyword = row[this.displayKey];
 
       if (this.onSelect) {
         this.onSelect(row);
@@ -37,38 +49,59 @@ export default {
     },
 
     set_default() {
-        let key = this.default;
+      let key = this.default;
 
-        if (key) {
-            let def = this.list.find(row => {
-                return row[this.primaryKey] == key;
-            });
-            this.select(def);
-        }
+      if (key) {
+        let def = this.list.find(row => {
+          return row[this.primaryKey] == key;
+        });
+        this.select(def);
+      }
     }
   },
+
   mounted() {
-      this.set_default();
+    this.set_default();
+    let list = this.list;
+    list && (this.result = this.list);
   },
+
   watch: {
-      default: {
-          deep: true,
-          handle() {
-              this.set_default();
-          }
+    default: {
+      deep: true,
+      handler() {
+        this.set_default();
       }
+    },
+
+    keyword() {
+        let condition = {};
+
+        this.api.property.forEach(prop => {
+            condition[prop] = this.keyword;
+        });
+
+        clearTimeout(this.timer);
+
+        this.timer = setTimeout(() => {
+            api(`${this.api.model}/search`, {or: condition})
+                .then(r => {
+                    this.result = r.data.data;
+                });
+        }, 300);
+    }
   },
 };
 </script>
 
 <style scoped>
 .dropdown {
-    position: relative;
+  position: relative;
   display: inline-block;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 3px 15px;
-    margin-right: 10px
+  padding: 3px 15px;
+  margin-right: 10px;
 }
 
 .selected,
@@ -87,6 +120,6 @@ export default {
 }
 
 .list:hover {
-    background: rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, 0.1);
 }
 </style>

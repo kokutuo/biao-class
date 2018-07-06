@@ -87,7 +87,7 @@
                     </div>
                     <div class="input-control">
                         <label>发布人
-                            <Dropdown :default='current.user_id' :list='user_list' displayKey='username' :onSelect='set_user_id'/>
+                            <Dropdown :api="{model: 'user', property: ['username', 'real_name']}" :default='current.user_id' :list='user_list' displayKey='username' :onSelect='set_user_id'/>
                         </label>
                     </div>
                     <div class="input-control">
@@ -158,7 +158,7 @@
 <script>
 import "../../css/admin.css";
 
-// import api from "../../lib/api.js";
+import api from "../../lib/api.js";
 import AdminPage from "../../mixin/AdminPage";
 // import validator from "../../directive/validator.js";
 import Dropdown from "../../components/Dropdown";
