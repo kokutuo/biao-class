@@ -92,7 +92,7 @@
                                 :default='current.user_id' 
                                 :list='user_list' 
                                 displayKey='username' 
-                                :onSelect='set_user_id'/>
+                                :onSelect='set_publisher_id'/>
                         </label>
                     </div>
                     <div class="input-control">
@@ -203,7 +203,7 @@ export default {
         this.design_list = r.data.data;
       });
     },
-    set_user_id(row) {
+    set_publisher_id(row) {
       this.$set(this.current, "user_id", row.id);
     },
     set_brand_id(row) {

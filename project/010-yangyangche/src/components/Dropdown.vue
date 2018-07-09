@@ -61,22 +61,22 @@ export default {
     },
 
     parse_api() {
-        let api_prop = this.api;
-        if (typeof api_prop != 'string') {
-            return Object.assign({}, api_prop);
-        }
+      let api_prop = this.api;
+      if (typeof api_prop != "string") {
+        return Object.assign({}, api_prop);
+      }
 
-        api_prop =api_prop.split('.');
-        let model = api_prop[0];
-        let property = api_prop[1];
+      api_prop = api_prop.split(".");
+      let model = api_prop[0];
+      let property = api_prop[1];
 
-        property = property.split(',');
+      property = property.split(",");
 
-        return {
-            model,
-            property
-        };
-    },
+      return {
+        model,
+        property
+      };
+    }
   },
 
   mounted() {
@@ -96,8 +96,13 @@ export default {
 
     keyword() {
       let condition = {};
+      let property = this.api_conf.property;
 
       if (!this.api) {
+        return;
+      }
+
+      if (!property) {
         return;
       }
 
