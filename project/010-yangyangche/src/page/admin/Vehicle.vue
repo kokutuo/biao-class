@@ -86,29 +86,29 @@
                         <textarea v-model="current.description"></textarea>
                     </div>
                     <div class="input-control">
-                        <label>发布人
+                        <label>发布人</label>
                             <Dropdown 
                                 :api="{model: 'user', property: ['username', 'real_name']}" 
                                 :default='current.user_id' 
                                 :list='user_list' 
                                 displayKey='username' 
                                 :onSelect='set_publisher_id'/>
-                        </label>
                     </div>
                     <div class="input-control">
-                        <label>品牌
+                        <label>品牌</label>
                             <Dropdown :default='current.brand_id' :list='brand_list' :onSelect='set_brand_id'/>
-                        </label>
                     </div>
                     <div class="input-control">
-                        <label>型号
+                        <label>型号</label>
                             <Dropdown :default='current.model_id' :list='model_list' :onSelect='set_model_id'/>
-                        </label>
                     </div>
                     <div class="input-control">
-                        <label>车辆类型
+                        <label>车辆类型</label>
                             <Dropdown :default='current.design_id' :list='design_list' :onSelect='set_design_id'/>
-                        </label>
+                    </div>
+                    <div class="input-control">
+                        <label>所属位置</label>
+                        <Location :onSelect="set_location_id"/>
                     </div>
                     <div class="input-control check">
                         <div>
@@ -165,12 +165,11 @@ import "../../css/admin.css";
 
 import api from "../../lib/api.js";
 import AdminPage from "../../mixin/AdminPage";
-// import validator from "../../directive/validator.js";
 import Dropdown from "../../components/Dropdown";
+import Location from "../../components/Location";
 
 export default {
-  //   directives: { validator },
-  components: { Dropdown },
+  components: { Dropdown, Location },
   data() {
     return {
       model: "vehicle",
@@ -214,6 +213,9 @@ export default {
     },
     set_design_id(row) {
       this.$set(this.current, "design_id", row.id);
+    },
+    set_location_id(row) {
+      this.$set(this.current, "location_id", row.id);
     }
   },
 
