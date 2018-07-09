@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import api from '../lib/api';
+import api from "../lib/api";
 
 export default {
   props: {
@@ -30,11 +30,12 @@ export default {
   },
   data: function() {
     return {
+      api_conf: {},
       result: [],
       keyword: "",
       selected: {},
       show_menu: false,
-      timer: null,
+      timer: null
     };
   },
   methods: {
@@ -57,12 +58,31 @@ export default {
         });
         this.select(def);
       }
-    }
+    },
+
+    parse_api() {
+        let api_prop = this.api;
+        if (typeof api_prop != 'string') {
+            return Object.assign({}, api_prop);
+        }
+
+        api_prop =api_prop.split('.');
+        let model = api_prop[0];
+        let property = api_prop[1];
+
+        property = property.split(',');
+
+        return {
+            model,
+            property
+        };
+    },
   },
 
   mounted() {
     this.set_default();
     let list = this.list;
+    this.api_conf = this.parse_api();
     list && (this.result = this.list);
   },
 
@@ -75,26 +95,25 @@ export default {
     },
 
     keyword() {
-        let condition = {};
+      let condition = {};
 
-        if (!this.api) {
-            return;
-        }
+      if (!this.api) {
+        return;
+      }
 
-        this.api.property.forEach(prop => {
-            condition[prop] = this.keyword;
+      this.api_conf.property.forEach(prop => {
+        condition[prop] = this.keyword;
+      });
+
+      clearTimeout(this.timer);
+
+      this.timer = setTimeout(() => {
+        api(`${this.api_conf.model}/search`, { or: condition }).then(r => {
+          this.result = r.data.data;
         });
-
-        clearTimeout(this.timer);
-
-        this.timer = setTimeout(() => {
-            api(`${this.api.model}/search`, {or: condition})
-                .then(r => {
-                    this.result = r.data.data;
-                });
-        }, 300);
+      }, 300);
     }
-  },
+  }
 };
 </script>
 
