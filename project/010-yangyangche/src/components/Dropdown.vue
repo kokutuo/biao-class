@@ -3,7 +3,7 @@
         <input v-if="api" @keyup="show_menu=true" v-model="keyword" type="search">
         <div v-if="list.length"  @click='show_menu=true' class="selected">{{selected[displayKey] || '请选择'}}</div>
         <div v-if="show_menu && list.length" class="menu">
-            <div @click="select(row)" v-for="(row, index) in result" :key="index" class="list">{{row[displayKey]}}</div>
+            <div @click="select(row)" v-for="row in result" :key="row[displayKey]" class="list">{{row[displayKey]}}</div>
         </div>
     </div>
 </template>
@@ -76,6 +76,10 @@ export default {
 
     keyword() {
         let condition = {};
+
+        if (!this.api) {
+            return;
+        }
 
         this.api.property.forEach(prop => {
             condition[prop] = this.keyword;
