@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Location/>
+      <Location :onSelect="tmp"/>
     <!-- <router-view></router-view> -->
   </div>
 </template>
