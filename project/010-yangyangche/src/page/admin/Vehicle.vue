@@ -36,9 +36,9 @@
                     <div class="input-control">
                         <label>价格</label>
                         <input 
-                            v-validator="'positive'"
+                            v-validator="'positive|numeric'"
                             error-el='#price-error'
-                            type="number"
+                            type="text"
                             v-model="current.price">
                     </div>
                     <div class="input-control">
@@ -140,7 +140,7 @@
                     <table>
                         <thead>
                         <th>标题</th>
-                        <th>价格</th>
+                        <th>价格（万元）</th>
                         <th>里程</th>
                         <th>预期出售时间</th>
                         <th>车况</th>

@@ -5,7 +5,7 @@
   }">
     <div class="row container">
       <div class="col left">
-        <a class="logo"></a>
+        <router-link to="/" class="logo"></router-link>
         <a href="#" class="nav-item">Item</a>
         <a href="#" class="nav-item">Item</a>
         <a href="#" class="nav-item">Item</a>
