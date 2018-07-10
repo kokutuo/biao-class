@@ -143,12 +143,16 @@
 
 <script>
 import Nav from "../components/Nav";
+import VehicleList from "../mixin/VehicleList";
+
 import api from "../lib/api.js";
 
 import "../css/vehicle-list.css";
 
 export default {
   components: { Nav },
+
+  mixins: [VehicleList],
 
   mounted() {
     this.read_main("on_sale");
@@ -169,7 +173,6 @@ export default {
   methods: {
     find_design(name) {
       api("design/search", { or: { name: name } }).then(r => {
-
         this.design[name] = r.data.data[0];
       });
     },
@@ -223,20 +226,16 @@ export default {
           };
           break;
         case "urgent":
-          let date = new Date;
+          let date = new Date();
           date.setDate(date.getDate() + 3);
-          date = date.toISOString().split('T')[0];
-          condition = {query: `where("deadline" <= "${date}")`};
+          date = date.toISOString().split("T")[0];
+          condition = { query: `where("deadline" <= "${date}")` };
           break;
       }
 
       api("vehicle/read", condition).then(r => {
         this["main_list"] = r.data.data;
       });
-    },
-
-    get_main_cover_url(row) {
-      return row.preview && row.preview[0] && row.preview[0].url ? row.preview[0].url : 'https://i.loli.net/2018/07/06/5b3f160071a17.jpg'
     }
   }
 };

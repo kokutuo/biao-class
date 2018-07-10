@@ -2,7 +2,7 @@
     <div>
         <Nav :push-down='true' />
         <div class="container">
-            <SearchBar width='80%'/>
+            <SearchBar :onSubmit="on_submit" width='80%'/>
         </div>
         <div class="container">
             <div class="filter-list">
@@ -60,16 +60,16 @@
                 <div class="kill-space filter">
                     <div class="col-lg-1 prop">更多</div>
                     <div class="col-lg-10 range">
-                        <Dropdown cat='车龄' :list='tmp'/>
-                        <Dropdown cat='变速箱' :list='tmp'/>
-                        <Dropdown cat='车型' :list='tmp'/>
-                        <Dropdown cat='里程' :list='tmp'/>
-                        <Dropdown cat='排量' :list='tmp'/>
-                        <Dropdown cat='排放标准' :list='tmp'/>
-                        <Dropdown cat='座位数' :list='tmp'/>
-                        <Dropdown cat='燃油类型' :list='tmp'/>
-                        <Dropdown cat='颜色' :list='tmp'/>
-                        <Dropdown cat='车牌所在地' :list='tmp'/>
+                        <!-- <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/> -->
                     </div>
                     <div class="col-lg-1 right others"></div>
                 </div>

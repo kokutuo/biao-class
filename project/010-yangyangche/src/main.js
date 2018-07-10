@@ -9,7 +9,7 @@ import Home from './page/Home.vue';
 import Signup from './page/Signup.vue';
 import Login from './page/Login.vue';
 import Detail from './page/Detail.vue';
-import SearchResult from './page/SearchResult.vue';
+import Search from './page/Search.vue';
 import AdminBase from './page/admin/Base.vue';
 import User from './page/admin/User.vue';
 import Vehicle from './page/admin/Vehicle.vue';
@@ -28,7 +28,7 @@ const router = new Router({
         {path: '/signup', component: Signup},
         {path: '/login', component: Login},
         {path: '/detail', component: Detail},
-        {path: '/search-result', component: SearchResult},
+        {path: '/search', component: Search},
         {
             path: '/admin',
             component: AdminBase,
