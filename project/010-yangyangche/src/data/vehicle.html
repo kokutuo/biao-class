@@ -78,5 +78,14 @@
         },
     };
 
-    api('MODEL/CREATE', vehicle);
+    api('MODEL/UPDATE_PROPERTY', {
+        model: 'vehicle',
+        property: 'deadline',
+        structure: {
+            type: 'dateTime',
+        }
+    });
+
+    // api('MODEL/CREATE', vehicle);
+    // api('vehicle/read');
 </script>

@@ -95,138 +95,26 @@
     <div>
       <div class="vehicle-nav">
         <div class="container">
-          <div class="item">特价好车</div>
-          <div class="item">5万以下</div>
-          <div class="item">5-10万</div>
-          <div class="item">超值SUV</div>
-          <div class="item">急售降价车</div>
-          <div class="item">更多</div>
+          <div @click="read('on_sale')" class="item">特价好车</div>
+          <div @click="read('under_5')" class="item">5万以下</div>
+          <div @click="read('between_5_10')" class="item">5-10万</div>
+          <div @click="read('suv')" class="item">超值SUV</div>
+          <div @click="read('urgent')" class="item">急售降价车</div>
+          <router-link to="/search_result" class="item">更多</router-link>
         </div>
       </div>
       <div class="vehicle-list">
         <div class="container">
-          <div class="col-lg-3">
+          <div v-for="row in main_list" :key="row.id" class="col-lg-3">
             <div class="card">
               <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
+                <img :src="row.preview ? row.preview[0].url : 'https://i.loli.net/2018/07/06/5b3f160071a17.jpg'" alt="洋洋车">
               </div>
               <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
+                <div class="title">{{row.title}}</div>
                 <div class="desc">2015年02月 / 3.07万公里</div>
                 <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
+                  <span class="price">{{row.price}}</span>
                   <span>首付3.5万</span>
                   <a class="btn btn-primary buy">购买</a>
                 </div>
@@ -244,64 +132,132 @@
 </template>
 
 <script>
-  import Nav from '../components/Nav';
+import Nav from "../components/Nav";
+import api from "../lib/api.js";
 
-  import '../css/vehicle-list.css'
+import "../css/vehicle-list.css";
 
-  export default {
-    components : { Nav },
-  };
+export default {
+  components: { Nav },
+
+  mounted() {
+    this.read("on_sale");
+    this.find_design("suv");
+  },
+
+  data() {
+    return {
+      design: {},
+      main_list: []
+    };
+  },
+
+  methods: {
+    find_design(name) {
+      api("design/search", { or: { name: name } }).then(r => {
+        console.log("design: ", r.data.data);
+
+        this.design[name] = r.data.data[0];
+      });
+    },
+
+    read(type) {
+      let condition = {};
+
+      switch (type) {
+        case "on_sale":
+          condition = {
+            where: {
+              and: {
+                on_sale: true
+              }
+            }
+          };
+          break;
+        case "under_5":
+          condition = {
+            where: {
+              and: [["price", "<", "5"]]
+            }
+          };
+          break;
+        case "between_5_10":
+          condition = {
+            where: {
+              and: [["price", ">", "5"], ["price", "<", "10"]]
+            }
+          };
+          break;
+        case "suv":
+          condition = {
+            where: {
+              and: {
+                design_id: this.design.suv.id
+              }
+            }
+          };
+          break;
+        case "urgent":
+          break;
+      }
+
+      api("vehicle/read", condition).then(r => {
+        this["main_list"] = r.data.data;
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>
-  .query-area {
-    padding: 15px;
-    background: #fff;
-  }
+.query-area {
+  padding: 15px;
+  background: #fff;
+}
 
-  .tag {
-    display: inline-block;
-    font-size: .7rem;
-    padding: 5px;
-    cursor: pointer;
-  }
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 5px;
+  cursor: pointer;
+}
 
-  .huge-text {
-    position: relative;
-    top: 5px;
-    left: 20px;
-    color: #fd521d;
-  }
+.huge-text {
+  position: relative;
+  top: 5px;
+  left: 20px;
+  color: #fd521d;
+}
 
-  .guarantee .col-lg-3 {
-    padding: 20px;
-  }
+.guarantee .col-lg-3 {
+  padding: 20px;
+}
 
-  .guarantee .card {
-    padding: 15px;
-    background: #fff;
-  }
+.guarantee .card {
+  padding: 15px;
+  background: #fff;
+}
 
-  .guarantee .title {
-    margin-bottom: 10px;
-  }
+.guarantee .title {
+  margin-bottom: 10px;
+}
 
-  .guarantee .desc {
-    font-size: .7rem;
-    color: #999;
-  }
+.guarantee .desc {
+  font-size: 0.7rem;
+  color: #999;
+}
 
-  .vehicle-nav .item {
-    display: inline-block;
-    width: 16.66666666666%;
-    text-align: center;
-    background: #fff;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-left-width: 0;
-  }
+.vehicle-nav .item {
+  display: inline-block;
+  width: 16.66666666666%;
+  text-align: center;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left-width: 0;
+}
 
-  .vehicle-nav .item:first-child {
-    border-left-width: 1px;
-  }
+.vehicle-nav .item:first-child {
+  border-left-width: 1px;
+}
 </style>

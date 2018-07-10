@@ -129,6 +129,10 @@ export default {
     set_current(row) {
       this.current = row;
       this.edit_pattern = true;
+
+      if (this.after_set_current) {
+          this.after_set_current();
+      }
     },
 
     is_update() {

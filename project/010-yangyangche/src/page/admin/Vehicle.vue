@@ -36,7 +36,7 @@
                     <div class="input-control">
                         <label>价格</label>
                         <input 
-                            v-validator="'positive|numeric'"
+                            v-validator="'positive'"
                             error-el='#price-error'
                             type="number"
                             v-model="current.price">
@@ -67,11 +67,11 @@
                     </div>
                     <div class="input-control">
                         <label>第一次上牌时间</label>
-                        <input type="datetime-local" v-model="current.birthday">
+                        <input type="date" v-model="current.birthday">
                     </div>
                     <div class="input-control">
                         <label>预期出售时间</label>
-                        <input type="datetime-local" v-model="current.deadline">
+                        <input type="date" v-model="current.deadline">
                     </div>
                     <div class="input-control">
                         <label>车况</label>
@@ -80,6 +80,17 @@
                             error-el='#condeition-error'
                             type="number" 
                             v-model="current.condition">
+                    </div>
+                    <div class="input-control">
+                        <label>封面地址</label>
+                        <div style="margin-bottom: 5px;">
+                            <div v-for="(p, i) in current.preview" :key="i" class="input-group-3">
+                                <input type="text" placeholder="部位，如：车头、车尾等" v-model="p.name">
+                                <input type="url" placeholder="图片地址" v-model="p.url">
+                                <button @click="current.preview.splice(i, 1)" type="button">-</button>
+                            </div>
+                        </div>
+                        <button @click="current.preview.push({})" type="button">+   </button>
                     </div>
                     <div class="input-control">
                         <label>描述</label>
@@ -174,6 +185,9 @@ export default {
     return {
       model: "vehicle",
       searchable: ["title", "description"],
+      current: {
+          preview: [],
+      },
       user_list: [],
       brand_list: [],
       model_list: [],
@@ -216,6 +230,9 @@ export default {
     },
     set_location_id(row) {
       this.$set(this.current, "location_id", row.id);
+    },
+    after_set_current() {
+        this.current.preview = this.current.preview || [];
     }
   },
 
