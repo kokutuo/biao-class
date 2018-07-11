@@ -54,6 +54,10 @@ export default {
     };
   },
 
+  mounted() {
+    this.current_page = this.currentPage;
+  },
+
   methods: {
     change(page) {
       if (this.onPageChange) {
@@ -79,6 +83,7 @@ export default {
         this.change(++this.current_page);
     }
   },
+
   computed: {
     last_page() {
       return Math.ceil(this.totalCount / this.limit);
@@ -94,6 +99,12 @@ export default {
 
     is_last_page() {
         return this.current_page == this.last_page;
+    }
+  },
+
+  watch: {
+    currentPage(n) {
+      this.current_page = n;
     }
   }
 };

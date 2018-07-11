@@ -102,6 +102,11 @@
                 </div>
             </div>  
             <div v-else class="empty-holder">暂无内容</div>
+            <pagination 
+              :totalCount="total" 
+              :limit="limit" 
+              :onPageChange="on_page_change" 
+              :currentPage="search_param.page"/>
         </div>
     </div>
 </template>
@@ -110,6 +115,7 @@
 import Nav from "../components/Nav";
 import SearchBar from "../components/SearchBar";
 import Dropdown from "../components/Dropdown";
+import Pagination from "../components/Pagination";
 
 import Reader from "../mixin/Reader.vue";
 import VehicleList from "../mixin/VehicleList.vue";
@@ -123,40 +129,41 @@ export default {
   components: {
     Nav,
     SearchBar,
-    Dropdown
+    Dropdown,
+    Pagination
   },
 
   mixins: [VehicleList, Reader],
 
   mounted() {
-    this.prepare_search_param();
+    // this.prepare_search_param();
     this.search();
     this.read("brand");
     this.read("design");
     console.log(this.$route.query);
-    
   },
 
   data: function() {
     return {
       result: [],
+      total: 0,
+      limit: 3,
       list: {},
-      search_param: {
-        // price_min: 0,
-        // price_max: 10,
-        // keyword: '',
-        // brand_id: 1,
-        // design_id: 1,
-        // price: 6,
-      }
+      search_param: {}
     };
   },
 
   methods: {
+    on_page_change(page) {
+      console.log(page);
+
+      this.set_condition("page", page);
+    },
+
     parse_route_query() {
       let query = clone(this.$route.query);
       if (!query.sort_by) {
-        query.sort_by = ['id', 'down'];
+        query.sort_by = ["id", "down"];
       } else {
         query.sort_by = query.sort_by.split(",");
       }
@@ -196,10 +203,10 @@ export default {
 
       query.sort_by = query.sort_by.toString();
 
-      this.$router.replace({query});
+      this.$router.replace({ query });
     },
 
-    set_pricXe_range(min, max) {
+    set_price_range(min, max) {
       let query = Object.assign({}, this.$route.query);
 
       if (!min && !max) {
@@ -217,16 +224,21 @@ export default {
     },
 
     set_condition(type, value) {
+      let query = clone(this.$route.query);
+
       switch (type) {
         case "sort_by":
           // this.search_param[type] = value;
-          let query = Object.assign({}, this.$route.query);
           query.sort_by = value;
-          this.$router.replace({ query });
           break;
-
-          this.search();
+        case "page":
+          query.page = value;
+          break;
       }
+      this.$router.replace({ query });
+      console.log(1);
+
+      this.search();
     },
 
     remove_condition(type) {
@@ -271,8 +283,14 @@ export default {
       let query = `where("title" contains "${p.keyword ||
         ""}" ${brand_query} ${design_query} ${price_min_query} ${price_max_query})`;
 
-      api("vehicle/read", { query: query, sort_by: p.sort_by }).then(r => {
+      api("vehicle/read", {
+        query: query,
+        sort_by: p.sort_by,
+        limit: this.limit,
+        page: p.page
+      }).then(r => {
         this.result = r.data.data;
+        this.total = r.data.total;
       });
     }
   },
