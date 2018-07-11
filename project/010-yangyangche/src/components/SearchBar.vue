@@ -2,7 +2,7 @@
     <form @submit.prevent="search(); submit()" class="search-bar" :style="{width: width}">
         <input 
 					@keyup="change"
-          v-model="keyword"
+          v-model="kwd"
           type="search" 
           placeholder="请输入搜索关键词，如：别克1.6L···" 
           autocomplete="off" 
@@ -13,32 +13,38 @@
 
 <script>
 export default {
-  props: ['width', 'onChange', 'onSubmit'],
+  props: ['width', 'onChange', 'onSubmit', 'keyword'],
 
   data() {
     return {
-      keyword: "",
+      kwd: '',
     };
   },
 
   methods: {
     change() {
       if (this.onChange) {
-        this.onChange(this.keyword);
+        this.onChange(this.kwd);
       }
     },
 
     submit() {
       if (this.onSubmit) {
-        this.onSubmit(this.keyword);
+        this.onSubmit(this.kwd);
       }
     },
 
     search() {
       this.$router.push({
         path: "/search",
-        query: { keyword: this.keyword }
+        query: { keyword: this.kwd }
       });
+    }
+  },
+
+  watch: {
+    keyword(n) {
+      this.kwd = n;
     }
   }
 };

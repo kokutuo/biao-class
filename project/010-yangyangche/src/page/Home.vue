@@ -22,7 +22,7 @@
               <span class="tag">五菱</span> -->
               <router-link 
                 :to="'/search?brand_id=' + row.id" 
-                v-for="row in brand_list" 
+                v-for="row in list.brand" 
                 :key="row.id"
                 class="tag">{{row.name}}
               </router-link>
@@ -41,7 +41,9 @@
               <span class="tag">五菱</span> -->
               <router-link 
                 :to="'/search?design_id=' + row.id"
-                v-for="row in design_list" :key="row.id">{{row.name}}
+                v-for="row in list.design" 
+                :key="row.id"
+                class="tag">{{row.name}}
               </router-link>
             </div>
           </div>
@@ -144,6 +146,7 @@
 <script>
 import Nav from "../components/Nav";
 import VehicleList from "../mixin/VehicleList";
+import Reader from '../mixin/Reader';
 
 import api from "../lib/api.js";
 
@@ -152,7 +155,7 @@ import "../css/vehicle-list.css";
 export default {
   components: { Nav },
 
-  mixins: [VehicleList],
+  mixins: [VehicleList, Reader],
 
   mounted() {
     this.read_main("on_sale");
@@ -163,10 +166,9 @@ export default {
 
   data() {
     return {
+      list: {},
       design: {},
       main_list: [],
-      brand_list: [],
-      design_list: []
     };
   },
 
@@ -174,18 +176,6 @@ export default {
     find_design(name) {
       api("design/search", { or: { name: name } }).then(r => {
         this.design[name] = r.data.data[0];
-      });
-    },
-
-    read(model) {
-      api(model + "/read", { key_by: "name" }).then(r => {
-        this[model + "_list"] = r.data.data;
-      });
-    },
-
-    read_brand() {
-      api("brand/read").then(r => {
-        this.brand_list = r.data.data;
       });
     },
 

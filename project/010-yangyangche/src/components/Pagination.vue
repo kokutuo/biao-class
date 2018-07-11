@@ -42,6 +42,9 @@ export default {
     totalCount: {
       default: 0
     },
+    currentPage: {
+      default: 1,
+    },
     onPageChange: {}
   },
 
