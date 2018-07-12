@@ -128,7 +128,7 @@
                 <div class="others">
                   <span class="price">{{row.price}}万元</span>
                   <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
+                  <router-link :to="'/detail/' + row.id" class="btn btn primary buy">购买</router-link>
                 </div>
               </div>
             </div>

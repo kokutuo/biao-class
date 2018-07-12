@@ -17,17 +17,26 @@ import Brand from './page/admin/Brand.vue';
 import Model from './page/admin/Model.vue';
 import Design from './page/admin/Design.vue';
 import Location from './page/admin/Location.vue';
+import Report from './page/admin/Report.vue';
 
 Vue.use(Router);
 
 Vue.config.productionTip = false;
+
+Vue.filter('only_day', function (val) {
+  if (!val) {
+    return val;
+  }
+
+  return val.split(' ')[0];
+});
 
 const router = new Router({
     routes: [
         {path: '/', component: Home},
         {path: '/signup', component: Signup},
         {path: '/login', component: Login},
-        {path: '/detail', component: Detail},
+        {path: '/detail/:id', component: Detail},
         {path: '/search', component: Search},
         {
             path: '/admin',
@@ -39,6 +48,7 @@ const router = new Router({
                 {path: 'model', component: Model},
                 {path: 'design', component: Design},
                 {path: 'location', component: Location},
+                {path: 'report', component: Report},
             ]
         },
     ]

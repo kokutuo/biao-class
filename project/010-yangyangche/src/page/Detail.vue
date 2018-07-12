@@ -9,41 +9,32 @@
             <span class="tag">0过户</span>
         </h1>
         <div class="col-lg-6 right">
-            <SearchBar/>
+            <SearchBar width="100%"/>
         </div>
       </div>
     </div>
-    <div class="row vehicel-intro">
+    <div class="row vehicle-intro">
         <div class="container">
             <div class="col-lg-6">
                 <div class="slider">
-                    <img src="..\assets\detail\slider01.jpg" alt="一辆车">
+                    <img :src="detail.preview ? detail.preview[selected_preview].url : 'https://i.loli.net/2018/07/06/5b3f160071a17.jpg'" alt="一辆车">
                 </div>
                 <div class="thumb-list">
-                    <div class="col-lg-3">
-                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
-                    </div>
-                    <div class="col-lg-3">
-                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
-                    </div>
-                    <div class="col-lg-3">
-                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
-                    </div>
-                    <div class="col-lg-3">
-                        <img src="..\assets\detail\slider01.jpg" alt="一辆车">
+                    <div @click="selected_preview = i" v-for="(pre, i) in detail.preview" :key="i" class="col-lg-3">
+                        <img :src="pre.url" alt="pre.name">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 order-panel">
                 <div class="title">
-                    别克-英朗 2015款 15N 手动进取型
+                    {{detail.title}}
                 </div>
                 <div class="well">
                     <div class="row">
                     <div class="col-lg-3 prop">报价:</div>
                     <div class="col-lg-9">
-                        <span class="price currency">5.60万</span>
-                        <span class="price currency">含税9.5万</span>
+                        <span class="price currency">{{detail.price}}万</span>
+                        <span class="price currency">含税{{detail.price}}万</span>
                     </div>
                     </div>
                     <div class="row">
@@ -64,11 +55,11 @@
                 </div>
                 <div class="short-props">
                     <div class="dib">
-                        <div class="value">2017年12月</div>
+                        <div class="value">{{detail.birth_day | only_day}}</div>
                         <div class="prop">上牌时间</div>
                     </div>
                     <div class="dib">
-                        <div class="value">2.04万公里</div>
+                        <div class="value">{{detail.consumed_distance || 0}}万公里</div>
                         <div class="prop">公里数</div>
                     </div>
                     <div class="dib">
@@ -91,7 +82,7 @@
             </div>
         </div>
     </div>
-    <div class="row vehicel-detail">
+    <div class="row vehicle-detail">
         <div class="container">
             <h2>车辆详情</h2>
             <div class="row">
@@ -176,16 +167,41 @@
   </div>
 </template>
 
-
 <script>
 import Nav from "../components/Nav";
 import SearchBar from "../components/SearchBar";
 
+import api from "../lib/api.js";
+
 export default {
   components: {
     Nav,
-    SearchBar,
+    SearchBar
   },
+
+  data() {
+    return {
+      detail: {},
+      selected_preview: 0
+    };
+  },
+
+  mounted() {
+    let id = this.get_id();
+    this.find(id);
+  },
+
+  methods: {
+    find(id) {
+      api("vehicle/find", { id }).then(r => {
+        this.detail = r.data.data;
+      });
+    },
+
+    get_id() {
+      return this.$route.params.id;
+    }
+  }
 };
 </script>
 
@@ -216,7 +232,6 @@ body {
   margin-left: 8px;
 }
 
-
 input::-webkit-input-placeholder {
   /* WebKit browsers */
   font-size: 12px;
@@ -237,7 +252,7 @@ input:-ms-input-placeholder {
   font-size: 12px;
 }
 
-.vehicel-intro {
+.vehicle-intro {
   margin-bottom: 30px;
 }
 
@@ -246,6 +261,8 @@ input:-ms-input-placeholder {
 }
 
 .thumb-list {
+  overflow: auto;
+  white-space: nowrap;
   padding: 0 18px;
 }
 
@@ -320,13 +337,13 @@ input:-ms-input-placeholder {
   font-size: 20px;
 }
 
-.vehicel-detail .container {
+.vehicle-detail .container {
   background: #f5f5f5;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.vehicel-detail h2 {
+.vehicle-detail h2 {
   font-size: 25px;
   font-weight: 600;
   text-align: center;
@@ -334,20 +351,20 @@ input:-ms-input-placeholder {
   border-bottom: 1px dashed #ddd;
 }
 
-.vehicel-detail .row >* {
-    padding: 20px 30px;
-    padding-bottom: 50px;
+.vehicle-detail .row > * {
+  padding: 20px 30px;
+  padding-bottom: 50px;
 }
 
-.vehicel-detail .sub-title {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 10px;
+.vehicle-detail .sub-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
-.vehicel-detail .detail {
-    padding: 0 15px;
-    line-height: 20px;
+.vehicle-detail .detail {
+  padding: 0 15px;
+  line-height: 20px;
 }
 
 .dashed {

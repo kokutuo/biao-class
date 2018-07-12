@@ -9,10 +9,10 @@
                 <div class="kill-space filter">
                     <div class="col-lg-1 prop">品牌</div>
                     <div class="col-lg-10 range">
-                        <span :class="{active: !search_param.brand_id}" @click="remove_condition('brand_id')">不限</span>
+                        <span :class="{active: !search_param.brand_id}" @click="remove_query('brand_id')">不限</span>
                         <span 
                           :class="{active: search_param.brand_id == row.id}"
-                          @click="set_where('brand_id', row.id)"
+                          @click="set_query_where('brand_id', row.id)"
                           v-for="row in list.brand" 
                           :key="row.id">{{row.name}}
                         </span>
@@ -22,10 +22,10 @@
                 <div class="kill-space filter">
                     <div class="col-lg-1 prop">车类</div>
                     <div class="col-lg-10 range">
-                        <span :class="{active: !search_param.design_id}" @click="remove_condition('design_id')">不限</span>
+                        <span :class="{active: !search_param.design_id}" @click="remove_query('design_id')">不限</span>
                         <span
                           :class="{active: search_param.design_id == row.id}" 
-                          @click="set_where('design_id', row.id)"
+                          @click="set_query_where('design_id', row.id)"
                           v-for="row in list.design" :key="row.id"
                           >{{row.name}}
                         </span>
@@ -35,22 +35,21 @@
                 <div class="kill-space filter">
                     <div class="col-lg-1 prop">价格</div>
                     <div class="col-lg-10 range">
-                        <span :class="{active: !search_param.price_min && !search_param.price_max}" @click="set_price_range()">不限</span>
-                        <span :class="{active: search_param.price_min == 0 && search_param.price_max == 3}" @click="set_price_range(0, 3)">3万以下</span>
-                        <span :class="{active: search_param.price_min == 3 && search_param.price_max == 5}" @click="set_price_range(3, 5)">3-5万</span>
-                        <span :class="{active: search_param.price_min == 5 && search_param.price_max == 8}" @click="set_price_range(5, 8)">5-8万</span>
-                        <span :class="{active: search_param.price_min == 8 && search_param.price_max == 10}" @click="set_price_range(8, 10)">8-10万</span>
-                        <span :class="{active: search_param.price_min == 10 && search_param.price_max == 15}" @click="set_price_range(10, 15)">10-15万</span>
-                        <span :class="{active: search_param.price_min == 15 && search_param.price_max == 20}" @click="set_price_range(15, 20)">15-20万</span>
-                        <span :class="{active: search_param.price_min == 20 && search_param.price_max == 30}" @click="set_price_range(20, 30)">20-30万</span>
-                        <span :class="{active: search_param.price_min == 30 && search_param.price_max == 0}" @click="set_price_range(30, 0)">30万以上</span>
+                        <span :class="{active: !search_param.price_min && !search_param.price_max}" @click="set_query_price_range()">不限</span>
+                        <span :class="{active: search_param.price_min == 0 && search_param.price_max == 3}" @click="set_query_price_range(0, 3)">3万以下</span>
+                        <span :class="{active: search_param.price_min == 3 && search_param.price_max == 5}" @click="set_query_price_range(3, 5)">3-5万</span>
+                        <span :class="{active: search_param.price_min == 5 && search_param.price_max == 8}" @click="set_query_price_range(5, 8)">5-8万</span>
+                        <span :class="{active: search_param.price_min == 8 && search_param.price_max == 10}" @click="set_query_price_range(8, 10)">8-10万</span>
+                        <span :class="{active: search_param.price_min == 10 && search_param.price_max == 15}" @click="set_query_price_range(10, 15)">10-15万</span>
+                        <span :class="{active: search_param.price_min == 15 && search_param.price_max == 20}" @click="set_query_price_range(15, 20)">15-20万</span>
+                        <span :class="{active: search_param.price_min == 20 && search_param.price_max == 30}" @click="set_query_price_range(20, 30)">20-30万</span>
+                        <span :class="{active: search_param.price_min == 30 && search_param.price_max == 0}" @click="set_query_price_range(30, 0)">30万以上</span>
                     </div>
                     <div class="col-lg-1 right others"></div>
                 </div>
-                <div class="kill-space filter">
+                <!-- <div class="kill-space filter">
                     <div class="col-lg-1 prop">更多</div>
                     <div class="col-lg-10 range">
-                        <!-- <Dropdown :onSelect="yo" :list="tmp"/>
                         <Dropdown :onSelect="yo" :list="tmp"/>
                         <Dropdown :onSelect="yo" :list="tmp"/>
                         <Dropdown :onSelect="yo" :list="tmp"/>
@@ -59,12 +58,13 @@
                         <Dropdown :onSelect="yo" :list="tmp"/>
                         <Dropdown :onSelect="yo" :list="tmp"/>
                         <Dropdown :onSelect="yo" :list="tmp"/>
-                        <Dropdown :onSelect="yo" :list="tmp"/> -->
+                        <Dropdown :onSelect="yo" :list="tmp"/>
+                        <Dropdown :onSelect="yo" :list="tmp"/>
                     </div>
                     <div class="col-lg-1 right others">
                       <span>全部</span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="filter-list">
               <div class="filter">
@@ -74,10 +74,14 @@
                       <i :class="{'fontawesome-chevron-up': is_sort('id', 'up'), 'fontawesome-chevron-down': is_sort('id', 'down')}"></i>
                   </span>
                   <span @click="toggle_sort_by('price')" class="anchor">价格
-                      <i :class="{'fontawesome-chevron-up': is_sort('id', 'up'), 'fontawesome-chevron-down': is_sort('id', 'down')}"></i>
+                      <i :class="{'fontawesome-chevron-up': is_sort('price', 'up'), 'fontawesome-chevron-down': is_sort('price', 'down')}"></i>
                   </span>
-                  <span>车龄 v</span>
-                  <span>历程 v</span>
+                  <span @click="toggle_sort_by('birth_day')" class="anchor">车龄
+                      <i :class="{'fontawesome-chevron-up': is_sort('birth_day', 'up'), 'fontawesome-chevron-down': is_sort('bir', 'down')}"></i>
+                  </span>
+                  <span @click="toggle_sort_by('consumed_distance')" class="anchor">里程
+                      <i :class="{'fontawesome-chevron-up': is_sort('consumed_distance', 'up'), 'fontawesome-chevron-down': is_sort('consumed_distance', 'down')}"></i>
+                  </span>
                 </div>
               </div>
           </div>
@@ -163,8 +167,9 @@ export default {
     parse_route_query() {
       let query = clone(this.$route.query);
       if (!query.sort_by) {
-        query.sort_by = ["id", "down"];
-      } else {
+        query.sort_by = ['id', 'down'];
+      }
+      if (typeof query.sort_by == "string") {
         query.sort_by = query.sort_by.split(",");
       }
 
@@ -206,7 +211,7 @@ export default {
       this.$router.replace({ query });
     },
 
-    set_price_range(min, max) {
+    set_query_price_range(min, max) {
       let query = Object.assign({}, this.$route.query);
 
       if (!min && !max) {
@@ -236,12 +241,10 @@ export default {
           break;
       }
       this.$router.replace({ query });
-      console.log(1);
-
       this.search();
     },
 
-    remove_condition(type) {
+    remove_query(type) {
       // this.$delete(this.search_param, type);
 
       // let param = Object.assign({}, this.search_param);
@@ -249,12 +252,12 @@ export default {
       // this.$nextTick(() => {
       //   this.$router.replace({ query: param });
       // });
-      let query = Object.assign({}, this.$route.query);
+      let query = this.parse_route_query();
       delete query[type];
       this.$router.replace({ query });
     },
 
-    set_where(type, value) {
+    set_query_where(type, value) {
       let condition = {};
       condition[type] = value;
 
