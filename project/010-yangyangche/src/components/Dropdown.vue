@@ -4,7 +4,7 @@
             @keyup="show_menu=true"
             @focus="show_menu=true"
             v-model="keyword"
-            placeholder="请选择"
+            :placeholder="placeholder"
             type="search"
             class="search">
         <div v-if="show_menu && result.length" class="menu">
@@ -39,6 +39,9 @@ export default {
     displayKey: {
       // {string} 每一项在菜单中显示哪一个属性，默认为name
       default: "name"
+    },
+    placeholder: {
+      default: "请选择"
     }
   },
 

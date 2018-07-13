@@ -112,7 +112,7 @@
           <div @click="read_main('between_5_10')" class="item">5-10万</div>
           <div @click="read_main('suv')" class="item">超值SUV</div>
           <div @click="read_main('urgent')" class="item">急售降价车</div>
-          <router-link to="/search_result" class="item">更多</router-link>
+          <router-link to="/search" class="item">更多</router-link>
         </div>
       </div>
       <div class="vehicle-list">

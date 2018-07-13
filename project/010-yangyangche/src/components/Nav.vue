@@ -1,18 +1,17 @@
 <template>
   <div class="main-nav" :style="{
     marginBottom: this.pushDown ? '20px' : '0',
-    backgroundColor: this.black ? 'black' : 'white',
   }">
     <div class="row container">
       <div class="col left">
         <router-link to="/" class="logo"></router-link>
-        <a href="#" class="nav-item">Item</a>
-        <a href="#" class="nav-item">Item</a>
+        <router-link to="/" class="nav-item">首页</router-link>
+        <router-link to="/admin/user" class="nav-item">管理面板</router-link>
         <SearchBar :width="'50%'"/>
       </div>
       <div class="col right">
-        <a href="#" class="nav-item">Item</a>
-        <a href="#" class="nav-item">Item</a>
+        <router-link class="nav-item" to="/login">登录</router-link>
+        <router-link class="nav-item" to="/signup">注册</router-link>
         <a href="#" class="nav-item tel">400-6666-666</a>
       </div>
     </div>
@@ -26,13 +25,10 @@ export default {
   props: {
     pushDown: {
       default: false
-    },
-    black: {
-      default: false
     }
   },
 
-  components: { SearchBar },
+  components: { SearchBar }
 };
 </script>
 

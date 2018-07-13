@@ -99,7 +99,7 @@
                     <div class="input-control">
                         <label>发布人</label>
                             <Dropdown 
-                                :api="{model: 'user', property: ['username', 'real_name']}" 
+                                :api="{model: 'user', property: ['username', 'real_name']}"
                                 :default='current.user_id' 
                                 :list='user_list' 
                                 displayKey='username' 

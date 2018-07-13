@@ -20,7 +20,7 @@
                     <img :src="detail.preview ? detail.preview[selected_preview].url : 'https://i.loli.net/2018/07/06/5b3f160071a17.jpg'" alt="一辆车">
                 </div>
                 <div class="thumb-list">
-                    <div @click="selected_preview = i" v-for="(pre, i) in detail.preview" :key="i" class="col-lg-3">
+                    <div @mouseover="selected_preview = i" v-for="(pre, i) in detail.preview" :key="i" class="col-lg-3">
                         <img :src="pre.url" alt="pre.name">
                     </div>
                 </div>
@@ -138,27 +138,12 @@
                     </div>
                 </div>
             </div>
-            <div class="preview">
+            <div v-for="pre in detail.preview" :key="pre.id" class="preview">
                 <div class="title">车辆外观</div>
                 <div class="desc">车况优秀，性能部件正常使用，经检测，外观及车身结构无重大撞击。</div>
                 <div class="col-lg-6">
                     <div class="card">
-                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <img src="..\assets\detail\preview01jpg.jpg" alt="一辆车">
+                        <img :src="pre.url" alt="一辆车">
                     </div>
                 </div>
             </div>
@@ -195,6 +180,7 @@ export default {
     find(id) {
       api("vehicle/find", { id }).then(r => {
         this.detail = r.data.data;
+        console.log(this.detail);
       });
     },
 

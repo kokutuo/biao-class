@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import api from '../lib/api';
 
+/**
+ * 将原始的验证字符串解析为可以处理的对象
+ * @param {string} str 
+ * @returns {Object} 
+ */
 function parse_string_rule(str) {
     let rule = {};
 
@@ -245,6 +250,11 @@ function enable_submit(el_submit) {
     el_submit.removeAttribute('disabled');
 }
 
+/**
+ * 初始化表单状态
+ * @param {string} form 表单选择器
+ * @param {string} lang 语言
+ */
 function init_form_state(form, lang) {
     let el_submit = form.querySelector('[type=submit]');
     form.$state = {
@@ -373,7 +383,7 @@ export default Vue.directive('validator', {
 
 
         // 当输入框有字符输入时开始验证
-        el.addEventListener('blur', () => {
+        el.addEventListener('keyup', () => {
             clearTimeout(debounce_timer);
             debounce_timer = setTimeout(() => {
                 go(el_form, el, error_el, rule);

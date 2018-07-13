@@ -31,6 +31,14 @@ Vue.filter('only_day', function (val) {
   return val.split(' ')[0];
 });
 
+Vue.filter('percentage', function (val) {
+  if (!val) {
+    return;
+  }
+
+  return val.toFixed(2) * 100 + '%';
+})
+
 const router = new Router({
     routes: [
         {path: '/', component: Home},
