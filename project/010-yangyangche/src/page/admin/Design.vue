@@ -14,7 +14,7 @@
                         <button @click="edit_pattern=true" class="btn-primary">添加</button>
                     </div>
                 </div>
-                <div v-if="!edit_pattern" class="tool-bar">
+                <div v-if="!edit_pattern" class="tool-ba  r">
                     <form @submit.prevent="search" class="search">
                         <label for="search">快速查找</label>
                         <input id="search" type="search" v-model="keyword">

@@ -11,10 +11,11 @@
                 <h1>欢迎注册洋洋车</h1>
                 <div class="sub-title">买好车，上洋洋车</div>
               </div>
-              <form class="main-form"  autocomplete="off">
+              <form class="main-form" @submit.prevent="submit" autocomplete="off">
                 <div class="input-control">
                   <input 
                         id="username"
+                        v-model="current.username"
                         v-validator="'required|username|not_exist:user,username|min_length:3|max_length:18'" 
                         error-el="#username-error" 
                         type="text" 
@@ -26,6 +27,7 @@
                 <div class="input-control">
                   <input 
                         id="password" 
+                        v-model="current.password"
                         v-validator="'required|min_length:6|max_length:16'"
                         error-el="#password-error"
                         type="password" 
@@ -37,12 +39,39 @@
                 <div class="input-control">
                   <input 
                         id="repeat" 
+                        v-model="current.re_password"
                         v-validator="'required|min_length:6|max_length:16'"
                         type="password" 
-                        placeholder="再次输入密码">
+                        placeholder="请再次输入密码">
+                </div>
+                <div class="input-control">
+                  <input 
+                        id="phone" 
+                        v-model="current.phone"
+                        v-validator="'cellphone'"
+                        type="text" 
+                        placeholder="手机号">
+                </div>
+                <div class="input-control">
+                  <input 
+                        id="vcode" 
+                        v-model="current.vcode"
+                        type="text" 
+                        placeholder="验证码">
+                  <button @click="send_sms" type="button" :disabled="sms.countdown != 0">
+                    <span v-if="sms.countdown">{{sms.countdown}}</span>
+                    <span v-else>发送验证码</span>
+                  </button>
+                </div>
+                <div class="error-list">
+                  <div v-if="invalid_code" id="vcode-error" class="error">验证码有误</div>
                 </div>
                 <div class="input-control">
                   <button class="btn-primary" type="submit">立即注册</button>
+                </div>
+                <div class="input-control small muted">
+                  已有账号？
+                  <router-link to="/login">登录</router-link>
                 </div>
               </form>
             </div>
@@ -53,8 +82,52 @@
 </template>
 
 <script>
-// import validator from "../directive/validator.js";
-export default {};
+import api from "../lib/api.js";
+
+export default {
+  data() {
+    return {
+      current: {},
+      code: "",
+      invalid_code: false,
+      sms: {
+        timer: null,
+        countdown: 0
+      }
+    };
+  },
+
+  methods: {
+    submit() {
+      this.invalid_code = this.current.vcode !== this.code;
+
+      if (this.invalid_code) {
+        return;
+      }
+    },
+
+    send_sms() {
+      if (!this.current.phone || this.sms.countdown) {
+        return;
+      }
+
+      this.sms.countdown = 60;
+
+      this.sms.timer = setInterval(() => {
+        if (this.sms.countdown == 0) {
+          clearInterval(this.sms.timer);
+          return;
+        }
+
+        this.$set(this.sms, "countdown", this.sms.countdown - 1);
+      }, 1000);
+
+      api("captcha/sms", { phone: this.current.phone }).then(r => {
+        this.code = atob(r.data.data.result);
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>

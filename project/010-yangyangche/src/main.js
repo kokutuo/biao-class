@@ -36,7 +36,7 @@ Vue.filter('percentage', function (val) {
     return;
   }
 
-  return val.toFixed(2) * 100 + '%';
+  return (val * 100).toFixed(2) + '%';
 })
 
 const router = new Router({
