@@ -3,23 +3,24 @@
     <Nav/>
     <div class="bg-pic">
       <div class="container parent">
-        <form class="main-form">
+        <form @submit.prevent="submit" class="main-form">
           <h1>登录</h1>
+          <div v-if="login_failed" class="error-list">
+            <div class="error">用户名或密码有误</div>
+          </div>
           <div class="input-control">
             <input 
                 id="username" 
-                v-validator="'required|min_length:3|max_length:18'"
-                error-el="username-error"
+                v-validator="'required'"
+                v-model="current.$unique"
                 type="text"
-                placeholder="用户名"
-                autocomplete="off"
-                autofocus>
+                placeholder="用户名/手机号/邮箱"
+                autocomplete="off">
           </div>
           <div class="input-control">
             <input 
                 id="password" 
-                v-validator="'required|min_length:6|max_length:16'"
-                error-el="#password-error"
+                v-model="current.password"
                 type="password" 
                 placeholder="密码">
           </div>
@@ -39,11 +40,50 @@
 import "../css/auth.css";
 
 import Nav from "../components/Nav";
-// import validator from "../directive/validator.js";
+import api from "../lib/api.js";
 
 export default {
+  //   directives: { validator }
   components: { Nav },
-//   directives: { validator }
+
+  data() {
+    return {
+      current: {},
+      login_failed: false,
+    };
+  },
+
+  methods: {
+    submit() {
+      let unique, password;
+
+      if (!(unique = this.current.$unique) || !(password = this.current.password)) {
+        return;
+      }
+
+      api('user/read', {
+        where: {
+          or: [
+            ['username', '=', unique],
+            ['phone', '=', unique],
+            ['e_mail', '=', unique],
+          ],
+        },
+      }).then(r => {
+        let row;
+        if (!(row = r.data.data[0]) || row.password != password) {
+          this.login_failed = true;
+          return;
+        }
+
+        this.login_failed = false;
+        delete row.password;
+        localStorage.setItem('uinfo', JSON.stringify(row));
+        alert('登录成功');
+        this.$router.push('/');
+      })
+    }
+  }
 };
 </script>
 

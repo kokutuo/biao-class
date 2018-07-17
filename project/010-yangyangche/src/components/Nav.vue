@@ -5,7 +5,7 @@
     <div class="row container">
       <div class="col left">
         <router-link to="/" class="logo"></router-link>
-        <router-link to="/" class="nav-item">首页</router-link>
+        <!-- <router-link to="/" class="nav-item">首页</router-link> -->
         <router-link to="/admin/user" class="nav-item">管理面板</router-link>
         <SearchBar :width="'50%'"/>
       </div>
@@ -40,14 +40,30 @@ export default {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  display: inline-block;
-  width: 130px;
-  height: 42px;
-  background: #fd521d;
-  vertical-align: top;
-}
-
+  .logo {
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #ff6c3f;
+    border-left-color: #ff6c3f;
+    border-right-color: #e95627;
+    border-bottom-color: #e95627;
+    background: rgb(185, 64, 27);
+    background: -moz-linear-gradient(0deg, rgba(185, 64, 27, 1) 0%, rgba(253, 82, 29, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(185, 64, 27, 1) 0%, rgba(253, 82, 29, 1) 100%);
+    background: linear-gradient(0deg, rgba(185, 64, 27, 1) 0%, rgba(253, 82, 29, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b9401b", endColorstr="#fd521d", GradientType=1);
+    /*-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);box-shadow:*/
+    /*0 1px 2px rgba(0, 0, 0, .2);*/
+    display: inline-block;
+    width: 110px;
+    height: 43px;
+    vertical-align: top;
+    background-color: #fd521d;
+    background-image: url(../assets/logo.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;background-size: contain;
+    background-position: center center;
+  }
 .left {
   left: 130px;
   width: 70%;

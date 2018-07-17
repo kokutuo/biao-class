@@ -34,6 +34,10 @@
                         <input type="text" v-model="current.real_name">
                     </div>
                     <div class="input-control">
+                        <label>手机号</label>
+                        <input type="text" v-model="current.phone">
+                    </div>
+                    <div class="input-control">
                         <label>邮箱</label>
                         <input type="e-mail" v-model="current.e_mail">
                     </div>
@@ -54,6 +58,7 @@
                         <thead>
                         <th>用户名</th>
                         <th>真实姓名</th>
+                        <th>手机号</th>
                         <th>邮箱</th>
                         <th>密码</th>
                         <th>操作</th>
@@ -62,6 +67,7 @@
                         <tr v-for="row in list" :key="row.id">
                         <td>{{row.username}}</td>
                         <td>{{row.real_name}}</td>
+                        <td>{{row.phone || '-'}}</td>
                         <td>{{row.e_mail || '-'}}</td>
                         <td>{{row.password}}</td>
                         <td>

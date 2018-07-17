@@ -6,6 +6,13 @@
       </div>
       <div class="col-lg-7">
           <div class="parent">
+            <div class="top">
+              <div @click="signup_by = 'phone'" :class="'item ' + (signup_by == 'phone' ? 'active' : '')">手机注册</div>
+              <div @click="signup_by = 'mail'" :class="'item ' + (signup_by == 'mail' ? 'active' : '')">邮箱注册</div>
+              <div class="item">
+                <router-link to="/">首页</router-link>
+              </div>
+            </div>
             <div class="content">
               <div class="header">
                 <h1>欢迎注册洋洋车</h1>
@@ -44,7 +51,7 @@
                         type="password" 
                         placeholder="请再次输入密码">
                 </div>
-                <div class="input-control">
+                <div v-if="signup_by == 'phone'" class="input-control">
                   <input 
                         id="phone" 
                         v-model="current.phone"
@@ -52,14 +59,21 @@
                         type="text" 
                         placeholder="手机号">
                 </div>
-                <div class="input-control">
+                <div v-if="signup_by == 'mail'" class="input-control">
                   <input 
+                        id="mail" 
+                        v-model="current.mail"
+                        type="text" 
+                        placeholder="邮箱">
+                </div>
+                <div class="input-control">
+                  <input style="width:70%"
                         id="vcode" 
                         v-model="current.vcode"
                         type="text" 
                         placeholder="验证码">
-                  <button @click="send_sms" type="button" :disabled="sms.countdown != 0">
-                    <span v-if="sms.countdown">{{sms.countdown}}</span>
+                  <button style="width: 30%;" @click="send_code" type="button" :disabled="captcha.countdown != 0">
+                    <span v-if="captcha.countdown">{{captcha.countdown}}</span>
                     <span v-else>发送验证码</span>
                   </button>
                 </div>
@@ -89,8 +103,9 @@ export default {
     return {
       current: {},
       code: "",
+      signup_by: 'phone',
       invalid_code: false,
-      sms: {
+      captcha: {
         timer: null,
         countdown: 0
       }
@@ -104,26 +119,46 @@ export default {
       if (this.invalid_code) {
         return;
       }
+
+      if (this.signup_by == 'mail') {
+        delete this.current.phone;
+      } else {
+        delete this.current.mail;
+      }
     },
 
-    send_sms() {
-      if (!this.current.phone || this.sms.countdown) {
+    send_code() {
+      if (this.captcha.countdown) {
         return;
       }
 
-      this.sms.countdown = 60;
+      let action, by_mail;
 
-      this.sms.timer = setInterval(() => {
-        if (this.sms.countdown == 0) {
-          clearInterval(this.sms.timer);
+      this.captcha.countdown = 60;
+
+      action = 'sms';
+
+      if (by_mail = this.signup_by == 'mail') {
+        action = 'mail';
+      }
+
+      if ((by_mail && !this.current.mail) || (!by_mail && this.current.phone)) {
+        return;
+      }
+
+      this.captcha.timer = setInterval(() => {
+        if (this.captcha.countdown == 0) {
+          clearInterval(this.captcha.timer);
           return;
         }
 
-        this.$set(this.sms, "countdown", this.sms.countdown - 1);
+        this.$set(this.captcha, "countdown", this.captcha.countdown - 1);
       }, 1000);
 
-      api("captcha/sms", { phone: this.current.phone }).then(r => {
+      api(`captcha/${action}`, { phone: this.current.phone, e_mail: this.current.mail }).then(r => {
         this.code = atob(r.data.data.result);
+        console.log(this.code);
+        
       });
     }
   }
@@ -142,6 +177,22 @@ export default {
 
 .parent {
   position: relative;
+}
+
+.top .item {
+  float: right;
+  margin: 20px 40px 0 0;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.902);
+  opacity: .6;
+  padding: 10px 0 0;
+  line-height: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.top .item.active {
+  color: #fd521d;
 }
 
 .content {
