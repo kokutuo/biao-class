@@ -226,8 +226,8 @@ export default {
       api("vehicle/read", condition).then(r => {
         this["main_list"] = r.data.data;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

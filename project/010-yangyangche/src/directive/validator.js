@@ -30,6 +30,42 @@ function parse_string_rule(str) {
 // 各种验证规则
 const valid = {
   /**
+   * 验证邮箱
+   * @param val 
+   * @param lang 
+   */
+  mail(val, lang) {
+    const lang_conf = {
+      zh: '邮箱格式有误',
+      en: 'Invalid email',
+    };
+
+    let re = /[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]/;
+
+    if (!re.test(val)) {
+      throw lang_conf[lang];
+    }
+
+    return true;
+  },
+
+  shadow(val, lang, selector) {
+    const lang_conf = {
+      zh: '两次输入不一致',
+      en: 'Inconsistent double inputs',
+    };
+
+    let reference = document.querySelector(selector);
+    let value = reference.value;
+
+    if (val != value) {
+      throw lang_conf[lang];
+    }
+
+    return true;
+  },
+
+  /**
    * 是否为数字
    * @param val
    * @param lang
@@ -224,7 +260,7 @@ const valid = {
       en: 'Invalid phone number',
     };
 
-    if (!this.numeric(val,lang) || !this.length(val, lang, 11)) {
+    if (!this.numeric(val, lang) || !this.length(val, lang, 11)) {
       throw lang_conf[lang];
     }
 
@@ -366,6 +402,7 @@ function go(el_form, el_input, el_error, rule) {
       }
     } catch (e) {
       set_invalid(true, e);
+      break;
     }
   }
 

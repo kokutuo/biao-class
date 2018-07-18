@@ -103,7 +103,7 @@ export default {
     return {
       structure: {},
       model: "report",
-      searchable: ["name"],
+      searchable: ["title"],
       with: [
         {
           model: "vehicle",

@@ -4,7 +4,7 @@
     <div class="header">
       <div class="container">
         <h1 class="col-lg-6 left">
-            别克-英朗 2015款 15N 手动进取型
+            {{detail.title}}
             <span class="tag">超值</span>
             <span class="tag">0过户</span>
         </h1>
@@ -86,6 +86,144 @@
         <div class="container">
             <h2>车辆详情</h2>
             <div class="row">
+              <div class="col-lg-6">
+                <div class="report-panel">
+                  <div class="title">排除重大事故检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'major_accident'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="report-panel">
+                  <div class="title">泡水火烧检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'soaking_and_roasting'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="report-panel">
+                  <div class="title">轻微碰撞检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'minor_crash'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-2">
+                <div class="report-panel">
+                  <div class="title">安全系统检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'security_system'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="report-panel">
+                  <div class="title">外部配置检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'surface_peripheral'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="report-panel">
+                  <div class="title">内部配置检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'inner_peripheral'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="report-panel">
+                  <div class="title">灯光系统检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'lighting_system'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="report-panel">
+                  <div class="title">高科技配置检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'high_tech'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="report-panel">
+                  <div class="title">随车工具检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'tool'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="report-panel">
+                  <div class="title">易损耗部件检测</div>
+                  <div>
+                    <div v-if="(conf = report_structure[key]) && conf.cat == 'consumable'"
+                      v-for="(ok, key) in report" :key="key"
+                      :class="'col-lg-4 report-item ' + (!ok ? 'muted' : '')">
+                      <span v-if="ok" class="fontawesome-ok"></span>
+                      <span v-else class="fontawesome-minus"></span>{{conf.display_name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-6 dashed">
                     <div class="sub-title">卖家-马先生说车</div>
                     <div class="detail">这辆车是我平时上下班代步用的车，2016年12月上的牌，到现在2.04万多公里正是车的好时候！这台车是我平时的代步车，平时出门或者过年回老家都会用它，使用强度不算很大。外观好看，特别是日间行车灯，油耗目前位置比较满意，开别克就有一种很稳的感觉，一点都不飘，好像是20万左右的车子一样。这台车一直是自己家用，没给外人用过，车况没毛病。我这车没买多长时间，算是准新车，光购置税就能省不少钱。我的车外观漆面良好，内饰也经常收拾，车况没毛病。</div>
@@ -138,7 +276,7 @@
                     </div>
                 </div>
             </div>
-            <div v-for="pre in detail.preview" :key="pre.id" class="preview">
+            <!-- <div v-for="pre in detail.preview" :key="pre.id" class="preview">
                 <div class="title">车辆外观</div>
                 <div class="desc">车况优秀，性能部件正常使用，经检测，外观及车身结构无重大撞击。</div>
                 <div class="col-lg-6">
@@ -146,7 +284,7 @@
                         <img :src="pre.url" alt="一辆车">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
   </div>
@@ -167,25 +305,47 @@ export default {
   data() {
     return {
       detail: {},
-      selected_preview: 0
+      selected_preview: 0,
+      report: {},
+      report_structure: {}
     };
   },
 
   mounted() {
     let id = this.get_id();
     this.find(id);
+    this.find_report_by_vehicle(id);
+    this.get_report_structure();
   },
 
   methods: {
     find(id) {
       api("vehicle/find", { id }).then(r => {
         this.detail = r.data.data;
-        console.log(this.detail);
       });
     },
 
     get_id() {
       return this.$route.params.id;
+    },
+
+    find_report_by_vehicle(vid) {
+      api("report/first", {
+        where: { vehicle_id: vid }
+      }).then(r => {
+        this.report = r.data.data;
+        console.log('report', this.report);
+        
+      });
+    },
+
+    get_report_structure() {
+      api('MODEL/FIND', {name: 'report'}).then(r=> {
+        
+        this.report_structure = r.data.data.structure;
+        console.log('report_structure: ', this.report_structure);
+             
+      })
     }
   }
 };
@@ -356,5 +516,26 @@ input:-ms-input-placeholder {
 .dashed {
   margin-top: 10px;
   border-right: 1px dashed #ddd;
+}
+
+.report-panel {
+  padding: 0;
+  border: 1px solid mediumseagreen;
+}
+
+.report-item {
+  padding: 10px;
+  color: mediumseagreen;
+}
+
+.report-item.muted {
+  color: #aaa;
+}
+
+.report-panel .title {
+  padding: 10px;
+  background: mediumseagreen;
+  text-align: center;
+  color: #fff;
 }
 </style>

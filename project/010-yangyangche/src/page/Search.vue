@@ -99,7 +99,7 @@
                         <div class="others">
                         <span class="price">{{row.price}}万</span>
                         <span>首付3.5万</span>
-                        <a class="btn btn-primary buy">购买</a>
+                        <router-link :to="'/detail/' + row.id" class="btn btn-primary buy">购买</router-link>
                         </div>
                     </div>
                     </div>
@@ -167,7 +167,7 @@ export default {
     parse_route_query() {
       let query = clone(this.$route.query);
       if (!query.sort_by) {
-        query.sort_by = ['id', 'down'];
+        query.sort_by = ["id", "down"];
       }
       if (typeof query.sort_by == "string") {
         query.sort_by = query.sort_by.split(",");

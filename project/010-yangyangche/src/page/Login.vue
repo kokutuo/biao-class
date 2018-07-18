@@ -39,6 +39,8 @@
 <script>
 import "../css/auth.css";
 
+import session from '../lib/session.js';
+
 import Nav from "../components/Nav";
 import api from "../lib/api.js";
 
@@ -78,7 +80,7 @@ export default {
 
         this.login_failed = false;
         delete row.password;
-        localStorage.setItem('uinfo', JSON.stringify(row));
+        session.login(row)
         alert('登录成功');
         this.$router.push('/');
       })

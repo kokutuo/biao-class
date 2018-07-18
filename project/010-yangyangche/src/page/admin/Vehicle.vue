@@ -154,7 +154,7 @@
                         <td>{{row.price}}</td>
                         <td>{{row.consumed_distance || '-'}}</td>
                         <td>{{row.deadline || '-'}}</td>
-                        <td>{{row.condition ? row.condition + '成心' : '-'}}</td>
+                        <td>{{row.condition ? row.condition + '成新' : '-'}}</td>
                         <td>{{row.exchange_times || '-'}}</td>
                         <td>{{row.on_sale || '-'}}</td>
                         <td>
@@ -181,12 +181,22 @@ import Location from "../../components/Location";
 
 export default {
   components: { Dropdown, Location },
+
+  mixins: [AdminPage],
+
+  mounted() {
+    this.read_user();
+    this.read_brand();
+    this.read_model();
+    this.read_design();
+  },
+
   data() {
     return {
       model: "vehicle",
       searchable: ["title", "description"],
       current: {
-          preview: [],
+        preview: []
       },
       user_list: [],
       brand_list: [],
@@ -232,18 +242,9 @@ export default {
       this.$set(this.current, "location_id", row.id);
     },
     after_set_current() {
-        this.current.preview = this.current.preview || [];
+      this.current.preview = this.current.preview || [];
     }
-  },
-
-  mounted() {
-    this.read_user();
-    this.read_brand();
-    this.read_model();
-    this.read_design();
-  },
-
-  mixins: [AdminPage]
+  }
 };
 </script>
 
