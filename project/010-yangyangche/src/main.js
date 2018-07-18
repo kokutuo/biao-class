@@ -5,6 +5,10 @@ import Vue from 'vue'
 import Root from './Root.vue'
 import Router from 'vue-router';
 
+import session from './lib/session';
+
+import Focus from './directive/focus';
+
 import Home from './page/Home.vue';
 import Signup from './page/Signup.vue';
 import Login from './page/Login.vue';
@@ -37,32 +41,81 @@ Vue.filter('percentage', function (val) {
   }
 
   return (val * 100).toFixed(2) + '%';
-})
+});
 
 const router = new Router({
-    routes: [
-        {path: '/', component: Home},
-        {path: '/signup', component: Signup},
-        {path: '/login', component: Login},
-        {path: '/detail/:id', component: Detail},
-        {path: '/search', component: Search},
-        {
-            path: '/admin',
-            component: AdminBase,
-            children: [
-                {path: 'user', component: User},
-                {path: 'vehicle', component: Vehicle},
-                {path: 'brand', component: Brand},
-                {path: 'model', component: Model},
-                {path: 'design', component: Design},
-                {path: 'location', component: Location},
-                {path: 'report', component: Report},
-            ]
+  routes: [{
+      path: '/',
+      component: Home
+    },
+    {
+      path: '/signup',
+      component: Signup
+    },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/detail/:id',
+      component: Detail
+    },
+    {
+      path: '/search',
+      component: Search
+    },
+    {
+      path: '/admin',
+      component: AdminBase,
+      children: [{
+          path: 'user',
+          component: User
         },
-    ]
-})
+        {
+          path: 'vehicle',
+          component: Vehicle
+        },
+        {
+          path: 'brand',
+          component: Brand
+        },
+        {
+          path: 'model',
+          component: Model
+        },
+        {
+          path: 'design',
+          component: Design
+        },
+        {
+          path: 'location',
+          component: Location
+        },
+        {
+          path: 'report',
+          component: Report
+        },
+      ]
+    },
+  ]
+});
+
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects
+  let go_admin = to.fullPath.startsWith('/admin/');
+
+  if (go_admin && !session.is_admin()) {
+    alert('请先使用管理员账号登录，用户名：admin，密码：yoyoyo');
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 new Vue({
+  directives: {
+    Focus
+  },
   render: h => h(Root),
   router: router,
 }).$mount('#root');
