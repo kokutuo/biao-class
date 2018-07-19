@@ -68,7 +68,7 @@ export default {
       }
 
       if (unique === "admin" && password === "yoyoyo") {
-        this.on_login_succeed({ username: "admin", is_admin: true });
+        this.on_login_succeed({id: 1, username: "admin", is_admin: true });
         return;
       }
 

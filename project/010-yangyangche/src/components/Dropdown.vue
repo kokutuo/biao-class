@@ -3,6 +3,7 @@
         <input 
             @keyup="show_menu=true"
             @focus="show_menu=true"
+            @click="show_menu=true"
             v-model="keyword"
             :placeholder="placeholder"
             type="search"

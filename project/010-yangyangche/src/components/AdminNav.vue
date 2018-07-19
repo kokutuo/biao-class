@@ -8,6 +8,7 @@
             <router-link to="/admin/design" class="nav-item">车类管理</router-link>
             <router-link to="/admin/location" class="nav-item">地址管理</router-link>
             <router-link to="/admin/report" class="nav-item">质检管理</router-link>
+            <router-link to="/admin/appo" class="nav-item">预约管理</router-link>
         </div>
 </template>
 

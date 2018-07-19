@@ -22,6 +22,7 @@ import Model from './page/admin/Model.vue';
 import Design from './page/admin/Design.vue';
 import Location from './page/admin/Location.vue';
 import Report from './page/admin/Report.vue';
+import Appo from './page/admin/Appo.vue';
 
 Vue.use(Router);
 
@@ -94,6 +95,10 @@ const router = new Router({
         {
           path: 'report',
           component: Report
+        },
+        {
+          path: 'appo',
+          component: Appo
         },
       ]
     },

@@ -6,6 +6,7 @@ import validator from "../directive/validator.js";
 import Nav from "../components/Nav";
 import AdminNav from "../components/AdminNav";
 import Pagination from "../components/Pagination";
+import Dropdown from '../components/Dropdown';
 
 export default {
   directives: { validator },
@@ -13,7 +14,8 @@ export default {
   components: {
     Nav,
     AdminNav,
-    Pagination
+    Pagination,
+    Dropdown,
   },
 
   data() {

@@ -1,5 +1,5 @@
 <template>
-    <div class="pagination">
+    <div v-if="last_page" class="pagination">
         <span class="btn-group">
             <button :class="{disabled: is_first_page, btn: true}"
                     :disabled="is_first_page"
