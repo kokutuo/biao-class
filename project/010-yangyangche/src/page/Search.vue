@@ -77,7 +77,7 @@
                       <i :class="{'fontawesome-chevron-up': is_sort('price', 'up'), 'fontawesome-chevron-down': is_sort('price', 'down')}"></i>
                   </span>
                   <span @click="toggle_sort_by('birth_day')" class="anchor">车龄
-                      <i :class="{'fontawesome-chevron-up': is_sort('birth_day', 'up'), 'fontawesome-chevron-down': is_sort('bir', 'down')}"></i>
+                      <i :class="{'fontawesome-chevron-up': is_sort('birth_day', 'up'), 'fontawesome-chevron-down': is_sort('birth_day', 'down')}"></i>
                   </span>
                   <span @click="toggle_sort_by('consumed_distance')" class="anchor">里程
                       <i :class="{'fontawesome-chevron-up': is_sort('consumed_distance', 'up'), 'fontawesome-chevron-down': is_sort('consumed_distance', 'down')}"></i>
@@ -280,8 +280,8 @@ export default {
 
       p.brand_id && (brand_query = `and "brand_id" = ${p.brand_id}`);
       p.design_id && (design_query = `and "design_id" = ${p.design_id}`);
-      p.price_min && (price_min_query = `and "price_min" >= ${p.price_min}`);
-      p.price_max && (price_max_query = `and "price_max" <= ${p.price_max}`);
+      p.price_min && (price_min_query = `and "price" >= ${p.price_min}`);
+      p.price_max && (price_max_query = `and "price" <= ${p.price_max}`);
 
       let query = `where("title" contains "${p.keyword ||
         ""}" ${brand_query} ${design_query} ${price_min_query} ${price_max_query})`;

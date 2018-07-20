@@ -158,7 +158,7 @@ export default {
   mixins: [VehicleList, Reader],
 
   mounted() {
-    this.read_main("on_sale");
+    this.read_main();
     this.find_design("suv");
     this.read("brand");
     this.read("design");
@@ -221,7 +221,14 @@ export default {
           date = date.toISOString().split("T")[0];
           condition = { query: `where("deadline" <= "${date}")` };
           break;
+        default:
+          condition = {};
+          break;
       }
+
+      let limit = {limit: 8};
+
+      condition = Object.assign({}, condition, limit);
 
       api("vehicle/read", condition).then(r => {
         this["main_list"] = r.data.data;

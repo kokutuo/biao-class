@@ -95,6 +95,9 @@ export default {
       delete row.password;
       session.login(row);
       alert("登录成功");
+      if (session.is_admin()) {
+        this.$router.push('/admin/user')
+      }
       this.$router.push("/");
     }
   }

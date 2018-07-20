@@ -14,6 +14,8 @@ import Signup from './page/Signup.vue';
 import Login from './page/Login.vue';
 import Detail from './page/Detail.vue';
 import Search from './page/Search.vue';
+import Publish from './page/Publish';
+
 import AdminBase from './page/admin/Base.vue';
 import User from './page/admin/User.vue';
 import Vehicle from './page/admin/Vehicle.vue';
@@ -66,6 +68,10 @@ const router = new Router({
       component: Search
     },
     {
+      path: '/publish',
+      component: Publish
+    },
+    {
       path: '/admin',
       component: AdminBase,
       children: [{
@@ -108,6 +114,12 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // to and from are both route objects
   let go_admin = to.fullPath.startsWith('/admin/');
+  let go_publish = to.fullPath.startsWith('/publish');
+
+  if (go_publish && !session.logged_in()) {
+    alert('请先登录，如果没有账号请先注册；管理员账号如下，用户名：admin，密码：yoyoyo');
+    next('/login');
+  }
 
   if (go_admin && !session.is_admin()) {
     alert('请先使用管理员账号登录，用户名：admin，密码：yoyoyo');

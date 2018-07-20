@@ -180,7 +180,14 @@ export default {
       } else {
         this.filter();
       }
-    }
+    },
+
+    list: {
+      deep: true,
+      handler(n) {
+        this.result = n;
+      }
+    },
   }
 };
 </script>
@@ -199,7 +206,7 @@ export default {
 .selected,
 .menu > * {
   display: block;
-  padding: 2px 5px;
+  padding: 5px 10px;
 }
 
 .selected,
@@ -210,7 +217,7 @@ export default {
 .menu {
   background: #fff;
   z-index: 1;
-  width: 100px;
+  width: 100%;
   position: absolute;
   left: 0;
 }

@@ -18,7 +18,7 @@
           <span class="nav-item">{{uinfo.username || uinfo.phone}}</span>
           <span class="nav-item" @click="logout">登出</span>
         </span>
-        <a href="#" class="nav-item tel">400-6666-666</a>
+        <router-link class="nav-item" to="/publish">发布二手车</router-link>
       </div>
     </div>
   </div>
