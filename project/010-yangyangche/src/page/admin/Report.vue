@@ -102,15 +102,16 @@ export default {
   data() {
     return {
       structure: {},
+      total_check: 0,
+      vehicle_list: [],
       model: "report",
       searchable: ["title"],
       with: [
         {
           model: "vehicle",
           type: "has_one"
-        },
-      ],
-      total_check: 0,
+        }
+      ]
     };
   },
 

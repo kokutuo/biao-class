@@ -144,14 +144,13 @@ export default {
     this.search();
     this.read("brand");
     this.read("design");
-    console.log(this.$route.query);
   },
 
   data: function() {
     return {
       result: [],
       total: 0,
-      limit: 3,
+      limit: 4,
       list: {},
       search_param: {}
     };
@@ -159,8 +158,6 @@ export default {
 
   methods: {
     on_page_change(page) {
-      console.log(page);
-
       this.set_condition("page", page);
     },
 
@@ -179,6 +176,8 @@ export default {
     prepare_search_param() {
       let query = this.parse_route_query();
       this.search_param = query;
+      console.log('this.search_param:',this.search_param);
+      
     },
 
     is_sort(property, direction) {
@@ -233,7 +232,6 @@ export default {
 
       switch (type) {
         case "sort_by":
-          // this.search_param[type] = value;
           query.sort_by = value;
           break;
         case "page":
@@ -245,13 +243,6 @@ export default {
     },
 
     remove_query(type) {
-      // this.$delete(this.search_param, type);
-
-      // let param = Object.assign({}, this.search_param);
-
-      // this.$nextTick(() => {
-      //   this.$router.replace({ query: param });
-      // });
       let query = this.parse_route_query();
       delete query[type];
       this.$router.replace({ query });
@@ -271,7 +262,7 @@ export default {
     },
 
     search() {
-      let p = this.search_param;
+      let p = this.search_param;      
 
       let brand_query = "",
         design_query = "",

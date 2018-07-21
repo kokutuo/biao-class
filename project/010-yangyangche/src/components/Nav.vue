@@ -5,7 +5,6 @@
     <div class="row container">
       <div class="col left">
         <router-link to="/" class="logo"></router-link>
-        <!-- <router-link to="/" class="nav-item">首页</router-link> -->
         <router-link to="/admin/user" class="nav-item">管理面板</router-link>
         <SearchBar :width="'50%'"/>
       </div>
@@ -16,9 +15,10 @@
         </span>
         <span v-else>
           <span class="nav-item">{{uinfo.username || uinfo.phone}}</span>
-          <span class="nav-item" @click="logout">登出</span>
+          <span class="nav-item" @click="logout('#/login')">登出</span>
+          <router-link class="nav-item" to="/publish">发布二手车</router-link>
         </span>
-        <router-link class="nav-item" to="/publish">发布二手车</router-link>
+        <!-- <a href="#" class="nav-item tel">400-6666-666</a> -->
       </div>
     </div>
   </div>

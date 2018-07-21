@@ -34,20 +34,22 @@
         </form>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import "../css/auth.css";
 
+import api from "../lib/api.js";
 import session from "../lib/session.js";
 
 import Nav from "../components/Nav";
-import api from "../lib/api.js";
+import Footer from "../components/Footer";
 
 export default {
   //   directives: { validator }
-  components: { Nav },
+  components: { Nav, Footer },
 
   data() {
     return {

@@ -49,61 +49,103 @@ Vue.filter('percentage', function (val) {
 const router = new Router({
   routes: [{
       path: '/',
-      component: Home
+      component: Home,
+      meta: {
+        title: '首页-洋洋车'
+      }
     },
     {
       path: '/signup',
-      component: Signup
+      component: Signup,
+      meta: {
+        title: '注册-洋洋车'
+      }
     },
     {
       path: '/login',
-      component: Login
+      component: Login,
+      meta: {
+        title: '登录-洋洋车'
+      }
     },
     {
       path: '/detail/:id',
-      component: Detail
+      component: Detail,
+      meta: {
+        title: '二手车详情-洋洋车'
+      }
     },
     {
       path: '/search',
-      component: Search
+      component: Search,
+      meta: {
+        title: '搜索-洋洋车'
+      }
     },
     {
       path: '/publish',
-      component: Publish
+      component: Publish,
+      meta: {
+        title: '发布二手车-洋洋车'
+      }
     },
     {
       path: '/admin',
       component: AdminBase,
       children: [{
           path: 'user',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: User
         },
         {
           path: 'vehicle',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: Vehicle
         },
         {
           path: 'brand',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: Brand
         },
         {
           path: 'model',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: Model
         },
         {
           path: 'design',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: Design
         },
         {
           path: 'location',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: Location
         },
         {
           path: 'report',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: Report
         },
         {
           path: 'appo',
+          meta: {
+            title: '管理面板-洋洋车'
+          },
           component: Appo
         },
       ]
@@ -114,19 +156,22 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // to and from are both route objects
   let go_admin = to.fullPath.startsWith('/admin/');
-  let go_publish = to.fullPath.startsWith('/publish');
+  // let go_publish = to.fullPath.startsWith('/publish');
 
-  if (go_publish && !session.logged_in()) {
-    alert('请先登录，如果没有账号请先注册；管理员账号如下，用户名：admin，密码：yoyoyo');
-    next('/login');
-  }
+  // if (go_publish && !session.logged_in()) {
+  //   alert('请先登录，如果没有账号请先注册；管理员账号如下，用户名：admin，密码：yoyoyo');
+  //   next('/login');
+  // }
 
   if (go_admin && !session.is_admin()) {
     alert('请先使用管理员账号登录，用户名：admin，密码：yoyoyo');
     next('/login');
+    return;
   } else {
     next();
   }
+
+  document.title = to.meta.title;
 });
 
 new Vue({

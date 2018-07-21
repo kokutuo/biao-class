@@ -63,6 +63,7 @@ export default {
         if (r.data.success) {
           this.read();
           this.current = {};
+          this.edit_pattern = false;
         }
       });
     },

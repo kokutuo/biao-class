@@ -247,6 +247,7 @@
             </div> -->
         </div>
     </div>
+    <Footer/>
   </div>
 </template>
 
@@ -254,6 +255,7 @@
 import Nav from "../components/Nav";
 import SearchBar from "../components/SearchBar";
 import ReportPanel from "../components/ReportPanel";
+import Footer from "../components/Footer";
 
 import session from "../lib/session.js";
 import api from "../lib/api.js";
@@ -262,7 +264,8 @@ export default {
   components: {
     Nav,
     SearchBar,
-    ReportPanel
+    ReportPanel,
+    Footer
   },
 
   data() {
@@ -328,9 +331,13 @@ export default {
 
     has_appointed() {
       let row = this.appo;
-      let query = `where("vehicle_id" = ${row.vehicle_id} and "user_id" = ${
-        row.user_id
-      })`;
+      let user_query = '';
+
+      if (!row.user_id) {
+        user_query = `and "user_id" = ${row.user_id}`
+      }
+
+      let query = `where("vehicle_id" = ${row.vehicle_id} ${user_query})`;
 
       api("appo/read", query).then(r => {
         this.appointed_appo = r.data.data[0];

@@ -51,7 +51,7 @@
         <div class="row col-lg-4">
           <div class="col-lg-3 huge-text">卖</div>
           <div class="col-lg-9 right">
-            <a style="margin-top: 15px; display: inline-block;" class="btn btn-primary btn-fat">极速卖车</a>
+            <router-link to="/publish" style="margin-top: 15px; display: inline-block;" class="btn btn-primary btn-fat">极速卖车</router-link>
           </div>
         </div>
       </div>
@@ -65,40 +65,40 @@
               <div class="desc">门槛低 审批快</div>
             </div>
             <div>
-              <img src="../assets/home/guarantee1.png" alt="">
+              <img src="../assets/home/guarantee1.png" alt="一张图">
             </div>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="card">
             <div>
-              <div class="title">分期购车</div>
-              <div class="desc">门槛低 审批快</div>
+              <div class="title">购车保障</div>
+              <div class="desc">1年质保 14天可退</div>
             </div>
             <div>
-              <img src="../assets/home/guarantee1.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div>
-              <div class="title">分期购车</div>
-              <div class="desc">门槛低 审批快</div>
-            </div>
-            <div>
-              <img src="../assets/home/guarantee1.png" alt="">
+              <img src="../assets/home/guarantee2.jpg" alt="一张图">
             </div>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="card">
             <div>
-              <div class="title">分期购车</div>
-              <div class="desc">门槛低 审批快</div>
+              <div class="title">优质售后</div>
+              <div class="desc">180天免费维修</div>
             </div>
             <div>
-              <img src="../assets/home/guarantee1.png" alt="">
+              <img src="../assets/home/guarantee1.png" alt="一张图">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card">
+            <div>
+              <div class="title">行业认证</div>
+              <div class="desc">中国汽车协会认证</div>
+            </div>
+            <div>
+              <img src="../assets/home/guarantee2.jpg" alt="一张图">
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@
               </div>
               <div class="detail">
                 <div class="title">{{row.title}}</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
+                <div class="desc">{{row.birthday}} / 3.07万公里</div>
                 <div class="others">
                   <span class="price">{{row.price}}万元</span>
                   <span>首付3.5万</span>
@@ -136,15 +136,14 @@
         </div>
       </div>
     </div>
-    <div class="footer">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur beatae debitis deleniti doloribus, earum
-      esse excepturi fugit impedit ipsum maxime, nulla optio porro quam quibusdam, sint tempora unde vel?
-    </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+
 import VehicleList from "../mixin/VehicleList";
 import Reader from '../mixin/Reader';
 
@@ -153,7 +152,7 @@ import api from "../lib/api.js";
 import "../css/vehicle-list.css";
 
 export default {
-  components: { Nav },
+  components: { Nav, Footer },
 
   mixins: [VehicleList, Reader],
 

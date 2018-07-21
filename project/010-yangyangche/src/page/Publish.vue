@@ -63,6 +63,7 @@
         </form>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 
@@ -71,13 +72,14 @@ import "../css/auth.css";
 
 import Nav from "../components/Nav";
 import Dropdown from "../components/Dropdown";
+import Footer from "../components/Footer";
 
 import api from "../lib/api.js";
 import session from "../lib/session.js";
 import faker from "../lib/faker.js";
 
 export default {
-  components: { Nav, Dropdown },
+  components: { Nav, Footer, Dropdown },
 
   data() {
     return {
