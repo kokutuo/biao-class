@@ -4,23 +4,36 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+html {
+  font-family: 'Microsoft YaHei', SimHei, sans-serif;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+body {
+  background: #fff;
+  background-image: url(../img/bg.png);
+  background-size: 10%;
+  -moz-background-size: 10%;
+  -webkit-background-size: 10%;
+}
+
+body>* {
+  margin-bottom: 10px;
+}
+
 a {
   text-decoration: none;
 }
 
 h1 {
   font-size: 17px;
-}
-
-html {
-  font-family: 'Microsoft YaHei', SimHei, sans-serif;
-  color: #444;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-body {
-  background: #f0f0f0;
 }
 
 img {
@@ -42,6 +55,27 @@ fieldset {
   border: 0;
 }
 
+footer {
+  text-align: center;
+  background: #414141;
+  padding: 20px;
+  margin-bottom: 0;
+  color: #ccc;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 100px;
+  margin-bottom: 0;
+}
+
 .tac {
   text-align: center;
 }
@@ -50,20 +84,9 @@ fieldset {
   text-align: right;
 }
 
-.footer {
-  margin-top: 10px;
-  text-align: center;
-}
-
 .simple-checker>input[type=checkbox] {
   width: auto;
 }
-
-/*.simple-checker input {*/
-
-/*display: inline-block;*/
-
-/*}*/
 
 .anchor {
   cursor: pointer;
@@ -74,6 +97,10 @@ fieldset {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #777;
+}
+
+.no-padding {
+  padding: 0 !important;
 }
 
 .small {
@@ -102,7 +129,7 @@ fieldset {
 
 .tel {
   font-weight: bold;
-  color: #fd521d;
+  color: #ffbe00;
 }
 
 .col-lg-1 {
@@ -275,13 +302,27 @@ input {
 .btn-primary {
   padding-left: 15px;
   padding-right: 15px;
-  background: #fd521d;
+  background: #ffbe00;
   color: #fff;
+  background-image: url(../img/btn-bg.png);
+  background-size: 100%;
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
 }
 
 .btn-small {
   padding: 3px 5px;
   font-size: .8rem;
+}
+
+.btn-lager {
+  font-size: 2rem;
+  padding: .3em 1em
+}
+
+.btn-fat {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .btn-group button,
@@ -292,11 +333,6 @@ input {
 .btn-group button:first-child,
 .btn-group .btn:first-child {
   border-left-width: 1px;
-}
-
-.btn-fat {
-  padding-left: 40px;
-  padding-right: 40px;
 }
 
 .huge-text {
@@ -318,4 +354,60 @@ input {
 .input-control label {
   display: block;
   margin-bottom: 2px;
+}
+
+.header {
+  /*padding: 10px;*/
+}
+
+.nav {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  border: 5px solid #ffc107;
+}
+
+.nav .nav-item {
+  padding: 10px;
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #ffc107;
+}
+
+.nav .logo {
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  left: 46%;
+  top: 0px;
+}
+
+.nav,
+.round,
+.slider {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.round {
+  box-shadow: 0 0 5px #ffc107;
+  -webkit-box-shadow: 0 0 5px #ffc105;
+  -moz-box-shadow: 0 0 5px #ffc105;
+}
+
+.cat-prom {
+  position: relative;
+}
+
+.cat-prom .title {
+  position: absolute;
+  top: 12px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.cat-prom .head>* {
+  vertical-align: bottom;
 }
