@@ -1,0 +1,65 @@
+.header * {
+    vertical-align: middle;
+}
+
+.header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header .title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 2;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tool-bar {
+    margin: 15px 0;
+}
+
+.tool-bar label {
+    font-size: 15px;
+    font-weight: 900;
+    margin-right: 15px;
+}
+
+.tool-bar input,
+form textarea,
+form input {
+    padding: 5px;
+    width: 440px;
+    background: #f3f5f8;
+    font-size: 16px;
+}
+
+.tool-bar input:focus,
+form textarea:focus,
+form input:focus {
+    background: transparent;
+}
+
+.table {
+    padding: 10px 20px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border: 1px solid #f3f5f8;
+}
+
+thead,
+tr {
+    border-bottom: 1px solid #f3f5f8;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 5px 10px;
+}
+
+tr:hover {
+    background: rgba(253, 82, 29, .3);
+}

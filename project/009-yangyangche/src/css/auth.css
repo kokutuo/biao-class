@@ -1,0 +1,41 @@
+h1 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.main-form {
+  padding: 10px;
+  max-width: 300px;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+}
+
+.main-form input,
+.main-form button {
+  width: 100%;
+}
+
+.main-form input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 15px;
+  color: #aaa;
+}
+
+.main-form input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 15px;
+  color: #aaa;
+}
+
+.main-form input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 15px;
+  color: #aaa;
+}
+
+.main-form input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 15px;
+  color: #aaa;
+}
