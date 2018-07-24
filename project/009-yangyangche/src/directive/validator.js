@@ -176,7 +176,7 @@ const valid = {
       if (!val || val == except)
         s();
 
-      return api(`${model}/first`, {
+      return api(`1/${model}/first`, {
           where: {
             and: {
               [property]: val

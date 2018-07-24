@@ -115,7 +115,7 @@ export default {
       clearTimeout(this.timer);
 
       this.timer = setTimeout(() => {
-        api(`${this.api_conf.model}/search`, { or: condition }).then(r => {
+        api(`1/${this.api_conf.model}/search`, { or: condition }).then(r => {
           this.result = r.data.data;
         });
       }, 300);

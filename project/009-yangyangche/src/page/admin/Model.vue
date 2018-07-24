@@ -98,13 +98,13 @@ export default {
 
   methods: {
     read_brand() {
-      api("brand/read").then(r => {
+      api("1/brand/read").then(r => {
         this.brand_list = r.data.data;
       });
     },
 
     read_design() {
-      api("design/read").then(r => {
+      api("1/design/read").then(r => {
         this.design_list = r.data.data;
       });
     },
