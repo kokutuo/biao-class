@@ -20,16 +20,5 @@ export default {};
 </script>
 
 <style scoped>
-footer {
-  text-align: center;
-  /* background: #414141; */
-  padding: 20px;
-  margin-bottom: 0;
-  color: #ffbe00;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 100px;
-  width: 100%;
-}
+
 </style>

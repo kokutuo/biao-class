@@ -4,14 +4,30 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>test</title>
+  <title>test</title>
+  <style>
+    body, html{
+      height: 100%;
+      margin: 0;
+    }
+
+    .wrap {
+      min-height: 100%;
+      margin-bottom: -60px;
+    }
+
+    .push,
+    footer {
+      height: 60px;
+    }
+
+  </style>
 </head>
 <body>
-	<p>Enjoy this page for a second, because you won't be coming back here</p>
-	<script src="./main.js"></script>
-	<script type="text/javascript">
-	setTimeout(() => {
-		location.replace("http://www.baidu.com/");
-	}, 1000);</script>
+  <div class="wrap">
+    content
+    <div class="push"></div>
+  </div>
+  <footer>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus nihil accusamus, praesentium similique aspernatur magnam cupiditate tempore distinctio esse. Alias quo officiis sit necessitatibus quisquam magnam aut amet. Laborum, consequuntur.</footer>
 </body>
 </html>

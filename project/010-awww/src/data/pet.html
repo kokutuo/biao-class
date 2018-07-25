@@ -1,0 +1,68 @@
+<script src="../../node_modules/axios/dist/axios.js"></script>
+<script src="./api.js"></script>
+
+<script>
+  let model = {
+    key: 'pet',
+    structure: {
+      title: {
+        type: 'string',
+        nullable: false,
+      },
+      color: {
+        type: 'string',
+      },
+      cover_url: {
+        type: 'string',
+      },
+      description: {
+        type: 'text'
+      },
+      origin: { // 产地
+        type: 'json',
+      },
+      price: {
+        type: 'float',
+        positive: true,
+        nullable: false,
+      },
+      vaccinated: { // 接种疫苗
+        type: 'boolean',
+        nullable: false,
+      },
+      character: {
+        type: 'string',
+      },
+      sex: {
+        type: 'boolean',
+      },
+      neuter: { //阉割
+        type: 'boolean',
+      },
+      birthday: {
+        type: 'date',
+        nullable: false,
+      },
+      disease: { // 遗传病
+        type: 'boolean',
+      },
+      pure_breed: { // 纯种
+        type: 'boolean',
+      },
+      breed_id: { // 品种
+        type: 'integer',
+        positive: true,
+      },
+      category_id: {
+        type: 'integer',
+        positive: true
+      },
+    },
+  };
+
+  api('MODEL/CREATE', model);
+
+  // api('MODEL/DELETE', {key: 'pet'});
+
+  // api('MODEL/FIND', {key: 'pet'});
+</script>

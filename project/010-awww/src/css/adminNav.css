@@ -1,0 +1,32 @@
+.side-nav {
+  border: 3px solid #ffbe00;
+  border-radius: 4px;
+}
+
+.side-nav .title {
+  font-weight: 900;
+  background: #ffbe00;
+}
+
+.side-nav .title,
+.side-nav .nav-item {
+  display: block;
+  padding: 7px 10px;
+}
+
+.side-nav .nav-item {
+  border-bottom: 3px solid #ffbe00;
+}
+
+.side-nav .nav-item:last-child {
+  border-bottom: 0;
+}
+
+.side-nav .nav-item:hover {
+  background: rgba(255, 190, 0, .1);
+}
+
+.side-nav .router-link-active {
+  background: rgba(255, 190, 0, .6);
+  border-bottom: 5px solid #ffbe00;
+}
