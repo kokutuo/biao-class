@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <Nav/>
 
     <div class="container row">
@@ -89,7 +88,7 @@
           </table>
         </div>
 
-        <Pagination v-if="!edit_pattern " :totalCount="total" :limit="limit" :on-page-change="on_page_change"/>
+        <Pagination v-if="!edit_pattern" :totalCount="total" :pageLimit="page_limit" :btnLimit="btn_limit" :on-page-change="on_page_change"/>
       </div>
     </div>
     

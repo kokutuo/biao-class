@@ -1,13 +1,13 @@
 <script>
 import api from "../lib/api";
 
-import '../css/admin.css';
+import "../css/admin.css";
 
 import Nav from "../components/Nav";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 import AdminNav from "../components/AdminNav";
 import Pagination from "../components/Pagination";
-import Dropdown from '../components/Dropdown';
+import Dropdown from "../components/Dropdown";
 
 export default {
   components: {
@@ -15,7 +15,7 @@ export default {
     Footer,
     AdminNav,
     Pagination,
-    Dropdown,
+    Dropdown
   },
 
   data() {
@@ -38,7 +38,8 @@ export default {
       total: 0, // 总共有多少条数据
       last_page: 0, // 最后一页，一开始不知道所以是零
       current_page: 1, // 当前页码
-      limit: 5 // 每页显示几条
+      page_limit: 15, // 每页显示几条
+      btn_limit: 5 // 显示的按钮数
     };
   },
 
@@ -57,13 +58,13 @@ export default {
      *
      * 具体创建还是更新决定于是否有id
      */
-    cou() {      
+    cou() {
       let action = this.current.id ? "update" : "create";
       api(`${this.model}/${action}`, this.current).then(r => {
         if (r.success) {
           this.read();
           this.current = {};
-          this.edit_pattern = false;
+          // this.edit_pattern = false;
         }
       });
     },
@@ -92,7 +93,7 @@ export default {
 
       api(`${this.model}/read`, {
         page: page,
-        limit: this.limit,
+        limit: this.page_limit,
         with: this.with
       }).then(r => {
         this.list = r.data;
@@ -117,7 +118,7 @@ export default {
       api(`${this.model}/search`, param).then(r => {
         this.list = r.data;
         this.keyword = "";
-        console.log('this.list', this.list);
+        console.log("this.list", this.list);
       });
     },
 
@@ -134,12 +135,12 @@ export default {
       this.edit_pattern = true;
 
       if (this.after_set_current) {
-          this.after_set_current();
+        this.after_set_current();
       }
     },
 
     is_update() {
-        return !!this.current.id;
+      return !!this.current.id;
     }
   },
 

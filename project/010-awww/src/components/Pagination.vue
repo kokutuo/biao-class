@@ -13,7 +13,7 @@
             <button :class="{active: page == current_page}"
                     @click="change(page)"
                     v-for="page in last_page"
-                    v-if="Math.abs(page - current_page) <= half_limit"
+                    v-if="Math.abs(page - current_page) <= half_btn_limit"
                     :key="page"
                     class="btn">{{page}}
             </button>
@@ -36,7 +36,10 @@
 <script>
 export default {
   props: {
-    limit: {
+    btnLimit: {
+      default: 0
+    },
+    pageLimit: {
       default: 0
     },
     totalCount: {
@@ -86,11 +89,11 @@ export default {
 
   computed: {
     last_page() {
-      return Math.ceil(this.totalCount / this.limit);
+      return Math.ceil(this.totalCount / this.pageLimit);
     },
 
-    half_limit() {
-      return Math.floor(this.limit / 2);
+    half_btn_limit() {
+      return Math.floor(this.btnLimit / 2);
     },
 
     is_first_page() {

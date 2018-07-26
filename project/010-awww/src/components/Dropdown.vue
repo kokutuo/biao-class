@@ -12,7 +12,7 @@
             <div 
                 @click="select(row)" 
                 v-for="row in result" 
-                :key="row[displayKey]" 
+                :key="row.id" 
                 class="menu-item">{{row[displayKey]}}
             </div>
         </div>
@@ -187,7 +187,7 @@ export default {
       handler(n) {
         this.result = n;
       }
-    },
+    }
   }
 };
 </script>

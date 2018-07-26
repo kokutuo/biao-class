@@ -28,5 +28,4 @@
 
 .side-nav .router-link-active {
   background: rgba(255, 190, 0, .6);
-  border-bottom: 5px solid #ffbe00;
 }

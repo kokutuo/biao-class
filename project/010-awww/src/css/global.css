@@ -371,6 +371,7 @@ input {
 }
 
 .nav {
+  position: relative;
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 0 10px;
@@ -394,7 +395,7 @@ input {
   font-weight: bold;
   position: absolute;
   left: 46%;
-  top: 10px;
+  top: -1px;
 }
 
 .nav,
