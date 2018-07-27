@@ -6,3 +6,4 @@
     `<div v-model='data'></div>`
 - v-if: 用于控制当前标签的显示与隐藏
     `<button v-if="current">关闭</button>`
+- props中的变量必须使用驼峰命名
