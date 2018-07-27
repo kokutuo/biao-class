@@ -220,6 +220,8 @@ export default {
   width: 100%;
   position: absolute;
   left: 0;
+  max-height: 200px;
+  overflow: auto;
 }
 
 .selected,

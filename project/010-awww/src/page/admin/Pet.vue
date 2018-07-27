@@ -8,7 +8,7 @@
       </div>
 
       <div class="col-lg-9 content">
-        <div class="heard row">
+        <div class="header row">
           <div class="col-lg-8">
             <div class="title">宠物管理</div>
           </div>
@@ -20,7 +20,7 @@
         <div v-if="!edit_pattern" class="tool-bar">
           <form @submit.prevent="search" class="search">
             <label for="search">快速查找</label>
-            <input id="search" type="search" v-model="keyword">
+            <input id="search" type="search" v-model="keyword" autocomplete="off">
             <button class="btn-primary">搜</button>
           </form>
         </div>
@@ -39,7 +39,7 @@
               type="text">
           </div>
           <div class="input-control">
-            <label>价格</label>
+            <label>价格(元)</label>
             <input 
               v-model="current.price"
               type="number">
@@ -69,28 +69,30 @@
               type="text">
           </div>
           <div class="input-control">
-            <label>图片</label>
+            <label>图片地址</label>
             <input 
               v-model="current.cover_url"
               type="text">
           </div>
           <div class="input-control">
-            <label>性别</label>
-            <input 
-              v-model="current.sex"
-              type="text">
-          </div>
-          <div class="input-control">
             <label>种类</label>
-            <input 
-              v-model="current.category_id"
-              type="text">
+              <Dropdown 
+                :default='current.category_id' 
+                :list='category_list' 
+                :onSelect='set_category_id'/>
           </div>
           <div class="input-control">
             <label>血统</label>
+              <Dropdown 
+                :default='current.breed_id' 
+                :list='breed_list' 
+                :onSelect='set_breed_id'/>
+          </div>
+          <div class="input-control">
+            <label>性别</label>
             <input 
-              v-model="current.breed_id"
-              type="text">
+              v-model="current.sex"
+              type="checkbox">
           </div>
           <div class="input-control">
             <label>接种疫苗</label>
@@ -138,27 +140,23 @@
               <th>阉割</th>
               <th>接种疫苗</th>
               <th>遗传病</th>
-              <th>封面</th>
-              <th>描述</th>
               <th>操作</th>
             </thead>
             <tbody>
               <tr v-for="row in list" :key="row.id">
-                <td>{{row.title}}</td>
-                <td>{{row.color}}</td>
-                <td>{{row.price}}</td>
-                <td>{{row.origin}}</td>
-                <td>{{row.birthday}}</td>
-                <td>{{row.character}}</td>
-                <td>{{row.sex}}</td>
-                <td>{{row.category_id}}</td>
-                <td>{{row.breed_id}}</td>
-                <td>{{row.pure_breed}}</td>
-                <td>{{row.neuter}}</td>
-                <td>{{row.vaccinated}}</td>
-                <td>{{row.disease}}</td>
-                <td>{{row.cover_url}}</td>
-                <td>{{row.description}}</td>
+                <td>{{row.title || '-'}}</td>
+                <td>{{row.color || '-'}}</td>
+                <td>{{row.price || '-'}}</td>
+                <td>{{row.origin || '-'}}</td>
+                <td>{{row.birthday || '-'}}</td>
+                <td>{{row.character || '-'}}</td>
+                <td>{{row.sex ? '雄' : '雌'}}</td>
+                <td>{{row.$category ? row.$category.name : '-'}}</td>
+                <td>{{row.$breed ? row.$breed.name : '-'}}</td>
+                <td>{{row.pure_breed ? '是' : '否'}}</td>
+                <td>{{row.neuter ? '是' : '否'}}</td>
+                <td>{{row.vaccinated ? '是' : '否'}}</td>
+                <td>{{row.disease ? '有' : '无'}}</td>
                 <td>
                   <button @click="set_current(row)" class="btn-primary">编辑</button>
                   <button @click="remove(row.id)">删除</button>
@@ -176,15 +174,60 @@
 
 <script>
 import AdminPage from "../../mixins/AdminPage";
+import api from "../../lib/api";
 
 export default {
   mixins: [AdminPage],
 
+  mounted() {
+    this.read_category();
+  },
+
   data() {
     return {
+      category_list: [],
+      breed_list: [],
+      category_id: "",
+      with: [
+        { model: "category", type: "has_one" },
+        { model: "breed", type: "has_one" }
+      ],
       model: "pet",
       searchable: ["title", "color"]
     };
+  },
+
+  methods: {
+    read_category() {
+      api("category/read").then(r => {
+        this.category_list = r.data;
+      });
+    },
+
+    /**
+     * 根据category的值来决定获取哪些数据
+     */
+    read_breed() {
+      api("breed/read", {
+        limit: 50,
+        where: {
+          and: { category_id: this.category_id }
+        }
+      }).then(r => {
+        this.breed_list = r.data;
+        console.log("this.breed_list", this.breed_list);
+      });
+    },
+
+    set_category_id(row) {
+      this.$set(this.current, "category_id", row.id);
+      this.category_id = row.id;
+      this.read_breed();
+    },
+
+    set_breed_id(row) {
+      this.$set(this.current, "breed_id", row.id);
+    }
   }
 };
 </script>

@@ -38,7 +38,7 @@ export default {
       total: 0, // 总共有多少条数据
       last_page: 0, // 最后一页，一开始不知道所以是零
       current_page: 1, // 当前页码
-      page_limit: 15, // 每页显示几条
+      page_limit: 10, // 每页显示几条
       btn_limit: 5 // 显示的按钮数
     };
   },
@@ -118,7 +118,6 @@ export default {
       api(`${this.model}/search`, param).then(r => {
         this.list = r.data;
         this.keyword = "";
-        console.log("this.list", this.list);
       });
     },
 

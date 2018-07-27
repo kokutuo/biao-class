@@ -8,7 +8,7 @@
       </div>
 
       <div class="col-lg-9 content">
-        <div class="heard row">
+        <div class="header row">
           <div class="col-lg-8">
             <div class="title">血统管理</div>
           </div>
