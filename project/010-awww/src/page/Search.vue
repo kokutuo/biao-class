@@ -1,37 +1,39 @@
 <template>
-  <div class="wrap">
-    <Nav/>
+  <div>
+    <div class="wrap">
+      <Nav/>
 
-    <div>
-      <div class="container">
-        <div class="row card round filter">
-          <div class="col-lg-1 filter-item">分类</div>
-          <div class="col-lg-1 filter-item">品种</div>
-          <div class="col-lg-1 filter-item">毛色</div>
-          <div class="col-lg-1 filter-item">性格</div>
-          <div class="col-lg-1 filter-item">性别</div>
-          <div class="col-lg-1 filter-item">价格</div>
-          <div class="col-lg-1 filter-item">已绝育</div>
-          <div class="col-lg-1 filter-item">已接种疫苗</div>
-          <div class="col-lg-3 filter-item no-padding"></div>
-          <div class="col-lg-1 filter-item more">更多</div>
+      <div>
+        <div class="container">
+          <div class="row card round filter">
+            <div class="col-lg-1 filter-item">分类</div>
+            <div class="col-lg-1 filter-item">品种</div>
+            <div class="col-lg-1 filter-item">毛色</div>
+            <div class="col-lg-1 filter-item">性格</div>
+            <div class="col-lg-1 filter-item">性别</div>
+            <div class="col-lg-1 filter-item">价格</div>
+            <div class="col-lg-1 filter-item">已绝育</div>
+            <div class="col-lg-1 filter-item">已接种疫苗</div>
+            <div class="col-lg-3 filter-item no-padding"></div>
+            <div class="col-lg-1 filter-item more">更多</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="main">
-      <div class="container row result">
-        <div class="col-lg-6">
-          <img src="../img/square-1.jpg" alt="wawawa" class="round">
-        </div>
-        <div class="col-lg-6">
-          <img src="../img/square-1.jpg" alt="wawawa" class="round">
-        </div>
-        <div class="col-lg-6">
-          <img src="../img/square-1.jpg" alt="wawawa" class="round">
-        </div>
-        <div class="col-lg-6">
-          <img src="../img/square-1.jpg" alt="wawawa" class="round">
+      <div class="main">
+        <div class="container row result">
+          <div class="col-lg-6">
+            <img src="../img/square-1.jpg" alt="wawawa" class="round">
+          </div>
+          <div class="col-lg-6">
+            <img src="../img/square-1.jpg" alt="wawawa" class="round">
+          </div>
+          <div class="col-lg-6">
+            <img src="../img/square-1.jpg" alt="wawawa" class="round">
+          </div>
+          <div class="col-lg-6">
+            <img src="../img/square-1.jpg" alt="wawawa" class="round">
+          </div>
         </div>
       </div>
     </div>

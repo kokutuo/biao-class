@@ -1,99 +1,101 @@
 <template>
   <div>
-    <Nav/>
+    <div class="wrap">
+      <Nav/>
 
-    <div class="container row">
-      <div class="col-lg-3">
-        <AdminNav/>
-      </div>
-
-      <div class="col-lg-9 content">
-        <div class="heard row">
-          <div class="col-lg-8">
-            <div class="title">订单管理</div>
-          </div>
-          <div class="col-lg-4 right">
-            <button @click="edit_pattern=true" class="btn-primary">添加</button>
-          </div>
+      <div class="container row">
+        <div class="col-lg-3">
+          <AdminNav/>
         </div>
 
-        <div v-if="!edit_pattern" class="tool-bar">
-          <form @submit.prevent="search" class="search">
-            <label for="search">快速查找</label>
-            <input id="search" type="search" v-model="keyword">
-            <button class="btn-primary">搜</button>
+        <div class="col-lg-9 content">
+          <div class="heard row">
+            <div class="col-lg-8">
+              <div class="title">订单管理</div>
+            </div>
+            <div class="col-lg-4 right">
+              <button @click="edit_pattern=true" class="btn-primary">添加</button>
+            </div>
+          </div>
+
+          <div v-if="!edit_pattern" class="tool-bar">
+            <form @submit.prevent="search" class="search">
+              <label for="search">快速查找</label>
+              <input id="search" type="search" v-model="keyword">
+              <button class="btn-primary">搜</button>
+            </form>
+          </div>
+
+          <form v-if="edit_pattern" @submit.prevent="cou">
+            <div class="input-control">
+              <label>用户</label>
+              <input 
+                v-model="current.user_id"
+                type="text">
+            </div>
+            <div class="input-control">
+              <label>商品信息</label>
+              <input 
+                v-model="current.product_info"
+                type="text">
+            </div>
+            <div class="input-control">
+              <label>订单号</label>
+              <input 
+                v-model="current.oid"
+                type="text">
+            </div>
+            <div class="input-control">
+              <label>总价</label>
+              <input 
+                v-model="current.sum"
+                type="text">
+            </div>
+            <div class="input-control">
+              <label>支付方式</label>
+              <input 
+                v-model="current.pay_by"
+                type="text">
+            </div>
+            <div class="input-control">
+              <label>备注</label>
+              <input 
+                v-model="current.memo"
+                type="text">
+            </div>
+            <div class="input-control">
+              <button type="submit" class="btn-primary">提交</button>
+              <button @click="cancle" type="button">取消</button>
+            </div>
           </form>
-        </div>
 
-        <form v-if="edit_pattern" @submit.prevent="cou">
-          <div class="input-control">
-            <label>用户</label>
-            <input 
-              v-model="current.user_id"
-              type="text">
+          <div v-else class="table">
+            <table>
+              <thead>
+                <th>用户</th>
+                <th>商品信息</th>
+                <th>订单号</th>
+                <th>总价</th>
+                <th>支付方式</th>
+                <th>备注</th>
+                <th>操作</th>
+              </thead>
+              <tbody>
+                <tr v-for="row in list" :key="row.id">
+                  <td>{{row.user_id}}</td>
+                  <td>{{row.product_info}}</td>
+                  <td>{{row.oid}}</td>
+                  <td>{{row.sum}}</td>
+                  <td>{{row.pay_by}}</td>
+                  <td>{{row.memo}}</td>
+                  <td>
+                    <button @click="set_current(row)" class="btn-primary">编辑</button>
+                    <button @click="remove(row.id)">删除</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="input-control">
-            <label>商品信息</label>
-            <input 
-              v-model="current.product_info"
-              type="text">
-          </div>
-          <div class="input-control">
-            <label>订单号</label>
-            <input 
-              v-model="current.oid"
-              type="text">
-          </div>
-          <div class="input-control">
-            <label>总价</label>
-            <input 
-              v-model="current.sum"
-              type="text">
-          </div>
-          <div class="input-control">
-            <label>支付方式</label>
-            <input 
-              v-model="current.pay_by"
-              type="text">
-          </div>
-          <div class="input-control">
-            <label>备注</label>
-            <input 
-              v-model="current.memo"
-              type="text">
-          </div>
-          <div class="input-control">
-            <button type="submit" class="btn-primary">提交</button>
-            <button @click="cancle" type="button">取消</button>
-          </div>
-        </form>
-
-        <div v-else class="table">
-          <table>
-            <thead>
-              <th>用户</th>
-              <th>商品信息</th>
-              <th>订单号</th>
-              <th>总价</th>
-              <th>支付方式</th>
-              <th>备注</th>
-              <th>操作</th>
-            </thead>
-            <tbody>
-              <tr v-for="row in list" :key="row.id">
-                <td>{{row.user_id}}</td>
-                <td>{{row.product_info}}</td>
-                <td>{{row.oid}}</td>
-                <td>{{row.sum}}</td>
-                <td>{{row.pay_by}}</td>
-                <td>{{row.memo}}</td>
-                <td>
-                  <button @click="set_current(row)" class="btn-primary">编辑</button>
-                  <button @click="remove(row.id)">删除</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>

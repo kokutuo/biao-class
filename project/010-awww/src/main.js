@@ -1,3 +1,6 @@
+import 'normalize.css';
+import './css/global.css';
+
 import Vue from 'vue'
 import Router from 'vue-router';
 import App from './App.vue'
@@ -12,9 +15,6 @@ import User from './page/admin/User.vue';
 import Pet from './page/admin/Pet.vue';
 import Order from './page/admin/Order.vue';
 import Breed from './page/admin/Breed.vue';
-
-import './css/global.css';
-import 'normalize.css';
 
 Vue.config.productionTip = false
 

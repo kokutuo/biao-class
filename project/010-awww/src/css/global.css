@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 99%;
-}
-
 html {
   font-family: 'Microsoft YaHei', SimHei, sans-serif;
   color: #444;
@@ -57,31 +52,12 @@ fieldset {
   border: 0;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  height: 95px;
-  /* background: #414141; */
-  width: 100%;
-  padding: 20px;
-  margin-bottom: 0;
-  color: #ffbe00;
-}
-
 .wrap {
-  position: relative;
-  min-height: 100%;
-  padding-bottom: 100px;
+  min-height: calc(100vh - 90px);
 }
 
 .tac {
   text-align: center;
-}
-
-.tar {
-  text-align: right;
 }
 
 .simple-checker>input[type=checkbox] {
@@ -366,9 +342,8 @@ input {
   margin-bottom: 2px;
 }
 
-.header {
-  /*padding: 10px;*/
-}
+/* .header {
+} */
 
 .nav {
   position: relative;
