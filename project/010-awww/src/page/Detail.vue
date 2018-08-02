@@ -39,7 +39,9 @@
             </div>
             <h1>你瞅啥</h1>
           </div>
-          <button class="btn-primary btn-lager buy">购买</button>
+          <router-link to="/new_order">
+            <button class="btn-primary btn-k buy">￥2000 购买</button>
+          </router-link>
         </div>
       </div>
 

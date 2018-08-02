@@ -72,22 +72,22 @@
           <div v-else class="table">
             <table>
               <thead>
-                <th>用户</th>
-                <th>商品信息</th>
                 <th>订单号</th>
                 <th>总价</th>
                 <th>支付方式</th>
+                <th>商品信息</th>
+                <th>已付款</th>
                 <th>备注</th>
                 <th>操作</th>
               </thead>
               <tbody>
                 <tr v-for="row in list" :key="row.id">
-                  <td>{{row.user_id}}</td>
+                  <td>{{row.oid || '-'}}</td>
+                  <td>{{row.sum || '-'}}</td>
+                  <td>{{row.pay_by || '-'}}</td>
                   <td>{{row.product_info}}</td>
-                  <td>{{row.oid}}</td>
-                  <td>{{row.sum}}</td>
-                  <td>{{row.pay_by}}</td>
-                  <td>{{row.memo}}</td>
+                  <td>{{row._paid ? '是' : '否'}}</td>
+                  <td>{{row.memo || '-'}}</td>
                   <td>
                     <button @click="set_current(row)" class="btn-primary">编辑</button>
                     <button @click="remove(row.id)">删除</button>

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import "../css/adminNav.css";
+import "../css/sideNav.css";
 export default {};
 </script>
 

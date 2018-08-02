@@ -191,8 +191,8 @@ export default {
       breed_list: [],
       category_id: "",
       with: [
-        { model: "category", type: "has_one" },
-        { model: "breed", type: "has_one" }
+        { model: "category", relation: "has_one" },
+        { model: "breed", relation: "has_one" }
       ],
       model: "pet",
       searchable: ["title", "color"]
@@ -217,7 +217,6 @@ export default {
         }
       }).then(r => {
         this.breed_list = r.data;
-        console.log("this.breed_list", this.breed_list);
       });
     },
 

@@ -15,7 +15,7 @@
       product_info: {
         type: 'json',
       },
-      pay_by:{
+      pay_by: {
         type: 'string',
       },
       memo: {
@@ -28,9 +28,18 @@
     },
   };
 
-  api('MODEL/CREATE', model);
+  // api('MODEL/CREATE', model);
+
+  // api('MODEL/ATTACH_FEATURE', {
+  //   key: 'order',
+  //   feature: 'payment'
+  // });
 
   // api('MODEL/DELETE', {key: 'pet'});
 
-  // api('MODEL/FIND', {key: 'category'});
+  // api('PROPERTY/DELETE', {model: 'order', key: 'cover_url'});
+
+  api('MODEL/FIND', {
+    key: 'order'
+  });
 </script>

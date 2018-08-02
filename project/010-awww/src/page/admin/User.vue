@@ -70,7 +70,6 @@
                 <th>密码</th>
                 <th>手机</th>
                 <th>邮箱</th>
-                <th>地址</th>
                 <th>操作</th>
               </thead>
               <tbody>
@@ -79,7 +78,6 @@
                   <td>{{row.password}}</td>
                   <td>{{row.phone}}</td>
                   <td>{{row.email}}</td>
-                  <td>{{row.location}}</td>
                   <td>
                     <button @click="set_current(row)" class="btn-primary">编辑</button>
                     <button @click="remove(row.id)">删除</button>

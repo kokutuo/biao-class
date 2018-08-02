@@ -131,6 +131,7 @@ export default {
 
     set_current(row) {
       this.current = row;
+      console.log('this.current', this.current);
       this.edit_pattern = true;
 
       if (this.after_set_current) {

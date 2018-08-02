@@ -279,12 +279,6 @@ textarea[disabled] {
   cursor: not-allowed;
 }
 
-textarea,
-input {
-  outline: 0;
-  width: 100%;
-}
-
 .btn-primary {
   padding-left: 15px;
   padding-right: 15px;
@@ -309,6 +303,10 @@ input {
 .btn-fat {
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.btn-group {
+  text-align: right;
 }
 
 .btn-group button,
@@ -340,6 +338,15 @@ input {
 .input-control label {
   display: block;
   margin-bottom: 2px;
+}
+
+.input-control input,
+.input-control textarea {
+  width: 100%;
+}
+
+.input-control input[type=checkbox] {
+  width: auto;
 }
 
 /* .header {
@@ -386,6 +393,24 @@ input {
   box-shadow: 0 0 5px #ffc107;
   -webkit-box-shadow: 0 0 5px #ffc105;
   -moz-box-shadow: 0 0 5px #ffc105;
+}
+
+input.round:focus {
+  box-shadow: 0 0 10px #ffc107;
+  -webkit-box-shadow: 0 0 10px #ffc105;
+  -moz-box-shadow: 0 0 10px #ffc105;
+}
+
+.left-round {
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.right-round {
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 
 .cat-prom {

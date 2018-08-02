@@ -91,7 +91,7 @@ export default {
       category_list: [],
       model: "breed",
       searchable: ["name", "category_id"],
-      with: [{ model: "category", type: "has_one" }]
+      with: [{ model: "category", relation: "has_one" }]
     };
   },
 

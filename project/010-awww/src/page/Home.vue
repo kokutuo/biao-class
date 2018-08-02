@@ -5,7 +5,9 @@
 
       <div class="container">
         <div class="slider">
-          <img src="../img/slider-2.jpg" alt="喵喵喵">
+          <router-link to="/detail">
+            <img src="../img/slider-2.jpg" alt="喵喵喵">
+          </router-link>
         </div>
       </div>
 
