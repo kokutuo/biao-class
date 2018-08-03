@@ -76,6 +76,8 @@
 </template>
 
 <script>
+import '../../css/cuteForm.css';
+
 import session from "../../lib/session.js";
 import api from "../../lib/api.js";
 
@@ -138,41 +140,4 @@ export default {
 </script>
 
 <style scoped>
-.cute-form {
-  padding: 0 35px;
-}
-
-.cute-form .key {
-  font-size: 18px;
-  opacity: 0.7;
-}
-
-.cute-form .val {
-  font-size: 23px;
-  font-weight: bolder;
-  padding-right: 10px;
-}
-
-.cute-form .edit {
-  font-size: 15px;
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.cute-form .edit:hover {
-  opacity: 0.8;
-}
-
-.cute-form label {
-  display: block;
-  margin-bottom: 5px;
-  opacity: 0.8;
-  color: #333;
-  font-weight: bolder;
-}
-
-.cute-form input,
-.cute-form button {
-  border: 0;
-}
 </style>

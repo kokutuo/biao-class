@@ -124,7 +124,7 @@ export default {
     /**
      * 离开编辑模式并清空表单数据
      */
-    cancle() {
+    cancel() {
       this.edit_pattern = false;
       this.current = {};
     },

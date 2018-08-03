@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-lg-9 content">
-          <div class="heard row">
+          <div class="header row">
             <div class="col-lg-8">
               <div class="title">订单管理</div>
             </div>
@@ -27,18 +27,13 @@
           </div>
 
           <form v-if="edit_pattern" @submit.prevent="cou">
-            <div class="input-control">
+            <!-- <div class="input-control">
               <label>用户</label>
-              <input 
-                v-model="current.user_id"
-                type="text">
-            </div>
-            <div class="input-control">
-              <label>商品信息</label>
-              <input 
-                v-model="current.product_info"
-                type="text">
-            </div>
+                <Dropdown 
+                  :default='current.user_id' 
+                  :list='user_list' 
+                  :onSelect='set_user_id'/>
+            </div> -->
             <div class="input-control">
               <label>订单号</label>
               <input 
@@ -58,6 +53,12 @@
                 type="text">
             </div>
             <div class="input-control">
+              <label>商品信息</label>
+              <input 
+                v-model="current.product_info"
+                type="text">
+            </div>
+            <div class="input-control">
               <label>备注</label>
               <input 
                 v-model="current.memo"
@@ -65,13 +66,14 @@
             </div>
             <div class="input-control">
               <button type="submit" class="btn-primary">提交</button>
-              <button @click="cancle" type="button">取消</button>
+              <button @click="cancel" type="button">取消</button>
             </div>
           </form>
 
           <div v-else class="table">
             <table>
               <thead>
+                <!-- <th>客户</th> -->
                 <th>订单号</th>
                 <th>总价</th>
                 <th>支付方式</th>
@@ -82,6 +84,7 @@
               </thead>
               <tbody>
                 <tr v-for="row in list" :key="row.id">
+                  <!-- <td>{{row.$user ? row.$user.username : '-'}}</td> -->
                   <td>{{row.oid || '-'}}</td>
                   <td>{{row.sum || '-'}}</td>
                   <td>{{row.pay_by || '-'}}</td>
@@ -105,16 +108,36 @@
 </template>
 
 <script>
+import api from '../../lib/api.js';
+
 import AdminPage from "../../mixins/AdminPage";
 
 export default {
   mixins: [AdminPage],
 
+  mounted() {
+    this.read_user();
+  },
+
   data() {
     return {
       model: "order",
-      searchable: ["user_id", "pay_by"]
+      with: [{ model: "user", relation: "has_one" }],
+      searchable: ["user_id", "pay_by"],
+      user_list: []
     };
+  },
+
+  methods: {
+    read_user() {
+      api("user/read").then(r => {
+        this.user_list = r.data;
+      });
+    },
+
+    set_user_id(row) {
+      this.$set(this.current, 'user_id', row.id);
+    }
   }
 };
 </script>

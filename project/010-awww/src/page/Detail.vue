@@ -39,9 +39,11 @@
             </div>
             <h1>你瞅啥</h1>
           </div>
-          <router-link to="/new_order">
-            <button class="btn-primary btn-k buy">￥2000 购买</button>
-          </router-link>
+          <div class="buy">
+            <router-link :to="`/new_order/${current.id}`" :class="`btn-primary btn-large ${current.id ? '' : 'disabled'}`">
+              ￥3000 购买
+            </router-link>
+          </div>
         </div>
       </div>
 
@@ -73,11 +75,24 @@
 </template>
 
 <script>
+import api from "../lib/api.js";
+
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
 export default {
-  components: { Nav, Footer }
+  components: { Nav, Footer },
+
+  data() {
+    return {
+      pet_exist: false,
+      current: {}
+    };
+  },
+
+  methods: {
+    
+  }
 };
 </script>
 

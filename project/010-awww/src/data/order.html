@@ -39,7 +39,13 @@
 
   // api('PROPERTY/DELETE', {model: 'order', key: 'cover_url'});
 
-  api('MODEL/FIND', {
-    key: 'order'
+  api('PROPERTY/CREATE', {
+    key: 'user_memo',
+    model: 'order',
+    structure: {
+      type: 'string',
+    },
   });
+
+  // api('MODEL/FIND', {key: 'order'});
 </script>

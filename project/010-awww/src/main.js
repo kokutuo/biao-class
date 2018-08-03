@@ -12,6 +12,7 @@ import Home from './page/Home.vue';
 import Detail from './page/Detail.vue';
 import Search from './page/Search.vue';
 import NewOrder from './page/NewOrder.vue';
+import Pay from './page/Pay.vue';
 import Login from './page/Login.vue';
 import Signup from './page/Signup.vue';
 
@@ -67,6 +68,10 @@ const router = new Router({
       component: NewOrder
     },
     {
+      path: '/pay/:oid',
+      component: Pay
+    },
+    {
       path: '/me',
       component: Me,
       children: [{
@@ -74,7 +79,7 @@ const router = new Router({
           component: Setting
         },
         {
-          path: 'my_order',
+          path: 'order',
           component: MyOrder
         }
       ]

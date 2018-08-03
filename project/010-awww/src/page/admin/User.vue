@@ -59,7 +59,7 @@
             </div>
             <div class="input-control">
               <button type="submit" class="btn-primary">提交</button>
-              <button @click="cancle" type="button">取消</button>
+              <button @click="cancel" type="button">取消</button>
             </div>
           </form>
 

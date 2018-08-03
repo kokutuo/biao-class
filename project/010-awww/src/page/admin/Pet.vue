@@ -121,7 +121,7 @@
             </div>
             <div class="input-control">
               <button type="submit" class="btn-primary">提交</button>
-              <button @click="cancle" type="button">取消</button>
+              <button @click="cancel" type="button">取消</button>
             </div>
           </form>
 
@@ -132,7 +132,6 @@
                 <th>毛色</th>
                 <th>价格</th>
                 <th>产地</th>
-                <th>生日</th>
                 <th>性格</th>
                 <th>性别</th>
                 <th>种类</th>
@@ -149,7 +148,6 @@
                   <td>{{row.color || '-'}}</td>
                   <td>{{row.price || '-'}}</td>
                   <td>{{row.origin || '-'}}</td>
-                  <td>{{row.birthday || '-'}}</td>
                   <td>{{row.character || '-'}}</td>
                   <td>{{row.sex ? '雄' : '雌'}}</td>
                   <td>{{row.$category ? row.$category.name : '-'}}</td>

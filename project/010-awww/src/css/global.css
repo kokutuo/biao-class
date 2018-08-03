@@ -39,7 +39,7 @@ img {
 
 table {
   text-align: center;
-  max-width: 100%;
+  min-width: 50%;
   border-collapse: collapse;
 }
 
@@ -349,8 +349,32 @@ textarea[disabled] {
   width: auto;
 }
 
-/* .header {
-} */
+.card {
+  margin-bottom: 10px;
+  /* background: #fff; */
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+}
+
+.card>* {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.card>*:first-child {
+  padding-top: 10px;
+}
+
+.card>*:last-child {
+  padding-bottom: 10px;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
 
 .nav {
   position: relative;
