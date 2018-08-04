@@ -32,6 +32,14 @@
               <input v-model="current.name" name="name" type="text">
             </div>
             <div class="input-control">
+              <label>封面</label>
+              <input v-model="current.cover_url" name="name" type="url">
+            </div>
+            <div class="input-control">
+              <label>首页推广</label>
+              <input v-model="current.promoting" name="name" type="checkbox">
+            </div>
+            <div class="input-control">
               <button type="submit" class="btn-primary">提交</button>
               <button @click="cancel" type="button">取消</button>
             </div>
@@ -41,11 +49,13 @@
             <table>
               <thead>
                 <th>分类名</th>
+                <th>首页推广</th>
                 <th>操作</th>
               </thead>
               <tbody>
                 <tr v-for="row in list" :key="row.id">
                   <td>{{row.name}}</td>
+                  <td>{{row.promoting ? '是' : '否'}}</td>
                   <td>
                     <button @click="set_current(row)" class="btn-primary">编辑</button>
                     <button @click="remove(row.id)">删除</button>

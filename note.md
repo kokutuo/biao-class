@@ -6,4 +6,4 @@
     `<div v-model='data'></div>`
 - v-if: 用于控制当前标签的显示与隐藏
     `<button v-if="current">关闭</button>`
-- props中的变量必须使用驼峰命名
+- props中的变量大小写: 当你使用 DOM 中的模板时，camelCase (驼峰命名法) 的 prop 名需要使用其等价的 kebab-case (短横线分隔命名) 命名

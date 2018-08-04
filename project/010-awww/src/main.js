@@ -1,11 +1,13 @@
 import 'normalize.css';
 import './css/global.css';
-import 'swiper/dist/css/swiper.css';
 
 import Vue from 'vue'
 import Router from 'vue-router';
 import Validate from 'vee-validate';
-import VueAwesomeSwiper from 'vue-awesome-swiper';
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+// require styles
+import 'swiper/dist/css/swiper.css'
 
 import App from './App.vue'
 import Home from './page/Home.vue';

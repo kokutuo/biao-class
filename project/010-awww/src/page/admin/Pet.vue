@@ -28,7 +28,7 @@
 
           <form v-if="edit_pattern" @submit.prevent="cou">
             <div class="input-control">
-              <label>名称</label>
+              <label>标题</label>
               <input 
                 v-model="current.title"
                 type="text">
@@ -70,7 +70,7 @@
                 type="text">
             </div>
             <div class="input-control">
-              <label>图片地址</label>
+              <label>封面地址</label>
               <input 
                 v-model="current.cover_url"
                 type="text">
@@ -117,6 +117,12 @@
               <label>阉割</label>
               <input 
                 v-model="current.neuter"
+                type="checkbox">
+            </div>
+            <div class="input-control">
+              <label>首页推广</label>
+              <input 
+                v-model="current.hot"
                 type="checkbox">
             </div>
             <div class="input-control">

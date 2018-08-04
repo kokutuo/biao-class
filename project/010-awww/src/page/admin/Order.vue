@@ -14,7 +14,7 @@
               <div class="title">订单管理</div>
             </div>
             <div class="col-lg-4 right">
-              <button @click="edit_pattern=true" class="btn-primary">添加</button>
+              <!-- <button @click="edit_pattern=true" class="btn-primary">添加</button> -->
             </div>
           </div>
 
@@ -26,14 +26,14 @@
             </form>
           </div>
 
-          <form v-if="edit_pattern" @submit.prevent="cou">
-            <!-- <div class="input-control">
+          <!-- <form v-if="edit_pattern" @submit.prevent="cou">
+            <div class="input-control">
               <label>用户</label>
                 <Dropdown 
                   :default='current.user_id' 
                   :list='user_list' 
                   :onSelect='set_user_id'/>
-            </div> -->
+            </div>
             <div class="input-control">
               <label>订单号</label>
               <input 
@@ -68,9 +68,9 @@
               <button type="submit" class="btn-primary">提交</button>
               <button @click="cancel" type="button">取消</button>
             </div>
-          </form>
+          </form> -->
 
-          <div v-else class="table">
+          <div class="table">
             <table>
               <thead>
                 <!-- <th>客户</th> -->
