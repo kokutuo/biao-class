@@ -389,7 +389,7 @@ textarea[disabled] {
   display: inline-block;
   font-size: 1.2rem;
   color: #ffc107;
-  transition: color .2s;
+  transition: color .3s;
 }
 
 .nav .nav-item:hover {
@@ -443,7 +443,7 @@ input.round:focus {
 
 .cat-prom .title {
   position: absolute;
-  top: 12px;
+  top: 7px;
   font-size: 2rem;
   font-weight: bold;
 }

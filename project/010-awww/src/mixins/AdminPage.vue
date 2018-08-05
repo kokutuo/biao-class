@@ -126,6 +126,7 @@ export default {
      */
     cancel() {
       this.edit_pattern = false;
+      this.read();
       this.current = {};
     },
 

@@ -9,10 +9,10 @@
             <img src="../img/slider-2.jpg" alt="喵喵喵">
           </router-link>
         </div> -->
-        <swiper :options="swiperOption">
-          <swiper-slide v-for="it in hot" :key="it.id">
-            <router-link to="`/detail/${it.id}`" class="slider">
-              <img :src="it.cover_url" alt="it.title">
+        <swiper v-if="hot.length>0" :options="swiperOption">
+          <swiper-slide  v-for="it in hot" :key="it.id">
+            <router-link :to="`/detail/${it.id}`" class="slider">
+              <img class="round" :src="it.cover_url" :alt="it.title">
             </router-link>
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
@@ -35,18 +35,17 @@
         <div v-for="it in cat" :key="it.id" class="container row cat-prom">
           <div class="nav">
             <div class="left col-lg-4">
-              <span class="title nav-item">{{it.name}}</span>
+              <span class="title">{{it.name}}</span>
             </div>
             <div class="right col-lg-8 cat-nav">
-              <a href="#" class="nav-item">哈士奇</a>
-              <a href="#" class="nav-item">沙皮</a>
-              <a href="#" class="nav-item">拉布拉多</a>
-              <a href="#" class="nav-item">吉娃娃</a>
-              <a href="#" class="nav-item">牛头</a>
-              <a href="#" class="nav-item">博美</a>
-              <a href="#" class="nav-item">柴犬</a>
-              <a href="#" class="nav-item">金毛</a>
+              <router-link 
+                v-for="breed in it.breed_list" 
+                :key="breed.id" 
+                to="/search" 
+                class="nav-item">{{breed.name}}
+              </router-link>
             </div>
+            
           </div>
           <div class="body">
             <div class="row">
@@ -77,18 +76,25 @@ import Footer from "../components/Footer";
 export default {
   components: { Nav, Footer },
 
+  mounted() {
+    this.read_hot();
+    this.read_cat();
+  },
+
   data() {
     return {
       hot: [],
       cat: [],
       swiperOption: {
-        keyboard: true,
-        clickable: true,
+        slidesPreView: 1,
+        spaceBetween: 30,
         loop: true,
+        effect: "fade",
         autoplay: true,
         pagination: {
           el: ".swiper-pagination",
-          dynamicBullets: true
+          dynamicBullets: true,
+          clickable: true
         }
       }
     };
@@ -104,7 +110,8 @@ export default {
     read_cat() {
       api("category/read", { where: { promoting: true } }).then(r => {
         this.cat = r.data;
-        console.log('this.cat', this.cat);
+        this.read_pet_by_cat();
+        this.read_breed_by_cat();
       });
     },
 
@@ -116,10 +123,28 @@ export default {
           }
         );
       });
+    },
+
+    read_breed_by_cat() {
+      this.cat.forEach(it => {
+        api("breed/read", { where: { category_id: it.id }, limit: 6 }).then(
+          r => {
+            this.$set(it, "breed_list", r.data);
+          }
+        );
+      });
     }
   }
 };
 </script>
 
 <style scoped>
+.swiper-slide {
+  max-height: 600px;
+}
+
+.swiper-slide img {
+  border-radius: 6px;
+  max-height: 600px;
+}
 </style>

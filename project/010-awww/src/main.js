@@ -58,7 +58,7 @@ const router = new Router({
       component: Signup
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       component: Detail
     },
     {
