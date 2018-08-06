@@ -170,9 +170,10 @@
               </tbody>
             </table>
           </div>
+          <Pagination v-if="!edit_pattern" :totalCount="total" :pageLimit="page_limit" :btnLimit="btn_limit" :on-page-change="on_page_change"/>
         </div>
       </div>
-          </div>
+    </div>
 
       <Footer/>
   </div>

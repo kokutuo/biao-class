@@ -72,5 +72,47 @@
   //   }
   // });
 
-  api('MODEL/FIND', {key: 'pet'});
+  // api('MODEL/ATTACH_MOCK', {
+  //   key: 'pet',
+  //   mock: {
+  //     title: {
+  //       mocker: 'word'
+  //     },
+  //     price: {
+  //       mocker: 'numberBetween',
+  //       params: [1, 100000],
+  //     },
+  //     color: {
+  //       mocker: 'colorName',
+  //     },
+  //     origin: {
+  //       mocker: 'country',
+  //     },
+  //     vaccinated: {
+  //       mocker: 'boolean',
+  //     },
+  //     character: {
+  //       mocker: 'randomElement',
+  //       params: [['安静', '活泼', '警觉', '聪明']],
+  //     },
+  //     sex: {
+  //       mocker: 'boolean',
+  //     },
+  //     neuter: {
+  //       mocker: 'boolean',
+  //     },
+  //     disease: {
+  //       mocker: 'boolean',
+  //     },
+  //     pure_breed: {
+  //       mocker: 'boolean',
+  //     },
+  //   }
+  // });
+
+    api('pet/seed', {
+      amount: 10
+    });
+
+  // api('MODEL/FIND', {key: 'pet'});
 </script>

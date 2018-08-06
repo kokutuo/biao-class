@@ -5,7 +5,7 @@
         <div class="nav">
           <div class="col-lg-5 left">
             <router-link class="nav-item" to="/search">搜索</router-link>
-            <router-link class="nav-item" to="/detail">详情</router-link>
+            <router-link class="nav-item" to="/cart">购物车</router-link>
             <router-link class="nav-item" to="/admin/user">管理</router-link>
           </div>
           <div class="col-lg-2">

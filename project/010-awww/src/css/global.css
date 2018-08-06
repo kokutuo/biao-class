@@ -235,6 +235,11 @@ fieldset {
   text-align: left;
 }
 
+.col.right,
+[class*=col-].right {
+  text-align: right;
+}
+
 .center {
   text-align: center;
 }
@@ -252,6 +257,7 @@ fieldset {
 button,
 .btn {
   cursor: pointer;
+  background: #fff;
 }
 
 button.active {
@@ -295,7 +301,7 @@ textarea[disabled] {
   font-size: .8rem;
 }
 
-.btn-lager {
+.btn-large {
   font-size: 2rem;
   padding: .3em 1em
 }

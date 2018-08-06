@@ -4,11 +4,6 @@
       <Nav/>
 
       <div class="container">
-        <!-- <div class="slider">
-          <router-link to="/detail">
-            <img src="../img/slider-2.jpg" alt="喵喵喵">
-          </router-link>
-        </div> -->
         <swiper v-if="hot.length>0" :options="swiperOption">
           <swiper-slide  v-for="it in hot" :key="it.id">
             <router-link :to="`/detail/${it.id}`" class="slider">
@@ -55,7 +50,9 @@
             </div>
             <div class="row">
               <div v-for="pet in it.pet_list" :key="pet.id" class="col-lg-3">
-                <img :src="pet.cover_url" class="round">
+                <router-link :to="`/detail/${pet.id}`">
+                  <img :src="pet.cover_url" class="round">
+                </router-link>
               </div>
             </div>
           </div>

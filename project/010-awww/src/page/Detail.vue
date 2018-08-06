@@ -6,43 +6,44 @@
       <div class="container slider por">
         <div>
           <div>
-            <img src="../img/slider-2.jpg" alt="喵喵喵">
+            <img :src="current.cover_url" :alt="current.title" class="round">
           </div>
         </div>
         <div class="mask round">
           <div class="info">
             <div class="prop-list">
               <div class="prop">
-                <span>产地</span>
-                <span>何家英</span>
-              </div>
-              <div class="prop">
                 <span>品种</span>
-                <span>沙皮</span>
+                <span>{{current.$breed ? current.$breed.name : '???' }}</span>
               </div>
               <div class="prop">
-                <span>产地</span>
-                <span>何家英</span>
-              </div>
-              <div class="prop">
-                <span>品种</span>
-                <span>沙皮</span>
+                <span>毛色</span>
+                <span>{{current.color || '???'}}</span>
               </div>
               <div class="prop">
                 <span>产地</span>
-                <span>何家英</span>
+                <span>{{current.origin || '???'}}</span>
               </div>
               <div class="prop">
-                <span>品种</span>
-                <span>沙皮</span>
+                <span>性别</span>
+                <span>{{current.sex ? '雄' : '雌'}}</span>
+              </div>
+              <div class="prop">
+                <span>生日</span>
+                <span>{{current.birthday || '???'}}</span>
+              </div>
+              <div class="prop">
+                <span>简介</span>
+                <span>{{current.description || '???'}}</span>
               </div>
             </div>
-            <h1>你瞅啥</h1>
+            <h1>{{current.title}}</h1>
           </div>
           <div class="buy">
-            <router-link :to="`/new_order/${current.id}`" :class="`btn-primary btn-large ${current.id ? '' : 'disabled'}`">
+            <router-link :to="`/new_order`" :class="`btn-primary btn-large ${current.id ? '' : 'disabled'}`">
               ￥3000 购买
             </router-link>
+            <button v-if="!pet_exist" @click="add_to_cart(current.id, 1)" class="btn-large">加入购物车</button>
           </div>
         </div>
       </div>
@@ -51,10 +52,10 @@
         <div class="container no-padding detail round">
           <div class="other-info center">
             <div class="col-lg-2">5个月</div>
-            <div class="col-lg-2">已打疫苗</div>
-            <div class="col-lg-2">无遗传病</div>
-            <div class="col-lg-2">已绝育</div>
-            <div class="col-lg-2">拉布拉多纯种</div>
+            <div class="col-lg-2">{{current.vaccinated ? '已' : '未'}}打疫苗</div>
+            <div class="col-lg-2">{{current.disease ? '有' : '无'}}遗传病</div>
+            <div class="col-lg-2">{{current.neuter ? '已' : '未'}}绝育</div>
+            <div class="col-lg-2">{{current.pure_breed ? '纯种' : '非纯种'}}</div>
           </div>
           <div class="content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, similique harum? In voluptas temporibus nisi sit ea
@@ -77,21 +78,48 @@
 <script>
 import api from "../lib/api.js";
 
+import { hub, add, all, pet_exist } from "../hub/cart.js";
+
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
 export default {
   components: { Nav, Footer },
 
+  mounted() {
+    this.find();
+  },
+
   data() {
     return {
       pet_exist: false,
-      current: {}
+      current: {},
+      hub: {}
     };
   },
 
   methods: {
-    
+    all,
+    add_to_cart: add,
+    find() {
+      let id = this.$route.params.id;
+
+      api("pet/find", { id, with: "has_one:breed" }).then(r => {
+        this.current = r.data;
+        console.log("this.current", this.current);
+      });
+    }
+  },
+
+  watch: {
+    hub: {
+      deep: true,
+      handle(n, o) {
+        if (this.current) {
+          this.pet_exist = pet_exist(this.current.id);
+        }
+      }
+    }
   }
 };
 </script>

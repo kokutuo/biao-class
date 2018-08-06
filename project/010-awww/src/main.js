@@ -6,7 +6,6 @@ import Router from 'vue-router';
 import Validate from 'vee-validate';
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-// require styles
 import 'swiper/dist/css/swiper.css'
 
 import App from './App.vue'
@@ -15,6 +14,7 @@ import Detail from './page/Detail.vue';
 import Search from './page/Search.vue';
 import NewOrder from './page/NewOrder.vue';
 import Pay from './page/Pay.vue';
+import Cart from './page/Cart.vue';
 import Login from './page/Login.vue';
 import Signup from './page/Signup.vue';
 
@@ -72,6 +72,10 @@ const router = new Router({
     {
       path: '/pay/:oid',
       component: Pay
+    },
+    {
+      path: '/cart',
+      component: Cart
     },
     {
       path: '/me',
