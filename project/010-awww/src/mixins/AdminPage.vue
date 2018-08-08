@@ -49,6 +49,7 @@ export default {
      * @param {number} 页码
      */
     on_page_change(page) {
+      this.current_page = page;
       this.read(page);
     },
 
