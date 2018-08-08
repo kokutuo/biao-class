@@ -66,7 +66,7 @@ const router = new Router({
       component: Search
     },
     {
-      path: '/new_order',
+      path: '/new_order/:pet_id?',
       component: NewOrder
     },
     {

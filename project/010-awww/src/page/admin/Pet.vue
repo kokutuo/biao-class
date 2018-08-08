@@ -45,12 +45,12 @@
                 v-model="current.price"
                 type="number">
             </div>
-            <div class="input-control">
+            <!-- <div class="input-control">
               <label>产地</label>
               <input 
                 v-model="current.origin"
                 type="text">
-            </div>
+            </div> -->
             <div class="input-control">
               <label>生日</label>
               <input 
@@ -70,9 +70,15 @@
                 type="text">
             </div>
             <div class="input-control">
-              <label>封面地址</label>
+              <label>大图地址</label>
               <input 
                 v-model="current.cover_url"
+                type="text">
+            </div>
+            <div class="input-control">
+              <label>小图地址</label>
+              <input 
+                v-model="current.sale_url"
                 type="text">
             </div>
             <div class="input-control">
@@ -137,7 +143,7 @@
                 <th>标题</th>
                 <th>毛色</th>
                 <th>价格</th>
-                <th>产地</th>
+                <!-- <th>产地</th> -->
                 <th>性格</th>
                 <th>性别</th>
                 <th>种类</th>
@@ -153,7 +159,7 @@
                   <td>{{row.title || '-'}}</td>
                   <td>{{row.color || '-'}}</td>
                   <td>{{row.price || '-'}}</td>
-                  <td>{{row.origin || '-'}}</td>
+                  <!-- <td>{{row.origin || '-'}}</td> -->
                   <td>{{row.character || '-'}}</td>
                   <td>{{row.sex ? '雄' : '雌'}}</td>
                   <td>{{row.$category ? row.$category.name : '-'}}</td>

@@ -9,12 +9,18 @@
             type="search"
             class="search">
         <div v-if="show_menu && result.length" class="menu">
+
+        </div>
+        <div v-if="show_menu" class="menu">
+          <div v-if="result.length">
             <div 
                 @click="select(row)" 
                 v-for="row in result" 
                 :key="row.id" 
                 class="menu-item">{{row[displayKey]}}
             </div>
+          </div>
+          <div v-else class="empty-holder">暂无内容</div>
         </div>
     </div>
 </template>
@@ -43,6 +49,9 @@ export default {
     },
     placeholder: {
       default: "请选择"
+    },
+    immediate: {
+      default: true
     }
   },
 
@@ -62,6 +71,7 @@ export default {
     this.api_conf = this.parse_api(); // 如果props.api是字符串，就应该将其解析为更好处理的对象类型
     let list = this.list;
     list && (this.result = Object.assign([], this.list)); // 如果传了静态数据，就应该将静态数据拷贝一份，否则就会越搜越少
+    this.immediate && this.search();
   },
 
   methods: {
@@ -94,6 +104,8 @@ export default {
       if (this.onSelect) {
         this.onSelect(row);
       }
+
+      this.$emit('selected', row);
     },
 
     /**
@@ -116,7 +128,7 @@ export default {
 
       this.timer = setTimeout(() => {
         api(`${this.api_conf.model}/search`, { or: condition }).then(r => {
-          this.result = r.data;
+          this.result = r.data || [];
         });
       }, 300);
     },
@@ -196,7 +208,8 @@ export default {
 .dropdown {
   position: relative;
   display: inline-block;
-  background: #fff;
+  /* background: #fff; */
+  color: #333;
 }
 
 .search {
@@ -211,7 +224,7 @@ export default {
 
 .selected,
 .menu {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
 }
 
 .menu {
@@ -222,6 +235,7 @@ export default {
   left: 0;
   max-height: 200px;
   overflow: auto;
+  text-align-last: left;
 }
 
 .selected,

@@ -2,12 +2,12 @@
   <div>
     <div class="wrap">
       <Nav/>
-
       <div class="container">
         <div class="cart round">
+          <h1 class="tac">我的购物车</h1>
           <div class="row cart-header">
             <div class="col-lg-1">
-              <input type="checkbox" id="all">
+              <input @click="toggle_all" v-model="checked_all" type="checkbox" id="all">
               <label for="all">全选</label>
             </div>
             <div class="col-lg-4 tac">商品</div>
@@ -19,9 +19,9 @@
 
           <div class="cart-content">
             <div class="cart-list">
-              <div v-for="(it, index) in list.cart" :key="index" class="row cart-item">
+              <div v-for="(it, index) in hub.cart" :key="index" class="row cart-item">
                 <div class="col-lg-1">
-                  <input type="checkbox">
+                  <input v-model="it._checked" type="checkbox">
                 </div>
                 <div class="col-lg-4">
                   <img :src="it.$pet ? it.$pet.cover_url : '../img/square-1.jpg'" :alt="it.$pet.title">
@@ -31,8 +31,8 @@
                   {{it.$pet ? it.$pet.price : '???'}}
                 </div>
                 <div class="col-lg-2 tac count">
-                  <button @click="it.count--" class="left-round"> - </button>
-                  <input v-model="it.count" type="text">
+                  <button @click="it.count>1 && it.count--" class="left-round"> - </button>
+                  <input v-model.number="it.count" type="text">
                   <button @click="it.count++" class="right-round"> + </button>
                 </div>
                 <div class="col-lg-2 currency tac">
@@ -44,7 +44,7 @@
               </div>
             </div>
             <div class="row cart-foot">
-              <div class="col-lg-6 left total">共计：￥9999</div>
+              <div class="col-lg-6 left sum">共计：￥{{sum}}</div>
               <div class="col-lg-6 right">
                 <button class="btn-primary round">付款</button>
               </div>
@@ -67,20 +67,46 @@ import Footer from "../components/Footer";
 export default {
   components: { Nav, Footer },
 
-  mounted() {},
+  mounted() {
+  },
 
   data() {
     return {
-      list: all()
+      hub: all(),
+      checked_all: false
     };
   },
 
   computed: {
+    sum() {
+      let cart = this.hub.cart;
+      let sum = 0;
+      for (const id in cart) {
+        if (cart.hasOwnProperty(id)) {
+          const it = cart[id];
+          if (!it._checked) {
+            continue;
+          }
+          sum += it.$pet.price * it.count;
+        }
+      }
+
+      return sum;
+    }
   },
 
   methods: {
     count,
-    remove
+    remove,
+    toggle_all() {
+      let cart = this.hub.cart;
+      for (const id in cart) {
+        if (cart.hasOwnProperty(id)) {
+          const it = cart[id];
+          this.$set(it, "_checked", !this.checked_all);
+        }
+      }
+    }
   }
 };
 </script>
@@ -94,9 +120,8 @@ export default {
 
 .cart-header {
   padding: 10px;
-  border-bottom: 1px dashed rgba(0, 0, 0, .2);
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
-
 
 .cart-list img {
   display: inline-block;
@@ -112,7 +137,7 @@ export default {
 
 .cart-item {
   margin-top: 14px;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .cart-item:last-child {
@@ -135,7 +160,7 @@ export default {
   font-weight: bolder;
 }
 
-.cart-foot .total {
+.cart-foot .sum {
   font-size: 24px;
   font-weight: bolder;
   color: #ffc105;

@@ -13,7 +13,7 @@
             <button :class="{active: page == current_page}"
                     @click="change(page)"
                     v-for="page in last_page"
-                    v-if="Math.abs(page - current_page) <= half_btn_limit"
+                    v-if="Math.abs(page - current_page) <= half_btn_limit || half_btn_limit < 1"
                     :key="page"
                     class="btn">{{page}}
             </button>

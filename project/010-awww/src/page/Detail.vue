@@ -40,10 +40,11 @@
             <h1>{{current.title}}</h1>
           </div>
           <div class="buy">
-            <router-link :to="`/new_order`" :class="`btn-primary btn-large ${current.id ? '' : 'disabled'}`">
-              ￥3000 购买
+            <router-link :to="`/new_order/${current.id}`" :class="`btn-primary btn-large ${current.id ? '' : 'disabled'}`">
+              ￥{{current.price}} 购买
             </router-link>
-            <button v-if="!pet_exist" @click="add_to_cart(current.id, 1)" class="btn-large">加入购物车</button>
+            <button v-if="!pet_exist" @click="add_to_cart(current.id, 1)" class="btn-large" :disabled="!current.id">加入购物车</button>
+            <button v-else class="btn-large" disabled>已加入购物车</button>
           </div>
         </div>
       </div>
@@ -88,6 +89,7 @@ export default {
 
   mounted() {
     this.find();
+    console.log('this.pet_exist', this.pet_exist);
   },
 
   data() {

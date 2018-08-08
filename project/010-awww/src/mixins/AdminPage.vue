@@ -59,12 +59,13 @@ export default {
      * 具体创建还是更新决定于是否有id
      */
     cou() {
+      // console.log('this.current_page', this.current_page);
       let action = this.current.id ? "update" : "create";
       api(`${this.model}/${action}`, this.current).then(r => {
         if (r.success) {
           this.read();
           this.current = {};
-          // this.edit_pattern = false;
+          this.edit_pattern = false;
         }
       });
     },
@@ -125,9 +126,9 @@ export default {
      * 离开编辑模式并清空表单数据
      */
     cancel() {
-      this.edit_pattern = false;
-      this.read();
       this.current = {};
+      this.read();
+      this.edit_pattern = false;
     },
 
     set_current(row) {

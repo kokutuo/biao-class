@@ -43,6 +43,19 @@ export function count() {
 }
 
 /**
+ * 将购物车中的每一项分别传递给回调函数fn
+ * @param {function} fn 回调函数
+ */
+export function each(fn) {
+  for (const id in hub.cart) {
+    if (hub.cart.hasOwnProperty(id)) {
+      const it = hub.cart[id];
+      fn(it, id);
+    }
+  }
+}
+
+/**
  * 通过宠物id在购物车中查找宠物
  * @param {int} pet_id 宠物id
  * @returns 返回找到的宠物

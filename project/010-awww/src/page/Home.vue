@@ -5,7 +5,7 @@
 
       <div class="container">
         <swiper v-if="hot.length>0" :options="swiperOption">
-          <swiper-slide  v-for="it in hot" :key="it.id">
+          <swiper-slide v-for="it in hot" :key="it.id">
             <router-link :to="`/detail/${it.id}`" class="slider">
               <img class="round" :src="it.cover_url" :alt="it.title">
             </router-link>
@@ -100,13 +100,13 @@ export default {
   methods: {
     read_hot() {
       api("pet/read", { where: { hot: true } }).then(r => {
-        this.hot = r.data;
+        this.hot = r.data || [];
       });
     },
 
     read_cat() {
       api("category/read", { where: { promoting: true } }).then(r => {
-        this.cat = r.data;
+        this.cat = r.data || [];
         this.read_pet_by_cat();
         this.read_breed_by_cat();
       });
@@ -114,7 +114,7 @@ export default {
 
     read_pet_by_cat() {
       this.cat.forEach(it => {
-        api("pet/read", { where: { category_id: it.id }, limit: 16 }).then(
+        api("pet/read", { where: { category_id: it.id }, limit: 8 }).then(
           r => {
             this.$set(it, "pet_list", r.data);
           }
