@@ -66,6 +66,7 @@ export default {
 
       if (unique == "admin" && password == "yoyoyo") {
         this.on_login_succeed({ id: 1, username: "admin", is_admin: true });
+        return;
       }
 
       session.exist(unique, password).then(r => {

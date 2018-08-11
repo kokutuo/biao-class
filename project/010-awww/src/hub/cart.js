@@ -39,6 +39,10 @@ export function update(id, row) {
 }
 
 export function count() {
+  if (!hub.cart) {
+    return 0;
+  }
+  
   return Object.keys(hub.cart).length;
 }
 

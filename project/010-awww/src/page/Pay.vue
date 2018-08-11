@@ -51,8 +51,6 @@ export default {
       }).then(r => {
         let row = (this.current = r.data);
         let pay_by = row.pay_by;
-console.log('this.current', this.current);
-console.log('row', row);
 
         if (!row) {
           alert("订单号有误");

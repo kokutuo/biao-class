@@ -17,15 +17,17 @@
             <div class="col-lg-2 tac">操作</div>
           </div>
 
-          <div class="cart-content">
+          <div v-if="count()" class="cart-content">
             <div class="cart-list">
               <div v-for="(it, index) in hub.cart" :key="index" class="row cart-item">
                 <div class="col-lg-1">
                   <input v-model="it._checked" type="checkbox">
                 </div>
                 <div class="col-lg-4">
-                  <img :src="it.$pet ? it.$pet.cover_url : '../img/square-1.jpg'" :alt="it.$pet.title">
-                  <span>{{it.$pet ? it.$pet.title : '???'}}</span>
+                  <router-link :to="`/detail/${it.pet_id}`">
+                    <img :src="it.$pet ? it.$pet.sale_url : '../img/square-1.jpg'" :alt="it.$pet.title">
+                    <span>{{it.$pet ? it.$pet.title : '???'}}</span>
+                  </router-link>
                 </div>
                 <div class="col-lg-1 currency tac">
                   {{it.$pet ? it.$pet.price : '???'}}
@@ -50,6 +52,7 @@
               </div>
             </div>
           </div>
+          <div class="empty-holder">暂无内容</div>
         </div>
       </div>
     </div>
@@ -66,9 +69,6 @@ import Footer from "../components/Footer";
 
 export default {
   components: { Nav, Footer },
-
-  mounted() {
-  },
 
   data() {
     return {
@@ -125,8 +125,8 @@ export default {
 
 .cart-list img {
   display: inline-block;
-  max-width: 100px;
-  min-height: 80px;
+  max-width: 150px;
+  min-height: 100px;
   padding: 6px;
   margin-right: 5px;
 }

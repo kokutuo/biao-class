@@ -40,11 +40,15 @@
             <h1>{{current.title}}</h1>
           </div>
           <div class="buy">
-            <router-link :to="`/new_order/${current.id}`" :class="`btn-primary btn-large ${current.id ? '' : 'disabled'}`">
-              ￥{{current.price}} 购买
-            </router-link>
-            <button v-if="!pet_exist" @click="add_to_cart(current.id, 1)" class="btn-large" :disabled="!current.id">加入购物车</button>
-            <button v-else class="btn-large" disabled>已加入购物车</button>
+            <div>
+              <router-link :to="`/new_order/${current.id}`" :class="`btn-primary btn-large ${current.id ? '' : 'disabled'}`">
+                ￥{{current.price}} 购买
+              </router-link>
+            </div>
+            <div>
+              <button v-if="!pet_exist" @click="add_to_cart(current.id, 1)" class="btn-cart btn-large" :disabled="!current.id">加入购物车</button>
+              <button v-else class="btn-cart btn-large" disabled>已加入购物车</button>
+            </div>
           </div>
         </div>
       </div>
@@ -79,7 +83,7 @@
 <script>
 import api from "../lib/api.js";
 
-import { add, all, pet_exist } from "../hub/cart.js";
+import { hub, add, all, pet_exist } from "../hub/cart.js";
 
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -95,7 +99,7 @@ export default {
     return {
       pet_exist: false,
       current: {},
-      hub: {}
+      hub
     };
   },
 
@@ -114,7 +118,7 @@ export default {
   watch: {
     hub: {
       deep: true,
-      handle() {
+      handler() {
         if (this.current) {
           this.pet_exist = pet_exist(this.current.id);
         }
@@ -179,6 +183,12 @@ h1 {
   bottom: 40px;
   right: 60px;
   padding: initial 50px;
+  text-align: center;
+}
+
+.btn-cart {
+  margin-top: 10px;
+  padding: 10px 35px;
 }
 
 .detail {
