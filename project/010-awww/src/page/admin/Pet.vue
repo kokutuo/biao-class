@@ -14,7 +14,7 @@
               <div class="title">宠物管理</div>
             </div>
             <div class="col-lg-4 right">
-              <button @click="edit_pattern=true" class="btn-primary">添加</button>
+              <button @click="edit_pattern=true" class="btn-primary round">添加</button>
             </div>
           </div>
 
@@ -31,18 +31,21 @@
               <label>标题</label>
               <input 
                 v-model="current.title"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>毛色</label>
               <input 
                 v-model="current.color"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>价格(元)</label>
               <input 
                 v-model="current.price"
+                class="round"
                 type="number">
             </div>
             <!-- <div class="input-control">
@@ -55,30 +58,35 @@
               <label>生日</label>
               <input 
                 v-model="current.birthday"
+                class="round"
                 type="date">
             </div>
             <div class="input-control">
               <label>性格</label>
               <input 
                 v-model="current.character"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>描述</label>
               <input 
                 v-model="current.description"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>大图地址</label>
               <input 
                 v-model="current.cover_url"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>小图地址</label>
               <input 
                 v-model="current.sale_url"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
@@ -96,44 +104,44 @@
                   :onSelect='set_breed_id'/>
             </div>
             <div class="input-control">
-              <label>性别</label>
+              <label class="dib">性别</label>
               <input 
                 v-model="current.sex"
                 type="checkbox">
             </div>
             <div class="input-control">
-              <label>接种疫苗</label>
+              <label class="dib">接种疫苗</label>
               <input 
                 v-model="current.vaccinated"
                 type="checkbox">
             </div>
             <div class="input-control">
-              <label>遗传病</label>
+              <label class="dib">遗传病</label>
               <input 
                 v-model="current.disease"
                 type="checkbox">
             </div>
             <div class="input-control">
-              <label>纯种</label>
+              <label class="dib">纯种</label>
               <input 
                 v-model="current.pure_breed"
                 type="checkbox">
             </div>
             <div class="input-control">
-              <label>阉割</label>
+              <label class="dib">阉割</label>
               <input 
                 v-model="current.neuter"
                 type="checkbox">
             </div>
             <div class="input-control">
-              <label>首页推广</label>
+              <label class="dib">首页推广</label>
               <input 
                 v-model="current.hot"
                 type="checkbox">
             </div>
             <div class="input-control">
-              <button type="submit" class="btn-primary">提交</button>
-              <button @click="cancel" type="button">取消</button>
+              <button type="submit" class="btn-primary left-round">提交</button>
+              <button @click="cancel" type="button" class="right-round">取消</button>
             </div>
           </form>
 
@@ -169,8 +177,8 @@
                   <td>{{row.vaccinated ? '是' : '否'}}</td>
                   <td>{{row.disease ? '有' : '无'}}</td>
                   <td>
-                    <button @click="set_current(row)" class="btn-primary">编辑</button>
-                    <button @click="remove(row.id)">删除</button>
+                    <button @click="set_current(row)" class="btn-primary left-round">编辑</button>
+                    <button @click="remove(row.id)" class="right-round">删除</button>
                   </td>
                 </tr>
               </tbody>

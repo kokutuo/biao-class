@@ -15,7 +15,7 @@
       </div>
 
       <div class="main">
-        <div class="container row">
+        <!-- <div class="container row">
           <div class="col-lg-4">
             <img src="../img/square-1.jpg" alt="汪汪汪" class="round">
           </div>
@@ -25,7 +25,7 @@
           <div class="col-lg-4">
             <img src="../img/square-1.jpg" alt="汪汪汪" class="round">
           </div>
-        </div>
+        </div> -->
 
         <div v-for="it in cat" :key="it.id" class="container row cat-prom">
           <div class="nav">
@@ -40,18 +40,17 @@
                 class="nav-item">{{breed.name}}
               </router-link>
             </div>
-            
           </div>
           <div class="body">
             <div class="row">
               <div class="col-lg-12">
-                <img :src="it.cover_url" class="round">
+                <img style="max-height: 350px;" :src="it.cover_url" class="round">
               </div>
             </div>
             <div class="row">
               <div v-for="pet in it.pet_list" :key="pet.id" class="col-lg-3">
                 <router-link :to="`/detail/${pet.id}`">
-                  <img :src="pet.cover_url" class="round">
+                  <img :src="pet.sale_url || pet.cover_url" class="round card">
                 </router-link>
               </div>
             </div>

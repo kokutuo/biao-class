@@ -12,11 +12,11 @@ html {
 }
 
 body {
-  background: #FAFAFA;
-  background-image: url(../img/bg.png);
+  background: #ece9df;
+  /* background-image: url(../img/bg.png);
   background-size: 8%;
   -moz-background-size: 8%;
-  -webkit-background-size: 8%;
+  -webkit-background-size: 8%; */
 }
 
 body>* {
@@ -100,7 +100,8 @@ fieldset {
 }
 
 .dib {
-  display: inline-block;
+  display: inline-block !important;
+  padding-right: 15px;
 }
 
 .bg-white {
@@ -252,12 +253,6 @@ fieldset {
   text-align: right;
 }
 
-.card {
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
-}
-
 button,
 .btn {
   cursor: pointer;
@@ -267,6 +262,14 @@ button,
 button.active {
   background: #ffbe00;
   color: #fff;
+}
+
+input:focus {
+  background: transparent;
+}
+
+input {
+  transition: all 200ms;
 }
 
 textarea,
@@ -347,6 +350,8 @@ textarea[disabled] {
 
 .input-control label {
   display: block;
+  opacity: .9;
+  font-size: 15px;
   margin-bottom: 2px;
 }
 
@@ -359,7 +364,7 @@ textarea[disabled] {
   width: auto;
 }
 
-.card {
+.box {
   margin-bottom: 10px;
   /* background: #fff; */
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
@@ -367,43 +372,51 @@ textarea[disabled] {
   box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
 }
 
-.card>* {
+.box>* {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.card>*:first-child {
+.box>*:first-child {
   padding-top: 10px;
 }
 
-.card>*:last-child {
+.box>*:last-child {
   padding-bottom: 10px;
 }
 
-.card h2 {
+.box h2 {
   margin-top: 0;
   font-size: 18px;
 }
 
+.card {
+  transition: box-shadow 300ms;
+}
+
+.card:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+}
 
 .nav {
   position: relative;
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 0 10px;
-  border: 5px solid #ffc107;
+  background: #ff9800;
+  /* border: 5px solid #ffc107; */
 }
 
 .nav .nav-item {
   padding: 10px;
   display: inline-block;
   font-size: 1.2rem;
-  color: #ffc107;
-  transition: color .3s;
+  color: #333;
+  transition: color .2s;
 }
 
 .nav .nav-item:hover {
-  color: greenyellow;
+  color: #fff;
 }
 
 .nav .logo {

@@ -79,7 +79,7 @@
 <script>
 import api from "../lib/api.js";
 
-import { hub, add, all, pet_exist } from "../hub/cart.js";
+import { add, all, pet_exist } from "../hub/cart.js";
 
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -89,7 +89,6 @@ export default {
 
   mounted() {
     this.find();
-    console.log('this.pet_exist', this.pet_exist);
   },
 
   data() {
@@ -108,7 +107,6 @@ export default {
 
       api("pet/find", { id, with: "has_one:breed" }).then(r => {
         this.current = r.data;
-        console.log("this.current", this.current);
       });
     }
   },
@@ -116,7 +114,7 @@ export default {
   watch: {
     hub: {
       deep: true,
-      handle(n, o) {
+      handle() {
         if (this.current) {
           this.pet_exist = pet_exist(this.current.id);
         }

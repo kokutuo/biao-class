@@ -5,37 +5,36 @@
 
       <div>
         <div class="container">
-          <pre>{{filter}}</pre>
           <div class="col-lg-4">
-            <form class="cute-form tac" @submit.prevent="search(keyword)">
-              <input type="search" v-model="keyword" class="round">
+            <form class="cute-form" @submit.prevent="search(keyword)">
+              <input type="search" style="width: 100%; margin-bottom:10px" v-model="keyword" class="round" placeholder="请输入搜索关键词" autofocus>
               <button type="submit" hidden></button>
             </form>
           </div>
-          <div class="row card round filter">
-            <div class="col-lg-1 filter-item">
-              <Dropdown 
+          <div class="row box round filter">
+            <div class="col-lg-1 filter-item">分类
+              <!-- <Dropdown 
                 api="category_id"
                 placeholder="分类"
-                @selected="row => {$set(filter, 'category_id', row.id)}"/>
+                @selected="row => {$set(filter, 'category_id', row.id)}"/> -->
             </div>
-            <div class="col-lg-1 filter-item">
-              <Dropdown 
+            <div class="col-lg-1 filter-item">品种
+              <!-- <Dropdown 
                 api="breed_id"
                 placeholder="品种"
-                @selected="row => {$set(filter, 'breed_id', row.id)}"/>              
+                @selected="row => {$set(filter, 'breed_id', row.id)}"/>               -->
             </div>
-            <div class="col-lg-1 filter-item">
-              <Dropdown 
+            <div class="col-lg-1 filter-item">毛色
+              <!-- <Dropdown 
                 api="color_id"
                 placeholder="毛色"
-                @selected="row => {$set(filter, 'color_id', row.id)}"/>
+                @selected="row => {$set(filter, 'color_id', row.id)}"/> -->
             </div>
-            <div class="col-lg-1 filter-item">
-              <Dropdown 
+            <div class="col-lg-1 filter-item">性格
+              <!-- <Dropdown 
                 api="character_id"
                 placeholder="性格"
-                @selected="row => {$set(filter, 'character_id', row.id)}"/>
+                @selected="row => {$set(filter, 'character_id', row.id)}"/> -->
             </div>
             <div class="col-lg-1 filter-item">性别</div>
             <div class="col-lg-1 filter-item">价格</div>
@@ -52,7 +51,7 @@
           <div v-for="it in list" :key="it.id" class="col-lg-6">
             <router-link :to="`/detail/${it.id}`">
               <div class="round hover">
-                <img :src="it.cover_url || '../img/square-1.jpg'" alt="wawawa" class="round">
+                <img :src="it.sale_url || it.cover_url || '../img/square-1.jpg'" alt="wawawa" class="round card">
                 <div class="text">
                   <div class="title">{{it.title}}</div>
                   <div class="desc">{{it.description}}</div>

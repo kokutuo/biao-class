@@ -14,7 +14,7 @@
               <div class="title">宠物种类管理</div>
             </div>
             <div class="col-lg-4 right">
-              <button @click="edit_pattern=true" class="btn btn-primary">添加</button>
+              <button @click="edit_pattern=true" class="btn-primary round">添加</button>
             </div>
           </div>
 
@@ -29,19 +29,19 @@
           <form v-if="edit_pattern" @submit.prevent="cou">
             <div class="input-control">
               <label>分类名</label>
-              <input v-model="current.name" name="name" type="text">
+              <input v-model="current.name" name="name" type="text" class="round">
             </div>
             <div class="input-control">
               <label>封面</label>
-              <input v-model="current.cover_url" name="name" type="url">
+              <input v-model="current.cover_url" name="name" type="url" class="round">
             </div>
             <div class="input-control">
-              <label>首页推广</label>
+              <label class="dib">首页推广</label>
               <input v-model="current.promoting" name="name" type="checkbox">
             </div>
             <div class="input-control">
-              <button type="submit" class="btn-primary">提交</button>
-              <button @click="cancel" type="button">取消</button>
+              <button type="submit" class="btn-primary left-round">提交</button>
+              <button @click="cancel" type="button" class="right-round">取消</button>
             </div>
           </form>
 
@@ -57,8 +57,8 @@
                   <td>{{row.name}}</td>
                   <td>{{row.promoting ? '是' : '否'}}</td>
                   <td>
-                    <button @click="set_current(row)" class="btn-primary">编辑</button>
-                    <button @click="remove(row.id)">删除</button>
+                    <button @click="set_current(row)" class="btn-primary left-round">编辑</button>
+                    <button @click="remove(row.id)" class="right-round">删除</button>
                   </td>
                 </tr>
               </tbody>

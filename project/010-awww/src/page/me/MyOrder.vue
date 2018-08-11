@@ -21,7 +21,7 @@
                 <th>操作</th>
               </thead>
               <tbody>
-                <tr v-for="(row) in list" :key="row.id">
+                <tr v-for="row in list" :key="row.id">
                   <td>{{row.oid || '-'}}</td>
                   <td>{{row.sum || 0}}</td>
                   <td>{{row._paid ? '是' : '否'}}</td>
@@ -29,8 +29,10 @@
                   <td>
                     <div>
                       <div v-if="!row._paid">
-                        <router-link :to="`/pay/${row.oid}`">付款</router-link>
-                        <span @click="cancel(row.id)" class="btn btn-small">取消订单</span>
+                        <router-link :to="`/pay/${row.oid}`">
+                          <button type="button" class="btn-primary left-round">付款</button>
+                        </router-link>
+                        <button @click="cancel(row.id)" class="right-round">取消订单</button>
                       </div>
                       <div v-else> - </div>
                     </div>
@@ -44,7 +46,7 @@
     </div>
     <div v-if="detail_visible" class="modal">
       <div @click="detail_visible=false" class="mask"></div>
-      <div class="card modal-content">
+      <div class="box modal-content round">
         <h2>{{pet.title}}</h2>
         <div class="cute-form">
           <div class="key">价格</div>
@@ -56,7 +58,7 @@
         </div>
         <div class="cute-form">
           <div class="key">品种</div>
-          <div class="val">{{pet.$breed ? pet.$breed.name : '-'}}</div>
+          <div class="val">{{pet.breed_id || '-'}}</div>
         </div>
       </div>
     </div>
@@ -84,6 +86,10 @@ export default {
       list: [],
       detail_visible: false
     };
+  },
+
+  mounted() {
+    this.read();
   },
 
   methods: {
@@ -123,10 +129,16 @@ export default {
 
 <style scoped>
 .modal-content {
-  position: fixed;
-  background: #fff;
+  position: absolute;
+  background: #FAFAFA;
+  background-image: url(../../img/bg.png);
+  background-size: 25%;
+  -moz-background-size: 25%;
+  -webkit-background-size: 25%;
   width: 500px;
-  top: 100px;
+  top: 160px;
+  left: 40%;
+  right: 40%;
   margin-left: 0;
   margin-right: 0;
   z-index: 1;

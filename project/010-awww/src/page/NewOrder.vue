@@ -4,7 +4,7 @@
       <Nav/>
 
       <div class="container">
-        <div class="card">
+        <div class="box order round">
           <form @submit.prevent="submit" v-if="(current.pet_id || this.from_cart) && !submitted">
             <h1>创建订单 - {{this.from_cart ? '购物车结算' : pet.title}}</h1>
 
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-lg-2 tac count">
                   <button @click="it.count>1 && it.count--" class="left-round"> - </button>
-                  <input v-model.number="it.count" type="text">
+                  <input v-model.number="it.count" type="text" class="round">
                   <button @click="it.count++" class="right-round"> + </button>
                 </div>
                 <div class="col-lg-2 currency tac">
@@ -49,27 +49,27 @@
             <div class="cute-form">
               <span class="key">备注</span>
               <span class="val">
-                <input v-model="current.user_memo" type="text">
+                <input style="padding:5px 10px" v-model="current.user_memo" autofocus type="text" class="round">
               </span>
             </div>
-            <div class="cute-form">
-              <span class="key">支付方式</span>
-              <div style="margin-top: 5px;" class="val">
-                <label for="wechat">微信支付</label>
+            <div class="cute-form pay_by">
+              <span style="margin-top: 5px;" class="key">支付方式</span>
+              <div class="val">
                 <input 
                   id="wechat"
                   v-model="current.pay_by"
                   value="wechat"
                   type="radio">
-                <label for="alipay">支付宝支付</label>
+                <label for="wechat">微信支付</label>
                 <input 
                   id="alipay"
                   v-model="current.pay_by"
                   value="alipay"
                   type="radio">
+                <label for="alipay">支付宝支付</label>
               </div>
             </div>
-            <button type="submit" class="btn-primary">提交订单</button>
+            <button type="submit" class="btn-primary round">提交订单</button>
           </form>
           <div v-else>加载中···</div>
         </div>
@@ -180,4 +180,21 @@ export default {
 </script>
 
 <style scoped>
+.order {
+  max-width: 500px;
+  background: #000;
+  margin: 0 auto;
+  padding-left: 25px;
+  color: #fff;
+}
+
+.pay_by input {
+  margin-right: 5px;
+}
+
+.pay_by label {
+  display: inline-block;
+  margin-right: 25px;
+  color: #fff;
+}
 </style>

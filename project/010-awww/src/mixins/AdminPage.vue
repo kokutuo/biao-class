@@ -49,7 +49,6 @@ export default {
      * @param {number} 页码
      */
     on_page_change(page) {
-      this.current_page = page;
       this.read(page);
     },
 
@@ -79,7 +78,7 @@ export default {
       if (!confirm("确认删除？")) {
         return;
       }
-      api(`${this.model}/delete`, { id: id }).then(r => {
+      api(`${this.model}/delete`, { id: id }).then(() => {
         this.read();
       });
     },
@@ -134,7 +133,6 @@ export default {
 
     set_current(row) {
       this.current = row;
-      console.log('this.current', this.current);
       this.edit_pattern = true;
 
       if (this.after_set_current) {

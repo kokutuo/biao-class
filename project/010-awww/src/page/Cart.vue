@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { hub, all, remove, count } from "../hub/cart.js";
+import { all, remove, count } from "../hub/cart.js";
 
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";

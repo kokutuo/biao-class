@@ -92,8 +92,8 @@
                   <td>{{row._paid ? '是' : '否'}}</td>
                   <td>{{row.memo || '-'}}</td>
                   <td>
-                    <button @click="set_current(row)" class="btn-primary">编辑</button>
-                    <button @click="remove(row.id)">删除</button>
+                    <button @click="set_current(row)" class="btn-primary left-round">编辑</button>
+                    <button @click="remove(row.id)" class="right-round">删除</button>
                   </td>
                 </tr>
               </tbody>

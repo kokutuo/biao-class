@@ -14,7 +14,7 @@
               <div class="title">用户管理</div>
             </div>
             <div class="col-lg-4 right">
-              <button @click="edit_pattern=true" class="btn btn-primary">添加</button>
+              <button @click="edit_pattern=true" class="btn-primary round">添加</button>
             </div>
           </div>
 
@@ -31,35 +31,40 @@
               <label>用户名</label>
               <input 
                 v-model="current.username"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>密码</label>
               <input 
                 v-model="current.password"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>手机</label>
               <input 
                 v-model="current.phone"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>邮箱</label>
               <input 
                 v-model="current.email"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
               <label>地址</label>
               <input 
                 v-model="current.location"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
-              <button type="submit" class="btn-primary">提交</button>
-              <button @click="cancel" type="button">取消</button>
+              <button type="submit" class="btn-primary left-round">提交</button>
+              <button @click="cancel" type="button" class="right-round">取消</button>
             </div>
           </form>
 
@@ -74,13 +79,13 @@
               </thead>
               <tbody>
                 <tr v-for="row in list" :key="row.id">
-                  <td>{{row.username}}</td>
+                  <td>{{row.username || '-'}}</td>
                   <td>{{row.password}}</td>
-                  <td>{{row.phone}}</td>
-                  <td>{{row.email}}</td>
+                  <td>{{row.phone || '-'}}</td>
+                  <td>{{row.email || '-'}}</td>
                   <td>
-                    <button @click="set_current(row)" class="btn-primary">编辑</button>
-                    <button @click="remove(row.id)">删除</button>
+                    <button @click="set_current(row)" class="btn-primary left-round">编辑</button>
+                    <button @click="remove(row.id)" class="right-round">删除</button>
                   </td>
                 </tr>
               </tbody>
@@ -98,6 +103,8 @@
 
 <script>
 import AdminPage from "../../mixins/AdminPage";
+
+import api from "../../lib/api";
 
 export default {
   mixins: [AdminPage],

@@ -20,6 +20,7 @@ import Signup from './page/Signup.vue';
 
 import Me from './page/me/Me.vue';
 import Setting from './page/me/Setting.vue';
+import Safe from './page/me/Safe.vue';
 import MyOrder from './page/me/MyOrder.vue';
 
 import Admin from './page/admin/Base.vue';
@@ -87,6 +88,10 @@ const router = new Router({
         {
           path: 'order',
           component: MyOrder
+        },
+        {
+          path: 'safe',
+          component: Safe,
         }
       ]
     },

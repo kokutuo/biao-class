@@ -14,7 +14,7 @@
               <div class="title">血统管理</div>
             </div>
             <div class="col-lg-4 right">
-              <button @click="edit_pattern=true" class="btn-primary">添加</button>
+              <button @click="edit_pattern=true" class="btn-primary round">添加</button>
             </div>
           </div>
 
@@ -31,6 +31,7 @@
               <label>血统</label>
               <input 
                 v-model="current.name"
+                class="round"
                 type="text">
             </div>
             <div class="input-control">
@@ -41,8 +42,8 @@
                   :onSelect='set_category_id'/>
             </div>
             <div class="input-control">
-              <button type="submit" class="btn-primary">提交</button>
-              <button @click="cancel" type="button">取消</button>
+              <button type="submit" class="btn-primary left-round">提交</button>
+              <button @click="cancel" type="button" class="right-round">取消</button>
             </div>
           </form>
 
@@ -58,8 +59,8 @@
                   <td>{{row.name}}</td>
                   <td>{{row.$category ? row.$category.name : '-'}}</td>
                   <td>
-                    <button @click="set_current(row)" class="btn-primary">编辑</button>
-                    <button @click="remove(row.id)">删除</button>
+                    <button @click="set_current(row)" class="btn-primary left-round">编辑</button>
+                    <button @click="remove(row.id)" class="right-round">删除</button>
                   </td>
                 </tr>
               </tbody>

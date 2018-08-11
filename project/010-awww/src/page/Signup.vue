@@ -116,8 +116,7 @@ export default {
       }
 
       // 如果没有用户名，就默认用已填的邮箱或手机号作为用户名
-      !this.current.username &&
-        (this.current.username = this.current[this.signup_by]);
+      // !this.current.username && (this.current.username = this.current[this.signup_by]);
 
       api("user/create", this.current).then(r => {
         session.login(r.data);
@@ -130,7 +129,6 @@ export default {
       if (this.captcha.countdown) {
         return;
       }
-      console.log("1", 1);
       let action, by_mail;
 
       this.captcha.countdown = 60;
@@ -141,9 +139,7 @@ export default {
         action = "mail";
       }
 
-      console.log('by_mail', by_mail);
-      
-      if ((by_mail && !this.current.mail) || (!by_mail && this.current.phone)) {
+      if ((by_mail && !this.current.mail) || (!by_mail && !this.current.phone)) {
         return;
       }
 
@@ -154,7 +150,6 @@ export default {
         }
 
         this.$set(this.captcha, "countdown", this.captcha.countdown - 1);
-        console.log('this.captcha.countdown', this.captcha.countdown);
       }, 1000);
 
       api(`captcha/${action}`, {
@@ -162,7 +157,6 @@ export default {
         email: this.current.mail
       }).then(r => {
         this.code = atob(r.data.result);
-        console.log(this.code);
       });
     }
   }

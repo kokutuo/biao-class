@@ -120,7 +120,7 @@ export default {
         return;
       }
 
-      this.api_conf.property.forEach(prop => {
+      property.forEach(prop => {
         condition[prop] = this.keyword;
       });
 
@@ -159,7 +159,7 @@ export default {
     parse_api() {
       let api_prop = this.api;
       if (typeof api_prop != "string") {
-        return Object.assign({}, api_prop);
+        return Object.assign({}, api);
       }
 
       api_prop = api_prop.split(".");

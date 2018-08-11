@@ -4,12 +4,13 @@
       <Nav/>
 
       <div class="container">
-        <div class="card">
-          <div v-if="current.pay_by='wechat'">
-            <img :src="qrcode" alt="二维码">
+        <div class="box">
+          <div v-if="current.pay_by=='wechat'" class="tac">
+            <h2>扫码支付</h2>
+            <img :src="qrcode" alt="二维码" class="qrcode">
             <button class="btn-primary" @click="verify">支付完成</button>
           </div>
-          <div v-if="current.pay_by='alipay'">
+          <div v-if="current.pay_by=='alipay'">
             跳转中，别着急···
           </div>
         </div>
@@ -39,13 +40,19 @@ export default {
     };
   },
 
+  mounted() {
+    this.find(this.$route.params.oid);
+  },
+
   methods: {
-    find(id) {
+    find(oid) {
       api("order/first", {
         where: { oid }
       }).then(r => {
         let row = (this.current = r.data);
         let pay_by = row.pay_by;
+console.log('this.current', this.current);
+console.log('row', row);
 
         if (!row) {
           alert("订单号有误");
@@ -67,7 +74,7 @@ export default {
         id: id,
         pay_by: pay_by,
         fee: fee,
-        return_url: url("#/me/order")
+        return_url: url("/#/me/order")
       }).then(r => {
         if (r.data.url) {
           //有地址，说明是支付宝，就跳转过去
@@ -98,4 +105,9 @@ export default {
 </script>
 
 <style scoped>
+.qrcode {
+  max-width: 300px;
+  margin: 10px auto;
+
+}
 </style>

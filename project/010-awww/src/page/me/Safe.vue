@@ -10,26 +10,35 @@
 
         <div class="col-lg-9 content">
             <div class="header">
-              <div class="title">更改用户名</div>
+              <div class="title">更改密码</div>
             </div>
             <div class="cute-form">
-              <div v-if="!show.username">
-                <span class="key">用户名：</span>
-                <span class="val">{{current.username || '-'}}</span>
-                <span @click="show.username=true" class="edit btn-small round">更改</span>
-              </div>
-              <form v-else @submit.prevent="submit('username')">
+              <form @submit.prevent="change_password('password')">
                 <div class="input-control">
-                  <label for="username">请输入新的用户名</label>
+                  <label for="old">旧密码</label>
                   <input 
-                    id="username"
-                    v-model="current.username"
+                    id="old"
+                    v-model="password.old"
                     class="round"
-                    type="text">
+                    type="password">
+                </div>
+                <div class="input-control">
+                  <label for="new">新密码</label>
+                  <input 
+                    id="new"
+                    v-model="password.new"
+                    class="round"
+                    type="password">
+                </div>
+                <div class="input-control">
+                  <label>确认新密码</label>
+                  <input 
+                    class="round"
+                    type="password">
                 </div>
                 <div class="btn-group">
                   <button type="submit" class="btn-primary left-round">提交</button>
-                  <button @click="show.username=false" type="button" class="btn right-round">取消</button>
+                  <button @click="reset" type="button" class="btn right-round">清空</button>
                 </div>
               </form>
             </div>
