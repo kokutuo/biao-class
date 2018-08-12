@@ -41,18 +41,20 @@
                   {{it.$pet ? it.$pet.price * it.count : '???'}}
                 </div>
                 <div class="col-lg-2 tac">
-                  <button @click="remove(it.id)" class="btn-small round">删除</button>
+                  <button @click="remove(it.id)" class="round">删除</button>
                 </div>
               </div>
             </div>
             <div class="row cart-foot">
               <div class="col-lg-6 left sum">共计：￥{{sum}}</div>
               <div class="col-lg-6 right">
-                <button class="btn-primary round">付款</button>
+                <router-link to="/new_order?from_cart=true">
+                  <button class="btn-primary round">付款</button>
+                </router-link>
               </div>
             </div>
           </div>
-          <div class="empty-holder">暂无内容</div>
+          <div v-else class="empty-holder">暂无内容</div>
         </div>
       </div>
     </div>
@@ -114,8 +116,9 @@ export default {
 <style scoped>
 .cart {
   padding: 20px;
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
+  background: #fff;
 }
 
 .cart-header {

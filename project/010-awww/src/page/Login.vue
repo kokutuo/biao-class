@@ -30,6 +30,14 @@
             没有账号？ <router-link to="/signup">注册</router-link>
           </div>
         </form>
+        <div class="well">
+          <span>
+            管理员账号：admin
+          </span>
+          <span>
+            密码：yoyoyo
+          </span>
+        </div>
       </div>
     </div>
 

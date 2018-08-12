@@ -157,6 +157,7 @@ export default {
         email: this.current.mail
       }).then(r => {
         this.code = atob(r.data.result);
+        console.log('this.code', this.code);
       });
     }
   }
@@ -166,12 +167,8 @@ export default {
 <style scoped>
 .bg-pic {
   width: 400px;
-  height: 98vh;
-  margin-left: 10px;
-  background-image: url(../assets/signup/signup01.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  height: 100vh;
+  background: #999;
 }
 
 .parent {

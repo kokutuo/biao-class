@@ -64,6 +64,14 @@ fieldset {
   text-align: center;
 }
 
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
 .simple-checker>input[type=checkbox] {
   width: auto;
 }
@@ -411,6 +419,7 @@ textarea[disabled] {
   padding: 10px;
   display: inline-block;
   font-size: 1.2rem;
+  font-weight: 600;
   color: #333;
   transition: color .2s;
 }
