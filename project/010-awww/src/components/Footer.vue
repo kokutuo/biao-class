@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="footer tac">
-      <p>
+      <!-- <p>
         <span class="item">隐私政策</span>
         <span class="item">广告服务</span>
         <span class="item">使用条款</span>
         <span class="item">联系我们</span>
         <span class="item">关于我们</span>
-      </p>
+      </p> -->
       <p>
         Copyright © 2013 - Aweee
       </p>
