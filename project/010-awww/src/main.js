@@ -1,12 +1,12 @@
 import 'normalize.css';
 import './css/global.css';
+import 'swiper/dist/css/swiper.css'
 
 import Vue from 'vue'
 import Router from 'vue-router';
 import Validate from 'vee-validate';
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-import 'swiper/dist/css/swiper.css'
 
 import App from './App.vue'
 import Home from './page/Home.vue';
@@ -35,14 +35,14 @@ Vue.config.productionTip = false
 Vue.use(Router);
 Vue.use(VueAwesomeSwiper);
 Vue.use(Validate, {
-  local: 'zh_CN'
+  local: 'zh_CN',
 });
 
 // Validator.extend('exist', {
-//   validate   : () => {
+//   validate: () => {
 //     return api('')
 //   },
-//   getMessage : (field, params, data) => data.message,
+//   getMessage: (field, params, data) => data.message,
 // });
 
 const router = new Router({

@@ -18,6 +18,15 @@ export default {
     Dropdown
   },
 
+  mounted() {
+    if (!this.model) {
+      throw new Error("请在data中配置当前model");
+    }
+
+    // 拿到管理页列表初始数据, 相当于点击第一页
+    this.read();
+  },
+
   data() {
     return {
       // 重要的模型状态和配置
@@ -143,15 +152,6 @@ export default {
     is_update() {
       return !!this.current.id;
     }
-  },
-
-  mounted() {
-    if (!this.model) {
-      throw new Error("请在data中配置当前model");
-    }
-
-    // 拿到管理页列表初始数据, 相当于点击第一页
-    this.read();
   }
 };
 </script>   

@@ -144,7 +144,7 @@ export default {
       !this.current.username &&
         (this.current.username = this.current[this.signup_by]);
 
-      api("1/user/create", this.current).then(r => {
+      api("user/create", this.current).then(r => {
         session.login(r.data.data);
         alert("注册成功！");
         this.$router.push("/");
@@ -179,7 +179,7 @@ export default {
         this.$set(this.captcha, "countdown", this.captcha.countdown - 1);
       }, 1000);
 
-      api(`1/captcha/${action}`, {
+      api(`captcha/${action}`, {
         phone: this.current.phone,
         e_mail: this.current.mail
       }).then(r => {

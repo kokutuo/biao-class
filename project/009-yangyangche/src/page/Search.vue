@@ -277,7 +277,7 @@ export default {
       let query = `where("title" contains "${p.keyword ||
         ""}" ${brand_query} ${design_query} ${price_min_query} ${price_max_query})`;
 
-      api("1/vehicle/read", {
+      api("vehicle/read", {
         query: query,
         sort_by: p.sort_by,
         limit: this.limit,

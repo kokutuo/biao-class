@@ -1,0 +1,182 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+/* body {
+  background-color: rgb(180, 218, 240);
+  background-image: url(../img/body_repeat.png);
+  background-repeat: repeat-x;
+  background-position: center 0px;
+} */
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.col-lg-1 {
+  width: 8.333333333%;
+}
+
+.col-lg-2 {
+  width: 16.666666666%;
+}
+
+.col-lg-3 {
+  width: 25%;
+}
+
+.col-lg-4 {
+  width: 33.3333333333%;
+}
+
+.col-lg-5 {
+  width: 41.6666666666%;
+}
+
+.col-lg-6 {
+  width: 50%;
+}
+
+.col-lg-7 {
+  width: 58.33333333%;
+}
+
+.col-lg-8 {
+  width: 66.666666666%;
+}
+
+.col-lg-9 {
+  width: 75%;
+}
+
+.col-lg-10 {
+  width: 83.33333333333%;
+}
+
+.col-lg-11 {
+  width: 91.66666666666%;
+}
+
+.col-lg-12 {
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  .col-sm-1 {
+    width: 8.333333333%;
+  }
+  .col-sm-2 {
+    width: 16.666666666%;
+  }
+  .col-sm-3 {
+    width: 25%;
+  }
+  .col-sm-4 {
+    width: 33.3333333333%;
+  }
+  .col-sm-5 {
+    width: 41.6666666666%;
+  }
+  .col-sm-6 {
+    width: 50%;
+  }
+  .col-sm-7 {
+    width: 58.33333333%;
+  }
+  .col-sm-8 {
+    width: 66.666666666%;
+  }
+  .col-sm-9 {
+    width: 75%;
+  }
+  .col-sm-10 {
+    width: 83.33333333333%;
+  }
+  .col-sm-11 {
+    width: 91.66666666666%;
+  }
+  .col-sm-12 {
+    width: 100%;
+  }
+}
+
+.kill-space {
+  font-size: 0;
+}
+
+.row {
+  font-size: 0;
+  display: block;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.well {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #f0f0f0;
+  padding: 10px;
+}
+
+[class*=col-],
+.col {
+  padding: 5px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1rem;
+}
+
+.col.left,
+[class*=col-].left {
+  text-align: left;
+}
+
+.col.right,
+[class*=col-].right {
+  text-align: right;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
+.fas {
+  padding-right: 3px;
+}
+
+.anchor {
+  font-size: 10px;
+  color: #909399;
+}

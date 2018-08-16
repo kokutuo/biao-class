@@ -74,7 +74,7 @@ export default {
         return;
       }
 
-      api("1/user/read", {
+      api("user/read", {
         where: {
           or: [
             ["username", "=", unique],

@@ -109,7 +109,7 @@ export default {
       with: [
         {
           model: "vehicle",
-          type: "has_one"
+          relation: "has_one"
         }
       ]
     };
@@ -163,7 +163,7 @@ export default {
     },
 
     get_structure() {
-      api("1/MODEL/FIND", { key: "report" }).then(r => {
+      api("MODEL/FIND", { key: "report" }).then(r => {
         this.structure = r.data.data.structure;
         this.compute_total_check();
       });

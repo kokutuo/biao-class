@@ -24,12 +24,18 @@
                   <input 
                     id="username"
                     v-model="current.username"
-                    class="round"
+                    v-validate="'required|between:3,32'"
+                    data-vv-delay="500"
+                    name="username"
+                    :class="{'round': true, 'is-danger': errors.has('username')}"
                     type="text">
+                  <div v-if="errors.has('username')" class="error-list">
+                    <div class="error">{{errors.first('username')}}</div>
+                  </div>
                 </div>
                 <div class="btn-group">
                   <button type="submit" class="btn-primary left-round">提交</button>
-                  <button @click="show.username=false" type="button" class="btn right-round">取消</button>
+                  <button @click="cancel" type="button" class="btn right-round">取消</button>
                 </div>
               </form>
             </div>
@@ -42,29 +48,19 @@
 </template>
 
 <script>
-import "../../css/cuteForm.css";
+import SettingPage from "../../mixins/SettingPage";
 
 import session from "../../lib/session.js";
+import {validate_before_submit} from "../../lib/validate.js";
 import api from "../../lib/api.js";
 
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
-import SettingNav from "../../components/SettingNav";
-
 export default {
-  components: { Nav, Footer, SettingNav },
+  mixins: [SettingPage],
 
   data() {
     return {
-      error: {
-        invalid_old_password: false
-      },
       show: {
         username: false
-      },
-      password: {
-        old: "",
-        new: ""
       },
       current: session.uinfo()
     };
@@ -72,34 +68,16 @@ export default {
 
   methods: {
     submit(property) {
+      validate_before_submit();
       api("user/update", this.current).then(r => {
         session.replace_uinfo(r.data);
         this.show[property] = false;
       });
     },
 
-    reset() {
-      let form = document.querySelector("form");
-      form.reset();
-    },
-
-    change_password() {
-      let u = session.uinfo();
-      let unique = u.username || u.phone || u.email;
-
-      session.exist(unique, this.password.old).then(r => {
-        r ? this.update_password() : this.error.invalid_old_password;
-      });
-    },
-
-    update_password() {
-      return api("user/update", {
-        id: this.current.id,
-        password: this.password.new
-      }).then(() => {
-        alert("密码修改成功");
-        session.logout("#/login");
-      });
+    cancel() {
+      this.show.username=false;
+      this.current.username = session.uinfo().username;
     }
   }
 };

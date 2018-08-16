@@ -145,7 +145,7 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
 import VehicleList from "../mixin/VehicleList";
-import Reader from '../mixin/Reader';
+import Reader from "../mixin/Reader";
 
 import api from "../lib/api.js";
 
@@ -167,13 +167,13 @@ export default {
     return {
       list: {},
       design: {},
-      main_list: [],
+      main_list: []
     };
   },
 
   methods: {
     find_design(name) {
-      api("1/design/search", { or: { name: name } }).then(r => {
+      api("design/search", { or: { name: name } }).then(r => {
         this.design[name] = r.data.data[0];
       });
     },
@@ -225,15 +225,15 @@ export default {
           break;
       }
 
-      let limit = {limit: 8};
+      let limit = { limit: 8 };
 
       condition = Object.assign({}, condition, limit);
 
-      api("1/vehicle/read", condition).then(r => {
+      api("vehicle/read", condition).then(r => {
         this["main_list"] = r.data.data;
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

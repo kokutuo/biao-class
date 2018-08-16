@@ -48,7 +48,7 @@
             <div class="row cart-foot">
               <div class="col-lg-6 left sum">共计：￥{{sum}}</div>
               <div class="col-lg-6 right">
-                <router-link to="/new_order?from_cart=true">
+                <router-link to="/new_order/?from_cart=true">
                   <button class="btn-primary round">付款</button>
                 </router-link>
               </div>

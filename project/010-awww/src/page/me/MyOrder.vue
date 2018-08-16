@@ -67,17 +67,13 @@
 </template>
 
 <script>
-import "../../css/cuteForm.css";
+import SettingPage from "../../mixins/SettingPage";
 
 import session from "../../lib/session.js";
 import api from "../../lib/api.js";
 
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
-import SettingNav from "../../components/SettingNav";
-
 export default {
-  components: { Nav, Footer, SettingNav },
+  mixins: [SettingPage],
 
   data() {
     return {
@@ -130,7 +126,7 @@ export default {
 <style scoped>
 .modal-content {
   position: absolute;
-  background: #FAFAFA;
+  background: #fafafa;
   background-image: url(../../img/bg.png);
   background-size: 25%;
   -moz-background-size: 25%;

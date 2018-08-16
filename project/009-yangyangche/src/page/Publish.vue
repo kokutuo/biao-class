@@ -139,25 +139,25 @@ export default {
 
       current = Object.assign({}, current, fake);
 
-      api("1/vehicle/create", current).then(r => {
+      api("vehicle/create", current).then(r => {
         this.step = 3;
       });
     },
 
     list_brand() {
-      api("1/brand/read").then(r => {
+      api("brand/read").then(r => {
         this.brand_list = r.data.data;
       });
     },
 
     list_model() {
-      api("1/model/read").then(r => {
+      api("model/read").then(r => {
         this.model_list = r.data.data;
       });
     },
 
     list_design() {
-      api("1/design/read").then(r => {
+      api("design/read").then(r => {
         this.design_list = r.data.data;
       });
     },

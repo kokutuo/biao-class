@@ -88,8 +88,8 @@ export default {
       design_list: [],
       searchable: ["name"],
       with: [
-        { model: "brand", type: "has_one" },
-        { model: "design", type: "has_one" }
+        { model: "brand", relation: "has_one" },
+        { model: "design", relation: "has_one" }
       ]
     };
   },
@@ -98,13 +98,13 @@ export default {
 
   methods: {
     read_brand() {
-      api("1/brand/read").then(r => {
+      api("brand/read").then(r => {
         this.brand_list = r.data.data;
       });
     },
 
     read_design() {
-      api("1/design/read").then(r => {
+      api("design/read").then(r => {
         this.design_list = r.data.data;
       });
     },

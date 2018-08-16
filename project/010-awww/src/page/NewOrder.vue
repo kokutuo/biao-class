@@ -102,7 +102,6 @@ export default {
 
   mounted() {
     this.current = Object.assign({}, this.current, this.$route.params);
-    console.log('this.$route.query', this.$route.query);
     this.from_cart = this.$route.query.from_cart;
     this.find(this.current.pet_id);
   },

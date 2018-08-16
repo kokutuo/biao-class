@@ -104,7 +104,7 @@ export default {
      */
     read(parent_id, type) {
       this.parent_id = parent_id;
-      return api("1/location/read", {
+      return api("location/read", {
         where: {
           and: { parent_id }
         }
@@ -120,7 +120,7 @@ export default {
      */
     search() {
       this.reset_location();
-      api("1/location/search", {
+      api("location/search", {
         or: {
           name: this.keyword
         }

@@ -19,22 +19,44 @@
                   <input 
                     id="old"
                     v-model="password.old"
+                    v-validate="'required|min:6'"
+                    data-vv-delay="500"
+                    placeholder="请输入当前密码"
+                    name="old-password"
                     class="round"
                     type="password">
+                  <div v-if="errors.has('old-password')" class="error-list">
+                    <div class="error">{{errors.first('old-password')}}</div>
+                  </div>
                 </div>
                 <div class="input-control">
                   <label for="new">新密码</label>
                   <input 
                     id="new"
                     v-model="password.new"
+                    v-validate="'required|min:6'"
+                    data-vv-delay="500"
+                    ref="new-password"
+                    placeholder="请输入新密码"
+                    name="new-password"
                     class="round"
                     type="password">
+                  <div v-if="errors.has('new-password')" class="error-list">
+                    <div class="error">{{errors.first('new-password')}}</div>
+                  </div>
                 </div>
                 <div class="input-control">
                   <label>确认新密码</label>
                   <input 
                     class="round"
+                    v-validate="'required|confirmed:new-password'"
+                    data-vv-delay="500"
+                    name="confirm-password"
+                    placeholder="请再次输入新密码"
                     type="password">
+                  <div v-if="errors.has('confirm-password')" class="error-list">
+                    <div class="error">{{errors.first('confirm-password')}}</div>
+                  </div>
                 </div>
                 <div class="btn-group">
                   <button type="submit" class="btn-primary left-round">提交</button>
@@ -51,25 +73,19 @@
 </template>
 
 <script>
-import "../../css/cuteForm.css";
+import SettingPage from "../../mixins/SettingPage";
 
 import session from "../../lib/session.js";
+// import {validate_before_submit} from "../../lib/validate.js";
 import api from "../../lib/api.js";
 
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
-import SettingNav from "../../components/SettingNav";
-
 export default {
-  components: { Nav, Footer, SettingNav },
+  mixins: [SettingPage],
 
   data() {
     return {
       error: {
         invalid_old_password: false
-      },
-      show: {
-        username: false
       },
       password: {
         old: "",
@@ -79,20 +95,15 @@ export default {
     };
   },
 
-  methods: {
-    submit(property) {
-      api("user/update", this.current).then(r => {
-        session.replace_uinfo(r.data);
-        this.show[property] = false;
-      });
-    },
-
+  methods: {    
     reset() {
       let form = document.querySelector("form");
       form.reset();
     },
 
     change_password() {
+      validate_before_submit();
+      
       let u = session.uinfo();
       let unique = u.username || u.phone || u.email;
 

@@ -483,3 +483,7 @@ input.round:focus {
 .cat-prom .head>* {
   vertical-align: bottom;
 }
+
+.error {
+  color: red;
+}

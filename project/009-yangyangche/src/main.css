@@ -32,6 +32,10 @@ table {
   border-collapse: collapse;
 }
 
+.wrap {
+  min-height: calc(100vh - 50px);
+}
+
 .dib {
   display: inline-block;
 }

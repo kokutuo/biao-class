@@ -9,7 +9,7 @@
         <span class="item">关于我们</span>
       </p> -->
       <p>
-        Copyright © 2013 - Aweee
+        Copyright © 2013 - Awww
       </p>
     </div>
   </div>
