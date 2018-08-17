@@ -23,6 +23,14 @@ a {
   color: #333;
 }
 
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
 .col-lg-1 {
   width: 8.333333333%;
 }
@@ -122,7 +130,7 @@ a {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 5px;
@@ -139,7 +147,7 @@ a {
 
 [class*=col-],
 .col {
-  padding: 5px;
+  /* padding: 5px; */
   display: inline-block;
   vertical-align: top;
   font-size: 1rem;
@@ -155,11 +163,6 @@ a {
   text-align: right;
 }
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
 .tac {
   text-align: center;
 }
@@ -172,11 +175,22 @@ a {
   text-align: right;
 }
 
-.fas {
-  padding-right: 3px;
-}
-
 .anchor {
   font-size: 10px;
   color: #909399;
+}
+
+.round {
+  border-radius: 4px;
+}
+
+.fas,
+.fab,
+.far {
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.el-form-item:last-child {
+  margin-bottom: 0;
 }

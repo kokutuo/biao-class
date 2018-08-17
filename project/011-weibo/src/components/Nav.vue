@@ -37,6 +37,7 @@ export default {
 
 <style scoped>
   #nav {
+    background: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     margin-bottom: 15px;

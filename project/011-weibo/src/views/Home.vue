@@ -5,7 +5,7 @@
     <div class="container">
       <div class="main">
         <div class="row">
-          <div class="col-lg-2 side-nav">
+          <div class="col-lg-2 left-nav">
             <div class="side-item active">热点</div>
             <div class="side-item">头条</div>
             <div class="side-item">视频</div>
@@ -29,26 +29,26 @@
                 </el-carousel>
               </div>
               <div class="card-list">
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
-                <CardWeibo/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
+                <CardNews/>
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-3 right-nav">
             <div class="login">
               <el-tabs value="account" :stretch="true">
                 <el-tab-pane label="账号登录" name="account">
@@ -78,6 +78,65 @@
                 <el-tab-pane label="安全登录" name="qrcode">安全登录</el-tab-pane>
               </el-tabs>
             </div>
+            <div class="news-list">
+              <div class="header">
+                <h2>新鲜事</h2>
+              </div>
+              <div class="row news">
+                <div class="col-lg-6">
+                  <div>微博问答榜丨七夕你要怎么过？</div>
+                  <div>25分钟前</div>
+                </div>
+                <div class="col-lg-6">
+                  <img src="../img/news.jpg" alt="">
+                </div>
+              </div>
+              <div class="row news">
+                <div class="col-lg-6">
+                  <div>微博问答榜丨七夕你要怎么过？</div>
+                  <div>25分钟前</div>
+                </div>
+                <div class="col-lg-6">
+                  <img src="../img/news.jpg" alt="">
+                </div>
+              </div>
+              <div class="row news">
+                <div class="col-lg-6">
+                  <div>微博问答榜丨七夕你要怎么过？</div>
+                  <div>25分钟前</div>
+                </div>
+                <div class="col-lg-6">
+                  <img src="../img/news.jpg" alt="">
+                </div>
+              </div>
+              <div class="row news">
+                <div class="col-lg-6">
+                  <div>微博问答榜丨七夕你要怎么过？</div>
+                  <div>25分钟前</div>
+                </div>
+                <div class="col-lg-6">
+                  <img src="../img/news.jpg" alt="">
+                </div>
+              </div>
+              <div class="row news">
+                <div class="col-lg-6">
+                  <div>微博问答榜丨七夕你要怎么过？</div>
+                  <div>25分钟前</div>
+                </div>
+                <div class="col-lg-6">
+                  <img src="../img/news.jpg" alt="">
+                </div>
+              </div>
+              <div class="row news">
+                <div class="col-lg-6">
+                  <div>微博问答榜丨七夕你要怎么过？</div>
+                  <div>25分钟前</div>
+                </div>
+                <div class="col-lg-6">
+                  <img src="../img/news.jpg" alt="">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -87,13 +146,13 @@
 
 <script>
 import Nav from "../components/Nav";
-import CardWeibo from "../components/CardWeibo";
+import CardNews from "../components/CardNews";
 
 export default {
   name: "home",
   components: {
     Nav,
-    CardWeibo
+    CardNews
   },
 
   data() {
@@ -112,7 +171,7 @@ export default {
   padding: 0 25px;
 }
 
-#home .side-nav {
+#home .left-nav {
   text-align: center;
   padding: 0 20px;
 }
@@ -147,10 +206,11 @@ export default {
   /* border-bottom: 1px solid rgba(0, 0, 0, .05); */
 }
 
-#home .login {
+#home .right-nav >* {
   background: #f2f6fc;
   padding: 10px 20px;
   border-radius: 4px;
+  margin-bottom: 20px;
 }
 
 .login .el-form-item:last-child {
