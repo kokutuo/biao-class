@@ -11,12 +11,14 @@ html {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }
 
-/* body {
-  background-color: rgb(180, 218, 240);
-  background-image: url(../img/body_repeat.png);
-  background-repeat: repeat-x;
-  background-position: center 0px;
-} */
+body {
+  background: #e6ecf0;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
 
 a {
   text-decoration: none;
@@ -183,6 +185,24 @@ img {
 .round {
   border-radius: 4px;
 }
+
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .3);
+}
+
+.error {
+  color: #f56c6c;
+  font-size: 14px;
+  line-height: 1;
+  padding: 4px;
+}
+
+/* ================================= */
 
 .fas,
 .fab,

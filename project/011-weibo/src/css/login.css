@@ -1,0 +1,24 @@
+.login .el-form-item:last-child {
+  margin-bottom: 0;
+}
+
+.login .el-button {
+  width: 100%;
+}
+
+.login .other-login {
+  padding-top: 15px;
+  border-top: 1px solid #ebeef5;
+}
+
+.login .brand>* {
+  padding: 0 3px;
+  color: #409eff;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 200ms;
+}
+
+.login .brand>*:hover {
+  opacity: 1;
+}

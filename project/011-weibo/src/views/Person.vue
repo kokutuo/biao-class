@@ -63,7 +63,18 @@
                     </el-dropdown>
                   </div>
                   <div class="col-lg-4 tar">
-                    <span>公开<i class="fas fa-angle-down"></i></span>
+                    <el-dropdown>
+                      <span class="el-dropdown-link">
+                        <strong>公开<i class="fas fa-angle-down"></i></strong>
+                      </span>
+                      <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>公开</el-dropdown-item>
+                        <el-dropdown-item>好友圈</el-dropdown-item>
+                        <el-dropdown-item>近自己可见</el-dropdown-item>
+                        <el-dropdown-item>群可见</el-dropdown-item>
+                      </el-dropdown-menu>
+                    </el-dropdown>
+
                     <el-button type="primary" style="width: 100px; margin-left:10px; padding:10px;" size="lager">发布</el-button>
                   </div>
                 </div>
@@ -134,56 +145,56 @@
             </div>
             <div class="row news">
               <div class="col-lg-6">
-                <div>微博问答榜丨七夕你要怎么过？</div>
-                <div>25分钟前</div>
+                <div class="title">微博问答榜丨七夕你要怎么过？</div>
+                <div class="time">25分钟前</div>
               </div>
               <div class="col-lg-6">
-                <img src="../img/news.jpg" alt="">
-              </div>
-            </div>
-            <div class="row news">
-              <div class="col-lg-6">
-                <div>微博问答榜丨七夕你要怎么过？</div>
-                <div>25分钟前</div>
-              </div>
-              <div class="col-lg-6">
-                <img src="../img/news.jpg" alt="">
+                <img src="../img/news.jpg" alt="pic">
               </div>
             </div>
             <div class="row news">
               <div class="col-lg-6">
-                <div>微博问答榜丨七夕你要怎么过？</div>
-                <div>25分钟前</div>
+                <div class="title">微博问答榜丨七夕你要怎么过？</div>
+                <div class="time">25分钟前</div>
               </div>
               <div class="col-lg-6">
-                <img src="../img/news.jpg" alt="">
-              </div>
-            </div>
-            <div class="row news">
-              <div class="col-lg-6">
-                <div>微博问答榜丨七夕你要怎么过？</div>
-                <div>25分钟前</div>
-              </div>
-              <div class="col-lg-6">
-                <img src="../img/news.jpg" alt="">
+                <img src="../img/news.jpg" alt="pic">
               </div>
             </div>
             <div class="row news">
               <div class="col-lg-6">
-                <div>微博问答榜丨七夕你要怎么过？</div>
-                <div>25分钟前</div>
+                <div class="title">微博问答榜丨七夕你要怎么过？</div>
+                <div class="time">25分钟前</div>
               </div>
               <div class="col-lg-6">
-                <img src="../img/news.jpg" alt="">
+                <img src="../img/news.jpg" alt="pic">
               </div>
             </div>
             <div class="row news">
               <div class="col-lg-6">
-                <div>微博问答榜丨七夕你要怎么过？</div>
-                <div>25分钟前</div>
+                <div class="title">微博问答榜丨七夕你要怎么过？</div>
+                <div class="time">25分钟前</div>
               </div>
               <div class="col-lg-6">
-                <img src="../img/news.jpg" alt="">
+                <img src="../img/news.jpg" alt="pic">
+              </div>
+            </div>
+            <div class="row news">
+              <div class="col-lg-6">
+                <div class="title">微博问答榜丨七夕你要怎么过？</div>
+                <div class="time">25分钟前</div>
+              </div>
+              <div class="col-lg-6 pic">
+                <img src="../img/news.jpg" alt="pic">
+              </div>
+            </div>
+            <div class="row news">
+              <div class="col-lg-6">
+                <div class="title">微博问答榜丨七夕你要怎么过？</div>
+                <div class="time">25分钟前</div>
+              </div>
+              <div class="col-lg-6">
+                <img src="../img/news.jpg" alt="pic">
               </div>
             </div>
           </div>
@@ -243,11 +254,11 @@ export default {
 }
 
 #person .side-item.active {
-  background: rgba(64, 158, 255, 0.3);
+  background: rgba(0, 0, 0, .3);
 }
 
 #person .side-item:hover {
-  background: rgba(64, 158, 255, 0.3);
+  background: rgba(0, 0, 0, .3);
 }
 
 #person .content {
@@ -270,7 +281,7 @@ export default {
 #person .send-weibo .title {
   font-size: 15px;
   font-weight: bolder;
-  opacity: 0.7;
+  opacity: 0.9;
   margin-bottom: 5px;
   color: #409eff;
 }
@@ -294,10 +305,18 @@ export default {
   /* border-bottom: 1px solid rgba(0, 0, 0, .05); */
 }
 
-#person .right-nav > * {
+#person .right-nav {
+  padding-left: 20px;
+}
+
+#person .right-nav .news-list {
   background: #f2f6fc;
   padding: 10px 20px;
   border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#person .right-nav .mine {
   margin-bottom: 20px;
 }
 
@@ -364,6 +383,25 @@ export default {
   font-size: 16px;
   font-weight: bolder;
   transition: color 200ms;
+}
+
+#person .right-nav .news .title {
+  font-size: 13px;
+  font-weight: bolder;
+  color: #606266;
+  padding: 5px;
+  padding-bottom: 0;
+}
+
+#person .right-nav .news .time {
+  font-size: 8px;
+  color: #C0C4CC;
+  padding: 0 5px;
+}
+
+#person .right-nav .news .pic {
+  padding: 3px;
+  border-radius: 4px;
 }
 
 /* ================================= */

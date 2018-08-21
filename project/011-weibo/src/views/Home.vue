@@ -145,6 +145,8 @@
 </template>
 
 <script>
+import "../css/login.css"
+
 import Nav from "../components/Nav";
 import CardNews from "../components/CardNews";
 
@@ -213,29 +215,23 @@ export default {
   margin-bottom: 20px;
 }
 
-.login .el-form-item:last-child {
-  margin-bottom: 0;
+#home .right-nav .news .title {
+  font-size: 13px;
+  font-weight: bolder;
+  color: #606266;
+  padding: 5px;
+  padding-bottom: 0;
 }
 
-.login .el-button {
-  width: 100%;
+#home .right-nav .news .time {
+  font-size: 8px;
+  color: #C0C4CC;
+  padding: 0 5px;
 }
 
-.login .other-login {
-  padding-top: 15px;
-  border-top: 1px solid #EBEEF5;
-}
-
-.login .brand >* {
-  padding: 0 3px;
-  color: #409EFF;
-  opacity: .5;
-  cursor: pointer;
-  transition: opacity 200ms;
-}
-
-.login .brand >*:hover {
-  opacity: 1;
+#home .right-nav .news .pic {
+  padding: 3px;
+  border-radius: 4px;
 }
 
 /* ================================= */
