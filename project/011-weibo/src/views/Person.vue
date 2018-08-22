@@ -24,9 +24,10 @@
         <div class="col-lg-7 content">
           <div class="send-weibo round">
             <div class="title">有什么新鲜事想告诉大家？</div>
-            <el-form>
+            <el-form :model="form">
               <el-form-item style="margin-bottom:5px;">
                 <el-input
+                  v-model="form.content"
                   type="textarea"
                   :rows="4"
                   placeholder="请输入内容">
@@ -74,8 +75,13 @@
                         <el-dropdown-item>群可见</el-dropdown-item>
                       </el-dropdown-menu>
                     </el-dropdown>
-
-                    <el-button type="primary" style="width: 100px; margin-left:10px; padding:10px;" size="lager">发布</el-button>
+                    <el-button 
+                      @click="new_weibo"
+                      type="primary" 
+                      :disabled="!form.content"
+                      style="width: 100px; margin-left:10px; padding:10px;" 
+                      size="lager">发布
+                    </el-button>
                   </div>
                 </div>
               </el-form-item>
@@ -96,33 +102,18 @@
             </div>
           </div>
           <div class="card-list">
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
-            <CardWeibo/>
+            <CardWeibo :row="it" v-for="it in list" :key="it.id"/>
           </div>
         </div>
         <div class="col-lg-3 right-nav">
-          <div class="mine">
+          <div v-for="it in user_list" :key="it.id" class="mine">
             <div class="cover">
               <div class="avatar">
                 <img src="../img/user-avatar.jpg" alt="kokutuo">
               </div>
             </div>
             <div class="info">
-              <div class="name">kokutuo</div>
+              <div class="name">{{it.username}}</div>
               <div class="user-attention">
                 <div class="line">
                   <div class="val">6</div>
@@ -136,6 +127,10 @@
                   <div class="val">6</div>
                   <div class="key">关注</div>
                 </div>
+              </div>
+              <div>
+                <el-button @click="follow(it)" v-if="!has_followed(it.id)" type="primary" plain size="mini">关注</el-button>
+                <el-button @click="unfollow(it)" v-else type="warning" plain size="mini">取消关注</el-button>
               </div>
             </div>
           </div>
@@ -205,6 +200,9 @@
 </template>
 
 <script>
+import api from "../lib/api.js";
+import session from "../lib/session.js";
+
 import Nav from "../components/Nav";
 import CardWeibo from "../components/CardWeibo";
 
@@ -215,13 +213,107 @@ export default {
     CardWeibo
   },
 
+  mounted() {
+    this.read_user();
+    this.read_followed().then(r => {
+      this.read_followed_weibo();
+    });
+  },
+
   data() {
     return {
-      form: {
-        account: "",
-        pwd: ""
-      }
+      list: [],
+      followed_list: [],
+      user_list: [],
+      form: {},
+      uinfo: session.uinfo()
     };
+  },
+
+  methods: {
+    read_user() {
+      api("user/read").then(r => {
+        this.user_list = r.data;
+      });
+    },
+
+    read_followed() {
+      return api("user/find", {
+        id: this.uinfo.id,
+        with: [
+          {
+            relation: "belongs_to_many",
+            model: "user"
+          }
+        ]
+      }).then(r => {
+        this.followed_list = r.data.$user;
+        console.log("this.followed_list", this.followed_list);
+      });
+    },
+
+    read_followed_weibo() {
+      api("weibo/read", {
+        where: [["user_id", "in", this.pluck(this.followed_list, "id")]],
+        with: "belongs_to:user"
+      }).then(r => {
+        this.list = r.data;
+      });
+    },
+
+    /**
+     * 将数组 arr 中每一项键名为 key 的数据取出来
+     */
+    pluck(arr, key) {
+      arr = arr || [];
+      const result = [];
+
+      arr.forEach(it => {
+        result.push(it[key]);
+      });
+
+      return result;
+    },
+
+    new_weibo() {
+      this.form.user_id = session.his_id();
+      api("weibo/create", this.form).then(r => {
+        this.form = {};
+        this.list.unshift(r.data);
+      });
+    },
+
+    follow(user) {
+      api("user/bind", {
+        model: "user",
+        glue: {
+          [this.uinfo.id]: user.id
+        }
+      }).then(r => {
+        this.read_followed();
+      });
+    },
+
+    unfollow(user) {
+      api("user/unbind", {
+        model: "user",
+        glue: {
+          [this.uinfo.id]: user.id
+        }
+      }).then(r => {
+        this.read_followed();
+      });
+    },
+
+    has_followed(target_id) {
+      if (!this.followed_list) {
+        return false;
+      }
+
+      return !!this.followed_list.find(user => {
+        return user.id == target_id;
+      });
+    }
   }
 };
 </script>
@@ -254,11 +346,11 @@ export default {
 }
 
 #person .side-item.active {
-  background: rgba(0, 0, 0, .3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 #person .side-item:hover {
-  background: rgba(0, 0, 0, .3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 #person .content {
@@ -395,7 +487,7 @@ export default {
 
 #person .right-nav .news .time {
   font-size: 8px;
-  color: #C0C4CC;
+  color: #c0c4cc;
   padding: 0 5px;
 }
 

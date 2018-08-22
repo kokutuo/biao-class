@@ -6,13 +6,11 @@
       </div>
       <div class="col-lg-11 main">
         <div class="author">
-          <div class="name">王花花</div>
+          <div class="name">{{row.$user ? row.$user.username : '人谋了'}}</div>
           <div class="time">8月13日 19:34</div>
         </div>
         <div class="text">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ducimus iste animi excepturi repellat aliquid. Ipsum est veniam, laboriosam, molestiae, minima cum iusto alias inventore repudiandae dolorem incidunt quibusdam. Corporis.
-          </p>
+          <p>{{row.content}}</p>
         </div>
         <div class="pic"></div>
       </div>
@@ -27,9 +25,17 @@
 </template>
 
 <script>
-import '../css/card.css';
+import "../css/card.css";
 
-export default {};
+export default {
+  props: {
+    row: {
+      default() {
+        return {};
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -53,7 +59,7 @@ export default {};
   padding: 0 15px;
 }
 
-.card-weibo .main>* {
+.card-weibo .main > * {
   margin-bottom: 5px;
 }
 
@@ -90,7 +96,7 @@ export default {};
   bottom: 0;
 }
 
-.card-weibo .toolbar>* {
+.card-weibo .toolbar > * {
   display: inline-block;
   margin: 5px 0;
   width: 25%;
@@ -99,8 +105,7 @@ export default {};
   border-right: 1px solid #ebeef5;
 }
 
-.card-weibo .toolbar>*:last-child {
+.card-weibo .toolbar > *:last-child {
   border-right: 0;
 }
-
 </style>

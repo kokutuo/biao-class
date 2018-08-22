@@ -82,7 +82,7 @@ export default {
         session.login(r);
         alert('登录成功！');
         // location.href = "/";
-        this.$router.push('/');
+        this.$router.push('/person');
       });
     },
 
