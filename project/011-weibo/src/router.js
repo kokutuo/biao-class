@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Person from './views/Person.vue'
+import Mine from './views/Mine.vue'
 import Login from './views/Login.vue'
 import Signup from './views/Signup.vue'
 
@@ -28,6 +29,11 @@ export default new Router({
       name: 'person',
       component: Person
     },
+    {
+      path: '/mine',
+      name: 'mine',
+      component: Mine
+    }
     // {
     //   path: '/about',
     //   name: 'about',

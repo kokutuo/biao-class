@@ -1,5 +1,6 @@
 import 'normalize.css'
 import '../src/css/main.css'
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import Vue from 'vue'
 import App from './App.vue'

@@ -54,13 +54,13 @@
                 <el-tab-pane label="账号登录" name="account">
                   <el-form v-model="form" >
                     <el-form-item>
-                      <el-input v-model="form.account" prefix-icon="fas fa-user"  placeholder="邮箱/会员账号/手机号"></el-input>
+                      <el-input v-model="form.unique" prefix-icon="fas fa-user"  placeholder="邮箱/会员账号/手机号"></el-input>
                     </el-form-item>
                     <el-form-item>
                       <el-input v-model="form.pwd" prefix-icon="fas fa-lock"  placeholder="邮箱/会员账号/手机号"></el-input>
                     </el-form-item>
                     <el-form-item>
-                      <el-button type="primary" size="medium">登录</el-button>
+                      <el-button @click="submit" type="primary" size="medium">登录</el-button>
                       <span class="anchor">还没有账号？<router-link style="color:#409EFF;" to="/signup">立即注册!</router-link></span>
                     </el-form-item>
                   </el-form>
@@ -145,7 +145,9 @@
 </template>
 
 <script>
-import "../css/login.css"
+import "../css/login.css";
+
+import session from '../lib/session.js';
 
 import Nav from "../components/Nav";
 import CardNews from "../components/CardNews";
@@ -160,10 +162,28 @@ export default {
   data() {
     return {
       form: {
-        account: "",
+        unique: "",
         pwd: ""
       }
     };
+  },
+
+  methods: {
+    submit() {
+      session.exist(this.form.unique, this.form.pwd).then(r => {
+        if (!r) {
+          this.passed = false;
+          alert("账号或密码不正确，请重新输入");
+          return;
+        }
+
+        this.passed = true;
+        session.login(r);
+        alert("登录成功！");
+        // location.href = "/";
+        this.$router.push("/person");
+      });
+    }
   }
 };
 </script>
@@ -208,7 +228,7 @@ export default {
   /* border-bottom: 1px solid rgba(0, 0, 0, .05); */
 }
 
-#home .right-nav >* {
+#home .right-nav > * {
   background: #f2f6fc;
   padding: 10px 20px;
   border-radius: 4px;
@@ -225,7 +245,7 @@ export default {
 
 #home .right-nav .news .time {
   font-size: 8px;
-  color: #C0C4CC;
+  color: #c0c4cc;
   padding: 0 5px;
 }
 

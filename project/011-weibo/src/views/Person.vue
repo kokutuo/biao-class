@@ -53,7 +53,7 @@
                     </span>                      
                     <el-dropdown>
                       <span class="el-dropdown-link">
-                        <strong>···</strong>
+                        <i class="el-icon-more"></i>
                       </span>
                       <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>直播</el-dropdown-item>
@@ -102,14 +102,17 @@
             </div>
           </div>
           <div class="card-list">
-            <CardWeibo :row="it" v-for="it in list" :key="it.id"/>
+            <CardWeibo :row="it" :uinfo="uinfo" v-for="it in list" :key="it.id"/>
+            <div v-if="!list.length" class="empty-holder round"><i class="fas fa-exclamation-circle fa-lg"></i>暂无内容</div>
           </div>
         </div>
         <div class="col-lg-3 right-nav">
           <div v-for="it in user_list" :key="it.id" class="mine">
             <div class="cover">
               <div class="avatar">
-                <img src="../img/user-avatar.jpg" alt="kokutuo">
+                <router-link to="/mine">
+                  <img src="../img/user-avatar.jpg" alt="kokutuo">
+                </router-link>
               </div>
             </div>
             <div class="info">
@@ -248,13 +251,18 @@ export default {
         ]
       }).then(r => {
         this.followed_list = r.data.$user;
-        console.log("this.followed_list", this.followed_list);
       });
     },
 
     read_followed_weibo() {
+      let id = this.pluck(this.followed_list, "id");
+
+      if (!id.length) {
+        return;
+      }
+
       api("weibo/read", {
-        where: [["user_id", "in", this.pluck(this.followed_list, "id")]],
+        where: [["user_id", "in", id]],
         with: "belongs_to:user"
       }).then(r => {
         this.list = r.data;
@@ -279,7 +287,8 @@ export default {
       this.form.user_id = session.his_id();
       api("weibo/create", this.form).then(r => {
         this.form = {};
-        this.list.unshift(r.data);
+        // this.list.unshift(r.data);
+        this.read_followed_weibo();
       });
     },
 
@@ -319,13 +328,6 @@ export default {
 </script>
 
 <style scoped>
-#person {
-  background-color: rgb(180, 218, 240);
-  background-image: url(../img/body_repeat.png);
-  background-repeat: repeat-x;
-  background-position: center 0px;
-}
-
 #person .main {
   padding: 0 25px;
 }

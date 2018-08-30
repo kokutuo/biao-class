@@ -77,16 +77,14 @@ export default {
           alert("账号或密码不正确，请重新输入");
           return;
         }
-        
+
         this.passed = true;
         session.login(r);
-        alert('登录成功！');
+        alert("登录成功！");
         // location.href = "/";
-        this.$router.push('/person');
+        this.$router.push("/person");
       });
-    },
-
-    
+    }
   }
 };
 </script>
